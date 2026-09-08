@@ -1,0 +1,51 @@
+{
+  "schema": "LKB-SHANNON-PREFLIGHT-v0.4",
+  "generatedAt": "2026-09-08T23:23:28.630Z",
+  "mode": "READ_ONLY_NO_SIGNER_LOW_LEVEL_BOUNDED",
+  "chainId": 50312,
+  "sdkPinnedVersion": "0.29.0",
+  "indexerUrl": "https://dev.smk.somnia.host/v1/graphql",
+  "minHeadroomSec": 600,
+  "liveMarketCount": 27,
+  "nativeRollingMarketCount": 4,
+  "chosen": {
+    "marketId": "0x000000000000000000000000000000000000000000000000000000000001772a",
+    "pool": "0x3604c66cdd41649f26a804df2c6cbd2f2753cb68",
+    "asset": "BTC",
+    "intervalSec": 3600,
+    "expiry": 1788912000,
+    "secondsLeft": 2194,
+    "nativeRolling": true,
+    "onchainStatus": 1,
+    "onchain": {
+      "marketAddress": "0xB7531fB3060Ad4DB694c9CEe99937B0C4eA926da",
+      "outcomeToken": "0xB52c5934113Af5c0Bb20eb3C72290C8215f755b9",
+      "yesId": "1456339996606547873854393228571286801375476986259973860288345988445440",
+      "noId": "1456339996606547873854393228571286801375476986259973860288345988445441",
+      "pool": "0x3604C66cDd41649F26A804dF2c6cbD2f2753CB68",
+      "nonce": "181",
+      "collateral": "0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E",
+      "status": 1,
+      "backing": "1500000000",
+      "finalized": false,
+      "expiry": "1788912000",
+      "decimals": 6,
+      "winningOutcome": 0,
+      "isResolved": false,
+      "isVoided": false,
+      "voidPolicy": 0
+    },
+    "bookParams": {"tickSize":"1000","minQuantity":"1000","lotSize":"1000"},
+    "bookTop": {
+      "bidCount": 3,
+      "askCount": 5,
+      "bestBidRaw": {"price":"169000","quantity":"200000000"},
+      "bestAskRaw": {"price":"194000","quantity":"200000000"}
+    },
+    "collateral": {"address":"0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E","decimals":6,"symbol":"tUSDC"}
+  },
+  "authority": {"blockchainWritePerformed":false,"privateKeyPresent":false,"nextBoundary":"PREPARE_WRITE_PACKET_ONLY"},
+  "workflowRun": 34290405286,
+  "workflowArtifact": 10081109116,
+  "workflowArtifactDigest": "sha256:e21aee80836bac4740ea297c1b24dda83e532d79e6790a0f82e00da76031b31d"
+}
