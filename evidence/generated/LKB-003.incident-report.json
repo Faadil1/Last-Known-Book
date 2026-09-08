@@ -12,12 +12,36 @@
   "venueReality": {
     "summary": "The reconciled average fill was 0.486 and the NO position increased from 0 to 29.182."
   },
-  "semantics": ["EXPECTED_VS_ACTUAL_FILL"],
+  "semantics": [
+    "EXPECTED_VS_ACTUAL_FILL"
+  ],
   "rootCause": "EXPECTED_VS_OBSERVED",
   "claims": [
-    {"id":"O-EXEC-1","truthClass":"OBSERVED","claim":"Requested BUY_NO 29.182 @ 0.495.","evidence":["request"]},
-    {"id":"O-EXEC-2","truthClass":"OBSERVED","claim":"Average actual fill was 0.486; position moved 0 → 29.182.","evidence":["receipt","position"]},
-    {"id":"O-EXEC-3","truthClass":"OBSERVED","claim":"Execution price improved by 0.009000 versus the request limit.","evidence":["deterministic: requestedPrice - averageFillPrice"]}
+    {
+      "id": "O-EXEC-1",
+      "truthClass": "OBSERVED",
+      "claim": "Requested BUY_NO 29.182 @ 0.495.",
+      "evidence": [
+        "request"
+      ]
+    },
+    {
+      "id": "O-EXEC-2",
+      "truthClass": "OBSERVED",
+      "claim": "Average actual fill was 0.486; position moved 0 → 29.182.",
+      "evidence": [
+        "receipt",
+        "position"
+      ]
+    },
+    {
+      "id": "O-EXEC-3",
+      "truthClass": "OBSERVED",
+      "claim": "Execution price improved by 0.009000 versus the request limit.",
+      "evidence": [
+        "deterministic: requestedPrice - averageFillPrice"
+      ]
+    }
   ],
   "policy": {
     "action": "NO_ACTION",
@@ -33,7 +57,9 @@
     "truthClass": "CAPTURED_REAL_SHANNON_PUBLIC_EVIDENCE",
     "sourceRepository": "tang-vu/outcome-guard",
     "sourcePath": "docs/evidence/execution-receipt.json",
-    "limitations": ["This fixture is replay evidence from a separate public build, not a Last Known Book-originated transaction."]
+    "limitations": [
+      "This fixture is replay evidence from a separate public build, not a Last Known Book-originated transaction."
+    ]
   },
   "reportHash": "f210c82ff5d1332e2ccb5b1848278c9b72e4e30c8c931c3b07fab0f36db6d2f1"
 }
