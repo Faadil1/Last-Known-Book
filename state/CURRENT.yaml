@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v0.2
-updated_utc: "2026-09-08T23:13:00Z"
+schema: LKB-CURRENT-v0.3
+updated_utc: "2026-09-08T23:26:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PBPD
   stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: TRACE_RENDERED_VIEWPORT_PASS__PRODUCT_ORIGINATED_SHANNON_PROOF_NEXT
+  status: SHANNON_READ_ONLY_PREFLIGHT_PASS__HUMAN_WRITE_APPROVAL_REQUIRED
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
@@ -16,7 +16,7 @@ upstream:
 authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
-  blockchain_writes: BLOCKED_BY_DEFAULT_REQUIRES_EXPLICIT_HUMAN_APPROVAL_PER_WRITE_PROOF_GATE
+  blockchain_writes: HUMAN_WRITE_APPROVAL_REQUIRED_FOR_PACKET_001
   protected_submission: HUMAN_ONLY
   preview_deployment: HUMAN_AUTHORIZED_FOR_BOUNDED_VISUAL_EVIDENCE_ONLY
 truth_boundaries:
@@ -28,47 +28,50 @@ vertical_slice:
   canonical_branch: main
   pull_request: 1
   merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
-  hero_cases:
-    - LKB-001_MINT_A_PAIR_INDEXER_LAG
-    - LKB-002_RESTING_SELL_ESCROW
-    - LKB-003_EXPECTED_VS_ACTUAL
-  deterministic_engine: IMPLEMENTED_AND_MERGED
-  replay_reports: BYTE_REPRODUCIBLE_AND_MERGED
-  static_judge_ui: IMPLEMENTED_AND_MERGED
-  judge_hero_hierarchy: CASE_INTENT_REALITY_CAUSE_SAFE_RESPONSE_ABOVE_DETAILS
 validation:
-  local_tests: PASS_5_OF_5
-  replay_cases: PASS_3_OF_3
-  repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
-  final_pr_ci:
-    status: PASS
-    workflow: Validate Last Known Book
-    run_id: 34288342358
-  rendered_viewport:
-    status: PASS
-    viewport: 1280x720
-    source_head: 5ccec71296ec38080c2346732acba49987eec60b
-    evidence: evidence/trace/VIEWPORT-1280x720.md
-    raster_sha256: 1283f24e1ca9dacc9de5c5180c277840431c84427c8874f75d76218fbd2a0ac5
-    causal_reveal_bottom_px: 562.796875
-    safe_response_bottom_px: 561.796875
-    reduced_motion: PASS_TRANSITION_0S_ANIMATION_NONE
-  external_preview:
-    human_authorized: true
-    target: preview
-    url: https://last-known-book-trace-preview-jhuebqiq3-faadil-s-projects.vercel.app
-    deployment_id: dpl_3fPT9HT2N69fSZh4XVQn7TKHaTsG
-    connector_readback: BLOCKED_403_SCOPE_AUTH
-    deployment_readiness_claimed: false
-  trace_rendered_recheck:
-    status: PASS_RENDERED_1280X720_EXACT_MAIN__EXTERNAL_PREVIEW_READBACK_SCOPE_LIMITED
-    artifact: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/GATE_4_25_RENDERED_VIEWPORT_RECHECK.md
-    trace_commit: 6cff63b98fad6557574a1dbf3028ad9b15a19b55
+  deterministic_engine_tests: PASS
+  deterministic_replay: PASS_3_CASES
+  github_ci: PASS_RUN_34288342358
+  trace_rendered_viewport: PASS
+shannon_proof_preparation:
+  branch: proof/shannon-readonly-prep
+  pull_request: 2
+  mode: READ_ONLY_NO_SIGNER
+  workflow: Shannon Read-Only Proof Preflight
+  workflow_run: 34290405286
+  workflow_artifact: 10081109116
+  artifact_digest: sha256:e21aee80836bac4740ea297c1b24dda83e532d79e6790a0f82e00da76031b31d
+  live_market_count: 27
+  native_rolling_market_count: 4
+  selected_market:
+    asset: BTC
+    interval_sec: 3600
+    market_id: 0x000000000000000000000000000000000000000000000000000000000001772a
+    pool: 0x3604C66cDd41649F26A804dF2c6cbD2f2753CB68
+    status: 1
+    status_name: Trading
+    expiry_utc: "2026-09-09T00:00:00Z"
+    headroom_at_snapshot_sec: 2194
+    best_bid: 0.169
+    best_ask: 0.194
+    tick_size: 0.001
+    min_quantity: 0.001
+    lot_size: 0.001
+  proposed_packet:
+    artifact: evidence/shannon/SHANNON-WRITE-PACKET-001.md
+    action_a: POST_ONLY_BUY_YES
+    price: 0.001
+    quantity: 0.001
+    max_principal_tusdc: 0.000001
+    action_b: CANCEL_EXACT_ORDER_IF_RESTING
+    approval_cutoff_utc: "2026-09-08T23:45:00Z"
+    approval_cutoff_toronto: "2026-09-08T19:45:00-04:00"
+    setup_writes_authorized: false
 proof_status:
-  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_AND_RENDERED_EXPERIENCE_PASS
-  product_originated_shannon_write_proof: ABSENT
+  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_RENDERED_EXPERIENCE_AND_LIVE_READ_PREFLIGHT_PASS
+  product_originated_shannon_write_proof: ABSENT_PENDING_HUMAN_APPROVAL
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_gate: PBPD_SAFE_LAST_KNOWN_BOOK_ORIGINATED_SHANNON_PROOF_CHAIN
-next_owner: PBPD_WITH_HUMAN_AUTHORITY_REQUIRED_BEFORE_ANY_WRITE
+next_gate: HUMAN_WRITE_APPROVAL_REQUIRED_FOR_SHANNON_PACKET_001
+next_owner: HUMAN
