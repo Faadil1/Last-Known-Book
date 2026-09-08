@@ -1,0 +1,46 @@
+{
+  "caseId": "LKB-002",
+  "title": "The tokens didn't disappear. They were escrowed.",
+  "type": "RESTING_SELL_ESCROW",
+  "marketId": null,
+  "intent": {
+    "actor": "market-making agent",
+    "expected": "Mint a complete set, rest SELL_YES inventory, then recover the exact inventory when the resting order is cancelled."
+  },
+  "venueReality": {
+    "summary": "Visible YES fell to zero while the order rested because the outcome token was held in venue escrow. Exact cancel restored the visible inventory, then burnSet returned the collateral."
+  },
+  "evidence": {
+    "side": "SELL_YES",
+    "orderState": "RESTING",
+    "visibleYesBeforeRaw": 1000,
+    "visibleYesAfterPlacementRaw": 0,
+    "committedOutcomeRaw": 1000,
+    "visibleYesAfterCancelRaw": 1000,
+    "tusdcBeforeRaw": 100000000,
+    "tusdcAfterMintRaw": 99999000,
+    "tusdcAfterBurnRaw": 100000000,
+    "tx": {
+      "mint": "0x5e96147119e2b5c41305819903499fc7efc8fc75366893eae59b98360269e15d",
+      "sellYes": "0xca0a56e53913ee4ce4a65ab65a4ec5745ec95c4e2d8f6da15a6ba3e92c30ea42",
+      "cancel": "0x3a0016826685680538cbfe5534ce76103b5abc5dcb86416c8c0e8417438d9792",
+      "burnSet": "0xf9e20539095cc5c2f2b34cdc968b1bac1ac4126715cfb5f2abe635e0135f772d"
+    }
+  },
+  "reconciliation": {
+    "status": "EXPLAINED_AND_RECONCILED",
+    "writePerformed": true,
+    "writeWasSourceEvidenceNotThisImplementation": true,
+    "finalState": "YES/NO returned to zero after burnSet and tUSDC returned to the original raw balance."
+  },
+  "provenance": {
+    "truthClass": "CAPTURED_REAL_SHANNON_PUBLIC_EVIDENCE",
+    "date": "2026-08-26",
+    "sourceRepository": "Techkeyy/villa",
+    "sourcePath": "docs/INVENTORY_LIFECYCLE.md",
+    "limitations": [
+      "This implementation replays captured evidence; it did not originate these writes.",
+      "This fixture proves venue escrow semantics, not incident prevalence."
+    ]
+  }
+}
