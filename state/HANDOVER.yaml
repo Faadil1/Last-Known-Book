@@ -1,0 +1,44 @@
+schema: LKB-HANDOVER-v0.1
+updated_utc: "2026-09-08T22:30:00Z"
+product: Last Known Book
+repository: Faadil1/Last-Known-Book
+internal_project_slug: dreamdex-execution-incident-response
+owner: PBPD
+lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__DETERMINISTIC_PROOF_COMMITTED
+canonical_branch: build/vertical-slice-v0.1
+upstream:
+  pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
+  hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
+  trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
+material_decisions:
+  - Product brand is Last Known Book; the historical internal slug is preserved to avoid breaking upstream references.
+  - Repository was created from scratch; no Matchday Pulse source code is reused.
+  - V0.1 uses deterministic incident semantics and action policy; no LLM is on the critical path.
+  - Hero evidence uses independent captured real Shannon incidents, clearly labeled as replay evidence from public sources.
+  - MINT_A_PAIR plus indexer lag is the primary causal reveal; resting SELL escrow is the fully hashed reconciliation case.
+  - Inference alone cannot authorize a blockchain write.
+  - Write-capable response paths remain disabled until a current end-to-end safe-write proof exists.
+validation:
+  local_tests: PASS_5_OF_5
+  deterministic_replay: PASS_3_CASES
+  repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
+  ui_source_committed: true
+  github_ci: PENDING_WORKFLOW_COMMIT
+  live_shannon_read: NOT_YET_PROVEN_IN_CURRENT_RUNTIME
+proof_status:
+  technical_proof: PARTIAL_DETERMINISTIC_REPLAY_PASS
+  behavior_proof: NOT_YET
+  outcome_proof: NOT_YET
+  production_evidence: ABSENT
+next_exact_gate: GITHUB_CI_AND_LOCAL_PREVIEW_SMOKE_THEN_TRACE_IMPLEMENTATION_RECHECK
+next_exact_action: Commit CI workflow, run repository validation, smoke the local/static judge UI, then route the built experience to TRACE for implementation recheck before any preview deployment.
+blocked_actions:
+  - no inference-authorized writes
+  - no Matchday source reuse
+  - no unsupported fraud/prevalence/ROI/production claims
+  - no production deployment or hackathon submission without later human gates
+continuity:
+  canonical_state_over_chat_memory: true
+  update_after_every_material_step: true
+  handover_after_significant_milestone: true
+  next_conversation_should_start_here: true
