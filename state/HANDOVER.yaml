@@ -1,54 +1,54 @@
-schema: LKB-HANDOVER-v0.5
-updated_utc: "2026-09-08T23:08:00Z"
+schema: LKB-HANDOVER-v0.6
+updated_utc: "2026-09-08T23:13:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: MAIN_MERGED__BOUNDED_RENDERED_PREVIEW_AUTHORIZATION_REQUIRED
+lifecycle: TRACE_RENDERED_VIEWPORT_PASS__PRODUCT_ORIGINATED_SHANNON_PROOF_NEXT
 canonical_branch: main
-canonical_merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
-pull_request: 1
+canonical_product_merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
   trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
 material_decisions:
-  - Product brand is Last Known Book; historical internal slug remains dreamdex-execution-incident-response for continuity.
-  - Product repository is public and from scratch; no Matchday Pulse source code is reused.
-  - V0.1 uses deterministic incident semantics and action policy; no LLM is on the critical path.
-  - Hero evidence uses independent captured real Shannon incidents, clearly labeled replay evidence from public sources.
-  - MINT_A_PAIR plus indexer lag is the primary causal reveal; resting SELL escrow is the fully hashed reconciliation case.
-  - Inference alone cannot authorize a blockchain write.
-  - Write-capable response paths remain disabled until a current end-to-end safe-write proof exists and explicit human confirmation is obtained.
-  - GitHub CI proves tests + deterministic regeneration + byte-clean replay artifacts.
-  - TRACE implementation source recheck passed after moving SAFE RESPONSE / WRITE REFUSED into the hero viewport hierarchy.
-  - PR #1 merged to main at c6be8015b2ed8e08b2095dd60c19ea89369d2a82 after final CI PASS.
-  - Rendered 1280x720 evidence remains required before final visual promotion because source review cannot prove browser rasterization.
+  - Product brand remains Last Known Book; historical internal slug remains dreamdex-execution-incident-response for continuity.
+  - Repository is public and from scratch; no Matchday Pulse source code is reused.
+  - V0.1 critical path remains deterministic; no LLM is trusted for hard facts or write authorization.
+  - Hero evidence uses independent captured real Shannon incidents and is correctly labeled replay evidence.
+  - Human explicitly authorized a bounded external preview for rendered TRACE evidence only; that authorization does not extend to production deployment, submission, spend, or blockchain writes.
+  - Exact current main static bundle was deployed to Vercel preview, but connector readback is blocked by HTTP 403 scope authorization; external readiness is not claimed.
+  - Exact canonical main source was browser-rendered at 1280x720; Intent ≠ Venue Reality, MINT_A_PAIR + CHAIN_INDEXER_DIVERGENCE, MIXED, RETRY_READ and WRITE REFUSED are all visible without scroll.
+  - The causal reveal ends at 562.796875 px in a 720 px viewport and grounded evidence begins in the same viewport.
+  - Reduced-motion emulation yields 0s transition duration and no animation.
+  - TRACE Gate 4.25-LIVE passed for the rendered evaluator experience.
+  - Write-capable response paths remain blocked until a current Last Known Book-originated safe Shannon proof is prepared and the user gives explicit write approval for that gate.
 validation:
-  local_tests: PASS_5_OF_5
+  deterministic_engine_tests: PASS
   deterministic_replay: PASS_3_CASES
   repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
-  local_preview_smoke: PASS_HTML_AND_FIXTURE_LOAD
-  final_pr_ci:
+  github_ci: PASS_RUN_34288342358
+  rendered_viewport:
     status: PASS
-    workflow: Validate Last Known Book
-    run_id: 34288342358
-    head: 7647aec21293635efa1e8e991d36f63a85448ada
-  trace_source_recheck:
-    status: PASS_IMPLEMENTATION_SOURCE_CONTRACT__LIVE_VIEWPORT_RECHECK_REQUIRED
-    artifact: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/GATE_4_25_IMPLEMENTATION_RECHECK.md
-  live_shannon_read: IMPLEMENTED_BUT_CURRENT_CONTAINER_NETWORK_BLOCKED
+    viewport: 1280x720
+    evidence: evidence/trace/VIEWPORT-1280x720.md
+    raster_sha256: 1283f24e1ca9dacc9de5c5180c277840431c84427c8874f75d76218fbd2a0ac5
+  reduced_motion: PASS
+  trace_rendered_recheck:
+    verdict: PASS_RENDERED_1280X720_EXACT_MAIN__EXTERNAL_PREVIEW_READBACK_SCOPE_LIMITED
+    artifact: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/GATE_4_25_RENDERED_VIEWPORT_RECHECK.md
 proof_status:
-  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_AND_SOURCE_EXPERIENCE_PASS
+  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_AND_RENDERED_EXPERIENCE_PASS
+  product_originated_shannon_write_proof: ABSENT
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: HUMAN_AUTHORIZATION_FOR_BOUNDED_EXTERNAL_PREVIEW_THEN_TRACE_LIVE_VIEWPORT_RECHECK
-next_exact_owner: HUMAN_THEN_PBPD_THEN_TRACE_SPECIALIST
-next_exact_action: Human explicitly authorizes a bounded external preview deployment for visual evidence only. PBPD deploys the canonical main build as a preview, captures/verifies the 1280x720 judge viewport and reduced-motion behavior, and returns the rendered evidence to TRACE. No production deployment, submission, spend claim or blockchain write is implied by preview authorization.
+next_exact_gate: PBPD_SAFE_LAST_KNOWN_BOOK_ORIGINATED_SHANNON_PROOF_CHAIN
+next_exact_owner: PBPD_WITH_HUMAN_AUTHORITY_REQUIRED_BEFORE_ANY_WRITE
+next_exact_action: Design the smallest bounded Shannon proof in which Last Known Book itself observes a current DreamDEX state, reaches a deterministic authority decision, asks for explicit human approval if a write is justified, performs one native Shannon action only after approval, captures the mined receipt, and reconciles final state. If no safe justified write can be constructed, record a truthful BLOCK/NO_ACTION instead of forcing a transaction.
 blocked_actions:
-  - no external preview deployment without explicit human approval
-  - no inference-authorized blockchain writes
+  - no blockchain write without a new explicit human approval specific to the prepared proof action
+  - no inference-authorized spend
   - no Matchday source reuse
   - no unsupported fraud/prevalence/ROI/production claims
   - no production deployment or hackathon submission without later human gates
