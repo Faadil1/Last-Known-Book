@@ -1,0 +1,41 @@
+{
+  "schema": "LKB-INCIDENT-REPORT-v0.1",
+  "engineVersion": "0.1.0",
+  "caseId": "LKB-002",
+  "title": "The tokens didn't disappear. They were escrowed.",
+  "type": "RESTING_SELL_ESCROW",
+  "marketId": null,
+  "intent": {
+    "actor": "market-making agent",
+    "expected": "Mint a complete set, rest SELL_YES inventory, then recover the exact inventory when the resting order is cancelled."
+  },
+  "venueReality": {
+    "summary": "Visible YES fell to zero while the order rested because the outcome token was held in venue escrow. Exact cancel restored the visible inventory, then burnSet returned the collateral."
+  },
+  "semantics": ["RESTING_SELL_ESCROW"],
+  "rootCause": "VENUE_SEMANTICS",
+  "claims": [
+    {"id":"O-ESC-1","truthClass":"OBSERVED","claim":"Visible YES moved 1000 → 0 while 1000 raw YES remained committed by a resting SELL.","evidence":["balances.before","balances.afterPlacement","order.committed"]},
+    {"id":"O-ESC-2","truthClass":"OBSERVED","claim":"Exact cancel restored visible YES to 1000.","evidence":["cancel.txHash","balances.afterCancel"]},
+    {"id":"I-ESC-1","truthClass":"INFERRED","claim":"The apparent disappearance is venue escrow semantics, not lost inventory.","evidence":["O-ESC-1","O-ESC-2"]}
+  ],
+  "policy": {
+    "action": "NO_ACTION",
+    "writeAuthorized": false,
+    "reason": "The divergence is explained by venue semantics; no corrective write is justified."
+  },
+  "reconciliation": {
+    "status": "EXPLAINED_AND_RECONCILED",
+    "writePerformed": true,
+    "writeWasSourceEvidenceNotThisImplementation": true,
+    "finalState": "YES/NO returned to zero after burnSet and tUSDC returned to the original raw balance."
+  },
+  "provenance": {
+    "truthClass": "CAPTURED_REAL_SHANNON_PUBLIC_EVIDENCE",
+    "date": "2026-08-26",
+    "sourceRepository": "Techkeyy/villa",
+    "sourcePath": "docs/INVENTORY_LIFECYCLE.md",
+    "limitations": ["This implementation replays captured evidence; it did not originate these writes.","This fixture proves venue escrow semantics, not incident prevalence."]
+  },
+  "reportHash": "886be0e60a16efdbe2f7e135a75651fbc6ae08b19ae20819e30cb113468c75c5"
+}
