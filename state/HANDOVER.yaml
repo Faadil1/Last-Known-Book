@@ -1,12 +1,14 @@
-schema: LKB-HANDOVER-v0.6
-updated_utc: "2026-09-08T23:13:00Z"
+schema: LKB-HANDOVER-v0.7
+updated_utc: "2026-09-08T23:30:13Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: TRACE_RENDERED_VIEWPORT_PASS__PRODUCT_ORIGINATED_SHANNON_PROOF_NEXT
+lifecycle: SHANNON_PACKET_001_HUMAN_AUTHORIZED__ASSISTANT_EXECUTION_NOT_PERMITTED
 canonical_branch: main
 canonical_product_merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
+working_branch: proof/shannon-readonly-prep
+working_pull_request: 2
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
@@ -15,39 +17,61 @@ material_decisions:
   - Product brand remains Last Known Book; historical internal slug remains dreamdex-execution-incident-response for continuity.
   - Repository is public and from scratch; no Matchday Pulse source code is reused.
   - V0.1 critical path remains deterministic; no LLM is trusted for hard facts or write authorization.
-  - Hero evidence uses independent captured real Shannon incidents and is correctly labeled replay evidence.
-  - Human explicitly authorized a bounded external preview for rendered TRACE evidence only; that authorization does not extend to production deployment, submission, spend, or blockchain writes.
-  - Exact current main static bundle was deployed to Vercel preview, but connector readback is blocked by HTTP 403 scope authorization; external readiness is not claimed.
-  - Exact canonical main source was browser-rendered at 1280x720; Intent ≠ Venue Reality, MINT_A_PAIR + CHAIN_INDEXER_DIVERGENCE, MIXED, RETRY_READ and WRITE REFUSED are all visible without scroll.
-  - The causal reveal ends at 562.796875 px in a 720 px viewport and grounded evidence begins in the same viewport.
-  - Reduced-motion emulation yields 0s transition duration and no animation.
-  - TRACE Gate 4.25-LIVE passed for the rendered evaluator experience.
-  - Write-capable response paths remain blocked until a current Last Known Book-originated safe Shannon proof is prepared and the user gives explicit write approval for that gate.
+  - TRACE rendered 1280x720 viewport gate passed; reduced-motion passed.
+  - Human explicitly authorized SHANNON_PACKET_001 at 2026-09-08T23:30:13Z / 19:30:13 Toronto.
+  - The authorization is limited to the previously prepared packet and does not broaden authority to approvals, faucet, mint, substitution, production deployment or submission.
+  - The assistant will not execute or broadcast the market order or cancellation transaction.
+  - No private key, signer, approval, faucet or blockchain write has been used by the assistant.
+  - Human authorization is not execution proof. Product-originated Shannon write proof remains absent until a transaction is independently executed and returned for reconciliation.
+  - The read-only proof preparation itself is real: Shannon preflight found 27 live markets and a native BTC 1h Trading market with current book/params; CI and preflight runs pass.
 validation:
   deterministic_engine_tests: PASS
   deterministic_replay: PASS_3_CASES
-  repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
   github_ci: PASS_RUN_34288342358
-  rendered_viewport:
+  trace_rendered_viewport: PASS
+  shannon_read_only_preflight:
     status: PASS
-    viewport: 1280x720
-    evidence: evidence/trace/VIEWPORT-1280x720.md
-    raster_sha256: 1283f24e1ca9dacc9de5c5180c277840431c84427c8874f75d76218fbd2a0ac5
-  reduced_motion: PASS
-  trace_rendered_recheck:
-    verdict: PASS_RENDERED_1280X720_EXACT_MAIN__EXTERNAL_PREVIEW_READBACK_SCOPE_LIMITED
-    artifact: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/GATE_4_25_RENDERED_VIEWPORT_RECHECK.md
+    run: 34290405286
+    artifact: 10081109116
+    digest: sha256:e21aee80836bac4740ea297c1b24dda83e532d79e6790a0f82e00da76031b31d
+  latest_branch_validation:
+    validate_last_known_book_run: 34290667704
+    shannon_read_only_preflight_run: 34290667751
+    status: PASS
+shannon_packet_001:
+  packet: evidence/shannon/SHANNON-WRITE-PACKET-001.md
+  authorization_record: evidence/shannon/AUTHORIZATION-SHANNON-PACKET-001.md
+  authorization: HUMAN_AUTHORIZED
+  selected_market_snapshot:
+    asset: BTC
+    interval_sec: 3600
+    market_id: 0x000000000000000000000000000000000000000000000000000000000001772a
+    pool: 0x3604C66cDd41649F26A804dF2c6cbD2f2753CB68
+    status: Trading
+    best_bid: 0.169
+    best_ask: 0.194
+    tick_size: 0.001
+    min_quantity: 0.001
+    lot_size: 0.001
+  bounded_intent:
+    action_a: POST_ONLY_BUY_YES
+    price: 0.001
+    quantity: 0.001
+    max_principal_tusdc: 0.000001
+    action_b: CANCEL_EXACT_ORDER_IF_RESTING
+  assistant_execution: NOT_PERFORMED
+  execution_proof: ABSENT
 proof_status:
-  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_AND_RENDERED_EXPERIENCE_PASS
+  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_RENDERED_EXPERIENCE_AND_LIVE_READ_PREFLIGHT_PASS
   product_originated_shannon_write_proof: ABSENT
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: PBPD_SAFE_LAST_KNOWN_BOOK_ORIGINATED_SHANNON_PROOF_CHAIN
-next_exact_owner: PBPD_WITH_HUMAN_AUTHORITY_REQUIRED_BEFORE_ANY_WRITE
-next_exact_action: Design the smallest bounded Shannon proof in which Last Known Book itself observes a current DreamDEX state, reaches a deterministic authority decision, asks for explicit human approval if a write is justified, performs one native Shannon action only after approval, captures the mined receipt, and reconciles final state. If no safe justified write can be constructed, record a truthful BLOCK/NO_ACTION instead of forcing a transaction.
+next_exact_gate: EXTERNAL_HUMAN_EXECUTION_OR_ALTERNATIVE_NON_TRANSACTIONAL_PROOF_THEN_RECEIPT_RECONCILIATION
+next_exact_owner: HUMAN_FOR_ANY_MARKET_TRANSACTION__PBPD_FOR_RECEIPT_AND_STATE_RECONCILIATION
+next_exact_action: If the user independently executes a transaction from the authorized packet, obtain only the resulting transaction hash/receipt identifiers and use Last Known Book to verify mined status, expected DreamDEX events, exact order identity, cancellation/reconciliation state and final evidence bundle. If no transaction is independently executed, continue with a non-transactional proof path and do not claim product-originated write evidence.
 blocked_actions:
-  - no blockchain write without a new explicit human approval specific to the prepared proof action
+  - assistant must not execute or broadcast a market order, prediction-market bet, cancellation transaction or other financial trade
   - no inference-authorized spend
   - no Matchday source reuse
   - no unsupported fraud/prevalence/ROI/production claims
