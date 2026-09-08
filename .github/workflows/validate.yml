@@ -1,0 +1,21 @@
+name: Validate Last Known Book
+
+on:
+  push:
+    branches: [main, "build/**"]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Deterministic engine tests
+        run: npm test
+      - name: Regenerate incident reports
+        run: npm run replay
+      - name: Verify replay is clean
+        run: git diff --exit-code -- evidence/generated

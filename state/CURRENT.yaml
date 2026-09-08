@@ -1,0 +1,68 @@
+schema: LKB-CURRENT-v0.1
+updated_utc: "2026-09-08T23:04:00Z"
+product:
+  name: Last Known Book
+  repository: Faadil1/Last-Known-Book
+  internal_project_slug: dreamdex-execution-incident-response
+  tagline: Reconstruct the market your agent actually traded.
+lifecycle:
+  owner: PBPD
+  stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
+  status: TRACE_SOURCE_PASS__LIVE_VIEWPORT_GATE_NEXT
+upstream:
+  pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
+  hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
+  trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
+authority:
+  project_authorized: true
+  build_authorized_within_prd_scope: true
+  blockchain_writes: BLOCKED_BY_DEFAULT
+  protected_submission: HUMAN_ONLY
+  preview_deployment: REQUIRES_PROTECTED_HUMAN_AUTHORITY_IF_EXTERNAL
+truth_boundaries:
+  incident_prevalence_claim: FORBIDDEN
+  production_evidence: ABSENT
+  matchday_source_reuse: FORBIDDEN
+  inference_authorizes_write: false
+vertical_slice:
+  branch: build/vertical-slice-v0.1
+  pull_request: 1
+  hero_cases:
+    - LKB-001_MINT_A_PAIR_INDEXER_LAG
+    - LKB-002_RESTING_SELL_ESCROW
+    - LKB-003_EXPECTED_VS_ACTUAL
+  deterministic_engine: IMPLEMENTED_AND_COMMITTED
+  replay_reports: BYTE_REPRODUCIBLE
+  static_judge_ui: IMPLEMENTED_AND_COMMITTED
+  judge_hero_hierarchy: CASE_INTENT_REALITY_CAUSE_SAFE_RESPONSE_ABOVE_DETAILS
+  local_preview_smoke: PASS_HTML_AND_FIXTURE_LOAD
+  live_read_smoke: IMPLEMENTED_RUNTIME_NETWORK_BLOCKED
+validation:
+  local_tests: PASS_5_OF_5
+  replay_cases: PASS_3_OF_3
+  repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
+  preview_server: PASS
+  github_ci_before_trace_rework:
+    status: PASS
+    run_id: 34287993988
+    head: 9c59fe6ea482f631add9c5d06468987655116cb6
+  github_ci_after_trace_rework:
+    status: PASS
+    workflow: Validate Last Known Book
+    run_id: 34288211181
+    head: 95cc2580bc49592f22acd65f3b9b57cac5864bd2
+    checks:
+      deterministic_engine_tests: PASS
+      regenerate_incident_reports: PASS
+      verify_replay_clean: PASS
+  trace_implementation_recheck:
+    status: PASS_IMPLEMENTATION_SOURCE_CONTRACT__LIVE_VIEWPORT_RECHECK_REQUIRED
+    trace_commit: 3dadf1ff7ba9b6f9ec880bf101b539e0cbd8d670
+    current_commit: 1c36005e141dc6566978c4d66bc82e1f04e13330
+  live_read_attempt: LIVE_READ_UNAVAILABLE_FETCH_FAILED_IN_CURRENT_CONTAINER
+  replay_hashes:
+    LKB-001: eb46d183b157b510c4c025dbd94e10c1e23555787245330a73accb4b86f08cda
+    LKB-002: 886be0e60a16efdbe2f7e135a75651fbc6ae08b19ae20819e30cb113468c75c5
+    LKB-003: f210c82ff5d1332e2ccb5b1848278c9b72e4e30c8c931c3b07fab0f36db6d2f1
+next_gate: MERGE_CI_GREEN_VERTICAL_SLICE_THEN_BOUNDED_RENDERED_PREVIEW_AUTHORIZATION
+next_owner: PBPD_THEN_HUMAN_FOR_PROTECTED_EXTERNAL_PREVIEW_IF_REQUIRED

@@ -1,0 +1,40 @@
+{
+  "caseId": "LKB-001",
+  "title": "This wasn't directional flow. It was a mint.",
+  "type": "MINT_PAIR_INDEXER_LAG",
+  "marketId": null,
+  "intent": {
+    "actor": "prediction-market application",
+    "expected": "A submitted Call should become verifiable through the normal fill-confirmation path and its displayed stake should reflect true collateral economics."
+  },
+  "venueReality": {
+    "summary": "The chain confirmed success quickly, the indexer-backed verification path returned unavailable, and the captured fill used DreamDEX's MINT_A_PAIR path whose quote fields are easy to misread as total trade cost."
+  },
+  "evidence": {
+    "receiptStatus": "SUCCESS",
+    "indexerVerification": "UNAVAILABLE",
+    "fillKind": "MINT_A_PAIR",
+    "fillPriceApprox": 0.015,
+    "quoteQuantityApprox": 0.375,
+    "contractsApprox": 25.024,
+    "grossContractValue": 24.998976,
+    "soldLegProceeds": 0.350336,
+    "sourceTxHashRedacted": "0xa2c8…1999"
+  },
+  "reconciliation": {
+    "status": "EXPLAINED_RETRY_READ",
+    "writePerformed": false,
+    "finalState": "Treat chain success as authoritative, decode MINT_A_PAIR economics, then retry indexed reads rather than resubmitting a compensating transaction."
+  },
+  "provenance": {
+    "truthClass": "CAPTURED_REAL_SHANNON_PUBLIC_EVIDENCE",
+    "date": "2026-09-07",
+    "sourceRepository": "shreyas-sovani/Window",
+    "sourcePath": "src/domain/AGENTS.md",
+    "sourceCommit": "f1ac6e7a640cba7623cc4c3057d675f957121a02",
+    "limitations": [
+      "The public source redacts the middle of the transaction hash.",
+      "This fixture proves an observed incident class, not incident prevalence."
+    ]
+  }
+}
