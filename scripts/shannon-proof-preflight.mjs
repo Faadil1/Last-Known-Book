@@ -4,16 +4,22 @@ import { SomniaMarkets, SOMNIA_TESTNET_ADDRESSES } from '@somnia-chain/markets-s
 import { somniaShannon } from '@somnia-chain/markets-sdk/chains';
 
 const INDEXER_URL = process.env.INDEXER_URL || 'https://dev.smk.somnia.host/v1/graphql';
-const WS_RPC_URL = process.env.WS_RPC_URL || 'wss://api.infra.testnet.somnia.network/ws';
 const MIN_HEADROOM_SEC = Number(process.env.MIN_HEADROOM_SEC || 600);
 const OUT = process.env.PREFLIGHT_OUT || 'evidence/shannon/preflight.json';
 
 const exchange = new SomniaMarkets({
   indexerUrl: INDEXER_URL,
   chain: somniaShannon,
-  wsRpcUrl: WS_RPC_URL,
   addresses: SOMNIA_TESTNET_ADDRESSES,
 });
+
+function withTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label}_TIMEOUT_${ms}MS`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
 
 function serial(value) {
   if (typeof value === 'bigint') return value.toString();
@@ -37,7 +43,7 @@ function pickBookTop(book) {
 
 async function main() {
   const now = Math.floor(Date.now() / 1000);
-  const live = await exchange.client.listLiveBinaryMarkets({ limit: 50 });
+  const live = await withTimeout(exchange.client.listLiveBinaryMarkets({ limit: 50 }), 20000, 'LIST_LIVE');
   if (!Array.isArray(live) || live.length === 0) throw new Error('NO_LIVE_BINARY_MARKETS');
 
   const inspected = [];
@@ -53,14 +59,15 @@ async function main() {
     return score(b) - score(a);
   });
 
-  for (const row of ordered.slice(0, 20)) {
+  for (const row of ordered.slice(0, 12)) {
     const marketId = row.marketId;
     const pool = row.pool ?? row.poolAddress;
     if (!marketId || !pool) continue;
     const secondsLeft = Number(row.expiry ?? 0) - now;
     let onchain;
-    try { onchain = await exchange.client.getMarketOnchain(marketId); }
-    catch (error) {
+    try {
+      onchain = await withTimeout(exchange.client.getMarketOnchain(marketId), 10000, 'GET_MARKET_ONCHAIN');
+    } catch (error) {
       inspected.push({marketId, pool, secondsLeft, readError: String(error?.message ?? error)});
       continue;
     }
@@ -76,29 +83,32 @@ async function main() {
     inspected.push(entry);
     if (chosen || Number(onchain.status) !== 1 || secondsLeft < MIN_HEADROOM_SEC) continue;
 
-    const params = await exchange.client.getBinaryBookParams(pool);
-    const rawBook = await exchange.client.getBinaryOrderBook(pool, { depth: 5 });
-    chosen = {
-      ...entry,
-      onchain: serial(onchain),
-      bookParams: serial(params),
-      bookTop: serial(pickBookTop(rawBook)),
-      collateral: {
-        address: SOMNIA_TESTNET_ADDRESSES.collateral,
-        decimals: 6,
-        symbol: 'tUSDC',
-      },
-    };
+    try {
+      const params = await withTimeout(exchange.client.getBinaryBookParams(pool), 10000, 'GET_BOOK_PARAMS');
+      const rawBook = await withTimeout(exchange.client.getBinaryOrderBook(pool, { depth: 5 }), 15000, 'GET_BINARY_ORDERBOOK');
+      chosen = {
+        ...entry,
+        onchain: serial(onchain),
+        bookParams: serial(params),
+        bookTop: serial(pickBookTop(rawBook)),
+        collateral: {
+          address: SOMNIA_TESTNET_ADDRESSES.collateral,
+          decimals: 6,
+          symbol: 'tUSDC',
+        },
+      };
+    } catch (error) {
+      inspected[inspected.length - 1].candidateReadError = String(error?.message ?? error);
+    }
   }
 
   const result = {
-    schema: 'LKB-SHANNON-PREFLIGHT-v0.2',
+    schema: 'LKB-SHANNON-PREFLIGHT-v0.3',
     generatedAt: new Date().toISOString(),
-    mode: 'READ_ONLY_NO_SIGNER_LOW_LEVEL',
+    mode: 'READ_ONLY_NO_SIGNER_LOW_LEVEL_BOUNDED',
     chainId: 50312,
     sdkPinnedVersion: '0.29.0',
     indexerUrl: INDEXER_URL,
-    wsRpcUrl: WS_RPC_URL,
     minHeadroomSec: MIN_HEADROOM_SEC,
     liveMarketCount: live.length,
     chosen,
@@ -106,7 +116,7 @@ async function main() {
     authority: {
       blockchainWritePerformed: false,
       privateKeyPresent: false,
-      nextBoundary: chosen ? 'PREPARE_WRITE_PACKET_ONLY' : 'BLOCK_NO_SAFE_TRADING_MARKET',
+      nextBoundary: chosen ? 'PREPARE_WRITE_PACKET_ONLY' : 'BLOCK_NO_SAFE_FULL_READ',
     },
   };
 
@@ -115,7 +125,7 @@ async function main() {
   console.log('LKB_SHANNON_PREFLIGHT_JSON_START');
   console.log(JSON.stringify(serial(result), null, 2));
   console.log('LKB_SHANNON_PREFLIGHT_JSON_END');
-  if (!chosen) process.exitCode = 2;
+  process.exit(chosen ? 0 : 2);
 }
 
 main().catch((error) => {
