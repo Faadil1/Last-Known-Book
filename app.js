@@ -80,6 +80,9 @@ function renderCase(index) {
   document.querySelector('#policy-reason').textContent = result.policy.reason;
   document.querySelector('#write-state').textContent = result.policy.writeAuthorized ? 'WRITE AUTHORIZED' : 'WRITE REFUSED';
   document.querySelector('#write-state').dataset.state = result.policy.writeAuthorized ? 'yes' : 'no';
+  document.querySelector('#hero-action').textContent = result.policy.action;
+  document.querySelector('#hero-write').textContent = result.policy.writeAuthorized ? 'WRITE AUTHORIZED' : 'WRITE REFUSED';
+  document.querySelector('#hero-write').dataset.state = result.policy.writeAuthorized ? 'yes' : 'no';
   document.querySelector('#reconcile').textContent = data.reconciliation.finalState;
 
   const table = document.querySelector('#claims');
