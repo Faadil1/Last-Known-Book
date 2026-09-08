@@ -1,11 +1,12 @@
-schema: LKB-HANDOVER-v0.2
-updated_utc: "2026-09-08T22:48:00Z"
+schema: LKB-HANDOVER-v0.3
+updated_utc: "2026-09-08T22:55:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__LOCAL_PROOF_PASS__CI_PENDING
+lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__CI_PASS__TRACE_RECHECK_ACTIVE
 canonical_branch: build/vertical-slice-v0.1
+pull_request: 1
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
@@ -18,21 +19,26 @@ material_decisions:
   - MINT_A_PAIR plus indexer lag is the primary causal reveal; resting SELL escrow is the fully hashed reconciliation case.
   - Inference alone cannot authorize a blockchain write.
   - Write-capable response paths remain disabled until a current end-to-end safe-write proof exists.
-  - Local live-read failure is classified as current-container network limitation, not chain/product proof.
+  - GitHub CI now proves tests + deterministic regeneration + byte-clean replay artifacts.
 validation:
   local_tests: PASS_5_OF_5
   deterministic_replay: PASS_3_CASES
   repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
   local_preview_smoke: PASS_HTML_AND_FIXTURE_LOAD
-  github_ci: PENDING
-  live_shannon_read: IMPLEMENTED_BUT_CURRENT_CONTAINER_FETCH_FAILED
+  github_ci:
+    status: PASS
+    workflow: Validate Last Known Book
+    run_id: 34287993988
+    head: 9c59fe6ea482f631add9c5d06468987655116cb6
+  live_shannon_read: IMPLEMENTED_BUT_CURRENT_CONTAINER_NETWORK_BLOCKED
 proof_status:
-  technical_proof: PARTIAL_DETERMINISTIC_REPLAY_AND_PREVIEW_PASS
+  technical_proof: DETERMINISTIC_ENGINE_REPLAY_AND_CI_PASS
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: GITHUB_CI_PASS_THEN_TRACE_IMPLEMENTATION_RECHECK
-next_exact_action: Confirm GitHub Actions validates tests/replay cleanliness. If PASS, hand the implementation to TRACE for Gate 4.25 implementation recheck before any live preview deployment.
+next_exact_gate: TRACE_GATE_4_25_IMPLEMENTATION_RECHECK
+next_exact_owner: TRACE_SPECIALIST__PBPD_RETAINS_BUILD_OWNERSHIP
+next_exact_action: Review actual Last Known Book UI/interaction source against the frozen Gate 4.25 uniqueness/anti-slop contract. Record targeted rework or source-level PASS before any live preview deployment.
 blocked_actions:
   - no inference-authorized writes
   - no Matchday source reuse
