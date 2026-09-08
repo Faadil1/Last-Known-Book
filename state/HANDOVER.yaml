@@ -1,10 +1,10 @@
-schema: LKB-HANDOVER-v0.3
-updated_utc: "2026-09-08T22:55:00Z"
+schema: LKB-HANDOVER-v0.4
+updated_utc: "2026-09-08T23:04:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__CI_PASS__TRACE_RECHECK_ACTIVE
+lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__TRACE_SOURCE_PASS__MERGE_THEN_VIEWPORT_GATE
 canonical_branch: build/vertical-slice-v0.1
 pull_request: 1
 upstream:
@@ -19,30 +19,38 @@ material_decisions:
   - MINT_A_PAIR plus indexer lag is the primary causal reveal; resting SELL escrow is the fully hashed reconciliation case.
   - Inference alone cannot authorize a blockchain write.
   - Write-capable response paths remain disabled until a current end-to-end safe-write proof exists.
-  - GitHub CI now proves tests + deterministic regeneration + byte-clean replay artifacts.
+  - GitHub CI proves tests + deterministic regeneration + byte-clean replay artifacts.
+  - TRACE implementation source recheck passed after moving SAFE RESPONSE / WRITE REFUSED into the hero viewport hierarchy.
+  - Rendered 1280x720 evidence remains required before final visual promotion because source review cannot prove browser rasterization.
 validation:
   local_tests: PASS_5_OF_5
   deterministic_replay: PASS_3_CASES
   repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
   local_preview_smoke: PASS_HTML_AND_FIXTURE_LOAD
-  github_ci:
+  github_ci_before_trace_rework:
     status: PASS
-    workflow: Validate Last Known Book
     run_id: 34287993988
-    head: 9c59fe6ea482f631add9c5d06468987655116cb6
+  github_ci_after_trace_rework:
+    status: PASS
+    run_id: 34288211181
+    reviewed_head: 95cc2580bc49592f22acd65f3b9b57cac5864bd2
+  trace_source_recheck:
+    status: PASS_IMPLEMENTATION_SOURCE_CONTRACT__LIVE_VIEWPORT_RECHECK_REQUIRED
+    artifact: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/GATE_4_25_IMPLEMENTATION_RECHECK.md
   live_shannon_read: IMPLEMENTED_BUT_CURRENT_CONTAINER_NETWORK_BLOCKED
 proof_status:
-  technical_proof: DETERMINISTIC_ENGINE_REPLAY_AND_CI_PASS
+  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_AND_SOURCE_EXPERIENCE_PASS
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: TRACE_GATE_4_25_IMPLEMENTATION_RECHECK
-next_exact_owner: TRACE_SPECIALIST__PBPD_RETAINS_BUILD_OWNERSHIP
-next_exact_action: Review actual Last Known Book UI/interaction source against the frozen Gate 4.25 uniqueness/anti-slop contract. Record targeted rework or source-level PASS before any live preview deployment.
+next_exact_gate: MERGE_CI_GREEN_VERTICAL_SLICE_THEN_BOUNDED_RENDERED_PREVIEW_AUTHORIZATION
+next_exact_owner: PBPD_THEN_HUMAN_FOR_EXTERNAL_PREVIEW_AUTHORITY
+next_exact_action: Re-run CI on the final state-only commits, merge PR #1 to main if green, then obtain explicit human approval before any external preview deployment. Use the preview only to capture 1280x720 rendered evidence and return it to TRACE for final visual recheck.
 blocked_actions:
   - no inference-authorized writes
   - no Matchday source reuse
   - no unsupported fraud/prevalence/ROI/production claims
+  - no external preview deployment without explicit human approval
   - no production deployment or hackathon submission without later human gates
 continuity:
   canonical_state_over_chat_memory: true
