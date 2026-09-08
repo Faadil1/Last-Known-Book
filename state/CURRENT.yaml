@@ -1,4 +1,4 @@
-schema: LKB-CURRENT-v0.4
+schema: LKB-CURRENT-v0.5
 updated_utc: "2026-09-08T23:30:13Z"
 product:
   name: Last Known Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PBPD
   stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: SHANNON_PACKET_001_HUMAN_AUTHORIZED__ASSISTANT_EXECUTION_NOT_PERMITTED
+  status: SHANNON_PACKET_001_HUMAN_AUTHORIZED__PROOF_PREP_MERGED__ASSISTANT_EXECUTION_NOT_PERMITTED
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
@@ -37,8 +37,10 @@ validation:
   github_ci: PASS_RUN_34288342358
   trace_rendered_viewport: PASS
 shannon_proof_preparation:
-  branch: proof/shannon-readonly-prep
+  source_branch: proof/shannon-readonly-prep
   pull_request: 2
+  merged_to_main: true
+  merge_commit: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
   mode: READ_ONLY_NO_SIGNER
   workflow: Shannon Read-Only Proof Preflight
   workflow_run: 34290405286
