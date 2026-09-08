@@ -1,0 +1,1 @@
+Rendered evaluator evidence for TRACE gates. Canonical metrics and truth boundaries live in `VIEWPORT-1280x720.md`.
