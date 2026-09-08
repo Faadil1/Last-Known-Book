@@ -1,0 +1,43 @@
+schema: LKB-CURRENT-v0.1
+updated_utc: "2026-09-08T22:30:00Z"
+product:
+  name: Last Known Book
+  repository: Faadil1/Last-Known-Book
+  internal_project_slug: dreamdex-execution-incident-response
+  tagline: Reconstruct the market your agent actually traded.
+lifecycle:
+  owner: PBPD
+  stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
+  status: IMPLEMENTATION_IN_PROGRESS
+upstream:
+  pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
+  hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
+  trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
+authority:
+  project_authorized: true
+  build_authorized_within_prd_scope: true
+  blockchain_writes: BLOCKED_BY_DEFAULT
+  protected_submission: HUMAN_ONLY
+truth_boundaries:
+  incident_prevalence_claim: FORBIDDEN
+  production_evidence: ABSENT
+  matchday_source_reuse: FORBIDDEN
+  inference_authorizes_write: false
+vertical_slice:
+  branch: build/vertical-slice-v0.1
+  hero_cases:
+    - LKB-001_MINT_A_PAIR_INDEXER_LAG
+    - LKB-002_RESTING_SELL_ESCROW
+    - LKB-003_EXPECTED_VS_ACTUAL
+  deterministic_engine: IMPLEMENTED_LOCAL_AND_COMMITTED
+  replay_reports: COMMITTED
+  static_judge_ui: IMPLEMENTED_AND_COMMITTED
+  live_read_smoke: IMPLEMENTED_NOT_YET_PROVEN_IN_CURRENT_RUNTIME
+local_validation:
+  tests: PASS_5_OF_5
+  replay_hashes:
+    LKB-001: eb46d183b157b510c4c025dbd94e10c1e23555787245330a73accb4b86f08cda
+    LKB-002: 886be0e60a16efdbe2f7e135a75651fbc6ae08b19ae20819e30cb113468c75c5
+    LKB-003: f210c82ff5d1332e2ccb5b1848278c9b72e4e30c8c931c3b07fab0f36db6d2f1
+next_gate: GITHUB_CI_AND_LOCAL_PREVIEW_SMOKE_THEN_TRACE_IMPLEMENTATION_RECHECK
+next_owner: PBPD
