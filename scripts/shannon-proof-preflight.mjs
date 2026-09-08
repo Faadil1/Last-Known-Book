@@ -40,10 +40,8 @@ async function main() {
   const live = await exchange.client.listLiveBinaryMarkets({ limit: 50 });
   if (!Array.isArray(live) || live.length === 0) throw new Error('NO_LIVE_BINARY_MARKETS');
 
-  const unified = Object.values(await exchange.loadMarkets(true));
   const inspected = [];
   let chosen = null;
-
   const ordered = [...live].sort((a,b) => {
     const score = (m) => {
       const asset = String(m.asset ?? '').toUpperCase();
@@ -80,28 +78,11 @@ async function main() {
 
     const params = await exchange.client.getBinaryBookParams(pool);
     const rawBook = await exchange.client.getBinaryOrderBook(pool, { depth: 5 });
-    const unifiedMarket = unified.find((m) => String(m?.info?.marketId ?? '').toLowerCase() === String(marketId).toLowerCase());
-    const upSymbol = unifiedMarket?.outcomes?.[0]?.symbol ?? null;
-    const downSymbol = unifiedMarket?.outcomes?.[1]?.symbol ?? null;
-    let humanBook = null;
-    if (upSymbol) {
-      try {
-        const b = await exchange.fetchOrderBook(upSymbol, 5);
-        humanBook = {
-          bids: (b.bids ?? []).slice(0,5),
-          asks: (b.asks ?? []).slice(0,5),
-        };
-      } catch (error) {
-        humanBook = { error: String(error?.message ?? error) };
-      }
-    }
     chosen = {
       ...entry,
       onchain: serial(onchain),
       bookParams: serial(params),
       bookTop: serial(pickBookTop(rawBook)),
-      humanBook: serial(humanBook),
-      symbols: { up: upSymbol, down: downSymbol },
       collateral: {
         address: SOMNIA_TESTNET_ADDRESSES.collateral,
         decimals: 6,
@@ -111,9 +92,9 @@ async function main() {
   }
 
   const result = {
-    schema: 'LKB-SHANNON-PREFLIGHT-v0.1',
+    schema: 'LKB-SHANNON-PREFLIGHT-v0.2',
     generatedAt: new Date().toISOString(),
-    mode: 'READ_ONLY_NO_SIGNER',
+    mode: 'READ_ONLY_NO_SIGNER_LOW_LEVEL',
     chainId: 50312,
     sdkPinnedVersion: '0.29.0',
     indexerUrl: INDEXER_URL,
