@@ -1,14 +1,14 @@
-schema: LKB-HANDOVER-v0.7
+schema: LKB-HANDOVER-v0.8
 updated_utc: "2026-09-08T23:30:13Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_001_HUMAN_AUTHORIZED__ASSISTANT_EXECUTION_NOT_PERMITTED
+lifecycle: SHANNON_PACKET_001_HUMAN_AUTHORIZED__PROOF_PREP_MERGED__ASSISTANT_EXECUTION_NOT_PERMITTED
 canonical_branch: main
 canonical_product_merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
-working_branch: proof/shannon-readonly-prep
-working_pull_request: 2
+shannon_proof_prep_merge_commit: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
+post_merge_current_commit: dded3e1beaaa044ab761d65d2864f745e1874dba
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
@@ -23,7 +23,8 @@ material_decisions:
   - The assistant will not execute or broadcast the market order or cancellation transaction.
   - No private key, signer, approval, faucet or blockchain write has been used by the assistant.
   - Human authorization is not execution proof. Product-originated Shannon write proof remains absent until a transaction is independently executed and returned for reconciliation.
-  - The read-only proof preparation itself is real: Shannon preflight found 27 live markets and a native BTC 1h Trading market with current book/params; CI and preflight runs pass.
+  - The read-only proof preparation is canonical on main after PR #2 merge at 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98.
+  - Read-only preflight found 27 live markets and a native BTC 1h Trading market with current order-book/book-parameter evidence; validation and preflight runs passed.
 validation:
   deterministic_engine_tests: PASS
   deterministic_replay: PASS_3_CASES
