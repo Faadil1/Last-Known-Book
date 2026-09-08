@@ -1,11 +1,12 @@
-schema: LKB-HANDOVER-v0.4
-updated_utc: "2026-09-08T23:04:00Z"
+schema: LKB-HANDOVER-v0.5
+updated_utc: "2026-09-08T23:08:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__TRACE_SOURCE_PASS__MERGE_THEN_VIEWPORT_GATE
-canonical_branch: build/vertical-slice-v0.1
+lifecycle: MAIN_MERGED__BOUNDED_RENDERED_PREVIEW_AUTHORIZATION_REQUIRED
+canonical_branch: main
+canonical_merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 pull_request: 1
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
@@ -13,27 +14,26 @@ upstream:
   trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
 material_decisions:
   - Product brand is Last Known Book; historical internal slug remains dreamdex-execution-incident-response for continuity.
-  - Repository is from scratch; no Matchday Pulse source code is reused.
+  - Product repository is public and from scratch; no Matchday Pulse source code is reused.
   - V0.1 uses deterministic incident semantics and action policy; no LLM is on the critical path.
   - Hero evidence uses independent captured real Shannon incidents, clearly labeled replay evidence from public sources.
   - MINT_A_PAIR plus indexer lag is the primary causal reveal; resting SELL escrow is the fully hashed reconciliation case.
   - Inference alone cannot authorize a blockchain write.
-  - Write-capable response paths remain disabled until a current end-to-end safe-write proof exists.
+  - Write-capable response paths remain disabled until a current end-to-end safe-write proof exists and explicit human confirmation is obtained.
   - GitHub CI proves tests + deterministic regeneration + byte-clean replay artifacts.
   - TRACE implementation source recheck passed after moving SAFE RESPONSE / WRITE REFUSED into the hero viewport hierarchy.
+  - PR #1 merged to main at c6be8015b2ed8e08b2095dd60c19ea89369d2a82 after final CI PASS.
   - Rendered 1280x720 evidence remains required before final visual promotion because source review cannot prove browser rasterization.
 validation:
   local_tests: PASS_5_OF_5
   deterministic_replay: PASS_3_CASES
   repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
   local_preview_smoke: PASS_HTML_AND_FIXTURE_LOAD
-  github_ci_before_trace_rework:
+  final_pr_ci:
     status: PASS
-    run_id: 34287993988
-  github_ci_after_trace_rework:
-    status: PASS
-    run_id: 34288211181
-    reviewed_head: 95cc2580bc49592f22acd65f3b9b57cac5864bd2
+    workflow: Validate Last Known Book
+    run_id: 34288342358
+    head: 7647aec21293635efa1e8e991d36f63a85448ada
   trace_source_recheck:
     status: PASS_IMPLEMENTATION_SOURCE_CONTRACT__LIVE_VIEWPORT_RECHECK_REQUIRED
     artifact: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/GATE_4_25_IMPLEMENTATION_RECHECK.md
@@ -43,14 +43,14 @@ proof_status:
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: MERGE_CI_GREEN_VERTICAL_SLICE_THEN_BOUNDED_RENDERED_PREVIEW_AUTHORIZATION
-next_exact_owner: PBPD_THEN_HUMAN_FOR_EXTERNAL_PREVIEW_AUTHORITY
-next_exact_action: Re-run CI on the final state-only commits, merge PR #1 to main if green, then obtain explicit human approval before any external preview deployment. Use the preview only to capture 1280x720 rendered evidence and return it to TRACE for final visual recheck.
+next_exact_gate: HUMAN_AUTHORIZATION_FOR_BOUNDED_EXTERNAL_PREVIEW_THEN_TRACE_LIVE_VIEWPORT_RECHECK
+next_exact_owner: HUMAN_THEN_PBPD_THEN_TRACE_SPECIALIST
+next_exact_action: Human explicitly authorizes a bounded external preview deployment for visual evidence only. PBPD deploys the canonical main build as a preview, captures/verifies the 1280x720 judge viewport and reduced-motion behavior, and returns the rendered evidence to TRACE. No production deployment, submission, spend claim or blockchain write is implied by preview authorization.
 blocked_actions:
-  - no inference-authorized writes
+  - no external preview deployment without explicit human approval
+  - no inference-authorized blockchain writes
   - no Matchday source reuse
   - no unsupported fraud/prevalence/ROI/production claims
-  - no external preview deployment without explicit human approval
   - no production deployment or hackathon submission without later human gates
 continuity:
   canonical_state_over_chat_memory: true
