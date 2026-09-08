@@ -1,37 +1,38 @@
-schema: LKB-HANDOVER-v0.1
-updated_utc: "2026-09-08T22:30:00Z"
+schema: LKB-HANDOVER-v0.2
+updated_utc: "2026-09-08T22:48:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__DETERMINISTIC_PROOF_COMMITTED
+lifecycle: CONSEQUENTIAL_BUILD_VERTICAL_SLICE__LOCAL_PROOF_PASS__CI_PENDING
 canonical_branch: build/vertical-slice-v0.1
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
   trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
 material_decisions:
-  - Product brand is Last Known Book; the historical internal slug is preserved to avoid breaking upstream references.
-  - Repository was created from scratch; no Matchday Pulse source code is reused.
+  - Product brand is Last Known Book; historical internal slug remains dreamdex-execution-incident-response for continuity.
+  - Repository is from scratch; no Matchday Pulse source code is reused.
   - V0.1 uses deterministic incident semantics and action policy; no LLM is on the critical path.
-  - Hero evidence uses independent captured real Shannon incidents, clearly labeled as replay evidence from public sources.
+  - Hero evidence uses independent captured real Shannon incidents, clearly labeled replay evidence from public sources.
   - MINT_A_PAIR plus indexer lag is the primary causal reveal; resting SELL escrow is the fully hashed reconciliation case.
   - Inference alone cannot authorize a blockchain write.
   - Write-capable response paths remain disabled until a current end-to-end safe-write proof exists.
+  - Local live-read failure is classified as current-container network limitation, not chain/product proof.
 validation:
   local_tests: PASS_5_OF_5
   deterministic_replay: PASS_3_CASES
   repeated_hash_stability: PASS_10_OF_10_ON_LKB_001
-  ui_source_committed: true
-  github_ci: PENDING_WORKFLOW_COMMIT
-  live_shannon_read: NOT_YET_PROVEN_IN_CURRENT_RUNTIME
+  local_preview_smoke: PASS_HTML_AND_FIXTURE_LOAD
+  github_ci: PENDING
+  live_shannon_read: IMPLEMENTED_BUT_CURRENT_CONTAINER_FETCH_FAILED
 proof_status:
-  technical_proof: PARTIAL_DETERMINISTIC_REPLAY_PASS
+  technical_proof: PARTIAL_DETERMINISTIC_REPLAY_AND_PREVIEW_PASS
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: GITHUB_CI_AND_LOCAL_PREVIEW_SMOKE_THEN_TRACE_IMPLEMENTATION_RECHECK
-next_exact_action: Commit CI workflow, run repository validation, smoke the local/static judge UI, then route the built experience to TRACE for implementation recheck before any preview deployment.
+next_exact_gate: GITHUB_CI_PASS_THEN_TRACE_IMPLEMENTATION_RECHECK
+next_exact_action: Confirm GitHub Actions validates tests/replay cleanliness. If PASS, hand the implementation to TRACE for Gate 4.25 implementation recheck before any live preview deployment.
 blocked_actions:
   - no inference-authorized writes
   - no Matchday source reuse
