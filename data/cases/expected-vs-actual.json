@@ -1,0 +1,34 @@
+{
+  "caseId": "LKB-003",
+  "title": "Requested is not executed.",
+  "type": "EXPECTED_VS_OBSERVED",
+  "marketId": "…ea9a",
+  "intent": {
+    "actor": "bounded execution agent",
+    "expected": "BUY_NO 29.182 contracts with a 0.495 limit."
+  },
+  "venueReality": {
+    "summary": "The reconciled average fill was 0.486 and the NO position increased from 0 to 29.182."
+  },
+  "evidence": {
+    "requestedQuantity": 29.182,
+    "requestedPrice": 0.495,
+    "averageFillPrice": 0.486,
+    "positionBefore": 0,
+    "positionAfter": 29.182,
+    "collateralSpent": 14.182452,
+    "txHash": "0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be",
+    "block": 475857493
+  },
+  "reconciliation": {
+    "status": "RECONCILED",
+    "writePerformed": false,
+    "finalState": "Actual fill and resulting position match the captured execution receipt."
+  },
+  "provenance": {
+    "truthClass": "CAPTURED_REAL_SHANNON_PUBLIC_EVIDENCE",
+    "sourceRepository": "tang-vu/outcome-guard",
+    "sourcePath": "docs/evidence/execution-receipt.json",
+    "limitations": ["This fixture is replay evidence from a separate public build, not a Last Known Book-originated transaction."]
+  }
+}
