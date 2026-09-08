@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v0.3
-updated_utc: "2026-09-08T23:26:00Z"
+schema: LKB-CURRENT-v0.4
+updated_utc: "2026-09-08T23:30:13Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PBPD
   stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: SHANNON_READ_ONLY_PREFLIGHT_PASS__HUMAN_WRITE_APPROVAL_REQUIRED
+  status: SHANNON_PACKET_001_HUMAN_AUTHORIZED__ASSISTANT_EXECUTION_NOT_PERMITTED
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
@@ -16,7 +16,9 @@ upstream:
 authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
-  blockchain_writes: HUMAN_WRITE_APPROVAL_REQUIRED_FOR_PACKET_001
+  shannon_packet_001_human_authorization: RECEIVED
+  shannon_packet_001_authorization_timestamp_utc: "2026-09-08T23:30:13Z"
+  blockchain_write_by_assistant: NOT_PERMITTED
   protected_submission: HUMAN_ONLY
   preview_deployment: HUMAN_AUTHORIZED_FOR_BOUNDED_VISUAL_EVIDENCE_ONLY
 truth_boundaries:
@@ -24,6 +26,7 @@ truth_boundaries:
   production_evidence: ABSENT
   matchday_source_reuse: FORBIDDEN
   inference_authorizes_write: false
+  captured_human_authorization_is_not_execution_proof: true
 vertical_slice:
   canonical_branch: main
   pull_request: 1
@@ -41,6 +44,10 @@ shannon_proof_preparation:
   workflow_run: 34290405286
   workflow_artifact: 10081109116
   artifact_digest: sha256:e21aee80836bac4740ea297c1b24dda83e532d79e6790a0f82e00da76031b31d
+  latest_ci:
+    validate_last_known_book_run: 34290667704
+    shannon_read_only_preflight_run: 34290667751
+    status: PASS
   live_market_count: 27
   native_rolling_market_count: 4
   selected_market:
@@ -59,6 +66,7 @@ shannon_proof_preparation:
     lot_size: 0.001
   proposed_packet:
     artifact: evidence/shannon/SHANNON-WRITE-PACKET-001.md
+    authorization_record: evidence/shannon/AUTHORIZATION-SHANNON-PACKET-001.md
     action_a: POST_ONLY_BUY_YES
     price: 0.001
     quantity: 0.001
@@ -67,11 +75,13 @@ shannon_proof_preparation:
     approval_cutoff_utc: "2026-09-08T23:45:00Z"
     approval_cutoff_toronto: "2026-09-08T19:45:00-04:00"
     setup_writes_authorized: false
+  authorization_status: HUMAN_AUTHORIZED
+  assistant_execution_status: NOT_PERFORMED
 proof_status:
   technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_RENDERED_EXPERIENCE_AND_LIVE_READ_PREFLIGHT_PASS
-  product_originated_shannon_write_proof: ABSENT_PENDING_HUMAN_APPROVAL
+  product_originated_shannon_write_proof: ABSENT
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_gate: HUMAN_WRITE_APPROVAL_REQUIRED_FOR_SHANNON_PACKET_001
-next_owner: HUMAN
+next_gate: EXTERNAL_HUMAN_EXECUTION_OR_ALTERNATIVE_NON_TRANSACTIONAL_PROOF_THEN_RECEIPT_RECONCILIATION
+next_owner: HUMAN_FOR_ANY_MARKET_TRANSACTION__PBPD_FOR_RECEIPT_AND_STATE_RECONCILIATION
