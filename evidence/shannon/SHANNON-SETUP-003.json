@@ -1,0 +1,51 @@
+{
+  "schema": "LKB-SHANNON-SETUP-PACKET-v0.1",
+  "setupId": "SHANNON_SETUP_003",
+  "network": "Somnia Shannon testnet",
+  "chainId": 50312,
+  "collateral": {
+    "symbol": "tUSDC",
+    "address": "0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E",
+    "decimals": 6
+  },
+  "targetPool": "0xFF52C100d53365365d655Af84b2Db121fE86f0a3",
+  "linkedMarketPacket": "SHANNON_PACKET_003",
+  "writes": [
+    {
+      "step": 1,
+      "action": "tUSDC.faucet(uint256)",
+      "amountRaw": "1",
+      "amountHuman": 0.000001,
+      "condition": "only if current tUSDC balance is below 1 raw"
+    },
+    {
+      "step": 2,
+      "action": "tUSDC.approve(address,uint256)",
+      "spender": "0xFF52C100d53365365d655Af84b2Db121fE86f0a3",
+      "amountRaw": "1",
+      "condition": "only after faucet receipt success and only if current allowance is below 1 raw"
+    }
+  ],
+  "requiredPostState": {
+    "gasSttRawGreaterThan": "0",
+    "tUsdcBalanceRawAtLeast": "1",
+    "poolAllowanceRawExactly": "1"
+  },
+  "forbidden": [
+    "market order placement",
+    "order cancellation",
+    "autoApprove",
+    "unlimited approval",
+    "faucet amount above 1 raw tUSDC",
+    "approval to any address other than targetPool",
+    "mainnet execution"
+  ],
+  "authority": {
+    "status": "HUMAN_SETUP_WRITE_APPROVAL_REQUIRED",
+    "expectedConfirmation": "AUTHORIZE_SHANNON_SETUP_003",
+    "assistantMayBroadcast": false,
+    "walletAddressCommitted": false,
+    "cutoffUtc": "2026-09-09T12:30:00Z",
+    "cutoffToronto": "2026-09-09T08:30:00-04:00"
+  }
+}
