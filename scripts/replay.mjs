@@ -4,7 +4,12 @@ import path from 'node:path';
 import { analyzeCase } from '../src/engine.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const names = ['mint-pair-indexer-lag.json', 'resting-sell-escrow.json', 'expected-vs-actual.json'];
+const names = [
+  'mint-pair-indexer-lag.json',
+  'resting-sell-escrow.json',
+  'expected-vs-actual.json',
+  'exact-market-residual-settlement.json'
+];
 const outDir = path.join(root, 'evidence', 'generated');
 await mkdir(outDir, { recursive: true });
 
