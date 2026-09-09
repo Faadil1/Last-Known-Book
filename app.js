@@ -4,7 +4,15 @@ const CASE_FILES = [
   'expected-vs-actual.json'
 ];
 
-const state = { cases: [], active: 0 };
+const LIVE_SHANNON = {
+  rpc: 'https://dream-rpc.somnia.network/',
+  expectedChainId: 50312,
+  publicCapturedTx: '0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be',
+  explorerApiBase: 'https://shannon-explorer.somnia.network/api/v2/transactions/',
+  pollMs: 15000
+};
+
+const state = { cases: [], active: 0, liveTimer: null };
 
 function money(n, digits = 6) { return Number(n).toFixed(digits); }
 
@@ -112,6 +120,93 @@ function renderCase(index) {
   }
 }
 
+async function rpc(method, params = []) {
+  const response = await fetch(LIVE_SHANNON.rpc, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }),
+    cache: 'no-store'
+  });
+  if (!response.ok) throw new Error(`RPC_HTTP_${response.status}`);
+  const body = await response.json();
+  if (body.error) throw new Error(`RPC_${body.error.code ?? 'ERROR'}`);
+  return body.result;
+}
+
+async function explorerTxFallback() {
+  const response = await fetch(`${LIVE_SHANNON.explorerApiBase}${LIVE_SHANNON.publicCapturedTx}`, {
+    headers: { accept: 'application/json' },
+    cache: 'no-store'
+  });
+  if (!response.ok) throw new Error(`EXPLORER_HTTP_${response.status}`);
+  const body = await response.json();
+  return {
+    status: String(body.status ?? body.result ?? '').toLowerCase().includes('success') ? 'CONFIRMED' : String(body.status ?? body.result ?? 'UNKNOWN').toUpperCase(),
+    block: Number(body.block_number ?? body.block ?? 0) || null,
+    source: 'EXPLORER_FALLBACK'
+  };
+}
+
+function setLiveText(selector, value) {
+  const el = document.querySelector(selector);
+  if (el) el.textContent = value;
+}
+
+async function refreshLivePulse() {
+  const button = document.querySelector('#live-refresh');
+  if (button) button.disabled = true;
+  setLiveText('#live-read-state', 'READING SHANNON · READ ONLY · NO WALLET · NO SIGNING');
+
+  try {
+    const [chainHex, headHex, receipt] = await Promise.all([
+      rpc('eth_chainId'),
+      rpc('eth_blockNumber'),
+      rpc('eth_getTransactionReceipt', [LIVE_SHANNON.publicCapturedTx])
+    ]);
+
+    const chainId = Number.parseInt(chainHex, 16);
+    const head = Number.parseInt(headHex, 16);
+    const receiptBlock = receipt?.blockNumber ? Number.parseInt(receipt.blockNumber, 16) : null;
+    const receiptOk = receipt ? Number.parseInt(receipt.status ?? '0x0', 16) === 1 : false;
+    const confirmations = receiptBlock == null ? null : Math.max(0, head - receiptBlock + 1);
+
+    setLiveText('#live-chain', String(chainId));
+    setLiveText('#live-head', Number.isFinite(head) ? head.toLocaleString() : '—');
+    setLiveText('#live-tx-status', receipt ? (receiptOk ? 'CONFIRMED' : 'REVERTED') : 'NOT FOUND');
+    setLiveText('#live-confirms', confirmations == null ? '—' : confirmations.toLocaleString());
+
+    const chainOk = chainId === LIVE_SHANNON.expectedChainId;
+    setLiveText('#live-read-state', `${chainOk ? 'LIVE' : 'CHAIN MISMATCH'} · ${new Date().toLocaleTimeString()} · READ ONLY · NO WRITES`);
+  } catch (rpcError) {
+    try {
+      const fallback = await explorerTxFallback();
+      setLiveText('#live-chain', String(LIVE_SHANNON.expectedChainId));
+      setLiveText('#live-head', 'RPC N/A');
+      setLiveText('#live-tx-status', fallback.status);
+      setLiveText('#live-confirms', fallback.block ? `BLOCK ${fallback.block.toLocaleString()}` : '—');
+      setLiveText('#live-read-state', `EXPLORER FALLBACK · ${new Date().toLocaleTimeString()} · READ ONLY`);
+    } catch (explorerError) {
+      setLiveText('#live-chain', String(LIVE_SHANNON.expectedChainId));
+      setLiveText('#live-head', 'UNAVAILABLE');
+      setLiveText('#live-tx-status', 'READ UNAVAILABLE');
+      setLiveText('#live-confirms', '—');
+      setLiveText('#live-read-state', 'FAIL-CLOSED DISPLAY · NETWORK READ UNAVAILABLE · NO WRITE ATTEMPTED');
+      console.warn('LIVE_SHANNON_READ_UNAVAILABLE', { rpcError: rpcError.message, explorerError: explorerError.message });
+    }
+  } finally {
+    if (button) button.disabled = false;
+  }
+}
+
+function startLivePulse() {
+  const button = document.querySelector('#live-refresh');
+  if (!button) return;
+  button.addEventListener('click', refreshLivePulse);
+  refreshLivePulse();
+  if (state.liveTimer) clearInterval(state.liveTimer);
+  state.liveTimer = setInterval(refreshLivePulse, LIVE_SHANNON.pollMs);
+}
+
 async function boot() {
   state.cases = await Promise.all(CASE_FILES.map(async (name) => {
     const r = await fetch(`/data/cases/${name}`, { cache: 'no-store' });
@@ -127,6 +222,7 @@ async function boot() {
     nav.appendChild(button);
   });
   renderCase(0);
+  startLivePulse();
 }
 
 boot().catch((error) => {

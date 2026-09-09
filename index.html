@@ -30,8 +30,30 @@
           <span>tUSDC 1 → 1 RAW</span>
         </div>
         <p>Last Known Book-originated · redacted · testnet</p>
+        <a class="proof-commitment-link" href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer">OPEN PROOF COMMITMENT ↗</a>
         <small>Technical + behavior + operational-containment proof. Production evidence remains absent.</small>
       </section>
+
+      <section class="live-proof" aria-label="Live Shannon read-only network verification">
+        <div class="live-proof-head">
+          <div class="real-proof-kicker"><span></span> LIVE SHANNON READBACK</div>
+          <button id="live-refresh" type="button">REFRESH</button>
+        </div>
+        <div class="live-grid">
+          <div><span>CHAIN</span><strong id="live-chain">—</strong></div>
+          <div><span>HEAD</span><strong id="live-head">—</strong></div>
+          <div><span>PUBLIC TX</span><strong id="live-tx-status">CONNECTING</strong></div>
+          <div><span>CONFIRMS</span><strong id="live-confirms">—</strong></div>
+        </div>
+        <div id="live-read-state" class="live-read-state">READ ONLY · NO WALLET · NO SIGNING · NO WRITES</div>
+        <a id="live-tx-link" href="https://shannon-explorer.somnia.network/tx/0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be" target="_blank" rel="noreferrer">OPEN PUBLIC LKB-003 TX ↗</a>
+        <small>Live network verification of captured public Shannon evidence. This is separate from the redacted Last Known Book-originated Packet 003 proof above.</small>
+      </section>
+
+      <div class="authority-principle">
+        <span>AUTHORITY PRINCIPLE</span>
+        <strong>The trading agent may be AI. The layer that decides whether money moves is not.</strong>
+      </div>
 
       <div class="docket-note">Captured real Shannon cases are replay evidence. The proof above is separate Last Known Book-originated testnet behavior evidence. Replay ≠ production proof.</div>
     </aside>

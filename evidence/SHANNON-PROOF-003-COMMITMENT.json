@@ -1,0 +1,42 @@
+{
+  "schema": "LKB-PROOF-COMMITMENT-v0.1",
+  "proofId": "SHANNON-PROOF-003",
+  "proofCreatedUtc": "2026-09-09T12:38:13.516Z",
+  "network": "Somnia Shannon testnet",
+  "chainId": 50312,
+  "proofClass": [
+    "TECHNICAL_PROOF_PASS",
+    "BEHAVIOR_PROOF_PASS",
+    "OPERATIONAL_CONTAINMENT_PASS"
+  ],
+  "productionEvidence": "ABSENT",
+  "privateCanonicalBundle": {
+    "repository": "Faadil1/pbpd-cowork-system",
+    "path": "projects/dreamdex-execution-incident-response/.pbpd/evidence/SHANNON-PROOF-003.yaml",
+    "canonicalProofMergeCommit": "475dddec2413063f3f26437a1c3e37a3befb3229",
+    "gitBlobSha1": "57c32ae2dae2eed45cdb265831e52efa2081b317",
+    "commitmentType": "GIT_OBJECT_AND_CANONICAL_COMMIT_REFERENCE"
+  },
+  "publicCandidate": {
+    "buildCandidateCommit": "52b1b9b8ba7836c2617430f76ebd29afffdc24da",
+    "winningIntelligenceReworkCommit": "6ee02917aa92951dc1222282367ef7599095bffa",
+    "ciRun": 34361037435
+  },
+  "publiclyCommittedFacts": {
+    "postOnlyPlacement": true,
+    "zeroFills": true,
+    "orderPlacedObserved": true,
+    "orderRestedObserved": true,
+    "exactReturnedOrderCancelled": true,
+    "orderCancelledObserved": true,
+    "collateralRestoredExactly": "1 raw tUSDC -> 1 raw tUSDC"
+  },
+  "redaction": {
+    "walletAddressPublishedHere": false,
+    "transactionHashesPublishedHere": false,
+    "orderIdPublishedHere": false,
+    "privateKeyPresentInPrivateBundle": false,
+    "seedPhrasePresentInPrivateBundle": false
+  },
+  "verificationNote": "This public file commits to the already-canonical private proof object without disclosing wallet or transaction identifiers. The Git blob object and canonical private merge commit provide a pre-submission tamper-evident reference to the preserved bundle."
+}
