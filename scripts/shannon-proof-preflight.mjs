@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Freshness trigger: SHANNON_PACKET_002 preflight requested 2026-09-09T10:52Z.
 import fs from 'node:fs/promises';
 import { SomniaMarkets, SOMNIA_TESTNET_ADDRESSES } from '@somnia-chain/markets-sdk';
 import { somniaShannon } from '@somnia-chain/markets-sdk/chains';
