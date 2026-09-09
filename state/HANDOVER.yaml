@@ -1,34 +1,49 @@
-schema: LKB-HANDOVER-v1.3
-updated_utc: "2026-09-09T12:06:00Z"
+schema: LKB-HANDOVER-v1.4
+updated_utc: "2026-09-09T12:10:11Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_003_CANONICAL_ON_MAIN__WALLET_SETUP_AND_HUMAN_WRITE_APPROVAL_REQUIRED
+lifecycle: SHANNON_SETUP_003_PREPARED__HUMAN_SETUP_WRITE_APPROVAL_REQUIRED
 canonical_branch: main
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
 canonical_packet_002_merge: 6bead00000a10b6a710bfec739928b4abb66cafd
 canonical_packet_003_merge: 137b173f37b2ff4fc11bdc3ca32010a50ad06559
+working_branch: proof/shannon-setup-003
 material_decisions:
   - Packets 001 and 002 expired without execution and are retired.
-  - Packet 003 preflight before rollover correctly failed closed at 423 seconds headroom.
-  - After rollover, preflight run 34348646964 passed with BTC 1h Trading and 3502 seconds headroom.
-  - Packet 003 is now canonical on main after PR #4 merge at 137b173f37b2ff4fc11bdc3ca32010a50ad06559.
-  - Exact packet validation, product CI and fresh preflight all passed on PR #4.
-  - SHANNON_PACKET_003 is frozen to marketId 0x0000000000000000000000000000000000000000000000000000000000018075 and pool 0xFF52C100d53365365d655Af84b2Db121fE86f0a3.
-  - Bounded order remains PostOnly BUY_YES priceRaw=1000 quantityRaw=1000, then cancel only the exact returned orderId if resting; maximum principal is 1 raw tUSDC.
-  - A disposable Shannon wallet exists locally. Its public address is intentionally not committed to the public repo; its private key stays only in local .env.local.
-  - Wallet setup is separate from the market packet. Any tUSDC faucet or ERC-20 approval requires a distinct bounded setup authorization; autoApprove is forbidden.
-validation:
-  packet_003_product_ci: 34349023825
-  packet_003_read_only_preflight: 34349023863
-  packet_003_exact_validation: 34349023805
-  status: PASS
+  - Packet 003 is canonical on main and remains bounded to the exact BTC 1h market/pool and PostOnly micro-order.
+  - The disposable wallet readiness was checked locally read-only: 1 STT gas, 0 tUSDC, 0 pool allowance. The wallet address is intentionally omitted from the public repo.
+  - Wallet setup is a separate protected action from the market packet.
+  - SHANNON_SETUP_003 permits only two possible testnet writes after explicit human approval: tUSDC.faucet(1 raw) if balance is below 1 raw, then tUSDC.approve(exact packet pool, 1 raw) if allowance is not already exactly 1 raw.
+  - The tUSDC faucet amount is intentionally 1 raw = 0.000001 tUSDC. The exact pool allowance is intentionally 1 raw. No unlimited approval or autoApprove is allowed.
+  - Setup runner is scripts/shannon-setup-local.mjs. It defaults to read-only and requires --execute plus LKB_SETUP_CONFIRM=AUTHORIZE_SHANNON_SETUP_003 before any local user-authorized write.
+  - Setup runner also requires Packet 003 to still be unexpired and bound to the same pool; if not, it fails closed.
+  - The assistant must not broadcast faucet, approval, market-order or cancel transactions.
+wallet_readiness_observed_locally:
+  chain_id: 50312
+  gas_stt_raw: "1000000000000000000"
+  tusdc_raw: "0"
+  pool_allowance_raw: "0"
+  private_key_shared: false
+  wallet_address_in_public_repo: false
+setup_003:
+  packet: evidence/shannon/SHANNON-SETUP-003.json
+  runner: scripts/shannon-setup-local.mjs
+  target_pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
+  collateral: 0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E
+  faucet_amount_raw: "1"
+  approval_amount_raw: "1"
+  human_confirmation_required: AUTHORIZE_SHANNON_SETUP_003
+  cutoff_utc: "2026-09-09T12:30:00Z"
+  cutoff_toronto: "2026-09-09T08:30:00-04:00"
+  required_post_state:
+    - STT > 0
+    - tUSDC >= 1 raw
+    - exact pool allowance == 1 raw
 packet_003:
   packet: evidence/shannon/SHANNON-PACKET-003.json
-  runner: scripts/shannon-packet-local.mjs
-  wallet_checker: scripts/check-shannon-wallet.mjs
   selected_market:
     asset: BTC
     interval_sec: 3600
@@ -36,30 +51,25 @@ packet_003:
     pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
     status: Trading
     expiry: 1788958800
-    snapshot_headroom_sec: 3502
   cutoff_utc: "2026-09-09T12:45:00Z"
   cutoff_toronto: "2026-09-09T08:45:00-04:00"
-privacy_and_secret_boundary:
-  disposable_wallet_created: true
-  public_address_in_repo: false
-  private_key_shared: false
-  private_key_in_repo: false
-  local_secret_file: .env.local
 proof_status:
   technical_proof: FRESH_PACKET_003_READ_ONLY_PREFLIGHT_AND_EXACT_PACKET_VALIDATION_PASS
+  wallet_setup_write_proof: ABSENT
   product_originated_shannon_write_proof: ABSENT
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: BOUNDED_WALLET_SETUP_THEN_HUMAN_WRITE_APPROVAL_FOR_SHANNON_PACKET_003
-next_exact_owner: HUMAN_FOR_SETUP_AND_MARKET_WRITES__PBPD_FOR_READ_ONLY_CHECKS_AND_RECONCILIATION
-next_exact_action: Obtain Shannon STT for the disposable wallet, then run scripts/check-shannon-wallet.mjs with WALLET_ADDRESS and POOL_ADDRESS to read STT, tUSDC and pool allowance. If tUSDC or allowance is missing, prepare and separately authorize a bounded setup packet. Only after setup proof passes may the human explicitly authorize SHANNON_PACKET_003 before cutoff and execute locally.
+next_exact_gate: HUMAN_SETUP_WRITE_APPROVAL_REQUIRED_FOR_SHANNON_SETUP_003
+next_exact_owner: HUMAN
+next_exact_action: Human explicitly authorizes SHANNON_SETUP_003 before 08:30 Toronto. Then the user independently executes scripts/shannon-setup-local.mjs locally with the disposable wallet. After setup, run the generic wallet checker again; only if STT > 0, tUSDC >= 1 raw and exact pool allowance == 1 raw may the separate SHANNON_PACKET_003 authorization gate be considered.
 blocked_actions:
-  - assistant must not broadcast faucet, approval, market order or cancellation transactions
+  - assistant must not broadcast any blockchain transaction
   - no private key disclosure or commit
   - no autoApprove or unlimited approval
-  - no packet reuse after cutoff
-  - no market/pool substitution without a fresh packet
+  - no setup write after setup cutoff
+  - no Packet 003 execution before wallet readiness PASS and separate human authorization
+  - no market/pool substitution without fresh packet
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
