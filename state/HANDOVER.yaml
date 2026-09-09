@@ -1,10 +1,10 @@
-schema: LKB-HANDOVER-v1.8
-updated_utc: "2026-09-09T12:33:09Z"
+schema: LKB-HANDOVER-v1.9
+updated_utc: "2026-09-09T12:35:28Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_003_LOCAL_READ_ONLY_GATE_PASS__HUMAN_WRITE_APPROVAL_REQUIRED
+lifecycle: SHANNON_PACKET_003_HUMAN_AUTHORIZED__LOCAL_EXECUTION_PENDING
 canonical_branch: main
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
@@ -16,13 +16,13 @@ material_decisions:
   - Packets 001 and 002 expired without execution and are retired.
   - SHANNON_SETUP_003 was human-authorized, executed locally on Shannon, and reconciled successfully: tUSDC=1 raw and exact pool allowance=1 raw after two successful setup receipts.
   - No market order or cancellation occurred during setup.
-  - Packet 003 remains a separately protected market action.
-  - A fresh local read-only validation of Packet 003 completed successfully on Windows without the previous UV_HANDLE_CLOSING assertion.
+  - A fresh local read-only validation of Packet 003 completed successfully on Windows without UV_HANDLE_CLOSING.
   - The local read gate observed chainId 50312, exact packet/on-chain pool equality, Trading status=1, 1636 seconds headroom, tick/lot/min all 1000 raw, and book top 0.830 bid / 0.855 ask at the time of the check.
   - The local read-only validation performed no blockchain write.
   - Packet 003 remains bounded to PostOnly BUY_YES priceRaw=1000 quantityRaw=1000, maximum principal 1 raw tUSDC, followed only by cancellation of the exact returned orderId if the order rests with zero fills.
+  - Human explicitly authorized SHANNON_PACKET_003 at 2026-09-09T12:35:28Z.
+  - This authorization covers only the exact local market placement/cancel flow encoded in SHANNON_PACKET_003 and does not broaden authority to any substitute market, pool, amount, approval, faucet, mint, or mainnet action.
   - Packet 003 expires at 08:45 Toronto and cannot be reused afterward.
-  - Setup authorization does not authorize Packet 003. A separate exact human authorization is still required.
 packet_003:
   packet: evidence/shannon/SHANNON-PACKET-003.json
   runner: scripts/shannon-packet-local.mjs
@@ -56,7 +56,8 @@ packet_003:
   cutoff_utc: "2026-09-09T12:45:00Z"
   cutoff_toronto: "2026-09-09T08:45:00-04:00"
   wallet_readiness: PASS
-  human_authorization_status: REQUIRED
+  human_authorization_status: RECEIVED
+  human_authorization_received_utc: "2026-09-09T12:35:28Z"
 privacy_and_secret_boundary:
   disposable_wallet_address_in_repo: false
   setup_tx_hashes_in_repo: false
@@ -66,20 +67,20 @@ privacy_and_secret_boundary:
 proof_status:
   technical_proof: PACKET_003_LOCAL_AND_CI_READ_ONLY_GATES_PASS
   wallet_setup_write_proof: REAL_SHANNON_TESTNET_SETUP_EXECUTED_AND_RECONCILED
-  product_originated_shannon_write_proof: ABSENT
-  behavior_proof: SETUP_BEHAVIOR_PROOF_PRESENT__MARKET_BEHAVIOR_PROOF_NOT_YET
+  product_originated_shannon_write_proof: AUTHORIZED_NOT_YET_EXECUTED
+  behavior_proof: SETUP_BEHAVIOR_PROOF_PRESENT__MARKET_BEHAVIOR_PROOF_PENDING_LOCAL_EXECUTION
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: HUMAN_WRITE_APPROVAL_REQUIRED_FOR_SHANNON_PACKET_003
-next_exact_owner: HUMAN_FOR_MARKET_WRITE__PBPD_FOR_RECEIPT_AND_STATE_RECONCILIATION
-next_exact_action: Before 08:45 Toronto, human explicitly says AUTHORIZE_SHANNON_PACKET_003. Then user locally sets LKB_PACKET_CONFIRM to that exact string and runs scripts/shannon-packet-local.mjs --execute. Runner must revalidate chain, exact market/pool mapping, Trading state, >=600 seconds headroom, tick/min/lot, gas, tUSDC and exact allowance immediately before any signature. If any predicate fails, STOP. If PostOnly placement rests with zero fills, cancel only the exact returned orderId, preserve placement and cancel receipts, then reconcile tUSDC before/after. If cutoff passes first, retire Packet 003 and create a fresh packet.
+next_exact_gate: LOCAL_EXECUTION_OF_AUTHORIZED_SHANNON_PACKET_003_THEN_RECEIPT_AND_STATE_RECONCILIATION
+next_exact_owner: HUMAN_FOR_MARKET_EXECUTION__PBPD_FOR_RECEIPT_AND_STATE_RECONCILIATION
+next_exact_action: Before 08:45 Toronto, user locally sets LKB_PACKET_CONFIRM=AUTHORIZE_SHANNON_PACKET_003 and runs scripts/shannon-packet-local.mjs --execute. Runner must revalidate chain, exact market/pool mapping, Trading state, >=600 seconds headroom, tick/min/lot, gas, tUSDC and exact allowance immediately before any signature. If any predicate fails, STOP. If PostOnly placement rests with zero fills, cancel only the exact returned orderId, preserve placement and cancel receipts, then reconcile tUSDC before/after. If cutoff passes first, retire Packet 003 and create a fresh packet.
 blocked_actions:
   - assistant must not broadcast any blockchain transaction
   - no private key disclosure or commit
   - no autoApprove or unlimited approval
   - no packet reuse after cutoff
   - no market/pool substitution without fresh packet
-  - no execution before separate exact human authorization of SHANNON_PACKET_003
+  - no action beyond the exact Packet 003 placement/cancel flow
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
