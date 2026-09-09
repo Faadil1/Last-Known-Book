@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.0
-updated_utc: "2026-09-09T13:23:00Z"
+schema: LKB-CURRENT-v2.1
+updated_utc: "2026-09-09T14:02:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,23 +7,27 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE
-  status: BUILD_CANDIDATE_READY
+  stage: TERMINAL_ASSURANCE_TARGETED_REWORK
+  status: WINNING_INTELLIGENCE_WI_001_NONPROTECTED_REWORK_IMPLEMENTED__PRODUCT_CI_PENDING
 authority:
   project_authorized: true
-  build_authorized_within_prd_scope: true
+  build_candidate_ready: true
+  targeted_packaging_rework_within_existing_scope: true
   shannon_packet_003: EXECUTED_WITH_EXACT_HUMAN_AUTHORIZATION__ONE_TIME_GRANT_CONSUMED
   shannon_setup_003: EXECUTED_AND_RECONCILED__ONE_TIME_GRANT_CONSUMED
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
+  stable_external_deployment: REQUIRE_EXPLICIT_HUMAN_GATE
+  publish_private_packet_003_identifiers: REQUIRE_EXPLICIT_HUMAN_GATE
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
   build_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
+  working_branch: rework/winning-intelligence-001
   packaging_pr: 9
   packaging_ci_run: 34356611528
-  packaging_ci_status: PASS_TESTS_REPLAY_AND_CLEANLINESS
   M5_rework_merge: 4e831a8adc920eabd24df4a04618c11971e50f8e
   pbpd_private_real_shannon_proof: 475dddec2413063f3f26437a1c3e37a3befb3229
+  pbpd_winning_intelligence_merge: 5270d283cb0dda6afacadecd4e36edaf1c934042
 proof_status:
   technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
   product_originated_shannon_write_proof: PASS_REAL_SHANNON_PACKET_003
@@ -41,12 +45,53 @@ requirements_to_evidence:
     S3: PASS
     S4: PASS
     S5: PASS
+winning_intelligence:
+  assessment: CLOSE_FINAL_VIDEO_LIVE_URL_AND_PROOF_SURFACING_GAPS__NORMAL_SUBMISSION_AUTHORITY_UNCHANGED
+  sponsor_native_necessity: SUPPORTED
+  whole_rubric_coverage: PARTIAL
+  narrative_and_demo_legibility: PARTIAL
+  judge_path_legibility: PARTIAL
+  concept_reopen_required: false
+  winning_laws_promoted: 0
+  numeric_win_probability: NONE
+  memory_sentence: The one that reconstructs what the agent actually traded -- and proves why it looked wrong.
+  hero_hook: This wasn't a whale. It was a mint.
+rework_WI_001:
+  judge_safe_real_shannon_proof_surface:
+    status: IMPLEMENTED_ON_WORKING_BRANCH_CI_PENDING
+    implementation:
+      - index.html real Shannon proof card
+      - winning-intelligence.css
+      - public facts only: chain 50312, zero fills, OrderPlaced->OrderRested->OrderCancelled, tUSDC 1 raw->1 raw
+    private_identifiers_exposed: false
+  final_demo_script:
+    status: FROZEN_FOR_FIRST_ENCODE
+    path: docs/DEMO-SCRIPT.md
+    target_seconds: 155
+    encoded_video: MISSING
+  dorahacks_submission_package:
+    status: DRAFTED
+    path: docs/SUBMISSION-PACKAGE.md
+  redaction_test:
+    status: ADDED_CI_PENDING
+    path: tests/winning-intelligence.test.mjs
+  stable_judge_live_url:
+    status: PENDING_HUMAN_AUTHORIZED_DEPLOYMENT
+  final_encoded_demo_video:
+    status: MISSING__TARGETED_REWORK_REMAINS_OPEN
+  trace_encoded_video_review:
+    status: BLOCKED_UNTIL_VIDEO_EXISTS
+deadline:
+  extended_through_date: "2026-09-11"
+  exact_cutoff_time: NOT_REVERIFIED_IN_CANON
+  instruction: Re-read current DoraHacks UI before protected final submit; assume no extension after Sep 11.
 truth_boundaries:
   build_candidate_ready_is_not_submission_ready: true
-  build_candidate_ready_is_not_submitted: true
+  targeted_rework_does_not_invalidate_build_candidate_ready: true
   production_readiness_claim: FORBIDDEN
   MTTR_improvement_claim: NOT_YET_PROVEN
   ROI_prevalence_fraud_claims: FORBIDDEN_WITH_CURRENT_EVIDENCE
   captured_replays_are_not_product_originated_writes: true
-next_gate: PROJECT_FINISHER_COMPLETION_RUN
-next_owner: PROJECT_FINISHER
+  public_packet_003_proof_is_redacted_summary_not_full_private_receipt_bundle: true
+next_gate: PRODUCT_CI_FOR_WINNING_INTELLIGENCE_REWORK
+next_owner: PBPD_PACKAGING_THEN_TRACE_THEN_PROJECT_FINISHER
