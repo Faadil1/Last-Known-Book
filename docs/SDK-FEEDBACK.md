@@ -6,6 +6,25 @@ SDK exercised: `@somnia-chain/markets-sdk@0.29.0`
 
 This is implementation feedback from one real bounded Shannon proof. It is not a claim that every developer will encounter each issue.
 
+## Why this matters now
+
+DreamDEX's current Event Contracts documentation explicitly describes a rolling-market lifecycle: windows die on schedule, successors open automatically, pools can be recycled, and developers should key durable state by `marketId` or symbol rather than by pool address. It also recommends gating every write on fresh on-chain market state because indexed state can lag.
+
+Those are not incidental implementation details for autonomous agents. They create a concrete safety boundary:
+
+`rolling market → potentially stale bot state → fresh marketId/pool/lifecycle check → only then consider a write`
+
+Last Known Book turns that boundary into an execution-incident contract rather than leaving it as scattered bot hygiene.
+
+Current first-party references used during the integration:
+
+- https://app.dreamdex.io/docs/developers/event-contracts
+- https://app.dreamdex.io/docs/developers/event-contracts/market-structure
+- https://app.dreamdex.io/docs/developers/event-contracts/contracts-and-addresses
+- https://app.dreamdex.io/docs/developers/event-contracts/gotchas
+- https://app.dreamdex.io/docs/developers/event-contracts/recipes
+- https://app.dreamdex.io/docs/developers/contracts/events
+
 ## What worked well
 
 - `marketId` + on-chain market state provided a strong durable identity for a rolling Event Contract.
@@ -82,6 +101,12 @@ The testnet faucet is convenient, but for authority-aware agents it is still a b
 `funding/setup → readiness read → explicit trade authorization → trade → reconciliation`
 
 rather than hiding faucet or approval writes inside a trading helper.
+
+## Proposed upstream contribution
+
+A sponsor-facing issue/post draft is preserved in `docs/UPSTREAM-FEEDBACK-DRAFT.md`. The key proposal is to consolidate existing DreamDEX guidance into one explicit **rollover-safe bounded-write recipe for autonomous agents**.
+
+This is deliberately framed as constructive consolidation: the current docs already document recycled pools, `marketId`, on-chain status gating, raw collateral decimals and order events. The contribution is to make their combined authority consequence hard to miss.
 
 ## Product-facing learning
 
