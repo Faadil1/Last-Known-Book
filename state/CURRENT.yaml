@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.5
-updated_utc: "2026-09-09T23:20:00Z"
+schema: LKB-CURRENT-v2.6
+updated_utc: "2026-09-09T23:24:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,14 +8,11 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_DEPLOYMENT
-  status: VERCEL_PRODUCTION_DEPLOYMENT_CREATED__RUNTIME_VERIFICATION_BLOCKED_BY_TEAM_SCOPE_403
+  status: EXACT_FILE_VERCEL_PRODUCTION_DEPLOYMENT_CREATED__RUNTIME_VERIFICATION_BLOCKED_BY_TEAM_SCOPE_403
 
 authority:
-  project_authorized: true
-  build_candidate_ready: true
   stable_external_deployment: HUMAN_AUTHORIZED_AND_DEPLOYMENT_CREATED
   live_browser_readback: READ_ONLY
-  shannon_packet_003: EXECUTED_WITH_EXACT_HUMAN_AUTHORIZATION__ONE_TIME_GRANT_CONSUMED
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
@@ -24,33 +21,31 @@ candidate:
   hidden_spots_merge: a997425a2532bfb56de5fc40107851619aad210a
   hidden_spots_ci_run: 34367779820
   predeploy_lkb004_fix_merge: 581028c662f47015d3234501227689b492b83ac8
-  predeploy_lkb004_fix_pr: 12
   predeploy_lkb004_fix_ci_run: 34416124754
   predeploy_lkb004_fix_ci_status: PASS
-predeploy_fix:
-  issue: README_AND_ENGINE_CLAIMED_4_INCIDENT_CLASSES_WHILE_JUDGE_UI_LOADED_ONLY_3
-  status: FIXED_MERGED_AND_CI_PASS
-  result:
-    - LKB-004 exact-market residual settlement now appears in judge UI
-    - browser renderer supports exact-market settlement semantics and reconciliation
-    - UI coverage test protects all four canonical cases
 vercel:
-  authorization: HUMAN_AUTHORIZED_STABLE_JUDGE_DEPLOYMENT
-  deployment_id: dpl_2Am7o84kUeV5HirZAnfeb5Frxmnm
-  deployment_url: https://last-known-book-mzz4iz1me-faadil-s-projects.vercel.app
-  alias_expected: https://last-known-book-faadil-s-projects.vercel.app
+  canonical_deployment_id: dpl_64smusAJEA65zGdUNDU3mCpuMdqX
+  canonical_deployment_url: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app
+  expected_production_alias: https://last-known-book-faadil-s-projects.vercel.app
   target: production
   creation_status: CREATED_INITIALIZING
+  deployment_payload: EXACT_PUBLIC_RUNTIME_FILES_FROM_CURRENT_GITHUB_MAIN_AFTER_LKB004_FIX
+  superseded_first_upload: dpl_2Am7o84kUeV5HirZAnfeb5Frxmnm
   runtime_verification: BLOCKED_BY_CONNECTED_VERCEL_SCOPE_403
-  blocker_detail: connected Vercel credential cannot inspect scope faadil-s-projects; Vercel requires re-authentication to team_b8hypzENtczjR7lfxn2y8L6Q
-  live_readback_code:
-    mode: READ_ONLY
-    source_transaction: LKB_003_PUBLIC_CAPTURED_EVIDENCE
-    reads:
-      - eth_chainId
-      - eth_blockNumber
-      - eth_getTransactionReceipt
-    write_methods_present: false
+  required_reauth_scope: faadil-s-projects
+  team_id: team_b8hypzENtczjR7lfxn2y8L6Q
+live_shannon_readback:
+  mode: READ_ONLY
+  source_transaction: LKB_003_PUBLIC_CAPTURED_EVIDENCE
+  reads:
+    - eth_chainId
+    - eth_blockNumber
+    - eth_getTransactionReceipt
+  expected_chain_id: 50312
+  poll_ms: 15000
+  wallet_connection: false
+  signing: false
+  write_broadcast: false
 proof_status:
   technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -58,13 +53,13 @@ proof_status:
   production_evidence: ABSENT
 remaining_P0:
   - REAUTH_VERCEL_CONNECTOR_TO_FAADIL_S_PROJECTS_SCOPE
-  - VERIFY_DEPLOYMENT_READY_AND_ANONYMOUS_HTTP_200
+  - VERIFY_CANONICAL_DEPLOYMENT_READY_AND_ANONYMOUS_HTTP_200
   - VERIFY_RUNTIME_LIVE_SHANNON_READBACK
   - FINAL_ENCODED_2_TO_3_MINUTE_DEMO_VIDEO
   - TRACE_FINAL_ENCODED_VIDEO_REVIEW
 remaining_P1:
-  - FINAL_COVER_IMAGE_EXPORT
   - OPTIONAL_SERVER_SIDE_PACKET_003_LIVE_REDACTED_ENDPOINT_AFTER_ENV_SETUP
+  - FINAL_COVER_IMAGE_EXPORT
   - OPTIONAL_UPSTREAM_FEEDBACK_PUBLICATION
   - LICENSE_CHOICE
   - INSERT_FINAL_LIVE_AND_VIDEO_URLS
