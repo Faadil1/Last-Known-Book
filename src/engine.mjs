@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-export const ENGINE_VERSION = '0.1.0';
+export const ENGINE_VERSION = '0.2.0';
 
 const ROOT_CAUSES = new Set([
   'VENUE_SEMANTICS',
@@ -46,6 +46,15 @@ function unknown(id, claim) {
 
 function assertPositiveNumber(value, label) {
   if (!Number.isFinite(value) || value < 0) throw new Error(`${label} must be a finite non-negative number`);
+}
+
+function assertRawInteger(value, label) {
+  if (typeof value !== 'string' || !/^\d+$/.test(value)) throw new Error(`${label} must be a non-negative integer string`);
+  return BigInt(value);
+}
+
+function assertMarketId(value, label) {
+  if (typeof value !== 'string' || !/^0x[0-9a-fA-F]{64}$/.test(value)) throw new Error(`${label} must be a 32-byte marketId`);
 }
 
 export function decodeMintPair(caseData) {
@@ -98,6 +107,63 @@ export function decodeEscrow(caseData) {
       observed('O-ESC-2', `Exact cancel restored visible YES to ${e.visibleYesAfterCancelRaw}.`, ['cancel.txHash', 'balances.afterCancel']),
       inferred('I-ESC-1', 'The apparent disappearance is venue escrow semantics, not lost inventory.', ['O-ESC-1', 'O-ESC-2'])
     ]
+  };
+}
+
+export function decodeExactMarketResidualSettlement(caseData) {
+  const residuals = caseData?.evidence?.residuals;
+  if (!Array.isArray(residuals) || residuals.length === 0) throw new Error('residuals must be a non-empty array');
+
+  const claims = [];
+  const classifications = [];
+
+  residuals.forEach((residual, index) => {
+    const prefix = `RES-${index + 1}`;
+    assertMarketId(residual.marketId, `${prefix}.marketId`);
+    const before = assertRawInteger(residual.balanceBeforeRaw, `${prefix}.balanceBeforeRaw`);
+    const after = assertRawInteger(residual.balanceAfterRaw, `${prefix}.balanceAfterRaw`);
+    const payout = assertRawInteger(residual.payoutRaw, `${prefix}.payoutRaw`);
+    if (!['YES', 'NO'].includes(residual.heldOutcome)) throw new Error(`${prefix}.heldOutcome must be YES or NO`);
+    if (!['YES', 'NO'].includes(residual.winningOutcome)) throw new Error(`${prefix}.winningOutcome must be YES or NO`);
+    if (residual.status !== 'RESOLVED') throw new Error(`${prefix}.status must be RESOLVED for settlement decoding`);
+    if (!Array.isArray(residual.payoutVector) || residual.payoutVector.length !== 2) throw new Error(`${prefix}.payoutVector must contain YES and NO payout weights`);
+
+    const outcomeIndex = residual.heldOutcome === 'YES' ? 0 : 1;
+    const heldOutcomePays = Number(residual.payoutVector[outcomeIndex]) > 0;
+    const isWinner = residual.heldOutcome === residual.winningOutcome && heldOutcomePays;
+
+    claims.push(
+      observed(`O-${prefix}-1`, `Exact market ${residual.marketId} is RESOLVED with ${residual.winningOutcome} as winner.`, [`residuals[${index}].marketId`, `residuals[${index}].winningOutcome`, `residuals[${index}].payoutVector`]),
+      observed(`O-${prefix}-2`, `${residual.heldOutcome} residual balance before recovery was ${before.toString()} raw.`, [`residuals[${index}].balanceBeforeRaw`])
+    );
+
+    if (isWinner) {
+      if (residual.redeemTxHash && payout > 0n && after === 0n) {
+        classifications.push({ marketId: residual.marketId, classification: 'WINNING_RESIDUAL_REDEEMED', action: 'NO_REPEAT_WRITE' });
+        claims.push(
+          observed(`O-${prefix}-3`, `The exact winning ${residual.heldOutcome} residual redeemed for ${payout.toString()} raw collateral and the outcome balance reconciled to zero.`, [`residuals[${index}].redeemTxHash`, `residuals[${index}].payoutRaw`, `residuals[${index}].balanceAfterRaw`]),
+          inferred(`I-${prefix}-1`, 'The historical recovery was economically justified by exact-market resolution, but an already redeemed position must not be redeemed again.', [`O-${prefix}-1`, `O-${prefix}-3`])
+        );
+      } else if (before > 0n) {
+        classifications.push({ marketId: residual.marketId, classification: 'CLAIMABLE_SETTLED_INVENTORY', action: 'REQUIRES_FRESH_PREDICATES_AND_HUMAN_CONFIRMATION' });
+        claims.push(
+          inferred(`I-${prefix}-1`, 'This exact-market residual appears economically claimable, but claimability alone does not authorize a redeem write.', [`O-${prefix}-1`, `O-${prefix}-2`]),
+          unknown(`U-${prefix}-1`, 'Current claimability cannot be established from historical evidence alone; fresh chain state is required before any write.')
+        );
+      }
+    } else {
+      classifications.push({ marketId: residual.marketId, classification: 'KNOWN_ZERO_VALUE_SETTLED_RESIDUAL', action: 'NO_ACTION' });
+      claims.push(
+        observed(`O-${prefix}-3`, `The held ${residual.heldOutcome} side is losing under payout vector [${residual.payoutVector.join(',')}], so its payout is zero.`, [`residuals[${index}].heldOutcome`, `residuals[${index}].payoutVector`, `residuals[${index}].payoutRaw`]),
+        inferred(`I-${prefix}-1`, 'A nonzero losing token balance is explainable zero-value settled inventory and should not trigger a blind redeem attempt.', [`O-${prefix}-1`, `O-${prefix}-2`, `O-${prefix}-3`])
+      );
+    }
+  });
+
+  return {
+    semantic: 'EXACT_MARKET_SETTLEMENT_RECONCILIATION',
+    classifications,
+    claims
   };
 }
 
@@ -173,6 +239,16 @@ export function analyzeCase(caseData) {
     semantics.push('EXPECTED_VS_ACTUAL_FILL');
     rootCause = 'EXPECTED_VS_OBSERVED';
     policy = { action: 'NO_ACTION', writeAuthorized: false, reason: 'Observed execution reconciles and is price-improved relative to the limit.' };
+  } else if (caseData.type === 'EXACT_MARKET_RESIDUAL_SETTLEMENT') {
+    const settlement = decodeExactMarketResidualSettlement(caseData);
+    semantics.push(settlement.semantic);
+    claims.push(...settlement.claims);
+    rootCause = 'LIFECYCLE';
+    policy = {
+      action: 'NO_ACTION',
+      writeAuthorized: false,
+      reason: 'The captured recovery is already reconciled. Historical winner/loser classification explains the residuals but does not authorize a repeat redeem.'
+    };
   } else {
     throw new Error(`Unsupported case type: ${caseData.type}`);
   }
