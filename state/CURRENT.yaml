@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v1.8
-updated_utc: "2026-09-09T12:52:00Z"
+schema: LKB-CURRENT-v1.9
+updated_utc: "2026-09-09T13:14:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PBPD
-  stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: TARGETED_REWORK_M5_EXACT_MARKET_SETTLEMENT_IMPLEMENTED__CI_PENDING
+  stage: CONSEQUENTIAL_BUILD
+  status: BUILD_CANDIDATE_READY_JUSTIFIED__PACKAGING_CI_AND_CANONICAL_MERGE_PENDING
 authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
@@ -22,39 +22,31 @@ proof_status:
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   outcome_proof: PARTIAL_OPERATIONAL_CONTAINMENT_ONLY__NO_BUSINESS_OUTCOME_CLAIM
   production_evidence: ABSENT
-requirements_gap_reassessment:
-  trigger: PBPD_REQUIREMENTS_TO_EVIDENCE_REFRESH_AFTER_PACKET_003
-  blocker_found:
-    requirement: M5
-    text: Decode indexer lag, SELL escrow semantics, MINT_A_PAIR and exact-market residual/settlement semantics.
-    prior_state: PARTIAL_MISSING_EXACT_MARKET_SETTLEMENT_DECODER
-    targeted_rework: IMPLEMENTED_ON_BRANCH_CI_PENDING
-  implementation:
-    branch: rework/exact-market-settlement-decoder
-    engine_version: 0.2.0
-    new_case_type: EXACT_MARKET_RESIDUAL_SETTLEMENT
-    new_semantic: EXACT_MARKET_SETTLEMENT_RECONCILIATION
-    fixture: data/cases/exact-market-residual-settlement.json
-    generated_report: evidence/generated/LKB-004.incident-report.json
-    report_hash: 58d1d1faf197044dd608021494fd6d4e7de0e38802d960a1c6dbcf0568daa23c
-    source_truth: CAPTURED_REAL_SHANNON_EVIDENCE
-    source_repository: Techkeyy/villa
-    source_commit: 557f84bec02eea422aa659289048c9075bb51ce1
-    exact_market_classes:
-      - WINNING_RESIDUAL_REDEEMED
-      - KNOWN_ZERO_VALUE_SETTLED_RESIDUAL
-      - CLAIMABLE_SETTLED_INVENTORY_REQUIRES_FRESH_PREDICATES_AND_HUMAN_CONFIRMATION
-    authority_rule: historical claimability never authorizes a new redeem by itself
-  tests_added:
-    - distinguish two redeemed winning residuals from one losing zero-value residual
-    - historical reconciled recovery emits NO_ACTION
-    - claimable winner without human confirmation emits ESCALATE
-    - redeem action authorizes only when deterministic predicates and explicit human confirmation are both true
+material_merges:
+  pbpd_private_real_shannon_proof: 475dddec2413063f3f26437a1c3e37a3befb3229
+  M5_exact_market_settlement_rework: 4e831a8adc920eabd24df4a04618c11971e50f8e
+  M5_product_ci_run: 34354613782
+requirements_to_evidence:
+  matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
+  must: 13_of_13_PASS
+  must_not: 7_of_7_PASS
+  should:
+    S1: PASS
+    S2: PARTIAL_NON_BLOCKING_PUBLIC_PROOF_LINK_REDACTION
+    S3: PASS
+    S4: PASS_DOCS_SDK_FEEDBACK_ADDED
+    S5: PASS
+candidate_packaging:
+  branch: prep/build-candidate-ready
+  README_truth_refresh: COMPLETE
+  sdk_feedback: docs/SDK-FEEDBACK.md
+  requirements_matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
+  candidate_promotion_rule: BUILD_CANDIDATE_READY_ONLY_AFTER_THIS_PACKAGING_BRANCH_PASSES_CI_AND_MERGES_TO_MAIN
 truth_boundaries:
-  packet_003_is_real_product_originated_shannon_write: true
-  LKB_004_is_historical_captured_replay_not_product_originated_write: true
-  no_repeat_redeem_from_historical_evidence: true
+  real_shannon_micro_proof_is_technical_behavior_operational_containment: true
   production_readiness_claim: FORBIDDEN
   MTTR_improvement_claim: NOT_YET_PROVEN
-next_gate: PRODUCT_CI_AND_REPLAY_CLEANLINESS_FOR_M5_REWORK
+  ROI_prevalence_fraud_claims: FORBIDDEN_WITH_CURRENT_EVIDENCE
+  captured_replays_are_not_product_originated_writes: true
+next_gate: PRODUCT_CI_AND_CANONICAL_MERGE_FOR_BUILD_CANDIDATE_READY
 next_owner: PBPD
