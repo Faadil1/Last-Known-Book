@@ -1,31 +1,36 @@
-schema: LKB-CURRENT-v1.9
-updated_utc: "2026-09-09T13:14:00Z"
+schema: LKB-CURRENT-v2.0
+updated_utc: "2026-09-09T13:23:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
   internal_project_slug: dreamdex-execution-incident-response
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
-  owner: PBPD
-  stage: CONSEQUENTIAL_BUILD
-  status: BUILD_CANDIDATE_READY_JUSTIFIED__PACKAGING_CI_AND_CANONICAL_MERGE_PENDING
+  owner: PROJECT_FINISHER
+  stage: TERMINAL_ASSURANCE
+  status: BUILD_CANDIDATE_READY
 authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
-  shannon_packet_003: EXECUTED_WITH_EXACT_HUMAN_AUTHORIZATION
-  shannon_setup_003: EXECUTED_AND_RECONCILED
-  blockchain_write_by_assistant: NOT_PERMITTED
+  shannon_packet_003: EXECUTED_WITH_EXACT_HUMAN_AUTHORIZATION__ONE_TIME_GRANT_CONSUMED
+  shannon_setup_003: EXECUTED_AND_RECONCILED__ONE_TIME_GRANT_CONSUMED
+  further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   protected_submission: HUMAN_ONLY
+candidate:
+  canonical_branch: main
+  build_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
+  packaging_pr: 9
+  packaging_ci_run: 34356611528
+  packaging_ci_status: PASS_TESTS_REPLAY_AND_CLEANLINESS
+  M5_rework_merge: 4e831a8adc920eabd24df4a04618c11971e50f8e
+  pbpd_private_real_shannon_proof: 475dddec2413063f3f26437a1c3e37a3befb3229
 proof_status:
   technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
   product_originated_shannon_write_proof: PASS_REAL_SHANNON_PACKET_003
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
+  operational_containment: PASS
   outcome_proof: PARTIAL_OPERATIONAL_CONTAINMENT_ONLY__NO_BUSINESS_OUTCOME_CLAIM
   production_evidence: ABSENT
-material_merges:
-  pbpd_private_real_shannon_proof: 475dddec2413063f3f26437a1c3e37a3befb3229
-  M5_exact_market_settlement_rework: 4e831a8adc920eabd24df4a04618c11971e50f8e
-  M5_product_ci_run: 34354613782
 requirements_to_evidence:
   matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
   must: 13_of_13_PASS
@@ -34,19 +39,14 @@ requirements_to_evidence:
     S1: PASS
     S2: PARTIAL_NON_BLOCKING_PUBLIC_PROOF_LINK_REDACTION
     S3: PASS
-    S4: PASS_DOCS_SDK_FEEDBACK_ADDED
+    S4: PASS
     S5: PASS
-candidate_packaging:
-  branch: prep/build-candidate-ready
-  README_truth_refresh: COMPLETE
-  sdk_feedback: docs/SDK-FEEDBACK.md
-  requirements_matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
-  candidate_promotion_rule: BUILD_CANDIDATE_READY_ONLY_AFTER_THIS_PACKAGING_BRANCH_PASSES_CI_AND_MERGES_TO_MAIN
 truth_boundaries:
-  real_shannon_micro_proof_is_technical_behavior_operational_containment: true
+  build_candidate_ready_is_not_submission_ready: true
+  build_candidate_ready_is_not_submitted: true
   production_readiness_claim: FORBIDDEN
   MTTR_improvement_claim: NOT_YET_PROVEN
   ROI_prevalence_fraud_claims: FORBIDDEN_WITH_CURRENT_EVIDENCE
   captured_replays_are_not_product_originated_writes: true
-next_gate: PRODUCT_CI_AND_CANONICAL_MERGE_FOR_BUILD_CANDIDATE_READY
-next_owner: PBPD
+next_gate: PROJECT_FINISHER_COMPLETION_RUN
+next_owner: PROJECT_FINISHER
