@@ -1,59 +1,70 @@
-schema: LKB-HANDOVER-v2.4
-updated_utc: "2026-09-09T13:23:00Z"
+schema: LKB-HANDOVER-v2.5
+updated_utc: "2026-09-09T14:02:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PROJECT_FINISHER
-lifecycle: BUILD_CANDIDATE_READY
+lifecycle: WINNING_INTELLIGENCE_TARGETED_REWORK_IMPLEMENTED__CI_PENDING
 canonical_branch: main
+working_branch: rework/winning-intelligence-001
 canonical_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
-canonical_state_commit: 5b0e772f72f1efac74f5ab1df8b2e7c330a4b389
-canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
-pbpd_private_proof_merge: 475dddec2413063f3f26437a1c3e37a3befb3229
-M5_rework_merge: 4e831a8adc920eabd24df4a04618c11971e50f8e
-packaging:
-  pull_request: 9
-  validation_run: 34356611528
-  result: PASS
-  checks:
-    deterministic_tests: PASS
-    replay_generation: PASS
-    replay_cleanliness: PASS
+pbpd_winning_intelligence_merge: 5270d283cb0dda6afacadecd4e36edaf1c934042
 material_decisions:
-  - The first Last Known Book-originated real Shannon Packet 003 proof passed: bounded PostOnly placement rested with zero fills, exact returned orderId was cancelled, OrderPlaced/OrderRested/OrderCancelled were reconciled, and tUSDC restored exactly.
-  - The complete receipt bundle is canonical in private PBPD; public product state remains redacted for wallet/tx identifiers.
-  - M5 exact-market residual/settlement semantics were implemented in engine v0.2 and merged after green CI; LKB-004 uses captured real Shannon VILLA evidence and does not pretend to be a Last Known Book-originated redeem.
-  - README truth was refreshed and docs/SDK-FEEDBACK.md was added from the real integration experience.
-  - docs/REQUIREMENTS-EVIDENCE-MATRIX.md records 13/13 MUST PASS and 7/7 MUST_NOT PASS. S2 remains PARTIAL/NON-BLOCKING only because judge-safe public deep-link publication is intentionally deferred.
-  - Product packaging PR #9 passed CI run 34356611528 and merged as 52b1b9b8ba7836c2617430f76ebd29afffdc24da.
-  - Therefore PBPD promotion to BUILD_CANDIDATE_READY is canonical and ownership transfers to Project Finisher terminal assurance.
-  - BUILD_CANDIDATE_READY is not SUBMISSION_READY, SUBMITTED or production-ready. Project Finisher must independently verify the exact candidate and may return TARGETED_REWORK_REQUIRED, SUBMISSION_READY or BLOCKED.
-  - No additional blockchain write is authorized or required by this handoff.
+  - BUILD_CANDIDATE_READY remains valid. Winning Intelligence does not reopen the product concept and adds no winning probability or submission authority.
+  - Winning Intelligence v1.1 + Judge Performance Assurance v1.3 classified sponsor-native necessity as SUPPORTED, while whole-rubric coverage, narrative/demo legibility and judge-path legibility remain PARTIAL until terminal packaging closes.
+  - Visible current-event competition is crowded around prediction/pricing/trading intelligence and bot preflight/testing. Last Known Book must preserve a sharply post-execution identity: explain and safely contain what already happened.
+  - The strongest existing technical differentiator is Packet 003, a real Last Known Book-originated Shannon proof. Previously it existed in README/private PBPD but was not naturally encountered in the judge UI.
+  - A redacted REAL SHANNON PROOF card is now implemented in the CASE REGISTER on the working branch without altering the primary Intent-vs-Venue-Reality casefile hierarchy.
+  - The card exposes only safe facts: Shannon 50312, PostOnly rest/exact cancel, zero fills, OrderPlaced -> OrderRested -> OrderCancelled, and tUSDC 1 raw -> 1 raw. Disposable wallet and full tx hashes remain absent from public packaging.
+  - tests/winning-intelligence.test.mjs makes the judge-visible proof and private-identifier redaction testable in CI.
+  - docs/DEMO-SCRIPT.md freezes the first encoded-film contract at a 155-second target. The first minute must land MINT_A_PAIR and the memory hook "This wasn't a whale. It was a mint."; the real Packet 003 proof is shown separately afterward.
+  - docs/SUBMISSION-PACKAGE.md drafts the canonical DoraHacks title, description, differentiator, sponsor-native defense, thumbnail brief, Q&A and packaging consistency rules.
+  - Final encoded video is still MISSING. SCRIPT_READY is not VIDEO_READY.
+  - Stable anonymous judge-safe live URL remains unverified. The prior TRACE Vercel preview was a bounded design preview with connector readback/auth limitations, not the terminal judge deployment.
+  - Stable external deployment requires a new explicit human approval. No deploy is implied by Winning Intelligence.
+  - No new blockchain write is required or authorized for terminal packaging.
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
   operational_containment: PASS
   outcome_proof: PARTIAL_ONLY
   production_evidence: ABSENT
-requirements_status:
-  must: 13_of_13_PASS
-  must_not: 7_of_7_PASS
-  should: S1_PASS__S2_PARTIAL_NON_BLOCKING__S3_PASS__S4_PASS__S5_PASS
-project_finisher_input:
-  exact_candidate: Faadil1/Last-Known-Book@52b1b9b8ba7836c2617430f76ebd29afffdc24da
-  public_handover: state/HANDOVER.yaml
-  requirements_matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
-  sdk_feedback: docs/SDK-FEEDBACK.md
-  trace_viewport: evidence/trace/VIEWPORT-1280x720.md
-  private_proof_source: Faadil1/pbpd-cowork-system@475dddec2413063f3f26437a1c3e37a3befb3229
-next_exact_gate: PROJECT_FINISHER_COMPLETION_RUN
-next_exact_owner: PROJECT_FINISHER
-next_exact_action: Project Finisher independently validates the exact canonical candidate, requirements/evidence coverage, product reality boundaries, demo and package quality, critical path, final QA and protected-submission boundary. It must not infer SUBMISSION_READY from BUILD_CANDIDATE_READY alone.
+winning_intelligence:
+  assessment: CLOSE_FINAL_VIDEO_LIVE_URL_AND_PROOF_SURFACING_GAPS__NORMAL_SUBMISSION_AUTHORITY_UNCHANGED
+  sponsor_native_necessity: SUPPORTED
+  whole_rubric_coverage: PARTIAL
+  narrative_and_demo_legibility: PARTIAL
+  judge_path_legibility: PARTIAL
+  memory_sentence: The one that reconstructs what the agent actually traded -- and proves why it looked wrong.
+  hero_hook: This wasn't a whale. It was a mint.
+implemented_rework:
+  - index.html redacted real Shannon proof surface
+  - winning-intelligence.css proof styling
+  - tests/winning-intelligence.test.mjs redaction/proof boundary tests
+  - docs/DEMO-SCRIPT.md canonical 155-second film contract
+  - docs/SUBMISSION-PACKAGE.md canonical DoraHacks package draft
+remaining_P0:
+  - product CI/replay cleanliness for this rework
+  - final encoded 2-3 minute demo video
+  - TRACE review of the final encoded video
+  - stable anonymous judge-safe live URL after explicit human deployment authorization
+remaining_P1:
+  - final thumbnail/cover artifact consistent with the casefile identity
+  - insert final video/live URLs into submission package
+  - Winning Intelligence final recheck and Project Finisher terminal reaudit
+deadline:
+  extended_through_date: "2026-09-11"
+  exact_cutoff_time: NOT_REVERIFIED_IN_CANON
+  no_extension_after_sep11_may_be_assumed: true
+next_exact_gate: OPEN_PRODUCT_REWORK_PR_AND_REQUIRE_CI_PASS
+next_exact_owner: PBPD_PACKAGING
+next_exact_action: Open the Winning Intelligence rework PR, require deterministic tests/replay cleanliness including private-identifier redaction tests, merge only if green, then request explicit human authorization for a stable judge deployment. In parallel produce the encoded 2-3 minute video from docs/DEMO-SCRIPT.md and route the encoded artifact to TRACE before Project Finisher reruns terminal assurance.
 blocked_actions:
   - no additional blockchain write without a fresh exact human authorization
+  - no stable/public production deployment without explicit human approval
+  - no public disclosure of private wallet/full transaction proof without explicit human approval
   - no protected hackathon submission without explicit human authority
-  - no production-readiness claim
-  - no public disclosure of private wallet/tx evidence without an explicit judge-safe evidence decision
+  - no unsupported production/MTTR/ROI/prevalence/fraud claims
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
