@@ -1,6 +1,6 @@
 {
   "schema": "LKB-INCIDENT-REPORT-v0.1",
-  "engineVersion": "0.1.0",
+  "engineVersion": "0.2.0",
   "caseId": "LKB-003",
   "title": "Requested is not executed.",
   "type": "EXPECTED_VS_OBSERVED",
@@ -61,5 +61,5 @@
       "This fixture is replay evidence from a separate public build, not a Last Known Book-originated transaction."
     ]
   },
-  "reportHash": "f210c82ff5d1332e2ccb5b1848278c9b72e4e30c8c931c3b07fab0f36db6d2f1"
+  "reportHash": "154c691cfa0d971be648894cd557b7a2d6f4d00db7946b8a9b6ff588fef20db1"
 }

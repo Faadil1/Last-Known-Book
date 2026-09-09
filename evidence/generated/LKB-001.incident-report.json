@@ -1,6 +1,6 @@
 {
   "schema": "LKB-INCIDENT-REPORT-v0.1",
-  "engineVersion": "0.1.0",
+  "engineVersion": "0.2.0",
   "caseId": "LKB-001",
   "title": "This wasn't directional flow. It was a mint.",
   "type": "MINT_PAIR_INDEXER_LAG",
@@ -105,5 +105,5 @@
       "This fixture proves an observed incident class, not incident prevalence."
     ]
   },
-  "reportHash": "eb46d183b157b510c4c025dbd94e10c1e23555787245330a73accb4b86f08cda"
+  "reportHash": "1d82164e6cf0412b302e0f5be2fdfab0d0ec3b36623e16cf33986bbb14d500d1"
 }

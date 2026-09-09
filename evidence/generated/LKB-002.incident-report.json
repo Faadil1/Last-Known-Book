@@ -1,6 +1,6 @@
 {
   "schema": "LKB-INCIDENT-REPORT-v0.1",
-  "engineVersion": "0.1.0",
+  "engineVersion": "0.2.0",
   "caseId": "LKB-002",
   "title": "The tokens didn't disappear. They were escrowed.",
   "type": "RESTING_SELL_ESCROW",
@@ -67,5 +67,5 @@
       "This fixture proves venue escrow semantics, not incident prevalence."
     ]
   },
-  "reportHash": "886be0e60a16efdbe2f7e135a75651fbc6ae08b19ae20819e30cb113468c75c5"
+  "reportHash": "dcea1879db75f27273ecfa7355523f8fea6e93b43469f4408332bcc68fbd21e2"
 }

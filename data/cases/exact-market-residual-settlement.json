@@ -1,0 +1,74 @@
+{
+  "caseId": "LKB-004",
+  "title": "Exact-market residual settlement recovery",
+  "type": "EXACT_MARKET_RESIDUAL_SETTLEMENT",
+  "marketId": null,
+  "intent": {
+    "summary": "Explain historical NO residuals after organic SELL_YES fills and determine which exact-market positions were economically recoverable without blindly redeeming every nonzero token balance."
+  },
+  "venueReality": {
+    "summary": "Two exact old markets resolved NO and their 1000-raw NO residuals were redeemed independently. A different old market resolved YES, leaving a known zero-value NO residual that was explicitly not redeemed."
+  },
+  "evidence": {
+    "residuals": [
+      {
+        "marketId": "0x000000000000000000000000000000000000000000000000000000000000a3dd",
+        "sourceOrderId": "55340232221128713213",
+        "sourceAction": "SELL_YES",
+        "heldOutcome": "NO",
+        "balanceBeforeRaw": "1000",
+        "status": "RESOLVED",
+        "winningOutcome": "NO",
+        "payoutVector": [0, 10000000],
+        "redeemTxHash": "0xc365dcd77a9f66ade5ca3363812ebccbbad091eb8618167e53693b230919d134",
+        "payoutRaw": "1000",
+        "balanceAfterRaw": "0"
+      },
+      {
+        "marketId": "0x000000000000000000000000000000000000000000000000000000000000a3e9",
+        "sourceOrderId": "18446744073709615271",
+        "sourceAction": "SELL_YES",
+        "heldOutcome": "NO",
+        "balanceBeforeRaw": "1000",
+        "status": "RESOLVED",
+        "winningOutcome": "NO",
+        "payoutVector": [0, 10000000],
+        "redeemTxHash": "0xb04fffb4f9c55248e387029a66bc1de1e5671fd5cdd59f5b6be6b815e6ca4",
+        "payoutRaw": "1000",
+        "balanceAfterRaw": "0"
+      },
+      {
+        "marketId": "0x000000000000000000000000000000000000000000000000000000000000a00b",
+        "sourceOrderId": null,
+        "sourceAction": "KNOWN_RESIDUAL",
+        "heldOutcome": "NO",
+        "balanceBeforeRaw": "1000",
+        "status": "RESOLVED",
+        "winningOutcome": "YES",
+        "payoutVector": [10000000, 0],
+        "redeemTxHash": null,
+        "payoutRaw": "0",
+        "balanceAfterRaw": "1000"
+      }
+    ]
+  },
+  "reconciliation": {
+    "winningResidualsRedeemed": 2,
+    "knownZeroValueResidualsSkipped": 1,
+    "repeatWritesRequired": 0
+  },
+  "provenance": {
+    "truth": "CAPTURED_REAL_SHANNON_EVIDENCE",
+    "sourceRepository": "Techkeyy/villa",
+    "sourceFiles": [
+      "docs/SETTLEMENT_LIFECYCLE.md",
+      "docs/TECHNICAL_VERIFICATION.md",
+      "src/dashboard/replay.mjs"
+    ],
+    "sourceCommit": "557f84bec02eea422aa659289048c9075bb51ce1",
+    "limitations": [
+      "This is historical captured Shannon evidence, not a Last Known Book-originated redeem.",
+      "The decoder may explain whether a historical residual was winning, losing, or already closed; a new redeem write still requires fresh chain predicates and explicit human authorization."
+    ]
+  }
+}

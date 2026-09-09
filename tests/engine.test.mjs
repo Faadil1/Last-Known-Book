@@ -1,7 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { analyzeCase, decodeMintPair } from '../src/engine.mjs';
+import {
+  analyzeCase,
+  decodeMintPair,
+  decodeExactMarketResidualSettlement,
+  evaluatePolicy
+} from '../src/engine.mjs';
 
 async function fixture(name) {
   return JSON.parse(await readFile(new URL(`../data/cases/${name}`, import.meta.url), 'utf8'));
@@ -36,6 +41,48 @@ test('expected-vs-actual case reconciles favorable fill without action', async (
   assert.equal(report.rootCause, 'EXPECTED_VS_OBSERVED');
   assert.equal(report.policy.action, 'NO_ACTION');
   assert.ok(report.claims.some((claim) => claim.claim.includes('0.009000')));
+});
+
+test('exact-market settlement decoder distinguishes redeemed winners from losing residual', async () => {
+  const data = await fixture('exact-market-residual-settlement.json');
+  const decoded = decodeExactMarketResidualSettlement(data);
+  assert.equal(decoded.semantic, 'EXACT_MARKET_SETTLEMENT_RECONCILIATION');
+  assert.equal(decoded.classifications.filter((row) => row.classification === 'WINNING_RESIDUAL_REDEEMED').length, 2);
+  assert.equal(decoded.classifications.filter((row) => row.classification === 'KNOWN_ZERO_VALUE_SETTLED_RESIDUAL').length, 1);
+
+  const report = analyzeCase(data);
+  assert.equal(report.rootCause, 'LIFECYCLE');
+  assert.equal(report.policy.action, 'NO_ACTION');
+  assert.equal(report.policy.writeAuthorized, false);
+  assert.ok(report.claims.some((claim) => claim.claim.includes('should not trigger a blind redeem attempt')));
+});
+
+test('claimable winning residual does not authorize redeem without deterministic predicates and human confirmation', () => {
+  const denied = evaluatePolicy({
+    rootCause: 'LIFECYCLE',
+    chainTruth: 'SUCCESS',
+    indexerTruth: 'AVAILABLE',
+    safeWriteCandidate: {
+      action: 'REDEEM_EXACT_WINNING_RESIDUAL',
+      deterministicPredicatesSatisfied: true,
+      userConfirmed: false
+    }
+  });
+  assert.equal(denied.action, 'ESCALATE');
+  assert.equal(denied.writeAuthorized, false);
+
+  const allowed = evaluatePolicy({
+    rootCause: 'LIFECYCLE',
+    chainTruth: 'SUCCESS',
+    indexerTruth: 'AVAILABLE',
+    safeWriteCandidate: {
+      action: 'REDEEM_EXACT_WINNING_RESIDUAL',
+      deterministicPredicatesSatisfied: true,
+      userConfirmed: true
+    }
+  });
+  assert.equal(allowed.action, 'REDEEM_EXACT_WINNING_RESIDUAL');
+  assert.equal(allowed.writeAuthorized, true);
 });
 
 test('same evidence produces same report hash', async () => {
