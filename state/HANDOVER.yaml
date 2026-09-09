@@ -1,47 +1,59 @@
-schema: LKB-HANDOVER-v2.3
-updated_utc: "2026-09-09T13:14:00Z"
+schema: LKB-HANDOVER-v2.4
+updated_utc: "2026-09-09T13:23:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
-owner: PBPD
-lifecycle: BUILD_CANDIDATE_READY_JUSTIFIED__PACKAGING_CI_AND_CANONICAL_MERGE_PENDING
+owner: PROJECT_FINISHER
+lifecycle: BUILD_CANDIDATE_READY
 canonical_branch: main
-working_branch: prep/build-candidate-ready
+canonical_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
+canonical_state_commit: 5b0e772f72f1efac74f5ab1df8b2e7c330a4b389
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 pbpd_private_proof_merge: 475dddec2413063f3f26437a1c3e37a3befb3229
 M5_rework_merge: 4e831a8adc920eabd24df4a04618c11971e50f8e
+packaging:
+  pull_request: 9
+  validation_run: 34356611528
+  result: PASS
+  checks:
+    deterministic_tests: PASS
+    replay_generation: PASS
+    replay_cleanliness: PASS
 material_decisions:
-  - Last Known Book-originated real Shannon Packet 003 proof is PASS and privately canonical in PBPD.
-  - Exact-market residual/settlement decoder gap M5 was fixed and merged to product main after CI run 34354613782 passed 7 tests, four deterministic replays and byte-clean regeneration.
-  - README was corrected so it no longer falsely says product-originated live write/reconciliation is absent; it preserves proof-vs-production truth boundaries.
-  - docs/SDK-FEEDBACK.md closes SHOULD S4 with concrete integration feedback from the real Shannon proof without claiming universal SDK defects.
-  - docs/REQUIREMENTS-EVIDENCE-MATRIX.md reassesses the exact candidate: all 13 MUST requirements PASS and all 7 MUST_NOT requirements PASS.
-  - SHOULD status is S1 PASS, S2 PARTIAL/NON-BLOCKING because public Packet 003 identifiers remain redacted, S3 PASS, S4 PASS, S5 PASS.
-  - S2 redaction is a deliberate privacy/judge-surface decision; full Packet 003 receipt identifiers remain in private PBPD canon.
-  - BUILD_CANDIDATE_READY is justified by evidence but must not become canonical until this packaging branch passes product CI and merges to main.
-  - BUILD_CANDIDATE_READY means route to Project Finisher terminal assurance. It does not mean SUBMISSION_READY, SUBMITTED, production-ready, or permission for another blockchain write.
+  - The first Last Known Book-originated real Shannon Packet 003 proof passed: bounded PostOnly placement rested with zero fills, exact returned orderId was cancelled, OrderPlaced/OrderRested/OrderCancelled were reconciled, and tUSDC restored exactly.
+  - The complete receipt bundle is canonical in private PBPD; public product state remains redacted for wallet/tx identifiers.
+  - M5 exact-market residual/settlement semantics were implemented in engine v0.2 and merged after green CI; LKB-004 uses captured real Shannon VILLA evidence and does not pretend to be a Last Known Book-originated redeem.
+  - README truth was refreshed and docs/SDK-FEEDBACK.md was added from the real integration experience.
+  - docs/REQUIREMENTS-EVIDENCE-MATRIX.md records 13/13 MUST PASS and 7/7 MUST_NOT PASS. S2 remains PARTIAL/NON-BLOCKING only because judge-safe public deep-link publication is intentionally deferred.
+  - Product packaging PR #9 passed CI run 34356611528 and merged as 52b1b9b8ba7836c2617430f76ebd29afffdc24da.
+  - Therefore PBPD promotion to BUILD_CANDIDATE_READY is canonical and ownership transfers to Project Finisher terminal assurance.
+  - BUILD_CANDIDATE_READY is not SUBMISSION_READY, SUBMITTED or production-ready. Project Finisher must independently verify the exact candidate and may return TARGETED_REWORK_REQUIRED, SUBMISSION_READY or BLOCKED.
+  - No additional blockchain write is authorized or required by this handoff.
 proof_status:
-  technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
-  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
+  technical_proof: PASS_REAL_SHANNON
+  behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
   operational_containment: PASS
   outcome_proof: PARTIAL_ONLY
   production_evidence: ABSENT
 requirements_status:
   must: 13_of_13_PASS
   must_not: 7_of_7_PASS
-  should: 4_PASS_1_PARTIAL_NON_BLOCKING
-candidate_packaging:
-  README_truth_refresh: COMPLETE
+  should: S1_PASS__S2_PARTIAL_NON_BLOCKING__S3_PASS__S4_PASS__S5_PASS
+project_finisher_input:
+  exact_candidate: Faadil1/Last-Known-Book@52b1b9b8ba7836c2617430f76ebd29afffdc24da
+  public_handover: state/HANDOVER.yaml
+  requirements_matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
   sdk_feedback: docs/SDK-FEEDBACK.md
-  matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
-next_exact_gate: PRODUCT_CI_AND_MERGE_PACKAGING__THEN_CANONICAL_BUILD_CANDIDATE_READY
-next_exact_owner: PBPD_THEN_PROJECT_FINISHER
-next_exact_action: Open packaging PR from prep/build-candidate-ready to main. Require product CI and replay cleanliness. If green, merge and update public CURRENT/HANDOVER plus private PBPD state to canonical BUILD_CANDIDATE_READY, then create the exact Project Finisher handoff. Project Finisher independently determines terminal readiness and may return TARGETED_REWORK_REQUIRED, SUBMISSION_READY or BLOCKED.
+  trace_viewport: evidence/trace/VIEWPORT-1280x720.md
+  private_proof_source: Faadil1/pbpd-cowork-system@475dddec2413063f3f26437a1c3e37a3befb3229
+next_exact_gate: PROJECT_FINISHER_COMPLETION_RUN
+next_exact_owner: PROJECT_FINISHER
+next_exact_action: Project Finisher independently validates the exact canonical candidate, requirements/evidence coverage, product reality boundaries, demo and package quality, critical path, final QA and protected-submission boundary. It must not infer SUBMISSION_READY from BUILD_CANDIDATE_READY alone.
 blocked_actions:
-  - no new blockchain write without a fresh exact human gate
-  - no protected hackathon submission
+  - no additional blockchain write without a fresh exact human authorization
+  - no protected hackathon submission without explicit human authority
   - no production-readiness claim
-  - no publication of private wallet/tx evidence without an explicit judge-safe evidence decision
+  - no public disclosure of private wallet/tx evidence without an explicit judge-safe evidence decision
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
