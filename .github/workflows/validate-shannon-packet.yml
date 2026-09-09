@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'scripts/shannon-packet-local.mjs'
-      - 'evidence/shannon/SHANNON-PACKET-002.json'
+      - 'evidence/shannon/SHANNON-PACKET-*.json'
       - '.github/workflows/validate-shannon-packet.yml'
 
 permissions:

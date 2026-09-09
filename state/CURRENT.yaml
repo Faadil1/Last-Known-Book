@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v0.7
-updated_utc: "2026-09-09T11:08:30Z"
+schema: LKB-CURRENT-v0.9
+updated_utc: "2026-09-09T12:03:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PBPD
   stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: SHANNON_PACKET_002_MERGED_AND_VALIDATED__HUMAN_WRITE_APPROVAL_REQUIRED
+  status: SHANNON_PACKET_003_PREPARED__WALLET_SETUP_AND_HUMAN_WRITE_APPROVAL_REQUIRED
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
@@ -17,82 +17,63 @@ authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
   shannon_packet_001: EXPIRED_NOT_EXECUTED
-  shannon_packet_002: HUMAN_WRITE_APPROVAL_REQUIRED
+  shannon_packet_002: EXPIRED_NOT_EXECUTED
+  shannon_packet_003: HUMAN_WRITE_APPROVAL_REQUIRED_AFTER_WALLET_SETUP
   blockchain_write_by_assistant: NOT_PERMITTED
   protected_submission: HUMAN_ONLY
+privacy:
+  disposable_wallet_created_locally: true
+  wallet_address_committed_to_public_repo: false
+  private_key_committed_or_shared: false
 truth_boundaries:
   incident_prevalence_claim: FORBIDDEN
   production_evidence: ABSENT
   matchday_source_reuse: FORBIDDEN
   inference_authorizes_write: false
   authorization_is_not_execution_proof: true
-vertical_slice:
-  canonical_branch: main
-  pull_request: 1
-  merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
-validation:
-  deterministic_engine_tests: PASS
-  deterministic_replay: PASS_3_CASES
-  trace_rendered_viewport: PASS
-shannon_packet_002_preparation:
-  source_branch: proof/shannon-packet-002
-  pull_request: 3
-  merged_to_main: true
-  merge_commit: 6bead00000a10b6a710bfec739928b4abb66cafd
-  first_preflight:
-    workflow_run: 34342701486
-    attempt: 1
-    result: BLOCK_NO_SAFE_FULL_READ
-    reason: ONLY_326_SECONDS_HEADROOM
-    evidence: evidence/shannon/PREFLIGHT-002-ATTEMPT-1.md
-  rollover_preflight:
-    workflow_run: 34342701486
-    rerun_job: 102438619028
-    result: PASS
-    generated_utc: "2026-09-09T11:00:31.285Z"
-    artifact_id: 10100602280
-    artifact_digest: sha256:eb8d392692997cb2667a9ebf710d7c2061d1e7b475cc724e94aa9230a137620f
-    live_market_count: 16
-    native_rolling_market_count: 4
-  final_validation:
-    validate_last_known_book_run: 34343902882
-    validate_shannon_packet_run: 34343902868
-    validate_shannon_packet_job: 102440841695
-    fresh_preflight_run: 34343902885
-    status: PASS
+shannon_packet_003:
+  branch: proof/shannon-packet-003
+  pull_request: 4
+  packet: evidence/shannon/SHANNON-PACKET-003.json
+  local_runner: scripts/shannon-packet-local.mjs
+  preflight_run: 34348646964
+  preflight_job: 102456195511
+  preflight_artifact: 10102743366
+  preflight_digest: sha256:a5b5d4dfb6d241a9bd210de72b049a300eac6707a77f295c934460198cbaf108
+  generated_utc: "2026-09-09T12:01:41.975Z"
   selected_market:
     asset: BTC
     interval_sec: 3600
-    market_id: 0x0000000000000000000000000000000000000000000000000000000000017fc1
-    pool: 0xB7Cd5BdF4DD8B1f3BC11fE043e6c4f0Fe387f7E0
+    market_id: 0x0000000000000000000000000000000000000000000000000000000000018075
+    pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
     status: 1
-    status_name: Trading
-    expiry: 1788955200
-    headroom_at_snapshot_sec: 3572
-    best_bid: 0.579
-    best_ask: 0.600
+    expiry: 1788958800
+    snapshot_headroom_sec: 3502
+    best_bid_raw: 539000
+    best_ask_raw: 569000
     tick_size_raw: 1000
     min_quantity_raw: 1000
     lot_size_raw: 1000
-  packet:
-    artifact: evidence/shannon/SHANNON-PACKET-002.json
-    local_runner: scripts/shannon-packet-local.mjs
-    action_a: POST_ONLY_BUY_YES
+  bounded_order:
+    side: BUY_YES
+    order_type: PostOnly
     price_raw: 1000
-    price_human: 0.001
     quantity_raw: 1000
-    quantity_human: 0.001
     max_principal_raw_tusdc: 1
     max_principal_human_tusdc: 0.000001
-    action_b: CANCEL_EXACT_ORDER_IF_RESTING
     auto_approve: false
-    cutoff_utc: "2026-09-09T11:25:00Z"
-    cutoff_toronto: "2026-09-09T07:25:00-04:00"
+    if_resting: CANCEL_EXACT_RETURNED_ORDER_ID
+  cutoff_utc: "2026-09-09T12:45:00Z"
+  cutoff_toronto: "2026-09-09T08:45:00-04:00"
+wallet_readiness:
+  generic_checker: scripts/check-shannon-wallet.mjs
+  mode: READ_ONLY_NO_PRIVATE_KEY
+  current_expected_state: NEW_DISPOSABLE_WALLET_LIKELY_NEEDS_STT_TUSDC_AND_EXACT_POOL_ALLOWANCE
 proof_status:
-  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_RENDERED_EXPERIENCE_FRESH_LIVE_READ_AND_PACKET_VALIDATION_PASS
+  technical_proof: FRESH_PACKET_003_READ_ONLY_PREFLIGHT_PASS
   product_originated_shannon_write_proof: ABSENT
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_gate: HUMAN_WRITE_APPROVAL_REQUIRED_FOR_SHANNON_PACKET_002
-next_owner: HUMAN
+next_gate: BOUNDED_WALLET_SETUP_THEN_HUMAN_WRITE_APPROVAL_FOR_SHANNON_PACKET_003
+next_owner: HUMAN_FOR_SETUP_AND_MARKET_WRITES__PBPD_FOR_READ_ONLY_CHECKS_AND_RECONCILIATION
