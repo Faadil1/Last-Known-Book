@@ -1,54 +1,59 @@
-schema: LKB-HANDOVER-v2.8
-updated_utc: "2026-09-09T23:12:00Z"
+schema: LKB-HANDOVER-v2.9
+updated_utc: "2026-09-09T23:20:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PROJECT_FINISHER
-lifecycle: HS_001_MERGED__STABLE_JUDGE_DEPLOYMENT_AUTHORIZED
+lifecycle: VERCEL_PRODUCTION_DEPLOYMENT_CREATED__RUNTIME_VERIFICATION_BLOCKED_BY_SCOPE_403
 canonical_branch: main
-winning_intelligence_rework_merge: 6ee02917aa92951dc1222282367ef7599095bffa
 hidden_spots_merge: a997425a2532bfb56de5fc40107851619aad210a
 hidden_spots_ci: PASS_RUN_34367779820
+predeploy_lkb004_fix_merge: 581028c662f47015d3234501227689b492b83ac8
+predeploy_lkb004_fix_ci: PASS_RUN_34416124754
 material_decisions:
-  - HS-001 is merged and CI-green; product concept remains frozen.
-  - Human explicitly authorized deployment of the new Last Known Book version to a stable public Vercel judge URL for runtime verification.
-  - The deployed live panel is read-only and uses the public captured LKB-003 Shannon transaction plus current chain head; it performs no wallet connect, signing or broadcast.
-  - Packet 003 remains private/redacted. No wallet, full Packet 003 tx hashes or orderId may be exposed without a separate explicit human publication gate.
-  - A later server-side Vercel proof endpoint may use Packet 003 identifiers as sensitive environment variables, but no private key is needed or allowed in Vercel for that verification path.
-  - Stable deployment authority does not authorize any blockchain write or the protected DoraHacks submission.
+  - Human explicitly authorized a stable public Vercel judge deployment of the current Last Known Book candidate.
+  - Before deployment, Project Finisher caught a judge-surface inconsistency: README/engine described four incident classes while app.js loaded only three. PR #12 fixed LKB-004 UI coverage and passed CI run 34416124754 before merge at 581028c662f47015d3234501227689b492b83ac8.
+  - A Vercel production deployment was created successfully with id dpl_2Am7o84kUeV5HirZAnfeb5Frxmnm.
+  - Deployment URL returned by Vercel: https://last-known-book-mzz4iz1me-faadil-s-projects.vercel.app . Expected production alias: https://last-known-book-faadil-s-projects.vercel.app .
+  - Vercel reported creation status INITIALIZING. Do not promote this to READY or HTTP-200 verified without readback.
+  - Connected Vercel credential cannot inspect the deployment because it lacks authorization for scope faadil-s-projects / team_b8hypzENtczjR7lfxn2y8L6Q. get_deployment and protected-fetch attempts returned HTTP 403 requiring re-authentication to that scope.
+  - The public LIVE SHANNON READBACK remains read-only: current chain id, chain head and receipt status for the already-public captured LKB-003 transaction; no wallet connect/sign/broadcast.
+  - Packet 003 remains private/redacted. A future server-side proof endpoint may read Packet 003 public identifiers from Vercel Sensitive Environment Variables and return only redacted verification facts; no private key is needed or permitted for that path.
+  - Deployment authorization does not authorize blockchain writes, private proof publication or DoraHacks submission.
 proof_status:
   technical_proof: PASS_REAL_SHANNON
-  behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
+  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
   production_evidence: ABSENT
-closed_rework:
-  - WI_R3_JUDGE_VISIBLE_REDACTED_PACKET_003_PROOF
-  - HS_001_WHY_NOW_ROLLOVER
-  - HS_001_DETERMINISTIC_AUTHORITY_POSITIONING
-  - HS_001_JUDGE_FAST_LANE
-  - HS_001_OPERATOR_ADOPTION_PATH
-  - HS_001_PRIVATE_PROOF_COMMITMENT
-  - HS_001_LIVE_READ_ONLY_CODE
-  - HS_001_COVER_HTML_SOURCE
-  - HS_001_UPSTREAM_FEEDBACK_DRAFT
+vercel:
+  deployment_id: dpl_2Am7o84kUeV5HirZAnfeb5Frxmnm
+  deployment_url: https://last-known-book-mzz4iz1me-faadil-s-projects.vercel.app
+  expected_alias: https://last-known-book-faadil-s-projects.vercel.app
+  target: production
+  creation: CREATED_INITIALIZING
+  runtime_readback: BLOCKED_BY_VERCEL_TEAM_SCOPE_403
+  required_reauth_scope: faadil-s-projects
+  team_id: team_b8hypzENtczjR7lfxn2y8L6Q
 remaining_P0:
-  - deploy current main to stable anonymous Vercel URL
-  - verify real browser LIVE SHANNON READBACK and fail-closed behavior
+  - re-authenticate/reconnect Vercel plugin to faadil-s-projects scope
+  - verify deployment becomes READY and anonymous public HTTP 200
+  - verify LIVE SHANNON READBACK shows chain 50312, current head and confirmed LKB-003 receipt or truthful explorer fallback
   - final encoded 2-3 minute demo video
   - TRACE final encoded-video review
 remaining_P1:
+  - optional server-side redacted Packet 003 live proof using Vercel Sensitive Environment Variables
   - export final cover image
   - optional upstream feedback publication
   - license choice
-  - final submission URL insertion
+  - insert final live/video URLs in submission package
   - Winning Intelligence final recheck
   - Project Finisher terminal reaudit
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: VERCEL_DEPLOY_AND_RUNTIME_READBACK
-next_exact_owner: PROJECT_FINISHER
-next_exact_action: Deploy the current CI-green main to a stable anonymous Vercel URL and verify the public page and LIVE SHANNON READBACK. Do not perform or authorize a blockchain write. If the connected Vercel integration cannot see a team/project, report that exact connector blocker and give the minimum user-side connection step.
+next_exact_gate: VERCEL_SCOPE_REAUTH_AND_RUNTIME_VERIFICATION
+next_exact_owner: HUMAN_THEN_PROJECT_FINISHER
+next_exact_action: In ChatGPT Settings -> Plugins, open Vercel and reconnect/re-authenticate it to the faadil-s-projects team scope. Then Project Finisher should call the Vercel deployment readback, verify READY/public access, and test the live Shannon panel before recording the stable URL as judge-safe.
 blocked_actions:
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
