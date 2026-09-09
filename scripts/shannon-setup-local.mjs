@@ -21,6 +21,7 @@ const PRIVATE_KEY = (process.env.TEST_WALLET_PRIVATE_KEY || '').trim();
 const CONFIRM = process.env.LKB_SETUP_CONFIRM || '';
 const EXPECTED_CONFIRM = 'AUTHORIZE_SHANNON_SETUP_003';
 const EXPECTED_WALLET = (process.env.WALLET_ADDRESS || '').trim();
+let WRITE_STARTED = false;
 
 const faucetAbi = [{
   type:'function',
@@ -30,9 +31,17 @@ const faucetAbi = [{
   outputs:[],
 }];
 
+class LkbGateError extends Error {
+  constructor(code, detail = null) {
+    super(code);
+    this.name = 'LkbGateError';
+    this.code = code;
+    this.detail = detail;
+  }
+}
+
 function fail(code, detail = null) {
-  console.error(JSON.stringify({ok:false,code,detail,writePerformed:false}, null, 2));
-  process.exit(2);
+  throw new LkbGateError(code, detail);
 }
 
 async function main() {
@@ -53,7 +62,7 @@ async function main() {
   if (!/^0x[0-9a-fA-F]{64}$/.test(PRIVATE_KEY)) {
     if (EXECUTE) fail('MISSING_OR_INVALID_TEST_WALLET_PRIVATE_KEY');
     console.log(JSON.stringify({ok:true,mode:'READ_ONLY_SETUP_PACKET_VALIDATED',chainId,targetPool:setup.targetPool,collateral:setup.collateral,next:'LOCAL_PRIVATE_KEY_REQUIRED_ONLY_FOR_EXECUTE'}, null, 2));
-    process.exit(0);
+    return;
   }
 
   const account = privateKeyToAccount(PRIVATE_KEY);
@@ -71,7 +80,7 @@ async function main() {
   const before = await readState();
   if (!EXECUTE) {
     console.log(JSON.stringify({ok:true,mode:'READ_ONLY_WALLET_SETUP_CHECK',wallet:account.address,before,required:{tUsdcRawAtLeast:'1',allowanceRawExactly:'1'}}, null, 2));
-    process.exit(0);
+    return;
   }
 
   if (CONFIRM !== EXPECTED_CONFIRM) fail('MISSING_EXACT_HUMAN_CONFIRMATION',{expected:EXPECTED_CONFIRM});
@@ -82,6 +91,7 @@ async function main() {
 
   let state = before;
   if (BigInt(state.tUsdcRaw) < 1n) {
+    WRITE_STARTED = true;
     const hash = await walletClient.writeContract({address:setup.collateral.address,abi:faucetAbi,functionName:'faucet',args:[1n]});
     const receipt = await publicClient.waitForTransactionReceipt({hash});
     writes.push({action:'FAUCET_1_RAW_TUSDC',hash,receiptStatus:receipt.status});
@@ -92,6 +102,7 @@ async function main() {
   if (BigInt(state.tUsdcRaw) < 1n) fail('FAUCET_POSTSTATE_INSUFFICIENT',state);
 
   if (BigInt(state.allowanceRaw) !== 1n) {
+    WRITE_STARTED = true;
     const hash = await walletClient.writeContract({address:setup.collateral.address,abi:erc20Abi,functionName:'approve',args:[setup.targetPool,1n]});
     const receipt = await publicClient.waitForTransactionReceipt({hash});
     writes.push({action:'APPROVE_EXACT_1_RAW_TO_PACKET_POOL',hash,receiptStatus:receipt.status});
@@ -118,10 +129,14 @@ async function main() {
   const outPath = `evidence/shannon/executions/${setup.setupId}-${Date.now()}.json`;
   await fs.writeFile(outPath, `${JSON.stringify(evidence,null,2)}\n`, 'utf8');
   console.log(JSON.stringify({ok:true,outPath,evidence}, null, 2));
-  process.exit(0);
 }
 
 main().catch((error)=>{
-  console.error(JSON.stringify({ok:false,code:'UNHANDLED',message:String(error?.message??error)},null,2));
-  process.exit(1);
+  if (error instanceof LkbGateError) {
+    console.error(JSON.stringify({ok:false,code:error.code,detail:error.detail,writePerformed:WRITE_STARTED},null,2));
+    process.exitCode = 2;
+    return;
+  }
+  console.error(JSON.stringify({ok:false,code:'UNHANDLED',message:String(error?.message??error),writePerformed:WRITE_STARTED},null,2));
+  process.exitCode = 1;
 });
