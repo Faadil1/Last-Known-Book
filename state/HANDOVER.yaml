@@ -1,10 +1,10 @@
-schema: LKB-HANDOVER-v1.1
-updated_utc: "2026-09-09T11:56:00Z"
+schema: LKB-HANDOVER-v1.2
+updated_utc: "2026-09-09T12:03:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_003_WAITING_FOR_SAFE_ROLLOVER__LOCAL_DISPOSABLE_WALLET_CREATED
+lifecycle: SHANNON_PACKET_003_PREPARED__WALLET_SETUP_AND_HUMAN_WRITE_APPROVAL_REQUIRED
 canonical_branch: main
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
@@ -16,39 +16,61 @@ upstream:
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
   trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
 material_decisions:
-  - SHANNON_PACKET_001 and SHANNON_PACKET_002 both expired without execution and must not be reused.
-  - Packet 003 preflight attempt at 2026-09-09T11:52:59.622Z correctly failed closed because only 423 seconds remained before rollover, below the 600-second minimum.
-  - A new disposable Shannon wallet was created locally by the human operator for testnet-only proof execution.
-  - The wallet public address is intentionally NOT committed to the public repository; the private key remains local only and must never be shared or committed.
-  - A generic read-only readiness checker was added at scripts/check-shannon-wallet.mjs. It accepts WALLET_ADDRESS and optional POOL_ADDRESS via environment variables and never reads a private key or performs a write.
-  - Any tUSDC faucet transaction or ERC-20 approval is a separate setup write requiring bounded human authorization; autoApprove remains forbidden.
-  - Packet 003 must be generated only from a fresh native BTC/ETH 15m/1h Trading market with at least 600 seconds of headroom.
+  - Packets 001 and 002 expired without execution and are retired.
+  - Packet 003 preflight attempt before rollover correctly failed closed at 423 seconds headroom.
+  - After rollover, read-only preflight run 34348646964 passed with a native BTC 1h Trading market and 3502 seconds headroom.
+  - SHANNON_PACKET_003 is frozen to marketId 0x0000000000000000000000000000000000000000000000000000000000018075 and pool 0xFF52C100d53365365d655Af84b2Db121fE86f0a3.
+  - The bounded market action remains PostOnly BUY_YES at raw price 1000 and raw quantity 1000, then cancel only the exact returned orderId if it rests.
+  - Maximum principal remains 1 raw tUSDC = 0.000001 tUSDC; autoApprove remains false.
+  - A disposable Shannon wallet exists locally. Its public address is intentionally not committed to the public repo, and its private key must remain only in local .env.local.
+  - Wallet preparation is separate from the market-order packet. Any tUSDC faucet transaction or ERC-20 approval requires a distinct bounded setup authorization.
+  - scripts/check-shannon-wallet.mjs is the generic read-only readiness check; it never reads a private key or performs a write.
+  - Packet 003 expires at 2026-09-09T12:45:00Z / 08:45 Toronto and may not be reused after cutoff.
 validation:
   baseline_product_ci: PASS
   trace_rendered_viewport: PASS
-  packet_003_preflight_attempt_1:
-    source_run: 34343902885
-    rerun_job: 102453523620
-    generated_utc: "2026-09-09T11:52:59.622Z"
+  packet_003_preflight_before_rollover:
     verdict: BLOCK_NO_SAFE_FULL_READ
     headroom_sec: 423
-    minimum_required_sec: 600
+  packet_003_preflight_after_rollover:
+    run: 34348646964
+    job: 102456195511
+    verdict: PASS
+    generated_utc: "2026-09-09T12:01:41.975Z"
+    artifact_id: 10102743366
+    digest: sha256:a5b5d4dfb6d241a9bd210de72b049a300eac6707a77f295c934460198cbaf108
+    selected_market:
+      asset: BTC
+      interval_sec: 3600
+      market_id: 0x0000000000000000000000000000000000000000000000000000000000018075
+      pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
+      status: Trading
+      snapshot_headroom_sec: 3502
+      best_bid_raw: 539000
+      best_ask_raw: 569000
+      tick_size_raw: 1000
+      min_quantity_raw: 1000
+      lot_size_raw: 1000
+packet_003:
+  artifact: evidence/shannon/SHANNON-PACKET-003.json
+  runner: scripts/shannon-packet-local.mjs
+  cutoff_utc: "2026-09-09T12:45:00Z"
+  cutoff_toronto: "2026-09-09T08:45:00-04:00"
 privacy_and_secret_boundary:
   disposable_wallet_created: true
   public_address_in_repo: false
   private_key_shared: false
   private_key_in_repo: false
   local_secret_file: .env.local
-next_exact_gate: FRESH_PACKET_003_PREFLIGHT_AFTER_SAFE_ROLLOVER_THEN_BOUNDED_SETUP_AND_WRITE_AUTHORIZATION
-next_exact_owner: PBPD_FOR_READ_ONLY_PREP__HUMAN_FOR_ANY_SETUP_OR_MARKET_TRANSACTION
-next_exact_action: After a fresh rollover, run the read-only preflight. If a native BTC/ETH 15m/1h Trading market has >=600 seconds headroom, freeze exact marketId/pool/book params into SHANNON_PACKET_003. Separately verify the disposable wallet's STT and tUSDC balances and exact pool allowance using scripts/check-shannon-wallet.mjs. Any missing tUSDC or allowance must be handled by a distinct bounded setup packet and explicit human authorization before the market-order packet can be authorized.
+next_exact_gate: BOUNDED_WALLET_SETUP_THEN_HUMAN_WRITE_APPROVAL_FOR_SHANNON_PACKET_003
+next_exact_owner: HUMAN_FOR_SETUP_AND_MARKET_WRITES__PBPD_FOR_READ_ONLY_CHECKS_AND_RECONCILIATION
+next_exact_action: Human obtains Shannon STT for the disposable wallet, then run scripts/check-shannon-wallet.mjs with WALLET_ADDRESS and POOL_ADDRESS to read STT, tUSDC and exact pool allowance. If tUSDC or allowance is missing, prepare a distinct bounded setup packet. Only after setup proof passes may the human explicitly authorize SHANNON_PACKET_003 before cutoff and execute locally.
 blocked_actions:
-  - no assistant-broadcast market transaction
-  - no wallet private key disclosure or commit
+  - assistant must not broadcast faucet, approval, market order or cancellation transactions
+  - no private key disclosure or commit
   - no autoApprove or unlimited approval
-  - no packet reuse after expiry
-  - no substitution to a different marketId or pool without a fresh packet
-  - no unsupported production/profitability claims
+  - no packet reuse after cutoff
+  - no market/pool substitution without a fresh packet
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
