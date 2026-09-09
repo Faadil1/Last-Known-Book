@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.4
-updated_utc: "2026-09-09T23:12:00Z"
+schema: LKB-CURRENT-v2.5
+updated_utc: "2026-09-09T23:20:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,12 +8,12 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_DEPLOYMENT
-  status: HS_001_MERGED_AND_CI_PASS__STABLE_JUDGE_DEPLOYMENT_HUMAN_AUTHORIZED
+  status: VERCEL_PRODUCTION_DEPLOYMENT_CREATED__RUNTIME_VERIFICATION_BLOCKED_BY_TEAM_SCOPE_403
 
 authority:
   project_authorized: true
   build_candidate_ready: true
-  stable_external_deployment: HUMAN_AUTHORIZED_FOR_LAST_KNOWN_BOOK_JUDGE_DEPLOYMENT
+  stable_external_deployment: HUMAN_AUTHORIZED_AND_DEPLOYMENT_CREATED
   live_browser_readback: READ_ONLY
   shannon_packet_003: EXECUTED_WITH_EXACT_HUMAN_AUTHORIZATION__ONE_TIME_GRANT_CONSUMED
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
@@ -21,40 +21,50 @@ authority:
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  winning_intelligence_rework_merge: 6ee02917aa92951dc1222282367ef7599095bffa
   hidden_spots_merge: a997425a2532bfb56de5fc40107851619aad210a
-  hidden_spots_pr: 11
   hidden_spots_ci_run: 34367779820
-  hidden_spots_ci_status: PASS
+  predeploy_lkb004_fix_merge: 581028c662f47015d3234501227689b492b83ac8
+  predeploy_lkb004_fix_pr: 12
+  predeploy_lkb004_fix_ci_run: 34416124754
+  predeploy_lkb004_fix_ci_status: PASS
+predeploy_fix:
+  issue: README_AND_ENGINE_CLAIMED_4_INCIDENT_CLASSES_WHILE_JUDGE_UI_LOADED_ONLY_3
+  status: FIXED_MERGED_AND_CI_PASS
+  result:
+    - LKB-004 exact-market residual settlement now appears in judge UI
+    - browser renderer supports exact-market settlement semantics and reconciliation
+    - UI coverage test protects all four canonical cases
+vercel:
+  authorization: HUMAN_AUTHORIZED_STABLE_JUDGE_DEPLOYMENT
+  deployment_id: dpl_2Am7o84kUeV5HirZAnfeb5Frxmnm
+  deployment_url: https://last-known-book-mzz4iz1me-faadil-s-projects.vercel.app
+  alias_expected: https://last-known-book-faadil-s-projects.vercel.app
+  target: production
+  creation_status: CREATED_INITIALIZING
+  runtime_verification: BLOCKED_BY_CONNECTED_VERCEL_SCOPE_403
+  blocker_detail: connected Vercel credential cannot inspect scope faadil-s-projects; Vercel requires re-authentication to team_b8hypzENtczjR7lfxn2y8L6Q
+  live_readback_code:
+    mode: READ_ONLY
+    source_transaction: LKB_003_PUBLIC_CAPTURED_EVIDENCE
+    reads:
+      - eth_chainId
+      - eth_blockNumber
+      - eth_getTransactionReceipt
+    write_methods_present: false
 proof_status:
   technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
   production_evidence: ABSENT
-hidden_spots_HS_001:
-  status: MERGED_AND_CI_PASS
-  live_shannon_readback:
-    status: CODE_READY__DEPLOYMENT_RUNTIME_VERIFICATION_PENDING
-    mode: READ_ONLY
-    source_transaction: LKB_003_PUBLIC_CAPTURED_EVIDENCE
-    poll_ms: 15000
-    wallet_connection: false
-    signing: false
-    write_broadcast: false
-  judge_fast_lane: PASS
-  deterministic_authority_positioning: PASS
-  why_now_rollover: PASS
-  operator_adoption_path: PASS
-  private_proof_commitment: PASS_REDACTED
-  cover_source: PASS_HTML_EXPORT_PENDING
-  sponsor_feedback_draft: READY_PUBLICATION_BLOCKED_BY_UPSTREAM_GITHUB_403
 remaining_P0:
-  - STABLE_ANONYMOUS_JUDGE_DEPLOYMENT
-  - RUNTIME_VERIFY_LIVE_SHANNON_READBACK
+  - REAUTH_VERCEL_CONNECTOR_TO_FAADIL_S_PROJECTS_SCOPE
+  - VERIFY_DEPLOYMENT_READY_AND_ANONYMOUS_HTTP_200
+  - VERIFY_RUNTIME_LIVE_SHANNON_READBACK
   - FINAL_ENCODED_2_TO_3_MINUTE_DEMO_VIDEO
   - TRACE_FINAL_ENCODED_VIDEO_REVIEW
 remaining_P1:
   - FINAL_COVER_IMAGE_EXPORT
+  - OPTIONAL_SERVER_SIDE_PACKET_003_LIVE_REDACTED_ENDPOINT_AFTER_ENV_SETUP
   - OPTIONAL_UPSTREAM_FEEDBACK_PUBLICATION
   - LICENSE_CHOICE
   - INSERT_FINAL_LIVE_AND_VIDEO_URLS
@@ -64,9 +74,11 @@ deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
 truth_boundaries:
+  deployment_created_does_not_mean_runtime_verified: true
   live_readback_is_not_a_new_transaction: true
   live_public_transaction_is_captured_replay_evidence_not_LKB_originated: true
   private_packet_003_proof_remains_redacted: true
+  no_private_key_needed_or_allowed_for_live_verification: true
   production_readiness_claim: FORBIDDEN
-next_gate: DEPLOY_CURRENT_MAIN_TO_STABLE_PUBLIC_VERCEL_AND_VERIFY_LIVE_READBACK
-next_owner: PROJECT_FINISHER
+next_gate: VERCEL_SCOPE_REAUTH_THEN_RUNTIME_VERIFICATION
+next_owner: HUMAN_THEN_PROJECT_FINISHER
