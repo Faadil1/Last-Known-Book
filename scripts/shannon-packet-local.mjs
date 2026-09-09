@@ -100,7 +100,7 @@ async function main() {
 
   if (!EXECUTE) {
     console.log(JSON.stringify({ok:true,mode:'READ_ONLY_PACKET_VALIDATED',readGate,next:'REQUIRES_EXPLICIT_AUTHORIZE_SHANNON_PACKET_002'}, null, 2));
-    return;
+    process.exit(0);
   }
 
   if (CONFIRM !== EXPECTED_CONFIRM) fail('MISSING_EXACT_HUMAN_CONFIRMATION', {expected:EXPECTED_CONFIRM});
@@ -122,8 +122,6 @@ async function main() {
   if (finalSecondsLeft < MIN_HEADROOM_SEC) fail('FINAL_HEADROOM_TOO_LOW', finalSecondsLeft);
   if (BigInt(finalParams.tickSize) !== BigInt(packet.order.priceRaw) || BigInt(finalParams.minQuantity) !== BigInt(packet.order.quantityRaw)) fail('FINAL_BOOK_PARAMS_DRIFT');
 
-  // From this point onward a transaction may be broadcast by the USER'S local process.
-  // Do not re-run blindly if the process is interrupted after this line; first inspect chain state.
   console.error('LKB_WRITE_BOUNDARY_CROSSED: local user-authorized testnet execution starting');
   const trader = client.createTrader({privateKey:PRIVATE_KEY,decimals:6});
   const placement = await trader.placeOrder({
@@ -158,6 +156,7 @@ async function main() {
   const outPath = `evidence/shannon/executions/${packet.packetId}-${Date.now()}.json`;
   await fs.writeFile(outPath, `${JSON.stringify(serial(evidence),null,2)}\n`, 'utf8');
   console.log(JSON.stringify({ok:true,outPath,evidence:serial(evidence)}, null, 2));
+  process.exit(0);
 }
 
 main().catch((error) => {
