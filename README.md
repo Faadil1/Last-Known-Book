@@ -19,11 +19,13 @@ When an agent gets an unexpected execution, Last Known Book reconstructs **Agent
 
 > **This wasn't a whale. It was a mint.**
 
-The first vertical slice uses three captured real Shannon incident classes. They are explicitly labeled replay evidence from public sources; Last Known Book does not claim it originated those transactions.
+The deterministic casefile engine now covers four captured real Shannon incident classes: `MINT_A_PAIR` + indexer lag, resting SELL escrow, expected-vs-actual fill, and exact-market residual settlement. Captured cases remain explicitly labeled as replay evidence from public sources.
+
+Separately, Last Known Book has now originated one bounded **real Shannon testnet proof** of its authority and reconciliation path: an exact-market PostOnly order rested with zero fills, the exact returned order was cancelled, native order events were reconciled, and tUSDC collateral returned exactly to its pre-placement balance. The public repo keeps wallet and transaction identifiers redacted; the complete receipt bundle is preserved in private PBPD canon.
 
 ## Run the proof locally
 
-Requires Node 20+ and no third-party runtime dependencies.
+Requires Node 20+.
 
 ```bash
 npm test
@@ -33,34 +35,49 @@ npm run serve
 
 Then open `http://localhost:4173`.
 
-Optional Shannon explorer smoke:
+Optional Shannon read smoke:
 
 ```bash
 npm run live:read
 ```
 
-## What is already proven in v0.1
+The protected Shannon write runners are intentionally not a one-command demo. They fail closed on chain, market, pool, lifecycle, book parameters, gas, collateral, allowance, cutoff and exact human-confirmation predicates.
+
+## What is proven in v0.2
 
 - deterministic DreamDEX semantic decoders;
 - `MINT_A_PAIR` accounting correction;
 - chain-success/indexer-unavailable → `RETRY_READ`, never blind resubmit;
 - resting SELL escrow → `NO_ACTION` when state is already explained;
+- exact-market residual settlement classification, including zero-value losing residuals and already-redeemed positions;
 - `OBSERVED / INFERRED / UNKNOWN` claim boundary;
-- stable machine-readable incident-report hashes;
-- judge-facing `Intent ≠ Venue Reality` casefile UI.
+- stable machine-readable incident-report hashes and deterministic replay;
+- judge-facing `Intent ≠ Venue Reality` casefile UI;
+- rendered 1280×720 causal-slice and reduced-motion assurance;
+- **real Last Known Book-originated Shannon behavior proof**: PostOnly placement → `OrderPlaced` / `OrderRested` → exact-order cancel → `OrderCancelled` → tUSDC restored exactly;
+- inference alone cannot authorize a write; deterministic predicates **and** explicit human confirmation are required.
 
-## What is not yet proven
+## Truth boundary
 
-- Last Known Book-originated live write/reconciliation;
-- evaluator behavior proof;
-- MTTRC improvement versus manual debugging;
-- incident prevalence or production reliability.
+Still **not** claimed:
+
+- production readiness or production reliability;
+- MTTR / MTTRC improvement versus a measured manual baseline;
+- ROI, financial-impact distribution or incident prevalence;
+- fraud/manipulation detection without direct evidence;
+- that captured third-party replay transactions were originated by Last Known Book.
+
+The real Shannon micro-proof is **technical + behavior + operational-containment evidence**, not production evidence or business-outcome proof.
 
 ## Current DreamDEX build assumptions
 
-Rechecked 2026-09-08 against official docs: Event Contracts use `@somnia-chain/markets-sdk` **0.28.0+**; Shannon is chain **50312**; testnet collateral is **tUSDC with 6 decimals**; `marketId` is the durable incident identity and pools may be recycled.
+Rechecked for the Shannon proof against the current Event Contracts surface: `@somnia-chain/markets-sdk` **0.28.0+** is required for current tick handling; the proof runner pins `0.29.0`. Shannon is chain **50312**; testnet collateral is **tUSDC with 6 decimals**; `marketId` is the durable incident identity and pools may be recycled.
 
-See `docs/SDK-SNAPSHOT.md` and `evidence/REALITY-SOURCES.md`.
+See:
+- `docs/SDK-SNAPSHOT.md`
+- `docs/SDK-FEEDBACK.md`
+- `docs/REQUIREMENTS-EVIDENCE-MATRIX.md`
+- `evidence/REALITY-SOURCES.md`
 
 ## Canonical state
 
@@ -71,4 +88,4 @@ Upstream:
 - HOI decision/evidence: `Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/`
 - TRACE design contract: `Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/`
 
-Current lifecycle: `PBPD_CONSEQUENTIAL_BUILD_VERTICAL_SLICE`.
+Lifecycle promotion is evidence-gated. `BUILD_CANDIDATE_READY` is emitted only after the requirements-to-evidence matrix is green; terminal submission readiness belongs to Project Finisher and remains separate from protected submission.
