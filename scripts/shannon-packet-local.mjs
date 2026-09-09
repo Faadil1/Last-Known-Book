@@ -15,7 +15,17 @@ const INDEXER_URL = process.env.INDEXER_URL || 'https://dev.smk.somnia.host/v1/g
 const MIN_HEADROOM_SEC = 600;
 const CHAIN_ID = 50312;
 const COLLATERAL = SOMNIA_TESTNET_ADDRESSES.collateral;
+let WRITE_STARTED = false;
 
+class LkbGateError extends Error {
+  constructor(code, detail = null) {
+    super(code);
+    this.name = 'LkbGateError';
+    this.code = code;
+    this.detail = detail;
+  }
+}
+function fail(code, detail = null) { throw new LkbGateError(code, detail); }
 function withTimeout(promise, ms, label) {
   let timer;
   const timeout = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(`${label}_TIMEOUT_${ms}MS`)), ms); });
@@ -26,10 +36,6 @@ function serial(value) {
   if (Array.isArray(value)) return value.map(serial);
   if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k,v]) => [k, serial(v)]));
   return value;
-}
-function fail(code, detail = null) {
-  console.error(JSON.stringify({ ok:false, code, detail, writePerformed:false }, null, 2));
-  process.exit(2);
 }
 function decodeBookEvents(receipt, pool) {
   const events = [];
@@ -84,7 +90,7 @@ async function main() {
 
   if (!EXECUTE) {
     console.log(JSON.stringify({ ok:true, mode:'READ_ONLY_PACKET_VALIDATED', readGate, next:'REQUIRES_EXPLICIT_AUTHORIZE_SHANNON_PACKET_003' }, null, 2));
-    process.exit(0);
+    return;
   }
 
   if (CONFIRM !== EXPECTED_CONFIRM) fail('MISSING_EXACT_HUMAN_CONFIRMATION', { expected:EXPECTED_CONFIRM });
@@ -107,6 +113,7 @@ async function main() {
   if (BigInt(finalParams.tickSize) !== BigInt(packet.order.priceRaw) || BigInt(finalParams.minQuantity) !== BigInt(packet.order.quantityRaw)) fail('FINAL_BOOK_PARAMS_DRIFT');
 
   console.error('LKB_WRITE_BOUNDARY_CROSSED: local user-authorized testnet execution starting');
+  WRITE_STARTED = true;
   const trader = client.createTrader({ privateKey:PRIVATE_KEY, decimals:6 });
   const placement = await trader.placeOrder({
     pool,
@@ -140,6 +147,14 @@ async function main() {
   const outPath = `evidence/shannon/executions/${packet.packetId}-${Date.now()}.json`;
   await fs.writeFile(outPath, `${JSON.stringify(serial(evidence),null,2)}\n`, 'utf8');
   console.log(JSON.stringify({ ok:true, outPath, evidence:serial(evidence) }, null, 2));
-  process.exit(0);
 }
-main().catch((error) => { console.error(JSON.stringify({ ok:false, code:'UNHANDLED', message:String(error?.message ?? error) }, null, 2)); process.exit(1); });
+
+main().catch((error) => {
+  if (error instanceof LkbGateError) {
+    console.error(JSON.stringify({ ok:false, code:error.code, detail:error.detail, writePerformed:WRITE_STARTED }, null, 2));
+    process.exitCode = 2;
+    return;
+  }
+  console.error(JSON.stringify({ ok:false, code:'UNHANDLED', message:String(error?.message ?? error), writePerformed:WRITE_STARTED }, null, 2));
+  process.exitCode = 1;
+});
