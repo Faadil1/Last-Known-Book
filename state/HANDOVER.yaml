@@ -1,28 +1,30 @@
-schema: LKB-HANDOVER-v2.5
-updated_utc: "2026-09-09T14:02:00Z"
+schema: LKB-HANDOVER-v2.6
+updated_utc: "2026-09-09T14:06:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PROJECT_FINISHER
-lifecycle: WINNING_INTELLIGENCE_TARGETED_REWORK_IMPLEMENTED__CI_PENDING
+lifecycle: WINNING_INTELLIGENCE_REWORK_MERGED__VIDEO_AND_STABLE_DEPLOY_REMAIN
 canonical_branch: main
-working_branch: rework/winning-intelligence-001
 canonical_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
+winning_intelligence_rework_merge: 6ee02917aa92951dc1222282367ef7599095bffa
+winning_intelligence_rework_pr: 10
+winning_intelligence_rework_ci: PASS_RUN_34361037435
 pbpd_winning_intelligence_merge: 5270d283cb0dda6afacadecd4e36edaf1c934042
 material_decisions:
-  - BUILD_CANDIDATE_READY remains valid. Winning Intelligence does not reopen the product concept and adds no winning probability or submission authority.
-  - Winning Intelligence v1.1 + Judge Performance Assurance v1.3 classified sponsor-native necessity as SUPPORTED, while whole-rubric coverage, narrative/demo legibility and judge-path legibility remain PARTIAL until terminal packaging closes.
-  - Visible current-event competition is crowded around prediction/pricing/trading intelligence and bot preflight/testing. Last Known Book must preserve a sharply post-execution identity: explain and safely contain what already happened.
-  - The strongest existing technical differentiator is Packet 003, a real Last Known Book-originated Shannon proof. Previously it existed in README/private PBPD but was not naturally encountered in the judge UI.
-  - A redacted REAL SHANNON PROOF card is now implemented in the CASE REGISTER on the working branch without altering the primary Intent-vs-Venue-Reality casefile hierarchy.
-  - The card exposes only safe facts: Shannon 50312, PostOnly rest/exact cancel, zero fills, OrderPlaced -> OrderRested -> OrderCancelled, and tUSDC 1 raw -> 1 raw. Disposable wallet and full tx hashes remain absent from public packaging.
-  - tests/winning-intelligence.test.mjs makes the judge-visible proof and private-identifier redaction testable in CI.
-  - docs/DEMO-SCRIPT.md freezes the first encoded-film contract at a 155-second target. The first minute must land MINT_A_PAIR and the memory hook "This wasn't a whale. It was a mint."; the real Packet 003 proof is shown separately afterward.
-  - docs/SUBMISSION-PACKAGE.md drafts the canonical DoraHacks title, description, differentiator, sponsor-native defense, thumbnail brief, Q&A and packaging consistency rules.
-  - Final encoded video is still MISSING. SCRIPT_READY is not VIDEO_READY.
-  - Stable anonymous judge-safe live URL remains unverified. The prior TRACE Vercel preview was a bounded design preview with connector readback/auth limitations, not the terminal judge deployment.
-  - Stable external deployment requires a new explicit human approval. No deploy is implied by Winning Intelligence.
-  - No new blockchain write is required or authorized for terminal packaging.
+  - BUILD_CANDIDATE_READY remains valid. Winning Intelligence did not reopen the product concept and added no win probability or submission authority.
+  - Winning Intelligence v1.1 + Judge Performance Assurance v1.3 classified sponsor-native necessity as SUPPORTED; terminal judge-performance gaps are packaging/runtime visibility, not product ideation.
+  - Current visible competition is crowded around prediction/pricing/trading intelligence and bot preflight/testing. Last Known Book stays sharply post-execution: explain and safely contain what already happened.
+  - PR #10 merged after CI run 34361037435 passed engine tests, Winning Intelligence proof/redaction tests, four replay regeneration and byte-clean replay verification.
+  - The public judge UI now surfaces a compact REAL SHANNON PROOF card while preserving the primary Intent-vs-Venue-Reality casefile hierarchy.
+  - The public proof shows only safe Packet 003 facts: Shannon 50312, PostOnly rest/exact cancel, zero fills, OrderPlaced -> OrderRested -> OrderCancelled and tUSDC 1 raw -> 1 raw.
+  - The known disposable wallet plus full Packet 003 placement/cancel hashes remain absent from the public package and are protected by CI redaction tests.
+  - docs/DEMO-SCRIPT.md is canonical for the first encoded film at 155 seconds. It lands the MINT_A_PAIR reveal and "This wasn't a whale. It was a mint." in the first minute, then distinguishes real Packet 003 behavior proof from captured replay evidence.
+  - docs/SUBMISSION-PACKAGE.md is the canonical draft for DoraHacks title, description, differentiator, sponsor-native necessity, thumbnail brief, Q&A and truth boundaries.
+  - Final encoded 2-3 minute video is still MISSING. Script/documentation does not satisfy the video requirement.
+  - Stable anonymous judge-safe live URL remains unverified. Existing TRACE preview is not the terminal deployment because its external readback/auth scope was limited.
+  - Stable external deployment requires explicit human authorization. No deployment has been authorized by Winning Intelligence or Project Finisher.
+  - No further blockchain write is required or authorized for terminal packaging.
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
@@ -32,33 +34,31 @@ proof_status:
 winning_intelligence:
   assessment: CLOSE_FINAL_VIDEO_LIVE_URL_AND_PROOF_SURFACING_GAPS__NORMAL_SUBMISSION_AUTHORITY_UNCHANGED
   sponsor_native_necessity: SUPPORTED
-  whole_rubric_coverage: PARTIAL
-  narrative_and_demo_legibility: PARTIAL
-  judge_path_legibility: PARTIAL
+  whole_rubric_coverage: PARTIAL_PENDING_VIDEO_AND_LIVE_URL
+  narrative_and_demo_legibility: PARTIAL_PENDING_FINAL_VIDEO
+  judge_path_legibility: PARTIAL_PENDING_STABLE_URL_AND_FINAL_VIDEO
   memory_sentence: The one that reconstructs what the agent actually traded -- and proves why it looked wrong.
   hero_hook: This wasn't a whale. It was a mint.
-implemented_rework:
-  - index.html redacted real Shannon proof surface
-  - winning-intelligence.css proof styling
-  - tests/winning-intelligence.test.mjs redaction/proof boundary tests
-  - docs/DEMO-SCRIPT.md canonical 155-second film contract
-  - docs/SUBMISSION-PACKAGE.md canonical DoraHacks package draft
+closed_rework:
+  WI_R3_judge_safe_real_packet_003_surface: PASS_MERGED_AND_CI_TESTED
+  WI_R4_submission_story_draft: PASS_MERGED
+  canonical_demo_script: PASS_MERGED_SCRIPT_ONLY
 remaining_P0:
-  - product CI/replay cleanliness for this rework
   - final encoded 2-3 minute demo video
   - TRACE review of the final encoded video
   - stable anonymous judge-safe live URL after explicit human deployment authorization
 remaining_P1:
   - final thumbnail/cover artifact consistent with the casefile identity
-  - insert final video/live URLs into submission package
-  - Winning Intelligence final recheck and Project Finisher terminal reaudit
+  - insert final video/live URLs into docs/SUBMISSION-PACKAGE.md
+  - Winning Intelligence final recheck
+  - Project Finisher terminal reaudit
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
   no_extension_after_sep11_may_be_assumed: true
-next_exact_gate: OPEN_PRODUCT_REWORK_PR_AND_REQUIRE_CI_PASS
-next_exact_owner: PBPD_PACKAGING
-next_exact_action: Open the Winning Intelligence rework PR, require deterministic tests/replay cleanliness including private-identifier redaction tests, merge only if green, then request explicit human authorization for a stable judge deployment. In parallel produce the encoded 2-3 minute video from docs/DEMO-SCRIPT.md and route the encoded artifact to TRACE before Project Finisher reruns terminal assurance.
+next_exact_gate: HUMAN_AUTHORIZATION_FOR_STABLE_JUDGE_DEPLOYMENT__AND_FINAL_VIDEO_PRODUCTION
+next_exact_owner: HUMAN_THEN_PBPD_TRACE_PROJECT_FINISHER
+next_exact_action: Obtain explicit human authorization for a stable anonymous judge deployment, deploy and verify HTTP 200 access to the current CI-green main. In parallel create the final 2-3 minute encoded video from docs/DEMO-SCRIPT.md, route the encoded artifact through TRACE, then rerun Winning Intelligence and Project Finisher. Before final protected submission, re-read the exact DoraHacks Sep 11 cutoff clock/timezone.
 blocked_actions:
   - no additional blockchain write without a fresh exact human authorization
   - no stable/public production deployment without explicit human approval
