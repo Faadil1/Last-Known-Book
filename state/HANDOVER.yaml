@@ -1,88 +1,40 @@
-schema: LKB-HANDOVER-v2.1
-updated_utc: "2026-09-09T12:46:00Z"
+schema: LKB-HANDOVER-v2.2
+updated_utc: "2026-09-09T12:52:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_003_EXECUTED_AND_RECONCILED__PBPD_PRIVATE_PROOF_MERGED__TERMINAL_GAP_REASSESSMENT_NEXT
+lifecycle: TARGETED_REWORK_M5_EXACT_MARKET_SETTLEMENT_IMPLEMENTED__CI_PENDING
 canonical_branch: main
+working_branch: rework/exact-market-settlement-decoder
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
-canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
-canonical_packet_002_merge: 6bead00000a10b6a710bfec739928b4abb66cafd
-canonical_packet_003_merge: 137b173f37b2ff4fc11bdc3ca32010a50ad06559
-canonical_setup_003_merge: b314009e31551fd0542e9ad059f6eca5c60c6d40
-windows_setup_fix_merge: 7b7906065e130805a68a024c80c4d96cca1aebc4
 pbpd_private_proof_merge: 475dddec2413063f3f26437a1c3e37a3befb3229
 material_decisions:
-  - Packets 001 and 002 expired without execution and are retired.
-  - SHANNON_SETUP_003 was human-authorized, executed locally on Shannon, and reconciled successfully before market execution.
-  - Human explicitly authorized SHANNON_PACKET_003 at 2026-09-09T12:35:28Z.
-  - SHANNON_PACKET_003 was executed locally at 2026-09-09T12:38:13.516Z on Shannon chainId 50312.
-  - Immediately before signature, the runner revalidated exact marketId/pool binding, Trading status=1, 1310 seconds headroom, tick/lot/min all 1000 raw, wallet gas, tUSDC and exact allowance.
-  - The bounded PostOnly BUY_YES order used priceRaw=1000, quantityRaw=1000 and maximum principal 1 raw tUSDC = 0.000001 tUSDC.
-  - Placement receipt succeeded with zero fills and emitted OrderPlaced plus OrderRested for one returned orderId.
-  - The runner cancelled only that exact returned orderId. Cancel receipt succeeded and emitted OrderCancelled for the same orderId.
-  - tUSDC reconciled exactly from 1 raw before placement to 1 raw after cancel; gas-token spend was expected.
-  - This is the first Last Known Book-originated real Shannon market write proof. It is TECHNICAL_PROOF + BEHAVIOR_PROOF, not production evidence.
-  - The operational containment result is real but does not by itself prove user/business outcome, MTTR improvement, production reliability, or incident prevalence.
-  - Exact wallet address and tx hashes remain omitted from the public repo. The full receipt bundle is canonical in the private PBPD repo after merge 475dddec2413063f3f26437a1c3e37a3befb3229.
-  - PBPD Validate run 34352858769 passed before merge of proof PR #86.
-  - Public Shannon explorer search did not yet surface the fresh tx hashes through indexed web retrieval, so independent explorer readback remains PENDING_INDEXER_VISIBILITY rather than falsely marked PASS.
-packet_003_execution:
-  packet: evidence/shannon/SHANNON-PACKET-003.json
-  local_execution_file: evidence/shannon/executions/SHANNON_PACKET_003-1788957493529.json
-  local_execution_file_committed_publicly: false
-  generated_utc: "2026-09-09T12:38:13.516Z"
-  market:
-    asset: BTC
-    interval_sec: 3600
-    market_id: 0x0000000000000000000000000000000000000000000000000000000000018075
-    pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
-  final_read_gate:
-    chain_id: 50312
-    status: Trading
-    seconds_left: 1310
-    tick_size_raw: "1000"
-    lot_size_raw: "1000"
-    min_quantity_raw: "1000"
-    best_bid_raw: "852000"
-    best_ask_raw: "875000"
-  placement:
-    receipt_status: success
-    fills_count: 0
-    order_placed_event: true
-    order_rested_event: true
-  cancel:
-    receipt_status: success
-    same_order_id_cancelled: true
-    order_cancelled_event: true
-  reconciliation:
-    tusdc_before_raw: "1"
-    tusdc_after_raw: "1"
-    restored_exactly: true
-privacy_and_secret_boundary:
-  disposable_wallet_address_in_public_repo: false
-  setup_tx_hashes_in_public_repo: false
-  market_tx_hashes_in_public_repo: false
-  private_key_shared: false
-  private_key_in_repo: false
-  local_secret_file: .env.local
-  full_receipt_bundle_private_canon: Faadil1/pbpd-cowork-system@475dddec2413063f3f26437a1c3e37a3befb3229
+  - The first Last Known Book-originated real Shannon Packet 003 proof passed and is privately canonical in PBPD.
+  - PBPD requirements-to-evidence reassessment found one material MUST gap before BUILD_CANDIDATE_READY: M5 lacked exact-market residual/settlement decoding in the product engine.
+  - The rework uses real captured Shannon evidence from Techkeyy/villa at source commit 557f84bec02eea422aa659289048c9075bb51ce1; it does not reuse Matchday Pulse code or invent market identities.
+  - LKB-004 models two exact NO-winning residuals on markets ending a3dd/a3e9 that redeemed 1000 raw each, plus the known a00b losing NO residual that remained zero-value and was not blindly redeemed.
+  - engine.mjs is promoted on the working branch to version 0.2.0 with EXACT_MARKET_SETTLEMENT_RECONCILIATION.
+  - Historical winner/loser classification is explanatory evidence only. A future REDEEM_EXACT_WINNING_RESIDUAL policy is authorized only when fresh deterministic predicates and explicit human confirmation are both present.
+  - The historical completed LKB-004 replay itself emits NO_ACTION because the recovery is already reconciled; repeat redeem is forbidden.
+  - Tests now cover redeemed winners, zero-value loser, fail-closed no-confirmation behavior, and the explicit-confirmation write path.
+  - Replay generator now includes LKB-004; the generated report hash is 58d1d1faf197044dd608021494fd6d4e7de0e38802d960a1c6dbcf0568daa23c.
+  - This targeted rework does not authorize or perform any new blockchain write.
 proof_status:
-  technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
-  wallet_setup_write_proof: PASS_REAL_SHANNON_SETUP_AND_POST_STATE_RECONCILIATION
-  product_originated_shannon_write_proof: PASS_REAL_SHANNON_PACKET_003
-  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
-  outcome_proof: PARTIAL_OPERATIONAL_CONTAINMENT_ONLY__NO_BUSINESS_OUTCOME_CLAIM
+  real_product_shannon_proof: PASS_PACKET_003
+  M5_exact_market_settlement_decoder: IMPLEMENTED_CI_PENDING
   production_evidence: ABSENT
-next_exact_gate: PBPD_REQUIREMENTS_TO_EVIDENCE_REFRESH__THEN_PROJECT_FINISHER_TERMINAL_READINESS
-next_exact_owner: PBPD_THEN_PROJECT_FINISHER
-next_exact_action: Refresh requirements-to-evidence coverage after the real Shannon proof, decide the judge-safe public proof surface, then route to Project Finisher. No additional blockchain write is implied or authorized by Packet 003 success.
+truth_boundaries:
+  - LKB-004 is captured historical Shannon evidence, not a Last Known Book-originated redeem.
+  - No claim of MTTR improvement, prevalence, ROI or production reliability is added.
+next_exact_gate: PRODUCT_CI_AND_REPLAY_CLEANLINESS_FOR_M5_REWORK
+next_exact_owner: PBPD
+next_exact_action: Open the targeted rework PR, require product CI and deterministic replay cleanliness to pass, then refresh the requirements-to-evidence matrix. If all MUST and MUST_NOT items are covered, PBPD may issue BUILD_CANDIDATE_READY and hand off to Project Finisher. Otherwise route only the remaining targeted gaps.
 blocked_actions:
-  - no private-key disclosure or commit
-  - no additional blockchain writes without a fresh explicit human gate
-  - no unsupported production, ROI, prevalence or MTTR claims
-  - no protected hackathon submission without later human authority
+  - no new blockchain write without a fresh exact human gate
+  - no repeat redeem based on historical evidence
+  - no protected submission
+  - no production-readiness claim
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
