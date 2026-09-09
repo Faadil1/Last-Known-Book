@@ -1,7 +1,8 @@
 const CASE_FILES = [
   'mint-pair-indexer-lag.json',
   'resting-sell-escrow.json',
-  'expected-vs-actual.json'
+  'expected-vs-actual.json',
+  'exact-market-residual-settlement.json'
 ];
 
 const LIVE_SHANNON = {
@@ -64,12 +65,36 @@ function browserAnalyze(data) {
     policy = { action: 'NO_ACTION', writeAuthorized: false, reason: 'The execution is reconciled and favorable versus the submitted limit.' };
   }
 
+  if (data.type === 'EXACT_MARKET_RESIDUAL_SETTLEMENT') {
+    const residuals = Array.isArray(data.evidence.residuals) ? data.evidence.residuals : [];
+    const redeemed = residuals.filter((r) => r.redeemTxHash && r.payoutRaw !== '0');
+    const zeroValue = residuals.filter((r) => !r.redeemTxHash && r.payoutRaw === '0');
+    semantics = ['EXACT_MARKET_RESIDUAL', 'SETTLEMENT_LIFECYCLE'];
+    rootCause = 'EXACT_MARKET_SETTLEMENT';
+    claims.push(
+      ['OBSERVED', 'Winning residuals', `${redeemed.length} exact-market NO residuals redeemed`, 'captured settlement receipts'],
+      ['OBSERVED', 'Zero-value residuals', `${zeroValue.length} losing NO residual skipped`, 'resolved payout vector'],
+      ['OBSERVED', 'Repeat writes', `${data.reconciliation.repeatWritesRequired ?? 0} required after reconciliation`, 'captured final state'],
+      ['INFERRED', 'Settlement rule', 'Claimability is market-scoped, not inferred from a nonzero wallet balance alone', 'exact market + payout vector'],
+      ['UNKNOWN', 'Fresh redeem authority', 'Not established by historical claimability', 'requires fresh predicates + human confirmation']
+    );
+    policy = { action: 'ESCALATE', writeAuthorized: false, reason: 'Historical winning status does not authorize a fresh redeem. Re-read exact market predicates and require explicit authority.' };
+  }
+
   return { claims, rootCause, semantics, policy };
 }
 
 function shortHash(value) {
   if (!value || typeof value !== 'string') return value;
   return value.length > 18 ? `${value.slice(0, 10)}…${value.slice(-6)}` : value;
+}
+
+function reconciliationText(data) {
+  if (data.reconciliation?.finalState) return data.reconciliation.finalState;
+  if (data.type === 'EXACT_MARKET_RESIDUAL_SETTLEMENT') {
+    return `${data.reconciliation.winningResidualsRedeemed ?? 0} winning residuals redeemed, ${data.reconciliation.knownZeroValueResidualsSkipped ?? 0} zero-value residual skipped, ${data.reconciliation.repeatWritesRequired ?? 0} repeat writes required.`;
+  }
+  return 'Reconciliation evidence available in the captured casefile.';
 }
 
 function renderCase(index) {
@@ -79,8 +104,9 @@ function renderCase(index) {
   document.querySelectorAll('[data-case]').forEach((el, i) => el.classList.toggle('active', i === index));
   document.querySelector('#case-id').textContent = data.caseId;
   document.querySelector('#case-title').textContent = data.title;
-  document.querySelector('#case-source').textContent = `${data.provenance.sourceRepository} · ${data.provenance.truthClass}`;
-  document.querySelector('#intent').textContent = data.intent.expected;
+  const truthClass = data.provenance.truthClass ?? data.provenance.truth ?? 'CAPTURED_EVIDENCE';
+  document.querySelector('#case-source').textContent = `${data.provenance.sourceRepository} · ${truthClass}`;
+  document.querySelector('#intent').textContent = data.intent.expected ?? data.intent.summary ?? 'Intent captured in casefile.';
   document.querySelector('#reality').textContent = data.venueReality.summary;
   document.querySelector('#root-cause').textContent = result.rootCause.replaceAll('_', ' ');
   document.querySelector('#semantic').textContent = result.semantics.join(' + ');
@@ -91,7 +117,7 @@ function renderCase(index) {
   document.querySelector('#hero-action').textContent = result.policy.action;
   document.querySelector('#hero-write').textContent = result.policy.writeAuthorized ? 'WRITE AUTHORIZED' : 'WRITE REFUSED';
   document.querySelector('#hero-write').dataset.state = result.policy.writeAuthorized ? 'yes' : 'no';
-  document.querySelector('#reconcile').textContent = data.reconciliation.finalState;
+  document.querySelector('#reconcile').textContent = reconciliationText(data);
 
   const table = document.querySelector('#claims');
   table.innerHTML = '';
@@ -104,7 +130,14 @@ function renderCase(index) {
 
   const links = document.querySelector('#evidence-links');
   links.innerHTML = '';
-  const txs = data.evidence.tx ? Object.entries(data.evidence.tx) : data.evidence.txHash ? [['execution', data.evidence.txHash]] : [];
+  let txs = [];
+  if (data.evidence.tx) txs = Object.entries(data.evidence.tx);
+  else if (data.evidence.txHash) txs = [['execution', data.evidence.txHash]];
+  else if (Array.isArray(data.evidence.residuals)) {
+    txs = data.evidence.residuals
+      .filter((r) => r.redeemTxHash)
+      .map((r, i) => [`redeem-${i + 1}`, r.redeemTxHash]);
+  }
   for (const [label, tx] of txs) {
     const a = document.createElement('a');
     a.href = `https://shannon-explorer.somnia.network/tx/${tx}`;
@@ -210,6 +243,7 @@ function startLivePulse() {
 async function boot() {
   state.cases = await Promise.all(CASE_FILES.map(async (name) => {
     const r = await fetch(`/data/cases/${name}`, { cache: 'no-store' });
+    if (!r.ok) throw new Error(`CASE_LOAD_FAILED_${name}_${r.status}`);
     return r.json();
   }));
 
