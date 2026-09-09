@@ -1,49 +1,66 @@
 schema: LKB-CURRENT-v0.8
-updated_utc: "2026-09-09T11:53:01Z"
+updated_utc: "2026-09-09T11:56:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
+  internal_project_slug: dreamdex-execution-incident-response
+  tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PBPD
   stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: SHANNON_PACKET_003_PREFLIGHT_BLOCKED__WAIT_FOR_SAFE_ROLLOVER
+  status: SHANNON_PACKET_003_WAITING_FOR_SAFE_ROLLOVER__LOCAL_DISPOSABLE_WALLET_CREATED
+upstream:
+  pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
+  hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
+  trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
 authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
   shannon_packet_001: EXPIRED_NOT_EXECUTED
   shannon_packet_002: EXPIRED_NOT_EXECUTED
-  shannon_packet_003: NOT_YET_PREPARED
+  shannon_packet_003: NOT_PREPARED_YET
   blockchain_write_by_assistant: NOT_PERMITTED
+  protected_submission: HUMAN_ONLY
+privacy:
+  disposable_wallet_created_locally: true
+  wallet_address_committed_to_public_repo: false
+  private_key_committed_or_shared: false
 truth_boundaries:
+  incident_prevalence_claim: FORBIDDEN
+  production_evidence: ABSENT
+  matchday_source_reuse: FORBIDDEN
   inference_authorizes_write: false
   authorization_is_not_execution_proof: true
-  private_key_must_remain_user_local: true
+vertical_slice:
+  canonical_branch: main
+  pull_request: 1
+  merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
+validation:
+  deterministic_engine_tests: PASS
+  deterministic_replay: PASS_3_CASES
+  trace_rendered_viewport: PASS
 shannon_packet_003_preparation:
   branch: proof/shannon-packet-003
   pull_request: 4
-  read_only_preflight:
+  preflight_attempt_1:
     source_run: 34343902885
     rerun_job: 102453523620
     generated_utc: "2026-09-09T11:52:59.622Z"
     result: BLOCK_NO_SAFE_FULL_READ
     reason: ONLY_423_SECONDS_HEADROOM
+    minimum_required_seconds: 600
     live_market_count: 16
     native_rolling_market_count: 4
-    artifact_id: 10102436928
-    artifact_digest: sha256:85cb5d2a3240c3d94d150f62686dae0b5e4764770521ecbded014a99fce860b1
-  next_action: RERUN_READ_ONLY_PREFLIGHT_AFTER_ROLLOVER_THEN_PREPARE_PACKET_003
-wallet_setup:
-  required: DISPOSABLE_SHANNON_TESTNET_WALLET
-  do_not_use_primary_wallet: true
-  private_key_storage: USER_LOCAL_ENV_ONLY
-  expected_initial_state:
-    stt_gas: MAY_BE_ZERO
-    tusdc: MAY_BE_ZERO
-    pool_allowance: ZERO_ON_NEW_WALLET
-  implication: A_NEW_WALLET_REQUIRES_TESTNET_FUNDING_AND_A_SEPARATELY_AUTHORIZED_BOUNDED_ALLOWANCE_SETUP_BEFORE_ORDER_EXECUTION
+  wallet_readiness:
+    generic_checker: scripts/check-shannon-wallet.mjs
+    mode: READ_ONLY_NO_PRIVATE_KEY
+    address_policy: LOCAL_ONLY_NOT_COMMITTED
+  next_required_market_state: NATIVE_BTC_OR_ETH_15M_OR_1H_TRADING_WITH_AT_LEAST_600_SECONDS_HEADROOM
 proof_status:
+  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_RENDERED_EXPERIENCE_AND_PRIOR_LIVE_READ_PROOFS_PASS
   product_originated_shannon_write_proof: ABSENT
   behavior_proof: NOT_YET
+  outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_gate: SAFE_ROLLOVER_PREFLIGHT_THEN_WALLET_SETUP_PACKET
-next_owner: PBPD_THEN_HUMAN
+next_gate: FRESH_PACKET_003_PREFLIGHT_AFTER_SAFE_ROLLOVER_THEN_BOUNDED_SETUP_AND_WRITE_AUTHORIZATION
+next_owner: PBPD_FOR_READ_ONLY_PREP__HUMAN_FOR_ANY_SETUP_OR_MARKET_TRANSACTION
