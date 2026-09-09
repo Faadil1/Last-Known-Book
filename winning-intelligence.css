@@ -1,0 +1,58 @@
+.real-proof {
+  margin-top: 14px;
+  border: 1px solid var(--ink);
+  padding: 11px;
+  background: linear-gradient(145deg, rgba(215,255,63,.72), rgba(255,253,247,.96) 66%);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.real-proof-kicker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 800 9px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .09em;
+}
+.real-proof-kicker span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--hot);
+  box-shadow: 0 0 0 3px rgba(255,79,46,.14);
+}
+.real-proof > strong {
+  display: block;
+  margin-top: 9px;
+  font: 900 13px/1.08 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: -.035em;
+}
+.real-proof-flow {
+  margin-top: 8px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 7px 0;
+  font: 700 8px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.real-proof-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+.real-proof-facts span {
+  border: 1px solid var(--ink);
+  background: var(--sheet);
+  padding: 4px 5px;
+  font: 800 8px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.real-proof p {
+  margin: 8px 0 3px;
+  font: 700 8px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.real-proof small {
+  display: block;
+  color: #59564e;
+  font: 8px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (max-width: 900px) {
+  .real-proof { max-width: none; }
+}
