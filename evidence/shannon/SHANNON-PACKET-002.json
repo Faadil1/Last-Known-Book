@@ -1,0 +1,83 @@
+{
+  "schema": "LKB-SHANNON-WRITE-PACKET-v0.2",
+  "packetId": "SHANNON_PACKET_002",
+  "preparedAt": "2026-09-09T11:01:00Z",
+  "chainId": 50312,
+  "network": "Somnia Shannon testnet",
+  "sdkPinnedVersion": "0.29.0",
+  "preflight": {
+    "workflowRun": 34342701486,
+    "rerunJob": 102438619028,
+    "artifactId": 10100602280,
+    "artifactDigest": "sha256:eb8d392692997cb2667a9ebf710d7c2061d1e7b475cc724e94aa9230a137620f",
+    "generatedAt": "2026-09-09T11:00:31.285Z",
+    "liveMarketCount": 16,
+    "nativeRollingMarketCount": 4,
+    "mode": "READ_ONLY_NO_SIGNER_LOW_LEVEL_BOUNDED"
+  },
+  "market": {
+    "asset": "BTC",
+    "intervalSec": 3600,
+    "marketId": "0x0000000000000000000000000000000000000000000000000000000000017fc1",
+    "pool": "0xB7Cd5BdF4DD8B1f3BC11fE043e6c4f0Fe387f7E0",
+    "marketAddress": "0xE0beCa99C0A9a3254Af8B0875764cd85962Ac903",
+    "status": 1,
+    "expiry": 1788955200,
+    "decimals": 6,
+    "collateral": "0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E",
+    "outcomeToken": "0xB52c5934113Af5c0Bb20eb3C72290C8215f755b9",
+    "yesId": "4955297053945134415527314068112625979731736795702826304386036054108928",
+    "noId": "4955297053945134415527314068112625979731736795702826304386036054108929",
+    "snapshotSecondsLeft": 3572,
+    "snapshotBestBidRaw": "579000",
+    "snapshotBestAskRaw": "600000"
+  },
+  "order": {
+    "side": "BUY_YES",
+    "orderType": 3,
+    "orderTypeName": "PostOnly",
+    "priceRaw": "1000",
+    "priceHuman": 0.001,
+    "quantityRaw": "1000",
+    "quantityHuman": 0.001,
+    "tickSizeRaw": "1000",
+    "lotSizeRaw": "1000",
+    "minQuantityRaw": "1000",
+    "maxPrincipalRawTUSDC": "1",
+    "maxPrincipalHumanTUSDC": 0.000001,
+    "autoApprove": false,
+    "userData": "2002"
+  },
+  "closure": {
+    "ifOrderRests": "cancel exact orderId returned by this placement",
+    "requiredPlacementReceiptStatus": "success",
+    "requiredPlacementCondition": "no fills and OrderPlaced/OrderRested evidence",
+    "requiredCancelReceiptStatus": "success",
+    "requiredCancelEvent": "OrderCancelled",
+    "requiredReconciliation": "tUSDC balance after cancel equals tUSDC balance before placement"
+  },
+  "failClosedPredicates": [
+    "chainId must equal 50312",
+    "marketId and pool must still match on-chain registry",
+    "on-chain market status must equal Trading (1)",
+    "at least 600 seconds must remain before expiry",
+    "tickSize must still equal 1000 raw",
+    "minQuantity must still equal 1000 raw",
+    "quantity must remain lot-aligned",
+    "wallet must have testnet gas",
+    "wallet must have at least 1 raw tUSDC",
+    "pool allowance must already be at least 1 raw tUSDC; no auto-approval is authorized",
+    "PostOnly placement must produce zero fills; otherwise stop and preserve evidence"
+  ],
+  "authority": {
+    "status": "HUMAN_WRITE_APPROVAL_REQUIRED",
+    "assistantMayBroadcast": false,
+    "setupWritesAuthorized": false,
+    "faucetAuthorized": false,
+    "approvalAuthorized": false,
+    "mintAuthorized": false,
+    "substituteMarketAuthorized": false,
+    "cutoffUtc": "2026-09-09T11:25:00Z",
+    "cutoffToronto": "2026-09-09T07:25:00-04:00"
+  }
+}

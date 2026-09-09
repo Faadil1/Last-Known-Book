@@ -1,82 +1,89 @@
-schema: LKB-HANDOVER-v0.8
-updated_utc: "2026-09-08T23:30:13Z"
+schema: LKB-HANDOVER-v0.9
+updated_utc: "2026-09-09T11:01:30Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_001_HUMAN_AUTHORIZED__PROOF_PREP_MERGED__ASSISTANT_EXECUTION_NOT_PERMITTED
+lifecycle: SHANNON_PACKET_002_PREPARED__HUMAN_WRITE_APPROVAL_REQUIRED
 canonical_branch: main
-canonical_product_merge_commit: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
-shannon_proof_prep_merge_commit: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
-post_merge_current_commit: dded3e1beaaa044ab761d65d2864f745e1874dba
+canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
+canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
+working_branch: proof/shannon-packet-002
+working_pull_request: 3
 upstream:
   pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
   hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
   trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
 material_decisions:
-  - Product brand remains Last Known Book; historical internal slug remains dreamdex-execution-incident-response for continuity.
-  - Repository is public and from scratch; no Matchday Pulse source code is reused.
-  - V0.1 critical path remains deterministic; no LLM is trusted for hard facts or write authorization.
-  - TRACE rendered 1280x720 viewport gate passed; reduced-motion passed.
-  - Human explicitly authorized SHANNON_PACKET_001 at 2026-09-08T23:30:13Z / 19:30:13 Toronto.
-  - The authorization is limited to the previously prepared packet and does not broaden authority to approvals, faucet, mint, substitution, production deployment or submission.
-  - The assistant will not execute or broadcast the market order or cancellation transaction.
-  - No private key, signer, approval, faucet or blockchain write has been used by the assistant.
-  - Human authorization is not execution proof. Product-originated Shannon write proof remains absent until a transaction is independently executed and returned for reconciliation.
-  - The read-only proof preparation is canonical on main after PR #2 merge at 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98.
-  - Read-only preflight found 27 live markets and a native BTC 1h Trading market with current order-book/book-parameter evidence; validation and preflight runs passed.
+  - SHANNON_PACKET_001 expired without execution and must not be reused.
+  - A fresh read-only preflight was requested for SHANNON_PACKET_002; the first attempt correctly failed closed because only 326 seconds remained before rollover.
+  - The same read-only workflow was rerun after rollover and passed with a native BTC 1h market having 3572 seconds of headroom.
+  - Exact selected marketId/pool, Trading status, book top and tick/lot/min parameters are frozen in evidence/shannon/SHANNON-PACKET-002.json.
+  - Packet 002 is bounded to PostOnly BUY_YES at raw price 1000 and raw quantity 1000, then cancel the exact returned orderId only if the order rests.
+  - Maximum principal is 1 raw tUSDC = 0.000001 tUSDC. Gas is testnet STT.
+  - autoApprove is false. The runner never faucets, approves or mints. Insufficient allowance/balance/gas is a BLOCK, not permission to add setup writes.
+  - scripts/shannon-packet-local.mjs defaults to read-only and requires both --execute and exact environment confirmation AUTHORIZE_SHANNON_PACKET_002 before a user can independently broadcast the testnet proof.
+  - The assistant will not execute or broadcast the prediction-market order or cancellation.
+  - The packet expires at 2026-09-09T11:25:00Z / 07:25 Toronto; after that a new snapshot and packet are required.
 validation:
-  deterministic_engine_tests: PASS
-  deterministic_replay: PASS_3_CASES
-  github_ci: PASS_RUN_34288342358
+  baseline_product_ci: PASS
   trace_rendered_viewport: PASS
-  shannon_read_only_preflight:
-    status: PASS
-    run: 34290405286
-    artifact: 10081109116
-    digest: sha256:e21aee80836bac4740ea297c1b24dda83e532d79e6790a0f82e00da76031b31d
-  latest_branch_validation:
-    validate_last_known_book_run: 34290667704
-    shannon_read_only_preflight_run: 34290667751
-    status: PASS
-shannon_packet_001:
-  packet: evidence/shannon/SHANNON-WRITE-PACKET-001.md
-  authorization_record: evidence/shannon/AUTHORIZATION-SHANNON-PACKET-001.md
-  authorization: HUMAN_AUTHORIZED
-  selected_market_snapshot:
+  shannon_packet_002_preflight_attempt_1:
+    run: 34342701486
+    verdict: BLOCK_NO_SAFE_FULL_READ
+    headroom_sec: 326
+  shannon_packet_002_preflight_after_rollover:
+    run: 34342701486
+    rerun_job: 102438619028
+    verdict: PASS
+    generated_utc: "2026-09-09T11:00:31.285Z"
+    artifact_id: 10100602280
+    digest: sha256:eb8d392692997cb2667a9ebf710d7c2061d1e7b475cc724e94aa9230a137620f
+shannon_packet_002:
+  packet: evidence/shannon/SHANNON-PACKET-002.json
+  runner: scripts/shannon-packet-local.mjs
+  selected_market:
     asset: BTC
     interval_sec: 3600
-    market_id: 0x000000000000000000000000000000000000000000000000000000000001772a
-    pool: 0x3604C66cDd41649F26A804dF2c6cbD2f2753CB68
+    market_id: 0x0000000000000000000000000000000000000000000000000000000000017fc1
+    pool: 0xB7Cd5BdF4DD8B1f3BC11fE043e6c4f0Fe387f7E0
+    expiry: 1788955200
     status: Trading
-    best_bid: 0.169
-    best_ask: 0.194
-    tick_size: 0.001
-    min_quantity: 0.001
-    lot_size: 0.001
-  bounded_intent:
-    action_a: POST_ONLY_BUY_YES
-    price: 0.001
-    quantity: 0.001
-    max_principal_tusdc: 0.000001
-    action_b: CANCEL_EXACT_ORDER_IF_RESTING
-  assistant_execution: NOT_PERFORMED
-  execution_proof: ABSENT
+    best_bid: 0.579
+    best_ask: 0.600
+  order:
+    side: BUY_YES
+    order_type: PostOnly
+    price_raw: 1000
+    quantity_raw: 1000
+    max_principal_raw_tusdc: 1
+    max_principal_human_tusdc: 0.000001
+    auto_approve: false
+  closure:
+    if_resting: cancel exact returned orderId
+    placement_must_have_zero_fills: true
+    required_cancel_event: OrderCancelled
+    required_reconciliation: tUSDC_after_equals_tUSDC_before
+  authority:
+    status: HUMAN_WRITE_APPROVAL_REQUIRED
+    cutoff_utc: "2026-09-09T11:25:00Z"
+    cutoff_toronto: "2026-09-09T07:25:00-04:00"
+    assistant_execution: FORBIDDEN
 proof_status:
-  technical_proof: DETERMINISTIC_ENGINE_REPLAY_CI_RENDERED_EXPERIENCE_AND_LIVE_READ_PREFLIGHT_PASS
+  technical_proof: FRESH_LIVE_READ_PACKET_PREP_PASS
   product_originated_shannon_write_proof: ABSENT
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: EXTERNAL_HUMAN_EXECUTION_OR_ALTERNATIVE_NON_TRANSACTIONAL_PROOF_THEN_RECEIPT_RECONCILIATION
-next_exact_owner: HUMAN_FOR_ANY_MARKET_TRANSACTION__PBPD_FOR_RECEIPT_AND_STATE_RECONCILIATION
-next_exact_action: If the user independently executes a transaction from the authorized packet, obtain only the resulting transaction hash/receipt identifiers and use Last Known Book to verify mined status, expected DreamDEX events, exact order identity, cancellation/reconciliation state and final evidence bundle. If no transaction is independently executed, continue with a non-transactional proof path and do not claim product-originated write evidence.
+next_exact_gate: HUMAN_WRITE_APPROVAL_REQUIRED_FOR_SHANNON_PACKET_002
+next_exact_owner: HUMAN
+next_exact_action: User may explicitly authorize SHANNON_PACKET_002 before its cutoff. After authorization, user independently runs the local testnet runner on a personal machine with a disposable Shannon wallet. If the runner returns BLOCK for allowance/balance/gas/status/headroom, no additional write is authorized. If it outputs placement/cancel tx hashes, PBPD reconciles receipts/events/balances and produces the evidence bundle.
 blocked_actions:
-  - assistant must not execute or broadcast a market order, prediction-market bet, cancellation transaction or other financial trade
-  - no inference-authorized spend
-  - no Matchday source reuse
-  - no unsupported fraud/prevalence/ROI/production claims
-  - no production deployment or hackathon submission without later human gates
+  - assistant must not broadcast the order or cancellation
+  - no auto-approval, faucet, mint or setup write under packet 002
+  - no substitution to another marketId or pool
+  - no packet reuse after cutoff
+  - no unsupported production or profitability claims
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
