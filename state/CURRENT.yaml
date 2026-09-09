@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.3
-updated_utc: "2026-09-09T14:20:00Z"
+schema: LKB-CURRENT-v2.4
+updated_utc: "2026-09-09T23:12:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,131 +7,66 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_TARGETED_REWORK
-  status: HS_001_HIDDEN_SPOTS_IMPLEMENTED_ON_BRANCH__CI_PENDING
+  stage: TERMINAL_ASSURANCE_DEPLOYMENT
+  status: HS_001_MERGED_AND_CI_PASS__STABLE_JUDGE_DEPLOYMENT_HUMAN_AUTHORIZED
 
 authority:
   project_authorized: true
   build_candidate_ready: true
-  targeted_packaging_rework_within_existing_scope: true
+  stable_external_deployment: HUMAN_AUTHORIZED_FOR_LAST_KNOWN_BOOK_JUDGE_DEPLOYMENT
+  live_browser_readback: READ_ONLY
   shannon_packet_003: EXECUTED_WITH_EXACT_HUMAN_AUTHORIZATION__ONE_TIME_GRANT_CONSUMED
-  shannon_setup_003: EXECUTED_AND_RECONCILED__ONE_TIME_GRANT_CONSUMED
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
-  live_browser_readback: READ_ONLY_NO_AUTHORITY_REQUIRED
-  stable_external_deployment: USER_REQUESTED_LIVE_SITE_BUT_TERMINAL_DEPLOYMENT_PATH_NOT_YET_VERIFIED
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  working_branch: rework/hidden-spots-001
-  original_build_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
   winning_intelligence_rework_merge: 6ee02917aa92951dc1222282367ef7599095bffa
-  winning_intelligence_rework_pr: 10
-  winning_intelligence_rework_ci_run: 34361037435
-  M5_rework_merge: 4e831a8adc920eabd24df4a04618c11971e50f8e
-  pbpd_private_real_shannon_proof: 475dddec2413063f3f26437a1c3e37a3befb3229
-  pbpd_winning_intelligence_merge: 5270d283cb0dda6afacadecd4e36edaf1c934042
+  hidden_spots_merge: a997425a2532bfb56de5fc40107851619aad210a
+  hidden_spots_pr: 11
+  hidden_spots_ci_run: 34367779820
+  hidden_spots_ci_status: PASS
 proof_status:
   technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
-  product_originated_shannon_write_proof: PASS_REAL_SHANNON_PACKET_003
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
-  outcome_proof: PARTIAL_OPERATIONAL_CONTAINMENT_ONLY__NO_BUSINESS_OUTCOME_CLAIM
   production_evidence: ABSENT
-requirements_to_evidence:
-  matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
-  must: 13_of_13_PASS
-  must_not: 7_of_7_PASS
-  should:
-    S1: PASS
-    S2: PARTIAL_NON_BLOCKING_PUBLIC_PROOF_LINK_REDACTION
-    S3: PASS
-    S4: PASS
-    S5: PASS
-winning_intelligence:
-  assessment: TARGETED_REWORK_JUDGE_PERFORMANCE_ONLY
-  sponsor_native_necessity: SUPPORTED
-  concept_reopen_required: false
-  winning_laws_promoted: 0
-  numeric_win_probability: NONE
 hidden_spots_HS_001:
-  artifact: docs/HIDDEN-SPOTS-001.md
-  why_now_rollover:
-    status: IMPLEMENTED
-    surfaces:
-      - README.md
-      - docs/SUBMISSION-PACKAGE.md
-      - docs/SDK-FEEDBACK.md
-  deterministic_authority_positioning:
-    status: IMPLEMENTED
-    canonical_line: The trading agent may be AI. The layer that decides whether money moves is not.
-    surfaces:
-      - README.md
-      - index.html
-      - docs/SUBMISSION-PACKAGE.md
-  judge_fast_lane:
-    status: IMPLEMENTED
-    surface: README.md
-  operator_adoption_path:
-    status: IMPLEMENTED
-    surfaces:
-      - README.md
-      - docs/SUBMISSION-PACKAGE.md
-  sponsor_feedback_contribution:
-    status: PUBLIC_DRAFT_READY__DIRECT_UPSTREAM_PUBLICATION_BLOCKED_BY_GITHUB_403
-    artifact: docs/UPSTREAM-FEEDBACK-DRAFT.md
-    upstream_target: somnia-chain/dreamdex-bot-kit
-    upstream_issue_created: false
-  private_proof_commitment:
-    status: IMPLEMENTED_PUBLIC_REDACTED
-    artifact: evidence/SHANNON-PROOF-003-COMMITMENT.json
-    private_wallet_or_tx_ids_exposed: false
-  cover_surface:
-    status: IMPLEMENTED_HTML_SOURCE__FINAL_IMAGE_EXPORT_PENDING
-    artifact: cover.html
+  status: MERGED_AND_CI_PASS
   live_shannon_readback:
-    status: IMPLEMENTED_ON_WORKING_BRANCH__RUNTIME_READBACK_PENDING_DEPLOY
+    status: CODE_READY__DEPLOYMENT_RUNTIME_VERIFICATION_PENDING
+    mode: READ_ONLY
     source_transaction: LKB_003_PUBLIC_CAPTURED_EVIDENCE
-    reads:
-      - eth_chainId
-      - eth_blockNumber
-      - eth_getTransactionReceipt
-    expected_chain_id: 50312
     poll_ms: 15000
     wallet_connection: false
     signing: false
     write_broadcast: false
-    packet_003_private_tx_used: false
-  license:
-    status: BLOCKED_EXPLICIT_HUMAN_LEGAL_CHOICE_REQUIRED
-    options_not_selected:
-      - MIT
-      - Apache-2.0
-      - OTHER
+  judge_fast_lane: PASS
+  deterministic_authority_positioning: PASS
+  why_now_rollover: PASS
+  operator_adoption_path: PASS
+  private_proof_commitment: PASS_REDACTED
+  cover_source: PASS_HTML_EXPORT_PENDING
+  sponsor_feedback_draft: READY_PUBLICATION_BLOCKED_BY_UPSTREAM_GITHUB_403
 remaining_P0:
-  - PRODUCT_CI_FOR_HS_001
-  - STABLE_ANONYMOUS_JUDGE_DEPLOYMENT_AND_RUNTIME_LIVE_READBACK
+  - STABLE_ANONYMOUS_JUDGE_DEPLOYMENT
+  - RUNTIME_VERIFY_LIVE_SHANNON_READBACK
   - FINAL_ENCODED_2_TO_3_MINUTE_DEMO_VIDEO
   - TRACE_FINAL_ENCODED_VIDEO_REVIEW
 remaining_P1:
-  - FINAL_COVER_IMAGE_EXPORT_FROM_cover.html
-  - OPTIONAL_MANUAL_OR_AUTHORIZED_UPSTREAM_FEEDBACK_PUBLICATION
+  - FINAL_COVER_IMAGE_EXPORT
+  - OPTIONAL_UPSTREAM_FEEDBACK_PUBLICATION
   - LICENSE_CHOICE
-  - INSERT_FINAL_VIDEO_AND_LIVE_URLS_IN_SUBMISSION_PACKAGE
+  - INSERT_FINAL_LIVE_AND_VIDEO_URLS
   - WINNING_INTELLIGENCE_FINAL_RECHECK
   - PROJECT_FINISHER_TERMINAL_REAUDIT
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-  instruction: Re-read current DoraHacks UI before protected final submit; assume no extension after Sep 11.
 truth_boundaries:
-  build_candidate_ready_is_not_submission_ready: true
-  targeted_rework_does_not_invalidate_build_candidate_ready: true
   live_readback_is_not_a_new_transaction: true
   live_public_transaction_is_captured_replay_evidence_not_LKB_originated: true
   private_packet_003_proof_remains_redacted: true
   production_readiness_claim: FORBIDDEN
-  MTTR_improvement_claim: NOT_YET_PROVEN
-  ROI_prevalence_fraud_claims: FORBIDDEN_WITH_CURRENT_EVIDENCE
-next_gate: HS_001_PRODUCT_CI_THEN_MERGE_IF_GREEN
+next_gate: DEPLOY_CURRENT_MAIN_TO_STABLE_PUBLIC_VERCEL_AND_VERIFY_LIVE_READBACK
 next_owner: PROJECT_FINISHER
