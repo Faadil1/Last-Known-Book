@@ -1,14 +1,5 @@
 #!/usr/bin/env node
-/**
- * Last Known Book — local Shannon testnet proof runner.
- *
- * IMPORTANT:
- * - Shannon testnet only (chainId 50312).
- * - Defaults to READ-ONLY. Writes require --execute AND an exact packet confirmation.
- * - Never faucets, never approves, never mints. If balance/allowance is insufficient: BLOCK.
- * - Uses PostOnly at the runtime tick minimum and the packet's exact market/pool.
- * - If the order rests, cancels that exact orderId and reconciles tUSDC balance.
- */
+/** Last Known Book — local Shannon testnet proof runner. */
 import fs from 'node:fs/promises';
 import { decodeEventLog, erc20Abi } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -16,10 +7,10 @@ import { SomniaMarkets, SOMNIA_TESTNET_ADDRESSES, orderBookEventsAbi } from '@so
 import { somniaShannon } from '@somnia-chain/markets-sdk/chains';
 
 const EXECUTE = process.argv.includes('--execute');
-const PACKET_PATH = process.env.LKB_PACKET_PATH || 'evidence/shannon/SHANNON-PACKET-002.json';
+const PACKET_PATH = process.env.LKB_PACKET_PATH || 'evidence/shannon/SHANNON-PACKET-003.json';
 const PRIVATE_KEY = (process.env.TEST_WALLET_PRIVATE_KEY || '').trim();
 const CONFIRM = process.env.LKB_PACKET_CONFIRM || '';
-const EXPECTED_CONFIRM = 'AUTHORIZE_SHANNON_PACKET_002';
+const EXPECTED_CONFIRM = 'AUTHORIZE_SHANNON_PACKET_003';
 const INDEXER_URL = process.env.INDEXER_URL || 'https://dev.smk.somnia.host/v1/graphql';
 const MIN_HEADROOM_SEC = 600;
 const CHAIN_ID = 50312;
@@ -27,9 +18,7 @@ const COLLATERAL = SOMNIA_TESTNET_ADDRESSES.collateral;
 
 function withTimeout(promise, ms, label) {
   let timer;
-  const timeout = new Promise((_, reject) => {
-    timer = setTimeout(() => reject(new Error(`${label}_TIMEOUT_${ms}MS`)), ms);
-  });
+  const timeout = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(`${label}_TIMEOUT_${ms}MS`)), ms); });
   return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
 }
 function serial(value) {
@@ -39,8 +28,7 @@ function serial(value) {
   return value;
 }
 function fail(code, detail = null) {
-  const out = { ok:false, code, detail, writePerformed:false };
-  console.error(JSON.stringify(out, null, 2));
+  console.error(JSON.stringify({ ok:false, code, detail, writePerformed:false }, null, 2));
   process.exit(2);
 }
 function decodeBookEvents(receipt, pool) {
@@ -48,7 +36,7 @@ function decodeBookEvents(receipt, pool) {
   for (const log of receipt?.logs ?? []) {
     if (String(log.address).toLowerCase() !== String(pool).toLowerCase()) continue;
     try {
-      const d = decodeEventLog({ abi: orderBookEventsAbi, data: log.data, topics: log.topics });
+      const d = decodeEventLog({ abi:orderBookEventsAbi, data:log.data, topics:log.topics });
       events.push({ eventName:d.eventName, args:serial(d.args) });
     } catch {}
   }
@@ -56,7 +44,7 @@ function decodeBookEvents(receipt, pool) {
 }
 async function readPacket() {
   const packet = JSON.parse(await fs.readFile(PACKET_PATH, 'utf8'));
-  if (packet.packetId !== 'SHANNON_PACKET_002') fail('PACKET_ID_MISMATCH', packet.packetId);
+  if (packet.packetId !== 'SHANNON_PACKET_003') fail('PACKET_ID_MISMATCH', packet.packetId);
   if (packet.chainId !== CHAIN_ID) fail('PACKET_CHAIN_MISMATCH', packet.chainId);
   if (Date.now() >= Date.parse(packet.authority.cutoffUtc)) fail('PACKET_EXPIRED', packet.authority.cutoffUtc);
   return packet;
@@ -70,49 +58,45 @@ async function main() {
   const now = Math.floor(Date.now()/1000);
 
   const onchain = await withTimeout(client.getMarketOnchain(packet.market.marketId), 10000, 'GET_MARKET_ONCHAIN');
-  const status = Number(onchain.status);
   const pool = String(packet.market.pool);
-  const secondsLeft = Number(packet.market.expiry) - now;
   const params = await withTimeout(client.getBinaryBookParams(pool), 10000, 'GET_BOOK_PARAMS');
   const book = await withTimeout(client.getBinaryOrderBook(pool, { depth:5 }), 15000, 'GET_BINARY_ORDERBOOK');
-  const chainId = await withTimeout(viemClient.getChainId(), 10000, 'GET_CHAIN_ID');
-
   const readGate = {
-    chainId,
+    chainId:await withTimeout(viemClient.getChainId(), 10000, 'GET_CHAIN_ID'),
     marketId:packet.market.marketId,
     packetPool:pool,
     onchainPool:String(onchain.pool ?? ''),
-    status,
-    secondsLeft,
+    status:Number(onchain.status),
+    secondsLeft:Number(packet.market.expiry) - now,
     tickSizeRaw:serial(params.tickSize),
     lotSizeRaw:serial(params.lotSize),
     minQuantityRaw:serial(params.minQuantity),
-    bookTop:serial({yesBids:book?.yesBids?.[0]??null,yesAsks:book?.yesAsks?.[0]??null}),
+    bookTop:serial({ yesBids:book?.yesBids?.[0]??null, yesAsks:book?.yesAsks?.[0]??null }),
   };
 
   if (readGate.chainId !== CHAIN_ID) fail('WRONG_CHAIN', readGate);
   if (String(readGate.onchainPool).toLowerCase() !== pool.toLowerCase()) fail('POOL_MISMATCH', readGate);
-  if (status !== 1) fail('MARKET_NOT_TRADING', readGate);
-  if (secondsLeft < MIN_HEADROOM_SEC) fail('INSUFFICIENT_HEADROOM', readGate);
+  if (readGate.status !== 1) fail('MARKET_NOT_TRADING', readGate);
+  if (readGate.secondsLeft < MIN_HEADROOM_SEC) fail('INSUFFICIENT_HEADROOM', readGate);
   if (BigInt(params.tickSize) !== BigInt(packet.order.priceRaw)) fail('TICK_DRIFT', readGate);
   if (BigInt(params.minQuantity) !== BigInt(packet.order.quantityRaw)) fail('MIN_QUANTITY_DRIFT', readGate);
   if (BigInt(params.lotSize) > BigInt(packet.order.quantityRaw) || BigInt(packet.order.quantityRaw) % BigInt(params.lotSize) !== 0n) fail('LOT_DRIFT', readGate);
 
   if (!EXECUTE) {
-    console.log(JSON.stringify({ok:true,mode:'READ_ONLY_PACKET_VALIDATED',readGate,next:'REQUIRES_EXPLICIT_AUTHORIZE_SHANNON_PACKET_002'}, null, 2));
+    console.log(JSON.stringify({ ok:true, mode:'READ_ONLY_PACKET_VALIDATED', readGate, next:'REQUIRES_EXPLICIT_AUTHORIZE_SHANNON_PACKET_003' }, null, 2));
     process.exit(0);
   }
 
-  if (CONFIRM !== EXPECTED_CONFIRM) fail('MISSING_EXACT_HUMAN_CONFIRMATION', {expected:EXPECTED_CONFIRM});
+  if (CONFIRM !== EXPECTED_CONFIRM) fail('MISSING_EXACT_HUMAN_CONFIRMATION', { expected:EXPECTED_CONFIRM });
   if (!/^0x[0-9a-fA-F]{64}$/.test(PRIVATE_KEY)) fail('MISSING_OR_INVALID_TEST_WALLET_PRIVATE_KEY');
   const account = privateKeyToAccount(PRIVATE_KEY);
-  const gasBalance = await withTimeout(viemClient.getBalance({address:account.address}), 10000, 'GET_GAS_BALANCE');
-  const collateralBalanceBefore = await withTimeout(viemClient.readContract({address:COLLATERAL,abi:erc20Abi,functionName:'balanceOf',args:[account.address]}), 10000, 'GET_TUSDC_BALANCE');
-  const allowance = await withTimeout(viemClient.readContract({address:COLLATERAL,abi:erc20Abi,functionName:'allowance',args:[account.address,pool]}), 10000, 'GET_ALLOWANCE');
+  const gasBalance = await withTimeout(viemClient.getBalance({ address:account.address }), 10000, 'GET_GAS_BALANCE');
+  const collateralBalanceBefore = await withTimeout(viemClient.readContract({ address:COLLATERAL, abi:erc20Abi, functionName:'balanceOf', args:[account.address] }), 10000, 'GET_TUSDC_BALANCE');
+  const allowance = await withTimeout(viemClient.readContract({ address:COLLATERAL, abi:erc20Abi, functionName:'allowance', args:[account.address,pool] }), 10000, 'GET_ALLOWANCE');
   const requiredRaw = (BigInt(packet.order.priceRaw) * BigInt(packet.order.quantityRaw)) / 1_000_000n;
-  if (gasBalance <= 0n) fail('NO_TESTNET_GAS', {address:account.address});
-  if (collateralBalanceBefore < requiredRaw) fail('INSUFFICIENT_TUSDC', {requiredRaw:requiredRaw.toString(),balance:collateralBalanceBefore.toString()});
-  if (allowance < requiredRaw) fail('INSUFFICIENT_ALLOWANCE_NO_AUTO_APPROVE', {requiredRaw:requiredRaw.toString(),allowance:allowance.toString(),pool});
+  if (gasBalance <= 0n) fail('NO_TESTNET_GAS', { address:account.address });
+  if (collateralBalanceBefore < requiredRaw) fail('INSUFFICIENT_TUSDC', { requiredRaw:requiredRaw.toString(), balance:collateralBalanceBefore.toString() });
+  if (allowance < requiredRaw) fail('INSUFFICIENT_ALLOWANCE_NO_AUTO_APPROVE', { requiredRaw:requiredRaw.toString(), allowance:allowance.toString(), pool });
 
   const finalOnchain = await withTimeout(client.getMarketOnchain(packet.market.marketId), 10000, 'FINAL_GET_MARKET_ONCHAIN');
   const finalParams = await withTimeout(client.getBinaryBookParams(pool), 10000, 'FINAL_GET_BOOK_PARAMS');
@@ -123,43 +107,39 @@ async function main() {
   if (BigInt(finalParams.tickSize) !== BigInt(packet.order.priceRaw) || BigInt(finalParams.minQuantity) !== BigInt(packet.order.quantityRaw)) fail('FINAL_BOOK_PARAMS_DRIFT');
 
   console.error('LKB_WRITE_BOUNDARY_CROSSED: local user-authorized testnet execution starting');
-  const trader = client.createTrader({privateKey:PRIVATE_KEY,decimals:6});
+  const trader = client.createTrader({ privateKey:PRIVATE_KEY, decimals:6 });
   const placement = await trader.placeOrder({
     pool,
     side:'BUY_YES',
     price:BigInt(packet.order.priceRaw),
     quantity:BigInt(packet.order.quantityRaw),
-    orderType:3,
+    orderType:Number(packet.order.orderType),
     autoApprove:false,
-    userData:2002n,
+    userData:BigInt(packet.order.userData),
   });
   const placementEvents = decodeBookEvents(placement.receipt, pool);
-  const placementEvidence = {hash:placement.hash,receiptStatus:placement.receipt?.status,orderId:placement.orderId?.toString()??null,fills:serial(placement.fills??[]),events:placementEvents};
+  const placementEvidence = { hash:placement.hash, receiptStatus:placement.receipt?.status, orderId:placement.orderId?.toString()??null, fills:serial(placement.fills??[]), events:placementEvents };
   if (placement.receipt?.status !== 'success') fail('PLACEMENT_RECEIPT_NOT_SUCCESS', placementEvidence);
   if ((placement.fills ?? []).length > 0) fail('POST_ONLY_UNEXPECTED_FILL', placementEvidence);
   if (!placement.orderId) fail('POST_ONLY_DID_NOT_REST', placementEvidence);
   if (!placementEvents.some(e => e.eventName === 'OrderPlaced' || e.eventName === 'OrderRested')) fail('REST_EVENT_NOT_FOUND', placementEvidence);
 
-  const cancel = await trader.cancelOrder({pool,orderId:placement.orderId});
+  const cancel = await trader.cancelOrder({ pool, orderId:placement.orderId });
   const cancelEvents = decodeBookEvents(cancel.receipt, pool);
-  const collateralBalanceAfter = await withTimeout(viemClient.readContract({address:COLLATERAL,abi:erc20Abi,functionName:'balanceOf',args:[account.address]}), 10000, 'FINAL_TUSDC_BALANCE');
-  const cancelEvidence = {hash:cancel.hash,receiptStatus:cancel.receipt?.status,events:cancelEvents};
+  const collateralBalanceAfter = await withTimeout(viemClient.readContract({ address:COLLATERAL, abi:erc20Abi, functionName:'balanceOf', args:[account.address] }), 10000, 'FINAL_TUSDC_BALANCE');
+  const cancelEvidence = { hash:cancel.hash, receiptStatus:cancel.receipt?.status, events:cancelEvents };
   if (cancel.receipt?.status !== 'success') fail('CANCEL_RECEIPT_NOT_SUCCESS', cancelEvidence);
   if (!cancelEvents.some(e => e.eventName === 'OrderCancelled')) fail('ORDER_CANCELLED_EVENT_NOT_FOUND', cancelEvidence);
 
   const evidence = {
-    schema:'LKB-SHANNON-EXECUTION-PROOF-v0.1',packetId:packet.packetId,generatedAt:new Date().toISOString(),chainId:CHAIN_ID,wallet:account.address,
-    market:packet.market,order:packet.order,readGate,placement:placementEvidence,cancel:cancelEvidence,
-    reconciliation:{tUSDCBeforeRaw:collateralBalanceBefore.toString(),tUSDCAfterRaw:collateralBalanceAfter.toString(),restoredExactly:collateralBalanceAfter===collateralBalanceBefore,gasTokenSpentExpected:true},
+    schema:'LKB-SHANNON-EXECUTION-PROOF-v0.2', packetId:packet.packetId, generatedAt:new Date().toISOString(), chainId:CHAIN_ID, wallet:account.address,
+    market:packet.market, order:packet.order, readGate, placement:placementEvidence, cancel:cancelEvidence,
+    reconciliation:{ tUSDCBeforeRaw:collateralBalanceBefore.toString(), tUSDCAfterRaw:collateralBalanceAfter.toString(), restoredExactly:collateralBalanceAfter===collateralBalanceBefore, gasTokenSpentExpected:true },
   };
-  await fs.mkdir('evidence/shannon/executions',{recursive:true});
+  await fs.mkdir('evidence/shannon/executions',{ recursive:true });
   const outPath = `evidence/shannon/executions/${packet.packetId}-${Date.now()}.json`;
   await fs.writeFile(outPath, `${JSON.stringify(serial(evidence),null,2)}\n`, 'utf8');
-  console.log(JSON.stringify({ok:true,outPath,evidence:serial(evidence)}, null, 2));
+  console.log(JSON.stringify({ ok:true, outPath, evidence:serial(evidence) }, null, 2));
   process.exit(0);
 }
-
-main().catch((error) => {
-  console.error(JSON.stringify({ok:false,code:'UNHANDLED',message:String(error?.message ?? error)}, null, 2));
-  process.exit(1);
-});
+main().catch((error) => { console.error(JSON.stringify({ ok:false, code:'UNHANDLED', message:String(error?.message ?? error) }, null, 2)); process.exit(1); });
