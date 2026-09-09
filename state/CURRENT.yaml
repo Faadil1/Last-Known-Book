@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v1.2
-updated_utc: "2026-09-09T12:16:11Z"
+schema: LKB-CURRENT-v1.3
+updated_utc: "2026-09-09T12:23:30Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PBPD
   stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: SHANNON_SETUP_003_HUMAN_AUTHORIZED__LOCAL_EXECUTION_PENDING
+  status: SHANNON_SETUP_003_HUMAN_AUTHORIZED__WINDOWS_RUNNER_FIXED__LOCAL_EXECUTION_PENDING
 authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
@@ -33,6 +33,16 @@ wallet_readiness_observed_locally:
   tusdc_human: 0
   pool_allowance_raw: "0"
   wallet_address_intentionally_omitted_from_public_repo: true
+  read_only_result: PASS
+  post_output_windows_assertion: UV_HANDLE_CLOSING_AFTER_SUCCESS_JSON
+  blockchain_write_performed: false
+windows_runtime_fix:
+  pull_request: 6
+  merge_commit: 7b7906065e130805a68a024c80c4d96cca1aebc4
+  setup_validator_run: 34350676471
+  setup_validator_status: PASS
+  scope: setup_runner_only
+  change: graceful_return_and_process_exitCode_instead_of_forced_process_exit
 shannon_setup_003:
   canonical_merge: b314009e31551fd0542e9ad059f6eca5c60c6d40
   packet: evidence/shannon/SHANNON-SETUP-003.json
@@ -73,5 +83,5 @@ proof_status:
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_gate: LOCAL_EXECUTION_OF_AUTHORIZED_SHANNON_SETUP_003_THEN_READ_ONLY_RECONCILIATION
+next_gate: PULL_WINDOWS_FIX__READ_ONLY_RECHECK__THEN_LOCAL_EXECUTION_OF_AUTHORIZED_SHANNON_SETUP_003
 next_owner: HUMAN_FOR_LOCAL_SETUP_EXECUTION__PBPD_FOR_RECONCILIATION
