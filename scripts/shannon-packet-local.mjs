@@ -49,6 +49,10 @@ async function readPacket() {
   if (Date.now() >= Date.parse(packet.authority.cutoffUtc)) fail('PACKET_EXPIRED', packet.authority.cutoffUtc);
   return packet;
 }
+async function gracefulSuccess(client) {
+  try { client.stopLive(); } catch {}
+  await new Promise((resolve) => setTimeout(resolve, 100));
+}
 
 async function main() {
   const packet = await readPacket();
@@ -84,7 +88,8 @@ async function main() {
 
   if (!EXECUTE) {
     console.log(JSON.stringify({ ok:true, mode:'READ_ONLY_PACKET_VALIDATED', readGate, next:'REQUIRES_EXPLICIT_AUTHORIZE_SHANNON_PACKET_003' }, null, 2));
-    process.exit(0);
+    await gracefulSuccess(client);
+    return;
   }
 
   if (CONFIRM !== EXPECTED_CONFIRM) fail('MISSING_EXACT_HUMAN_CONFIRMATION', { expected:EXPECTED_CONFIRM });
@@ -140,6 +145,6 @@ async function main() {
   const outPath = `evidence/shannon/executions/${packet.packetId}-${Date.now()}.json`;
   await fs.writeFile(outPath, `${JSON.stringify(serial(evidence),null,2)}\n`, 'utf8');
   console.log(JSON.stringify({ ok:true, outPath, evidence:serial(evidence) }, null, 2));
-  process.exit(0);
+  await gracefulSuccess(client);
 }
 main().catch((error) => { console.error(JSON.stringify({ ok:false, code:'UNHANDLED', message:String(error?.message ?? error) }, null, 2)); process.exit(1); });
