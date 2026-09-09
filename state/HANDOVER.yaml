@@ -1,54 +1,54 @@
 schema: LKB-HANDOVER-v1.1
-updated_utc: "2026-09-09T11:53:01Z"
+updated_utc: "2026-09-09T11:56:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
+internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_003_PREFLIGHT_BLOCKED__WAIT_FOR_SAFE_ROLLOVER
+lifecycle: SHANNON_PACKET_003_WAITING_FOR_SAFE_ROLLOVER__LOCAL_DISPOSABLE_WALLET_CREATED
 canonical_branch: main
+canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
+canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
+canonical_packet_002_merge: 6bead00000a10b6a710bfec739928b4abb66cafd
 working_branch: proof/shannon-packet-003
 working_pull_request: 4
+upstream:
+  pbpd_handover: Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/.pbpd/state/HANDOVER.yaml
+  hoi_handover: Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/HANDOVER.json
+  trace_current: Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/CURRENT.yaml
 material_decisions:
   - SHANNON_PACKET_001 and SHANNON_PACKET_002 both expired without execution and must not be reused.
-  - SHANNON_PACKET_003 fresh preflight was attempted read-only at 2026-09-09T11:52:59.622Z.
-  - The preflight correctly failed closed because only 423 seconds remained before rollover, below the 600-second minimum headroom.
-  - No signer, private key, faucet, approval, mint, order placement or cancellation was used by the assistant.
-  - The next preflight must occur after rollover and must again satisfy Trading status plus at least 600 seconds headroom.
-  - A disposable Shannon wallet is required; the user's primary wallet should not be used.
-  - The disposable wallet private key must remain local to the user and must never be pasted into chat, GitHub, screenshots or CI secrets.
-  - A brand-new wallet will normally have zero pool allowance. Therefore Packet 003 cannot honestly claim no setup requirement; any tUSDC approval must be a separately bounded and explicitly human-authorized setup transaction, not SDK autoApprove/maxUint256.
-preflight_003_attempt_1:
-  run: 34343902885
-  rerun_job: 102453523620
-  verdict: BLOCK_NO_SAFE_FULL_READ
-  generated_utc: "2026-09-09T11:52:59.622Z"
-  headroom_sec: 423
-  artifact_id: 10102436928
-  digest: sha256:85cb5d2a3240c3d94d150f62686dae0b5e4764770521ecbded014a99fce860b1
-wallet_setup_plan:
-  wallet: disposable Shannon testnet wallet
-  chain_id: 50312
-  gas_token: STT
-  collateral: tUSDC
-  collateral_address: 0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E
-  rules:
-    - generate key locally
-    - store only in .env.local or process environment
-    - share only the public 0x wallet address
-    - obtain STT from an official Somnia Shannon faucet
-    - obtain tUSDC via the documented testnet token faucet(uint256) path only after a separate setup authorization
-    - use exact bounded ERC20 allowance to the selected current pool only; never autoApprove/maxUint256
-proof_status:
-  product_originated_shannon_write_proof: ABSENT
-  behavior_proof: NOT_YET
-  production_evidence: ABSENT
-next_exact_gate: RERUN_SAFE_ROLLOVER_PREFLIGHT_THEN_PREPARE_SHANNON_PACKET_003_AND_BOUNDED_SETUP_PACKET
-next_exact_owner: PBPD_THEN_HUMAN
+  - Packet 003 preflight attempt at 2026-09-09T11:52:59.622Z correctly failed closed because only 423 seconds remained before rollover, below the 600-second minimum.
+  - A new disposable Shannon wallet was created locally by the human operator for testnet-only proof execution.
+  - The wallet public address is intentionally NOT committed to the public repository; the private key remains local only and must never be shared or committed.
+  - A generic read-only readiness checker was added at scripts/check-shannon-wallet.mjs. It accepts WALLET_ADDRESS and optional POOL_ADDRESS via environment variables and never reads a private key or performs a write.
+  - Any tUSDC faucet transaction or ERC-20 approval is a separate setup write requiring bounded human authorization; autoApprove remains forbidden.
+  - Packet 003 must be generated only from a fresh native BTC/ETH 15m/1h Trading market with at least 600 seconds of headroom.
+validation:
+  baseline_product_ci: PASS
+  trace_rendered_viewport: PASS
+  packet_003_preflight_attempt_1:
+    source_run: 34343902885
+    rerun_job: 102453523620
+    generated_utc: "2026-09-09T11:52:59.622Z"
+    verdict: BLOCK_NO_SAFE_FULL_READ
+    headroom_sec: 423
+    minimum_required_sec: 600
+privacy_and_secret_boundary:
+  disposable_wallet_created: true
+  public_address_in_repo: false
+  private_key_shared: false
+  private_key_in_repo: false
+  local_secret_file: .env.local
+next_exact_gate: FRESH_PACKET_003_PREFLIGHT_AFTER_SAFE_ROLLOVER_THEN_BOUNDED_SETUP_AND_WRITE_AUTHORIZATION
+next_exact_owner: PBPD_FOR_READ_ONLY_PREP__HUMAN_FOR_ANY_SETUP_OR_MARKET_TRANSACTION
+next_exact_action: After a fresh rollover, run the read-only preflight. If a native BTC/ETH 15m/1h Trading market has >=600 seconds headroom, freeze exact marketId/pool/book params into SHANNON_PACKET_003. Separately verify the disposable wallet's STT and tUSDC balances and exact pool allowance using scripts/check-shannon-wallet.mjs. Any missing tUSDC or allowance must be handled by a distinct bounded setup packet and explicit human authorization before the market-order packet can be authorized.
 blocked_actions:
+  - no assistant-broadcast market transaction
+  - no wallet private key disclosure or commit
+  - no autoApprove or unlimited approval
   - no packet reuse after expiry
-  - no assistant broadcast of market transactions
-  - no primary-wallet private key handling
-  - no unbounded ERC20 approvals
-  - no setup write without explicit human authorization
+  - no substitution to a different marketId or pool without a fresh packet
+  - no unsupported production/profitability claims
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
