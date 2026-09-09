@@ -1,0 +1,157 @@
+{
+  "schema": "LKB-INCIDENT-REPORT-v0.1",
+  "engineVersion": "0.2.0",
+  "caseId": "LKB-004",
+  "title": "Exact-market residual settlement recovery",
+  "type": "EXACT_MARKET_RESIDUAL_SETTLEMENT",
+  "marketId": null,
+  "intent": {
+    "summary": "Explain historical NO residuals after organic SELL_YES fills and determine which exact-market positions were economically recoverable without blindly redeeming every nonzero token balance."
+  },
+  "venueReality": {
+    "summary": "Two exact old markets resolved NO and their 1000-raw NO residuals were redeemed independently. A different old market resolved YES, leaving a known zero-value NO residual that was explicitly not redeemed."
+  },
+  "semantics": [
+    "EXACT_MARKET_SETTLEMENT_RECONCILIATION"
+  ],
+  "rootCause": "LIFECYCLE",
+  "claims": [
+    {
+      "id": "O-RES-1-1",
+      "truthClass": "OBSERVED",
+      "claim": "Exact market 0x000000000000000000000000000000000000000000000000000000000000a3dd is RESOLVED with NO as winner.",
+      "evidence": [
+        "residuals[0].marketId",
+        "residuals[0].winningOutcome",
+        "residuals[0].payoutVector"
+      ]
+    },
+    {
+      "id": "O-RES-1-2",
+      "truthClass": "OBSERVED",
+      "claim": "NO residual balance before recovery was 1000 raw.",
+      "evidence": [
+        "residuals[0].balanceBeforeRaw"
+      ]
+    },
+    {
+      "id": "O-RES-1-3",
+      "truthClass": "OBSERVED",
+      "claim": "The exact winning NO residual redeemed for 1000 raw collateral and the outcome balance reconciled to zero.",
+      "evidence": [
+        "residuals[0].redeemTxHash",
+        "residuals[0].payoutRaw",
+        "residuals[0].balanceAfterRaw"
+      ]
+    },
+    {
+      "id": "I-RES-1-1",
+      "truthClass": "INFERRED",
+      "claim": "The historical recovery was economically justified by exact-market resolution, but an already redeemed position must not be redeemed again.",
+      "evidence": [
+        "O-RES-1-1",
+        "O-RES-1-3"
+      ]
+    },
+    {
+      "id": "O-RES-2-1",
+      "truthClass": "OBSERVED",
+      "claim": "Exact market 0x000000000000000000000000000000000000000000000000000000000000a3e9 is RESOLVED with NO as winner.",
+      "evidence": [
+        "residuals[1].marketId",
+        "residuals[1].winningOutcome",
+        "residuals[1].payoutVector"
+      ]
+    },
+    {
+      "id": "O-RES-2-2",
+      "truthClass": "OBSERVED",
+      "claim": "NO residual balance before recovery was 1000 raw.",
+      "evidence": [
+        "residuals[1].balanceBeforeRaw"
+      ]
+    },
+    {
+      "id": "O-RES-2-3",
+      "truthClass": "OBSERVED",
+      "claim": "The exact winning NO residual redeemed for 1000 raw collateral and the outcome balance reconciled to zero.",
+      "evidence": [
+        "residuals[1].redeemTxHash",
+        "residuals[1].payoutRaw",
+        "residuals[1].balanceAfterRaw"
+      ]
+    },
+    {
+      "id": "I-RES-2-1",
+      "truthClass": "INFERRED",
+      "claim": "The historical recovery was economically justified by exact-market resolution, but an already redeemed position must not be redeemed again.",
+      "evidence": [
+        "O-RES-2-1",
+        "O-RES-2-3"
+      ]
+    },
+    {
+      "id": "O-RES-3-1",
+      "truthClass": "OBSERVED",
+      "claim": "Exact market 0x000000000000000000000000000000000000000000000000000000000000a00b is RESOLVED with YES as winner.",
+      "evidence": [
+        "residuals[2].marketId",
+        "residuals[2].winningOutcome",
+        "residuals[2].payoutVector"
+      ]
+    },
+    {
+      "id": "O-RES-3-2",
+      "truthClass": "OBSERVED",
+      "claim": "NO residual balance before recovery was 1000 raw.",
+      "evidence": [
+        "residuals[2].balanceBeforeRaw"
+      ]
+    },
+    {
+      "id": "O-RES-3-3",
+      "truthClass": "OBSERVED",
+      "claim": "The held NO side is losing under payout vector [10000000,0], so its payout is zero.",
+      "evidence": [
+        "residuals[2].heldOutcome",
+        "residuals[2].payoutVector",
+        "residuals[2].payoutRaw"
+      ]
+    },
+    {
+      "id": "I-RES-3-1",
+      "truthClass": "INFERRED",
+      "claim": "A nonzero losing token balance is explainable zero-value settled inventory and should not trigger a blind redeem attempt.",
+      "evidence": [
+        "O-RES-3-1",
+        "O-RES-3-2",
+        "O-RES-3-3"
+      ]
+    }
+  ],
+  "policy": {
+    "action": "NO_ACTION",
+    "writeAuthorized": false,
+    "reason": "The captured recovery is already reconciled. Historical winner/loser classification explains the residuals but does not authorize a repeat redeem."
+  },
+  "reconciliation": {
+    "winningResidualsRedeemed": 2,
+    "knownZeroValueResidualsSkipped": 1,
+    "repeatWritesRequired": 0
+  },
+  "provenance": {
+    "truth": "CAPTURED_REAL_SHANNON_EVIDENCE",
+    "sourceRepository": "Techkeyy/villa",
+    "sourceFiles": [
+      "docs/SETTLEMENT_LIFECYCLE.md",
+      "docs/TECHNICAL_VERIFICATION.md",
+      "src/dashboard/replay.mjs"
+    ],
+    "sourceCommit": "557f84bec02eea422aa659289048c9075bb51ce1",
+    "limitations": [
+      "This is historical captured Shannon evidence, not a Last Known Book-originated redeem.",
+      "The decoder may explain whether a historical residual was winning, losing, or already closed; a new redeem write still requires fresh chain predicates and explicit human authorization."
+    ]
+  },
+  "reportHash": "58d1d1faf197044dd608021494fd6d4e7de0e38802d960a1c6dbcf0568daa23c"
+}
