@@ -1,0 +1,28 @@
+name: Validate Shannon Setup
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/shannon-setup-local.mjs'
+      - 'evidence/shannon/SHANNON-SETUP-003.json'
+      - 'evidence/shannon/SHANNON-PACKET-003.json'
+      - '.github/workflows/validate-shannon-setup.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  setup-readonly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install pinned dependencies
+        run: npm install --no-save --ignore-scripts @somnia-chain/markets-sdk@0.29.0 viem@2.37.5
+      - name: Syntax check setup runner
+        run: node --check scripts/shannon-setup-local.mjs
+      - name: Validate setup packet read-only
+        run: node scripts/shannon-setup-local.mjs
