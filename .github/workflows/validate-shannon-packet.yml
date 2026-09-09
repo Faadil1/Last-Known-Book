@@ -1,0 +1,27 @@
+name: Validate Shannon Packet
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/shannon-packet-local.mjs'
+      - 'evidence/shannon/SHANNON-PACKET-002.json'
+      - '.github/workflows/validate-shannon-packet.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  packet-readonly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install pinned DreamDEX SDK dependencies
+        run: npm install --no-save --ignore-scripts @somnia-chain/markets-sdk@0.29.0 viem@2.37.5
+      - name: Syntax check local runner
+        run: node --check scripts/shannon-packet-local.mjs
+      - name: Validate exact packet read-only
+        run: node scripts/shannon-packet-local.mjs
