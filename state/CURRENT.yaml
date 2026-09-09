@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.1
-updated_utc: "2026-09-09T14:02:00Z"
+schema: LKB-CURRENT-v2.2
+updated_utc: "2026-09-09T14:06:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,8 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_TARGETED_REWORK
-  status: WINNING_INTELLIGENCE_WI_001_NONPROTECTED_REWORK_IMPLEMENTED__PRODUCT_CI_PENDING
+  status: WI_001_PUBLIC_PROOF_SCRIPT_AND_PACKAGE_MERGED__VIDEO_AND_STABLE_DEPLOY_REMAIN
+
 authority:
   project_authorized: true
   build_candidate_ready: true
@@ -21,10 +22,11 @@ authority:
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  build_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
-  working_branch: rework/winning-intelligence-001
-  packaging_pr: 9
-  packaging_ci_run: 34356611528
+  original_build_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
+  winning_intelligence_rework_merge: 6ee02917aa92951dc1222282367ef7599095bffa
+  winning_intelligence_rework_pr: 10
+  winning_intelligence_rework_ci_run: 34361037435
+  winning_intelligence_rework_ci_status: PASS_TESTS_REPLAY_AND_CLEANLINESS
   M5_rework_merge: 4e831a8adc920eabd24df4a04618c11971e50f8e
   pbpd_private_real_shannon_proof: 475dddec2413063f3f26437a1c3e37a3befb3229
   pbpd_winning_intelligence_merge: 5270d283cb0dda6afacadecd4e36edaf1c934042
@@ -48,9 +50,9 @@ requirements_to_evidence:
 winning_intelligence:
   assessment: CLOSE_FINAL_VIDEO_LIVE_URL_AND_PROOF_SURFACING_GAPS__NORMAL_SUBMISSION_AUTHORITY_UNCHANGED
   sponsor_native_necessity: SUPPORTED
-  whole_rubric_coverage: PARTIAL
-  narrative_and_demo_legibility: PARTIAL
-  judge_path_legibility: PARTIAL
+  whole_rubric_coverage: PARTIAL_PENDING_FINAL_VIDEO_AND_LIVE_URL
+  narrative_and_demo_legibility: PARTIAL_PENDING_FINAL_ENCODED_VIDEO
+  judge_path_legibility: PARTIAL_PENDING_STABLE_JUDGE_URL_AND_FINAL_VIDEO
   concept_reopen_required: false
   winning_laws_promoted: 0
   numeric_win_probability: NONE
@@ -58,27 +60,27 @@ winning_intelligence:
   hero_hook: This wasn't a whale. It was a mint.
 rework_WI_001:
   judge_safe_real_shannon_proof_surface:
-    status: IMPLEMENTED_ON_WORKING_BRANCH_CI_PENDING
+    status: MERGED_AND_CI_PASS
     implementation:
-      - index.html real Shannon proof card
+      - index.html REAL SHANNON PROOF card
       - winning-intelligence.css
       - public facts only: chain 50312, zero fills, OrderPlaced->OrderRested->OrderCancelled, tUSDC 1 raw->1 raw
     private_identifiers_exposed: false
   final_demo_script:
-    status: FROZEN_FOR_FIRST_ENCODE
+    status: MERGED__FROZEN_FOR_FIRST_ENCODE
     path: docs/DEMO-SCRIPT.md
     target_seconds: 155
     encoded_video: MISSING
   dorahacks_submission_package:
-    status: DRAFTED
+    status: MERGED_DRAFT
     path: docs/SUBMISSION-PACKAGE.md
   redaction_test:
-    status: ADDED_CI_PENDING
+    status: PASS_IN_CI_RUN_34361037435
     path: tests/winning-intelligence.test.mjs
   stable_judge_live_url:
     status: PENDING_HUMAN_AUTHORIZED_DEPLOYMENT
   final_encoded_demo_video:
-    status: MISSING__TARGETED_REWORK_REMAINS_OPEN
+    status: MISSING__P0_REMAINS_OPEN
   trace_encoded_video_review:
     status: BLOCKED_UNTIL_VIDEO_EXISTS
 deadline:
@@ -93,5 +95,5 @@ truth_boundaries:
   ROI_prevalence_fraud_claims: FORBIDDEN_WITH_CURRENT_EVIDENCE
   captured_replays_are_not_product_originated_writes: true
   public_packet_003_proof_is_redacted_summary_not_full_private_receipt_bundle: true
-next_gate: PRODUCT_CI_FOR_WINNING_INTELLIGENCE_REWORK
-next_owner: PBPD_PACKAGING_THEN_TRACE_THEN_PROJECT_FINISHER
+next_gate: HUMAN_GATE_FOR_STABLE_JUDGE_DEPLOYMENT_PLUS_FINAL_VIDEO_PRODUCTION
+next_owner: HUMAN_THEN_PBPD_TRACE_PROJECT_FINISHER
