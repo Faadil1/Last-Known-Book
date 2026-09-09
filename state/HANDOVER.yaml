@@ -1,72 +1,58 @@
-schema: LKB-HANDOVER-v2.7
-updated_utc: "2026-09-09T14:20:00Z"
+schema: LKB-HANDOVER-v2.8
+updated_utc: "2026-09-09T23:12:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PROJECT_FINISHER
-lifecycle: HS_001_HIDDEN_SPOTS_IMPLEMENTED_ON_BRANCH__CI_PENDING
+lifecycle: HS_001_MERGED__STABLE_JUDGE_DEPLOYMENT_AUTHORIZED
 canonical_branch: main
-working_branch: rework/hidden-spots-001
-canonical_candidate_merge: 52b1b9b8ba7836c2617430f76ebd29afffdc24da
 winning_intelligence_rework_merge: 6ee02917aa92951dc1222282367ef7599095bffa
-winning_intelligence_rework_ci: PASS_RUN_34361037435
-pbpd_winning_intelligence_merge: 5270d283cb0dda6afacadecd4e36edaf1c934042
+hidden_spots_merge: a997425a2532bfb56de5fc40107851619aad210a
+hidden_spots_ci: PASS_RUN_34367779820
 material_decisions:
-  - BUILD_CANDIDATE_READY remains valid. HS-001 is terminal judge-performance reinforcement, not a concept reopen.
-  - Why-now/rollover is now explicit: DreamDEX rolling windows plus recycled pools make stale market-specific state a concrete autonomous-agent risk; current first-party docs support marketId durability and fresh on-chain lifecycle gating.
-  - Canonical authority line is now surfaced: "The trading agent may be AI. The layer that decides whether money moves is not." Critical spend authority remains deterministic + explicitly human-gated.
-  - README now includes a Judge Fast Lane designed for ~60-second evaluator comprehension and direct provenance to code candidate/CI.
-  - README and submission package now show the operator/adoption path: autonomous execution -> unexpected result -> Last Known Book -> evidence/truth/authority gate -> no-action/retry/escalate/bounded exact action -> reconciled closure.
-  - evidence/SHANNON-PROOF-003-COMMITMENT.json publishes a tamper-evident Git-object/canonical-private-commit reference to the already-preserved private Packet 003 proof without wallet, tx hashes or orderId.
-  - cover.html is now the deterministic cover/thumbnail source surface; final image export remains pending.
-  - index.html/app.js now implement LIVE SHANNON READBACK in the browser. It reads chainId, latest block and the public captured LKB-003 transaction receipt every 15 seconds; no wallet, signing or broadcast method is present.
-  - The live public transaction remains CAPTURED_REAL_SHANNON_PUBLIC_EVIDENCE from LKB-003 and must never be described as Last Known Book-originated.
-  - Packet 003 remains separately redacted; the browser live feature does not use its private placement/cancel hashes.
-  - docs/UPSTREAM-FEEDBACK-DRAFT.md is ready as a sponsor-facing contribution proposing a consolidated rollover-safe bounded-write recipe.
-  - Direct GitHub issue publication to somnia-chain/dreamdex-bot-kit was attempted after no matching rollover issue was found, but the connected integration returned HTTP 403 Resource not accessible by integration. No upstream-publication claim is allowed.
-  - docs/SDK-FEEDBACK.md now anchors the proposal in current first-party Event Contracts docs rather than claiming undocumented 5-minute behavior. No unsupported 5-minute-window claim was added.
-  - A repository license remains intentionally blocked: choosing MIT/Apache-2.0/other changes legal reuse rights and still requires an explicit human choice.
-  - No new blockchain write was executed or authorized by HS-001.
+  - HS-001 is merged and CI-green; product concept remains frozen.
+  - Human explicitly authorized deployment of the new Last Known Book version to a stable public Vercel judge URL for runtime verification.
+  - The deployed live panel is read-only and uses the public captured LKB-003 Shannon transaction plus current chain head; it performs no wallet connect, signing or broadcast.
+  - Packet 003 remains private/redacted. No wallet, full Packet 003 tx hashes or orderId may be exposed without a separate explicit human publication gate.
+  - A later server-side Vercel proof endpoint may use Packet 003 identifiers as sensitive environment variables, but no private key is needed or allowed in Vercel for that verification path.
+  - Stable deployment authority does not authorize any blockchain write or the protected DoraHacks submission.
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
   operational_containment: PASS
-  outcome_proof: PARTIAL_ONLY
   production_evidence: ABSENT
-hidden_spots:
-  artifact: docs/HIDDEN-SPOTS-001.md
-  why_now_rollover: IMPLEMENTED
-  deterministic_authority_positioning: IMPLEMENTED
-  judge_fast_lane: IMPLEMENTED
-  operator_adoption_path: IMPLEMENTED
-  sponsor_feedback_draft: READY_PUBLICATION_BLOCKED_403
-  private_proof_commitment: IMPLEMENTED_REDACTED
-  cover_source: IMPLEMENTED_HTML_EXPORT_PENDING
-  live_shannon_readback: IMPLEMENTED_CI_PENDING
-  license: BLOCKED_HUMAN_LEGAL_CHOICE
+closed_rework:
+  - WI_R3_JUDGE_VISIBLE_REDACTED_PACKET_003_PROOF
+  - HS_001_WHY_NOW_ROLLOVER
+  - HS_001_DETERMINISTIC_AUTHORITY_POSITIONING
+  - HS_001_JUDGE_FAST_LANE
+  - HS_001_OPERATOR_ADOPTION_PATH
+  - HS_001_PRIVATE_PROOF_COMMITMENT
+  - HS_001_LIVE_READ_ONLY_CODE
+  - HS_001_COVER_HTML_SOURCE
+  - HS_001_UPSTREAM_FEEDBACK_DRAFT
 remaining_P0:
-  - product CI/replay/private-redaction verification for HS-001
-  - stable anonymous deployed URL and real browser runtime readback of the live panel
+  - deploy current main to stable anonymous Vercel URL
+  - verify real browser LIVE SHANNON READBACK and fail-closed behavior
   - final encoded 2-3 minute demo video
-  - TRACE review of final encoded video
+  - TRACE final encoded-video review
 remaining_P1:
-  - export final thumbnail/cover from cover.html
-  - optionally publish sponsor feedback manually or through an authorized GitHub identity
-  - choose repository license
-  - insert final live/video URLs into submission package
+  - export final cover image
+  - optional upstream feedback publication
+  - license choice
+  - final submission URL insertion
   - Winning Intelligence final recheck
   - Project Finisher terminal reaudit
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-  no_extension_after_sep11_may_be_assumed: true
-next_exact_gate: OPEN_HS_001_PR__REQUIRE_PRODUCT_CI_PASS__MERGE_IF_GREEN
+next_exact_gate: VERCEL_DEPLOY_AND_RUNTIME_READBACK
 next_exact_owner: PROJECT_FINISHER
-next_exact_action: Open HS-001 PR and require deterministic tests/replay cleanliness plus live-read-only/private-redaction checks. If green, merge. Then verify or create a stable anonymous judge deployment and exercise the live browser readback. In parallel produce the final encoded video and route it through TRACE.
+next_exact_action: Deploy the current CI-green main to a stable anonymous Vercel URL and verify the public page and LIVE SHANNON READBACK. Do not perform or authorize a blockchain write. If the connected Vercel integration cannot see a team/project, report that exact connector blocker and give the minimum user-side connection step.
 blocked_actions:
-  - no additional blockchain write without a fresh exact human authorization
-  - no publication of private wallet/full Packet 003 transaction identifiers without explicit human authority
-  - no protected hackathon submission without explicit human authority
+  - no blockchain write without fresh exact human approval
+  - no private Packet 003 identifier publication without explicit human approval
+  - no protected hackathon submission without explicit human approval
   - no unsupported production/MTTR/ROI/prevalence/fraud claims
 continuity:
   canonical_state_over_chat_memory: true
