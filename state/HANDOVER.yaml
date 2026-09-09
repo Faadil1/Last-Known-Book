@@ -1,10 +1,10 @@
-schema: LKB-HANDOVER-v2.0
-updated_utc: "2026-09-09T12:38:13Z"
+schema: LKB-HANDOVER-v2.1
+updated_utc: "2026-09-09T12:46:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_PACKET_003_EXECUTED_AND_RECONCILED__PBPD_PROOF_PROMOTION_NEXT
+lifecycle: SHANNON_PACKET_003_EXECUTED_AND_RECONCILED__PBPD_PRIVATE_PROOF_MERGED__TERMINAL_GAP_REASSESSMENT_NEXT
 canonical_branch: main
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
@@ -12,6 +12,7 @@ canonical_packet_002_merge: 6bead00000a10b6a710bfec739928b4abb66cafd
 canonical_packet_003_merge: 137b173f37b2ff4fc11bdc3ca32010a50ad06559
 canonical_setup_003_merge: b314009e31551fd0542e9ad059f6eca5c60c6d40
 windows_setup_fix_merge: 7b7906065e130805a68a024c80c4d96cca1aebc4
+pbpd_private_proof_merge: 475dddec2413063f3f26437a1c3e37a3befb3229
 material_decisions:
   - Packets 001 and 002 expired without execution and are retired.
   - SHANNON_SETUP_003 was human-authorized, executed locally on Shannon, and reconciled successfully before market execution.
@@ -24,7 +25,8 @@ material_decisions:
   - tUSDC reconciled exactly from 1 raw before placement to 1 raw after cancel; gas-token spend was expected.
   - This is the first Last Known Book-originated real Shannon market write proof. It is TECHNICAL_PROOF + BEHAVIOR_PROOF, not production evidence.
   - The operational containment result is real but does not by itself prove user/business outcome, MTTR improvement, production reliability, or incident prevalence.
-  - Exact wallet address and tx hashes are intentionally omitted from the public repo; the full receipt bundle is being mirrored into private PBPD canon for continuity.
+  - Exact wallet address and tx hashes remain omitted from the public repo. The full receipt bundle is canonical in the private PBPD repo after merge 475dddec2413063f3f26437a1c3e37a3befb3229.
+  - PBPD Validate run 34352858769 passed before merge of proof PR #86.
   - Public Shannon explorer search did not yet surface the fresh tx hashes through indexed web retrieval, so independent explorer readback remains PENDING_INDEXER_VISIBILITY rather than falsely marked PASS.
 packet_003_execution:
   packet: evidence/shannon/SHANNON-PACKET-003.json
@@ -65,7 +67,7 @@ privacy_and_secret_boundary:
   private_key_shared: false
   private_key_in_repo: false
   local_secret_file: .env.local
-  full_receipt_bundle_target: Faadil1/pbpd-cowork-system private canon
+  full_receipt_bundle_private_canon: Faadil1/pbpd-cowork-system@475dddec2413063f3f26437a1c3e37a3befb3229
 proof_status:
   technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
   wallet_setup_write_proof: PASS_REAL_SHANNON_SETUP_AND_POST_STATE_RECONCILIATION
@@ -73,9 +75,9 @@ proof_status:
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   outcome_proof: PARTIAL_OPERATIONAL_CONTAINMENT_ONLY__NO_BUSINESS_OUTCOME_CLAIM
   production_evidence: ABSENT
-next_exact_gate: PBPD_PROOF_PROMOTION_AND_TERMINAL_READINESS_GAP_REASSESSMENT
-next_exact_owner: PBPD
-next_exact_action: Mirror the full local receipt bundle into private PBPD canon, reconcile PBPD evidence/decision state, then reassess remaining gaps before BUILD_CANDIDATE_READY / Project Finisher. Do not promote to production evidence or submission readiness solely because the Shannon micro-proof succeeded.
+next_exact_gate: PBPD_REQUIREMENTS_TO_EVIDENCE_REFRESH__THEN_PROJECT_FINISHER_TERMINAL_READINESS
+next_exact_owner: PBPD_THEN_PROJECT_FINISHER
+next_exact_action: Refresh requirements-to-evidence coverage after the real Shannon proof, decide the judge-safe public proof surface, then route to Project Finisher. No additional blockchain write is implied or authorized by Packet 003 success.
 blocked_actions:
   - no private-key disclosure or commit
   - no additional blockchain writes without a fresh explicit human gate
