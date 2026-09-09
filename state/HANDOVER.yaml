@@ -1,40 +1,47 @@
-schema: LKB-HANDOVER-v2.2
-updated_utc: "2026-09-09T12:52:00Z"
+schema: LKB-HANDOVER-v2.3
+updated_utc: "2026-09-09T13:14:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: TARGETED_REWORK_M5_EXACT_MARKET_SETTLEMENT_IMPLEMENTED__CI_PENDING
+lifecycle: BUILD_CANDIDATE_READY_JUSTIFIED__PACKAGING_CI_AND_CANONICAL_MERGE_PENDING
 canonical_branch: main
-working_branch: rework/exact-market-settlement-decoder
+working_branch: prep/build-candidate-ready
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 pbpd_private_proof_merge: 475dddec2413063f3f26437a1c3e37a3befb3229
+M5_rework_merge: 4e831a8adc920eabd24df4a04618c11971e50f8e
 material_decisions:
-  - The first Last Known Book-originated real Shannon Packet 003 proof passed and is privately canonical in PBPD.
-  - PBPD requirements-to-evidence reassessment found one material MUST gap before BUILD_CANDIDATE_READY: M5 lacked exact-market residual/settlement decoding in the product engine.
-  - The rework uses real captured Shannon evidence from Techkeyy/villa at source commit 557f84bec02eea422aa659289048c9075bb51ce1; it does not reuse Matchday Pulse code or invent market identities.
-  - LKB-004 models two exact NO-winning residuals on markets ending a3dd/a3e9 that redeemed 1000 raw each, plus the known a00b losing NO residual that remained zero-value and was not blindly redeemed.
-  - engine.mjs is promoted on the working branch to version 0.2.0 with EXACT_MARKET_SETTLEMENT_RECONCILIATION.
-  - Historical winner/loser classification is explanatory evidence only. A future REDEEM_EXACT_WINNING_RESIDUAL policy is authorized only when fresh deterministic predicates and explicit human confirmation are both present.
-  - The historical completed LKB-004 replay itself emits NO_ACTION because the recovery is already reconciled; repeat redeem is forbidden.
-  - Tests now cover redeemed winners, zero-value loser, fail-closed no-confirmation behavior, and the explicit-confirmation write path.
-  - Replay generator now includes LKB-004; the generated report hash is 58d1d1faf197044dd608021494fd6d4e7de0e38802d960a1c6dbcf0568daa23c.
-  - This targeted rework does not authorize or perform any new blockchain write.
+  - Last Known Book-originated real Shannon Packet 003 proof is PASS and privately canonical in PBPD.
+  - Exact-market residual/settlement decoder gap M5 was fixed and merged to product main after CI run 34354613782 passed 7 tests, four deterministic replays and byte-clean regeneration.
+  - README was corrected so it no longer falsely says product-originated live write/reconciliation is absent; it preserves proof-vs-production truth boundaries.
+  - docs/SDK-FEEDBACK.md closes SHOULD S4 with concrete integration feedback from the real Shannon proof without claiming universal SDK defects.
+  - docs/REQUIREMENTS-EVIDENCE-MATRIX.md reassesses the exact candidate: all 13 MUST requirements PASS and all 7 MUST_NOT requirements PASS.
+  - SHOULD status is S1 PASS, S2 PARTIAL/NON-BLOCKING because public Packet 003 identifiers remain redacted, S3 PASS, S4 PASS, S5 PASS.
+  - S2 redaction is a deliberate privacy/judge-surface decision; full Packet 003 receipt identifiers remain in private PBPD canon.
+  - BUILD_CANDIDATE_READY is justified by evidence but must not become canonical until this packaging branch passes product CI and merges to main.
+  - BUILD_CANDIDATE_READY means route to Project Finisher terminal assurance. It does not mean SUBMISSION_READY, SUBMITTED, production-ready, or permission for another blockchain write.
 proof_status:
-  real_product_shannon_proof: PASS_PACKET_003
-  M5_exact_market_settlement_decoder: IMPLEMENTED_CI_PENDING
+  technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
+  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
+  operational_containment: PASS
+  outcome_proof: PARTIAL_ONLY
   production_evidence: ABSENT
-truth_boundaries:
-  - LKB-004 is captured historical Shannon evidence, not a Last Known Book-originated redeem.
-  - No claim of MTTR improvement, prevalence, ROI or production reliability is added.
-next_exact_gate: PRODUCT_CI_AND_REPLAY_CLEANLINESS_FOR_M5_REWORK
-next_exact_owner: PBPD
-next_exact_action: Open the targeted rework PR, require product CI and deterministic replay cleanliness to pass, then refresh the requirements-to-evidence matrix. If all MUST and MUST_NOT items are covered, PBPD may issue BUILD_CANDIDATE_READY and hand off to Project Finisher. Otherwise route only the remaining targeted gaps.
+requirements_status:
+  must: 13_of_13_PASS
+  must_not: 7_of_7_PASS
+  should: 4_PASS_1_PARTIAL_NON_BLOCKING
+candidate_packaging:
+  README_truth_refresh: COMPLETE
+  sdk_feedback: docs/SDK-FEEDBACK.md
+  matrix: docs/REQUIREMENTS-EVIDENCE-MATRIX.md
+next_exact_gate: PRODUCT_CI_AND_MERGE_PACKAGING__THEN_CANONICAL_BUILD_CANDIDATE_READY
+next_exact_owner: PBPD_THEN_PROJECT_FINISHER
+next_exact_action: Open packaging PR from prep/build-candidate-ready to main. Require product CI and replay cleanliness. If green, merge and update public CURRENT/HANDOVER plus private PBPD state to canonical BUILD_CANDIDATE_READY, then create the exact Project Finisher handoff. Project Finisher independently determines terminal readiness and may return TARGETED_REWORK_REQUIRED, SUBMISSION_READY or BLOCKED.
 blocked_actions:
   - no new blockchain write without a fresh exact human gate
-  - no repeat redeem based on historical evidence
-  - no protected submission
+  - no protected hackathon submission
   - no production-readiness claim
+  - no publication of private wallet/tx evidence without an explicit judge-safe evidence decision
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
