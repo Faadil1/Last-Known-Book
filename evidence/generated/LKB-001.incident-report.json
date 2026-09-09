@@ -22,25 +22,34 @@
       "id": "O-MINT-1",
       "truthClass": "OBSERVED",
       "claim": "The captured fill is labeled MINT_A_PAIR.",
-      "evidence": ["fill.kind"]
+      "evidence": [
+        "fill.kind"
+      ]
     },
     {
       "id": "O-MINT-2",
       "truthClass": "OBSERVED",
       "claim": "Explorer-derived gross contract value is 24.998976 tUSDC-equivalent and sold-leg proceeds are 0.350336.",
-      "evidence": ["source.explorerAmounts"]
+      "evidence": [
+        "source.explorerAmounts"
+      ]
     },
     {
       "id": "O-MINT-3",
       "truthClass": "OBSERVED",
       "claim": "Corrected net escrow is 24.648640, not the approximate quoteQuantity 0.375000.",
-      "evidence": ["deterministic: grossContractValue - soldLegProceeds"]
+      "evidence": [
+        "deterministic: grossContractValue - soldLegProceeds"
+      ]
     },
     {
       "id": "I-MINT-1",
       "truthClass": "INFERRED",
       "claim": "A naive directional-flow interpretation would materially misstate the economics of this fill.",
-      "evidence": ["O-MINT-1", "O-MINT-3"]
+      "evidence": [
+        "O-MINT-1",
+        "O-MINT-3"
+      ]
     },
     {
       "id": "U-MINT-1",
@@ -52,19 +61,27 @@
       "id": "O-IDX-1",
       "truthClass": "OBSERVED",
       "claim": "The transaction was confirmed successful on-chain.",
-      "evidence": ["receipt.status", "source.publicEvidence"]
+      "evidence": [
+        "receipt.status",
+        "source.publicEvidence"
+      ]
     },
     {
       "id": "O-IDX-2",
       "truthClass": "OBSERVED",
       "claim": "The bounded indexer verification path returned unavailable / could not verify.",
-      "evidence": ["indexerVerification"]
+      "evidence": [
+        "indexerVerification"
+      ]
     },
     {
       "id": "I-IDX-1",
       "truthClass": "INFERRED",
       "claim": "The application-layer failure is consistent with indexer lag, not transaction failure.",
-      "evidence": ["O-IDX-1", "O-IDX-2"]
+      "evidence": [
+        "O-IDX-1",
+        "O-IDX-2"
+      ]
     }
   ],
   "policy": {
