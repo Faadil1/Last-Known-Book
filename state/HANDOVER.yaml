@@ -1,33 +1,34 @@
-schema: LKB-HANDOVER-v1.5
-updated_utc: "2026-09-09T12:16:11Z"
+schema: LKB-HANDOVER-v1.6
+updated_utc: "2026-09-09T12:23:30Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 internal_project_slug: dreamdex-execution-incident-response
 owner: PBPD
-lifecycle: SHANNON_SETUP_003_HUMAN_AUTHORIZED__LOCAL_EXECUTION_PENDING
+lifecycle: SHANNON_SETUP_003_HUMAN_AUTHORIZED__WINDOWS_RUNNER_FIXED__LOCAL_EXECUTION_PENDING
 canonical_branch: main
 canonical_vertical_slice_merge: c6be8015b2ed8e08b2095dd60c19ea89369d2a82
 canonical_readonly_proof_merge: 5c33fdcbca0c8c9eed660abb6a316963bc2a0c98
 canonical_packet_002_merge: 6bead00000a10b6a710bfec739928b4abb66cafd
 canonical_packet_003_merge: 137b173f37b2ff4fc11bdc3ca32010a50ad06559
 canonical_setup_003_merge: b314009e31551fd0542e9ad059f6eca5c60c6d40
+windows_setup_fix_merge: 7b7906065e130805a68a024c80c4d96cca1aebc4
 material_decisions:
   - Packets 001 and 002 expired without execution and are retired.
   - Packet 003 is canonical on main and remains bounded to the exact BTC 1h market/pool and PostOnly micro-order.
-  - The disposable wallet readiness was checked locally read-only: 1 STT gas, 0 tUSDC, 0 pool allowance. The wallet address is intentionally omitted from the public repo.
-  - Wallet setup is a separate protected action from the market packet.
-  - SHANNON_SETUP_003 permits only two possible testnet writes: tUSDC.faucet(1 raw) if balance is below 1 raw, then tUSDC.approve(exact packet pool, 1 raw) if allowance is not already exactly 1 raw.
-  - The tUSDC faucet amount is intentionally 1 raw = 0.000001 tUSDC. The exact pool allowance is intentionally 1 raw. No unlimited approval or autoApprove is allowed.
-  - Human authorization AUTHORIZE_SHANNON_SETUP_003 was received at 2026-09-09T12:16:11Z.
-  - This authorization covers only the bounded local setup writes above and does not authorize SHANNON_PACKET_003 market placement/cancel.
-  - Setup runner is scripts/shannon-setup-local.mjs. It requires --execute plus LKB_SETUP_CONFIRM=AUTHORIZE_SHANNON_SETUP_003 and a local TEST_WALLET_PRIVATE_KEY loaded from .env.local.
-  - Setup runner requires Packet 003 and Setup 003 to remain unexpired and bound to the same pool; otherwise it fails closed.
-  - The assistant must not broadcast faucet, approval, market-order or cancel transactions.
+  - Disposable wallet readiness was checked locally read-only: 1 STT gas, 0 tUSDC, 0 pool allowance; no write occurred.
+  - The Windows setup read-only runner printed PASS JSON, then Node emitted UV_HANDLE_CLOSING due to forced process.exit while network handles were closing.
+  - PR #6 fixed only scripts/shannon-setup-local.mjs to terminate gracefully. Setup CI run 34350676471 passed. The market packet runner lifecycle was intentionally left unchanged for a separate later fix.
+  - Human authorization AUTHORIZE_SHANNON_SETUP_003 remains valid only for the bounded setup writes and is not broadened by the runtime fix.
+  - SHANNON_SETUP_003 permits only tUSDC.faucet(1 raw) if balance < 1 raw, then approve(exact packet pool, 1 raw) if allowance is not already exactly 1 raw.
+  - No market order, cancel, autoApprove, unlimited approval, mainnet action, or substitute pool is authorized.
 wallet_readiness_observed_locally:
   chain_id: 50312
   gas_stt_raw: "1000000000000000000"
   tusdc_raw: "0"
   pool_allowance_raw: "0"
+  read_only_pass: true
+  blockchain_write_performed: false
+  windows_assertion_after_json: UV_HANDLE_CLOSING
   private_key_shared: false
   wallet_address_in_public_repo: false
 setup_003:
@@ -63,9 +64,9 @@ proof_status:
   behavior_proof: NOT_YET
   outcome_proof: NOT_YET
   production_evidence: ABSENT
-next_exact_gate: LOCAL_EXECUTION_OF_AUTHORIZED_SHANNON_SETUP_003_THEN_READ_ONLY_RECONCILIATION
+next_exact_gate: PULL_WINDOWS_FIX__READ_ONLY_RECHECK__THEN_LOCAL_EXECUTION_OF_AUTHORIZED_SHANNON_SETUP_003
 next_exact_owner: HUMAN_FOR_LOCAL_SETUP_EXECUTION__PBPD_FOR_RECONCILIATION
-next_exact_action: User pulls main, loads TEST_WALLET_PRIVATE_KEY from local .env.local into the process environment without printing it, sets WALLET_ADDRESS to the disposable public address, sets LKB_SETUP_CONFIRM=AUTHORIZE_SHANNON_SETUP_003, and runs node scripts/shannon-setup-local.mjs --execute before 08:30 Toronto. Then run scripts/check-shannon-wallet.mjs again. Only if STT > 0, tUSDC >= 1 raw and exact pool allowance == 1 raw may the separate SHANNON_PACKET_003 human authorization gate be considered.
+next_exact_action: User pulls main, reruns node scripts/shannon-setup-local.mjs read-only and confirms no UV_HANDLE_CLOSING assertion. If PASS and current local time is still before 08:30 Toronto, set LKB_SETUP_CONFIRM=AUTHORIZE_SHANNON_SETUP_003 and run node scripts/shannon-setup-local.mjs --execute. Then run scripts/check-shannon-wallet.mjs. Only if STT > 0, tUSDC >= 1 raw and exact pool allowance == 1 raw may the separate SHANNON_PACKET_003 authorization gate be considered.
 blocked_actions:
   - assistant must not broadcast any blockchain transaction
   - no private key disclosure or commit
