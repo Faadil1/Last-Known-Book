@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v1.6
-updated_utc: "2026-09-09T12:35:28Z"
+schema: LKB-CURRENT-v1.7
+updated_utc: "2026-09-09T12:38:13Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,13 +8,13 @@ product:
 lifecycle:
   owner: PBPD
   stage: CONSEQUENTIAL_BUILD_VERTICAL_SLICE
-  status: SHANNON_PACKET_003_HUMAN_AUTHORIZED__LOCAL_EXECUTION_PENDING
+  status: SHANNON_PACKET_003_EXECUTED_AND_RECONCILED__PBPD_PROOF_PROMOTION_NEXT
 authority:
   project_authorized: true
   build_authorized_within_prd_scope: true
   shannon_packet_001: EXPIRED_NOT_EXECUTED
   shannon_packet_002: EXPIRED_NOT_EXECUTED
-  shannon_packet_003: HUMAN_AUTHORIZED_FOR_LOCAL_EXECUTION
+  shannon_packet_003: EXECUTED_WITH_EXACT_HUMAN_AUTHORIZATION
   shannon_packet_003_authorization_received_utc: "2026-09-09T12:35:28Z"
   shannon_setup_003: EXECUTED_AND_RECONCILED
   blockchain_write_by_assistant: NOT_PERMITTED
@@ -25,39 +25,37 @@ privacy:
   private_key_committed_or_shared: false
   local_secret_file: .env.local
   setup_tx_hashes_committed_to_public_repo: false
+  market_tx_hashes_committed_to_public_repo: false
+  exact_receipt_bundle_location: PRIVATE_PBPD_CANON
 wallet_setup_003_result:
   source: LOCAL_USER_EXECUTION_OUTPUT_PLUS_READ_ONLY_POSTCHECK
   chain_id: 50312
   post_state_verdict: PASS
-  gas_stt_raw: "996922702000000000"
-  tusdc_raw: "1"
-  pool_allowance_raw: "1"
-  market_order_performed: false
+  gas_stt_raw_after_setup: "996922702000000000"
+  tusdc_raw_after_setup: "1"
+  pool_allowance_raw_after_setup: "1"
+  market_order_performed_during_setup: false
 shannon_packet_003:
   canonical_merge: 137b173f37b2ff4fc11bdc3ca32010a50ad06559
   packet: evidence/shannon/SHANNON-PACKET-003.json
   local_runner: scripts/shannon-packet-local.mjs
+  execution_generated_utc: "2026-09-09T12:38:13.516Z"
   selected_market:
     asset: BTC
     interval_sec: 3600
     market_id: 0x0000000000000000000000000000000000000000000000000000000000018075
-    packet_pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
-    onchain_pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
-    status: 1
+    pool: 0xFF52C100d53365365d655Af84b2Db121fE86f0a3
+    status_at_execution_gate: 1
     expiry: 1788958800
-  local_read_only_gate:
+  final_read_gate:
     verdict: PASS
     chain_id: 50312
-    seconds_left_at_check: 1636
+    seconds_left_at_check: 1310
     tick_size_raw: "1000"
     lot_size_raw: "1000"
     min_quantity_raw: "1000"
-    best_bid_raw: "830000"
-    best_bid_quantity_raw: "200000000"
-    best_ask_raw: "855000"
-    best_ask_quantity_raw: "200000000"
-    windows_uv_assertion_after_json: false
-    blockchain_write_performed: false
+    best_bid_raw: "852000"
+    best_ask_raw: "875000"
   bounded_order:
     side: BUY_YES
     order_type: PostOnly
@@ -66,17 +64,33 @@ shannon_packet_003:
     max_principal_raw_tusdc: "1"
     max_principal_human_tusdc: 0.000001
     auto_approve: false
-    if_resting: CANCEL_EXACT_RETURNED_ORDER_ID
-  cutoff_utc: "2026-09-09T12:45:00Z"
-  cutoff_toronto: "2026-09-09T08:45:00-04:00"
-  wallet_readiness_gate: PASS
-  human_market_write_approval: RECEIVED
+  placement_result:
+    receipt_status: success
+    fills_count: 0
+    order_placed_event: true
+    order_rested_event: true
+  cancel_result:
+    receipt_status: success
+    same_order_id_cancelled: true
+    order_cancelled_event: true
+  reconciliation:
+    tusdc_before_raw: "1"
+    tusdc_after_raw: "1"
+    restored_exactly: true
+    gas_token_spent_expected: true
+  independent_explorer_readback: PENDING_INDEXER_VISIBILITY
 proof_status:
-  technical_proof: PACKET_003_LOCAL_AND_CI_READ_ONLY_GATES_PASS
-  wallet_setup_write_proof: REAL_SHANNON_TESTNET_SETUP_EXECUTED_AND_POST_STATE_RECONCILED
-  product_originated_shannon_write_proof: AUTHORIZED_NOT_YET_EXECUTED
-  behavior_proof: SETUP_BEHAVIOR_PROOF_PRESENT__MARKET_BEHAVIOR_PROOF_PENDING_LOCAL_EXECUTION
-  outcome_proof: NOT_YET
+  technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
+  wallet_setup_write_proof: PASS_REAL_SHANNON_SETUP_AND_POST_STATE_RECONCILIATION
+  product_originated_shannon_write_proof: PASS_REAL_SHANNON_PACKET_003
+  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
+  outcome_proof: PARTIAL_OPERATIONAL_CONTAINMENT_ONLY__NO_BUSINESS_OUTCOME_CLAIM
   production_evidence: ABSENT
-next_gate: LOCAL_EXECUTION_OF_AUTHORIZED_SHANNON_PACKET_003_THEN_RECEIPT_AND_STATE_RECONCILIATION
-next_owner: HUMAN_FOR_LOCAL_MARKET_EXECUTION__PBPD_FOR_RECEIPT_AND_STATE_RECONCILIATION
+truth_boundaries:
+  no_fill_claim: VERIFIED_FROM_PACKET_EXECUTION_OUTPUT
+  exact_cancel_claim: VERIFIED_FROM_ORDER_ID_AND_ORDER_CANCELLED_EVENT
+  collateral_restored_claim: VERIFIED_FROM_TUSDC_BEFORE_AFTER
+  production_readiness_claim: FORBIDDEN
+  business_impact_claim: NOT_YET_PROVEN
+next_gate: PBPD_PROOF_PROMOTION_AND_TERMINAL_READINESS_GAP_REASSESSMENT
+next_owner: PBPD
