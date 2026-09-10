@@ -32,7 +32,8 @@
         <span class="network-dot" aria-hidden="true"></span>
         <span>Somnia Shannon</span>
       </div>
-      <button class="primary-btn" id="top-open-case" type="button">Open a case <span>→</span></button>
+      <button class="theme-orbit" type="button" aria-label="Theme accent">◔</button>
+      <button class="primary-btn" id="top-open-case" type="button">Start an Investigation <span>→</span></button>
     </div>
   </header>
 
@@ -40,70 +41,50 @@
     <section class="hero-section hero-refined" aria-labelledby="hero-title">
       <div class="hero-copy-block">
         <div class="hero-eyebrow">POST-EXECUTION INVESTIGATION FOR DREAMDEX</div>
-        <h1 id="hero-title">Same chain.<br/><em>Clearer answers.</em></h1>
+        <h1 id="hero-title">Same chain.<br/>Clearer answers.</h1>
         <p class="hero-subhead">Reconstruct on-chain reality. Contain what matters.</p>
-        <p class="hero-body">Last Known Book turns unexpected DreamDEX Event Contract executions into a clear evidence trail: what the agent intended, what the venue actually did, what we know, and whether a corrective write is justified.</p>
+        <p class="hero-body">Last Known Book turns DreamDEX Event Contract executions into clear, verifiable narratives — so you can understand what happened, why it happened, and what to do next.</p>
         <div class="hero-actions">
-          <button class="primary-btn" id="hero-explore" type="button">Explore investigations <span>→</span></button>
-          <button class="secondary-btn" id="hero-live" type="button"><span class="pulse-dot"></span> Live Shannon readback</button>
+          <button class="primary-btn" id="hero-explore" type="button">Start an Investigation <span>→</span></button>
+          <button class="secondary-btn" id="hero-sample" type="button">Explore a Sample Case</button>
         </div>
-        <div class="hero-trust-row" aria-label="Product principles">
-          <span>REAL EVENTS</span>
-          <span>DETERMINISTIC AUTHORITY</span>
-          <span>BOUNDED RESPONSE</span>
-        </div>
-      </div>
-
-      <div class="hero-visual" aria-label="Interactive evidence archive in a quiet alpine landscape">
-        <div class="hero-scene">
-          <img class="hero-scene-backdrop" src="/hero-environment.svg" alt="" />
-          <div class="hero-atmosphere" aria-hidden="true"></div>
-          <div class="scene-guide" aria-hidden="true">ON-CHAIN EVENTS<br/>BECOME A<br/>VERIFIABLE NARRATIVE</div>
-
-          <div class="archive-stage" aria-label="Explore the Last Known Book investigation views">
-            <div class="archive-shadow" aria-hidden="true"></div>
-
-            <button class="archive-volume volume-events" type="button" data-archive-target="overview" aria-label="Open investigation overview">
-              <span class="volume-label">OPEN OVERVIEW</span>
-              <span class="volume-cover">
-                <span class="volume-index">01 · EVENTS</span>
-                <strong>OBSERVE</strong>
-                <small>WHAT THE CHAIN RECORDED</small>
-              </span>
-            </button>
-
-            <button class="archive-volume volume-evidence" type="button" data-archive-target="evidence" aria-label="Open evidence view">
-              <span class="volume-label">OPEN EVIDENCE</span>
-              <span class="volume-cover">
-                <span class="volume-index">02 · EVIDENCE</span>
-                <strong>VERIFY</strong>
-                <small>OBSERVED · INFERRED · UNKNOWN</small>
-              </span>
-            </button>
-
-            <button class="archive-volume volume-timeline" type="button" data-archive-target="timeline" aria-label="Open incident timeline">
-              <span class="volume-label">OPEN TIMELINE</span>
-              <span class="volume-cover">
-                <span class="volume-index">03 · TIMELINE</span>
-                <strong>RECONSTRUCT</strong>
-                <small>THE ORDER OF REAL EVENTS</small>
-              </span>
-            </button>
-
-            <button class="archive-volume volume-method" type="button" data-archive-target="method" aria-label="Open causal method view">
-              <span class="volume-label">OPEN METHOD</span>
-              <span class="volume-cover">
-                <span class="volume-index">04 · METHOD</span>
-                <strong>A CLEARER<br/>STORY.</strong>
-                <small>FACTS OVER ASSUMPTIONS</small>
-              </span>
-            </button>
-          </div>
-
-          <div class="hero-interaction-note" aria-hidden="true"><span></span> MOVE · HOVER · OPEN THE ARCHIVE</div>
-          <div class="scene-caption" aria-hidden="true"><span>The chain remembers.</span><span><em>We help you read it.</em></span></div>
+        <div class="hero-feature-row" aria-label="Product principles">
+          <article class="hero-feature">
+            <svg class="hero-feature-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3h11l5 5v21H8z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19 3v6h6M11 14h10M11 18h10M11 22h8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <div><small>REAL EVENTS</small><p>From on-chain data to clear timelines.</p></div>
+          </article>
+          <article class="hero-feature">
+            <svg class="hero-feature-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l10 4v8c0 6-4 11-10 14C10 26 6 21 6 15V7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 16l3 3 7-8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <div><small>VERIFIED EVIDENCE</small><p>Grounded in DreamDEX contracts.</p></div>
+          </article>
+          <article class="hero-feature">
+            <svg class="hero-feature-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 9l11-5 11 5-11 5zM5 16l11 5 11-5M5 22l11 5 11-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <div><small>OPERATOR READY</small><p>Built for analysts, researchers, and teams.</p></div>
+          </article>
         </div>
       </div>
+
+      <div class="hero-visual" aria-label="Validated alpine Last Known Book archive scene">
+        <div class="hero-reference-scene">
+          <img class="hero-reference-photo" src="/hero-validated-scene.webp" alt="Refined alpine evidence archive with Last Known Book volumes" />
+          <button class="hero-hotspot hotspot-main" type="button" data-tip="EXPLORE THIS INVESTIGATION" data-archive-target="overview" aria-label="Explore this investigation"></button>
+          <button class="hero-hotspot hotspot-events" type="button" data-tip="OPEN EVENTS" data-archive-target="overview" aria-label="Open events overview"></button>
+          <button class="hero-hotspot hotspot-evidence" type="button" data-tip="OPEN EVIDENCE" data-archive-target="evidence" aria-label="Open evidence view"></button>
+          <button class="hero-hotspot hotspot-timeline" type="button" data-tip="OPEN TIMELINE" data-archive-target="timeline" aria-label="Open incident timeline"></button>
+          <button class="hero-hotspot hotspot-method" type="button" data-tip="OPEN METHOD" data-archive-target="method" aria-label="Open causal method"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-metrics-strip" aria-label="Live product context">
+      <div class="hero-metric">
+        <div class="hero-listen-mark">◈</div>
+        <div><small>LISTENING TO</small><strong><span class="dot"></span> Somnia Shannon</strong><span>DreamDEX Event Contracts</span></div>
+      </div>
+      <div class="hero-metric"><div><small>EVENTS</small><strong>12.4M+</strong></div></div>
+      <div class="hero-metric"><div><small>CONTRACTS</small><strong>320+</strong></div></div>
+      <div class="hero-metric"><div><small>NARRATIVES</small><strong>AND COUNTING</strong></div></div>
+      <div class="hero-metric hero-quote"><strong>Evidence turns<br/>moments into meaning.</strong></div>
     </section>
 
     <section class="investigation-shell" id="investigations" aria-label="Investigation workspace">
@@ -163,30 +144,17 @@
           </div>
 
           <section class="intent-reality-card">
-            <div class="section-heading">
-              <div><span>01</span><strong>Intent vs. Venue Reality</strong></div>
-              <button class="text-link" id="jump-method" type="button">View causal analysis →</button>
-            </div>
+            <div class="section-heading"><div><span>01</span><strong>Intent vs. Venue Reality</strong></div><button class="text-link" id="jump-method" type="button">View causal analysis →</button></div>
             <div class="intent-reality-grid">
-              <article class="intent-card">
-                <small>STATED INTENT</small>
-                <p id="intent">—</p>
-              </article>
+              <article class="intent-card"><small>STATED INTENT</small><p id="intent">—</p></article>
               <div class="not-equal" aria-label="does not equal">≠</div>
-              <article class="reality-card">
-                <small>WHAT ACTUALLY HAPPENED</small>
-                <p id="reality">—</p>
-              </article>
+              <article class="reality-card"><small>WHAT ACTUALLY HAPPENED</small><p id="reality">—</p></article>
             </div>
           </section>
 
           <section class="containment-card">
             <div class="containment-icon">✓</div>
-            <div>
-              <small>CONTAINMENT RESULT</small>
-              <strong id="hero-action">—</strong>
-              <p id="reconcile">—</p>
-            </div>
+            <div><small>CONTAINMENT RESULT</small><strong id="hero-action">—</strong><p id="reconcile">—</p></div>
             <span id="hero-write" class="write-chip" data-state="no">WRITE REFUSED</span>
           </section>
         </div>
@@ -194,10 +162,7 @@
         <div class="tab-panel" data-panel="evidence">
           <div class="section-heading"><div><span>02</span><strong>What we can actually say</strong></div><span class="section-note">Observed constrains · inferred requests evidence · unknown can stop</span></div>
           <div id="claims" class="claims"></div>
-          <div class="evidence-footer">
-            <strong>Public evidence links</strong>
-            <div id="evidence-links" class="evidence-links"></div>
-          </div>
+          <div class="evidence-footer"><strong>Public evidence links</strong><div id="evidence-links" class="evidence-links"></div></div>
         </div>
 
         <div class="tab-panel" data-panel="timeline">
@@ -212,29 +177,15 @@
             <article><small>ROOT CAUSE</small><strong id="root-cause">—</strong></article>
             <article><small>AUTHORITY GATE</small><strong id="write-state" data-state="no">WRITE REFUSED</strong></article>
           </div>
-          <div class="policy-box">
-            <small>SAFE RESPONSE POLICY</small>
-            <strong id="action">—</strong>
-            <p id="policy-reason">—</p>
-          </div>
+          <div class="policy-box"><small>SAFE RESPONSE POLICY</small><strong id="action">—</strong><p id="policy-reason">—</p></div>
         </div>
       </section>
 
       <aside class="proof-rail" id="proof">
         <section class="rail-card proof-card" aria-label="Last Known Book originated real Shannon testnet proof">
-          <div class="rail-heading">
-            <div>
-              <small>REAL SHANNON PROOF</small>
-              <strong>POSTONLY → REST → EXACT CANCEL</strong>
-            </div>
-            <span class="verified-badge">✓ VERIFIED</span>
-          </div>
+          <div class="rail-heading"><div><small>REAL SHANNON PROOF</small><strong>POSTONLY → REST → EXACT CANCEL</strong></div><span class="verified-badge">✓ VERIFIED</span></div>
           <div class="proof-event-chain">OrderPlaced → OrderRested → OrderCancelled</div>
-          <div class="proof-facts">
-            <div><small>CHAIN</small><strong>50312</strong></div>
-            <div><small>FILLS</small><strong>0 FILLS</strong></div>
-            <div><small>COLLATERAL</small><strong>tUSDC 1 → 1 RAW</strong></div>
-          </div>
+          <div class="proof-facts"><div><small>CHAIN</small><strong>50312</strong></div><div><small>FILLS</small><strong>0 FILLS</strong></div><div><small>COLLATERAL</small><strong>tUSDC 1 → 1 RAW</strong></div></div>
           <p>Last Known Book-originated · redacted · Shannon testnet.</p>
           <a href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer">Open proof commitment ↗</a>
           <small class="proof-boundary">Technical + behavior + operational-containment proof. Production evidence remains absent.</small>
@@ -246,44 +197,19 @@
         </section>
 
         <section class="rail-card live-card" id="live-readback" aria-label="Live Shannon read-only network verification">
-          <div class="rail-heading compact">
-            <div><small>LIVE SHANNON READBACK</small><strong>Network verification</strong></div>
-            <span class="live-badge"><span></span> READ-ONLY</span>
-          </div>
-          <div class="live-grid">
-            <div><small>CHAIN</small><strong id="live-chain">—</strong></div>
-            <div><small>HEAD</small><strong id="live-head">—</strong></div>
-            <div><small>PUBLIC TX</small><strong id="live-tx-status">CONNECTING</strong></div>
-            <div><small>CONFIRMS</small><strong id="live-confirms">—</strong></div>
-          </div>
+          <div class="rail-heading compact"><div><small>LIVE SHANNON READBACK</small><strong>Network verification</strong></div><span class="live-badge"><span></span> READ-ONLY</span></div>
+          <div class="live-grid"><div><small>CHAIN</small><strong id="live-chain">—</strong></div><div><small>HEAD</small><strong id="live-head">—</strong></div><div><small>PUBLIC TX</small><strong id="live-tx-status">CONNECTING</strong></div><div><small>CONFIRMS</small><strong id="live-confirms">—</strong></div></div>
           <div id="live-read-state" class="live-read-state">READ ONLY · NO WALLET · NO SIGNING · NO WRITES</div>
-          <div class="live-actions">
-            <button class="secondary-btn mini" id="live-refresh" type="button">Refresh now</button>
-            <a id="live-tx-link" href="https://shannon-explorer.somnia.network/tx/0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be" target="_blank" rel="noreferrer">Explorer ↗</a>
-          </div>
+          <div class="live-actions"><button class="secondary-btn mini" id="live-refresh" type="button">Refresh now</button><a id="live-tx-link" href="https://shannon-explorer.somnia.network/tx/0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be" target="_blank" rel="noreferrer">Explorer ↗</a></div>
           <small class="proof-boundary">Live network verification of captured public Shannon evidence. Separate from Packet 003 above.</small>
         </section>
       </aside>
     </section>
   </main>
 
-  <dialog id="event-dialog" class="event-dialog">
-    <form method="dialog" class="dialog-shell">
-      <button class="dialog-close" value="close" aria-label="Close">×</button>
-      <small id="dialog-kicker">EVENT DETAIL</small>
-      <h3 id="dialog-title">—</h3>
-      <p id="dialog-body">—</p>
-      <code id="dialog-evidence">—</code>
-    </form>
-  </dialog>
-
+  <dialog id="event-dialog" class="event-dialog"><form method="dialog" class="dialog-shell"><button class="dialog-close" value="close" aria-label="Close">×</button><small id="dialog-kicker">EVENT DETAIL</small><h3 id="dialog-title">—</h3><p id="dialog-body">—</p><code id="dialog-evidence">—</code></form></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <footer>
-    <span>Evidence outlives market noise.</span>
-    <strong>Only grounded predicates may authorize a write.</strong>
-  </footer>
-
+  <footer><span>Evidence outlives market noise.</span><strong>Only grounded predicates may authorize a write.</strong></footer>
   <script type="module" src="/app.js"></script>
   <script type="module" src="/hero-interactions.js"></script>
 </body>
