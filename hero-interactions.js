@@ -1,3 +1,4 @@
+import '/atlas-route-transition.js';
 import '/component-polish.js';
 import '/atlas-room.js';
 
