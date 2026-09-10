@@ -68,11 +68,12 @@ test('bare live tx intake fails closed instead of inventing DreamDEX semantics',
 });
 
 test('agent surfaces stay read-only and expose the winning mechanism', async () => {
-  const [investigate, incidents, mcp, watcher, skill, agent] = await Promise.all([
+  const [investigate, incidents, mcp, watcher, status, skill, agent] = await Promise.all([
     read('api/investigate.js'),
     read('api/incidents.js'),
     read('api/mcp.js'),
     read('scripts/watch-shannon-readonly.mjs'),
+    read('api/agent-status.js'),
     read('SKILL.md'),
     read('agent.html')
   ]);
@@ -82,6 +83,8 @@ test('agent surfaces stay read-only and expose the winning mechanism', async () 
   assert.match(mcp, /tools\/call/);
   assert.match(watcher, /eth_getLogs/);
   assert.doesNotMatch(watcher, /eth_sendRawTransaction|walletClient|privateKey/i);
+  assert.match(status, /READ_ONLY_AGENT_INTERFACE/);
+  assert.match(status, /broadcastAvailable: false/);
   assert.match(skill, /lkb_authority_receipt/);
   assert.match(agent, /Bring your own incident/);
   assert.match(agent, /Get back bounded authority/);
@@ -101,7 +104,9 @@ test('cross-network guard performs read-only ERC20 decimals lookup', async () =>
 test('protected write path is not exposed through public agent tools', async () => {
   const tools = await read('src/agent-tools.mjs');
   const cli = await read('scripts/lkb-cli.mjs');
+  const status = await read('api/agent-status.js');
   assert.doesNotMatch(tools, /CANCEL_EXACT_ORDER.*deterministicPredicatesSatisfied/s);
   assert.doesNotMatch(cli, /privateKey|walletClient|sendTransaction|writeContract/i);
+  assert.doesNotMatch(status, /privateKey|walletClient|sendTransaction|writeContract/i);
   assert.match(cli, /READ_ONLY_BY_DEFAULT/);
 });
