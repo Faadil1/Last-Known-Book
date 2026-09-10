@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v4.3
-updated_utc: "2026-09-10T17:36:00Z"
+schema: LKB-CURRENT-v4.4
+updated_utc: "2026-09-10T17:42:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_PRODUCT_REINFORCEMENT
-  status: HS_002_AGENT_NATIVE__SOURCE_CI_PASS__VERCEL_READY__RUNTIME_RECHECK_PENDING
+  status: HS_002_AGENT_NATIVE__FINAL_SOURCE_CI_PASS__VERCEL_READY__RUNTIME_RECHECK_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -24,12 +24,12 @@ candidate:
   hidden_spots_branch: rework/hidden-spots-002-agent-native
   hidden_spots_pr: 19
   hidden_spots_base_branch: rework/benita-component-polish-v3
-  validated_implementation_head: d7e8d047813d992baaee12aca007b8aa57e888b4
-  ci_run: 34508962764
+  validated_implementation_head: 25f083b4e0f2c8efad79f99b5bcb9b586b8700db
+  ci_run: 34509507704
   ci_status: PASS
   vercel_status: READY
   vercel_preview_url: https://last-known-book-6fc1-git-rework-hidden-b7ce04-faadil-s-projects.vercel.app
-  vercel_deployment: CrsGkA9P6a8swZiGYmDpYfshjW82
+  vercel_deployment: 5j13ZPzmt2pqTjmNfbrru2RJH75B
   runtime_content_fetch_from_assistant: UNAVAILABLE_VIA_CONNECTED_VERIFICATION_TOOL
 hidden_spots_002:
   verdict: PASS_SOURCE_AND_CI__RUNTIME_RECHECK_REQUIRED
@@ -46,6 +46,7 @@ hidden_spots_002:
     - Shannon/mainnet ERC20 decimals normalization guard
     - deterministic reproduce-case agent tool
     - judge-facing /agent.html
+    - Judge Packet fast-lane and evidence-source discovery links to /agent.html
   agent_tools:
     - lkb_investigate
     - lkb_authority_receipt
@@ -61,7 +62,7 @@ hidden_spots_002:
     authority_receipt_executes_action: false
     mainnet_write_added: false
   test_result:
-    final_run: 34508962764
+    final_run: 34509507704
     verdict: PASS
     notes:
       - canonical case intake uses existing deterministic engine
@@ -69,6 +70,7 @@ hidden_spots_002:
       - authority receipt deterministic
       - Shannon 6-decimal and mainnet 18-decimal conversion exact
       - public agent surfaces guarded against execution APIs
+      - Judge Packet exposes the agent-native layer instead of leaving it hidden
   upstream_feedback:
     path: docs/UPSTREAM-FEEDBACK-DRAFT.md
     publication_attempt_2026_09_10: BLOCKED_GITHUB_INTEGRATION_403_RESOURCE_NOT_ACCESSIBLE
@@ -80,7 +82,7 @@ hidden_spots_002:
 product_differentiator:
   canonical_line: "The trading agent may be AI. The layer that decides whether money moves is not."
   reinforced_flow: DREAMDEX_EVENT_OR_TX -> LKB_INTAKE -> OBSERVED_INFERRED_UNKNOWN -> ROOT_CAUSE_OR_FAIL_CLOSED_UNKNOWN -> SAFE_ACTION -> AUTHORITY_RECEIPT -> OPERATOR_OR_UPSTREAM_AGENT
-  judge_value: product is now both an investigation experience and a bounded agent-consumable incident-response layer
+  judge_value: product is now both an investigation experience and a bounded agent-consumable incident-response layer, with direct discovery from the Judge Packet
 protected_product_layers:
   - approved warm editorial physical-binder hero direction
   - component polish v3
@@ -100,7 +102,7 @@ remaining_P0:
   - VERIFY_PUBLIC_AGENT_STATUS_GET_IN_RUNTIME
   - VERIFY_SHANNON_NETWORK_NORMALIZATION_GET_IN_RUNTIME
   - ATTEMPT_MAINNET_NETWORK_NORMALIZATION_GET_IN_RUNTIME
-  - TRACE_HS002_PRODUCT_REINFORCEMENT_RECHECK
+  - TRACE_HS002_RUNTIME_RECHECK
   - HUMAN_APPROVAL_OF_HS002
   - MERGE_PR19_INTO_POLISH_BRANCH_AFTER_PASS
   - RECHECK_AND_PROMOTE_PR18_THEN_PR17_THROUGH_EXISTING_VISUAL_GATES
