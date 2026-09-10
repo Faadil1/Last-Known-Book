@@ -17,7 +17,8 @@ When an agent gets an unexpected execution, Last Known Book reconstructs **Agent
 3. Land the memory hook: **This wasn't a whale. It was a mint.**
 4. Read the **REAL SHANNON PROOF** card: chain `50312` → PostOnly → `0 fills` → `OrderPlaced → OrderRested → OrderCancelled` → `tUSDC 1 raw → 1 raw`.
 5. Use the **LIVE SHANNON READBACK** panel to verify the network head and a public captured transaction without signing or connecting a wallet.
-6. Inspect `docs/SDK-FEEDBACK.md`, `docs/DEMO-SCRIPT.md` and CI if deeper technical validation is needed.
+6. Open `/agent.html` to see how another agent can hand an incident to Last Known Book and consume a machine-readable Authority Receipt.
+7. Inspect `docs/SDK-FEEDBACK.md`, `docs/DEMO-SCRIPT.md` and CI if deeper technical validation is needed.
 
 Judge code candidate: `6ee02917aa92951dc1222282367ef7599095bffa`  
 Winning Intelligence CI: `34361037435` — PASS (engine tests + proof/redaction tests + deterministic replay cleanliness).
@@ -73,6 +74,52 @@ reconciled incident receipt + operator-visible closure
 
 This is intentionally not another alpha engine. It is the assurance layer between **an agent that already acted** and **the decision about what happens next**.
 
+## Agent-native integration — HS-002
+
+Last Known Book is no longer only a human-facing investigation surface. The same bounded mechanism can now be consumed by an upstream agent or incident router:
+
+```text
+DreamDEX event / tx / captured case
+              ↓
+      Last Known Book intake
+              ↓
+ OBSERVED / INFERRED / UNKNOWN
+              ↓
+ root cause or fail-closed UNKNOWN
+              ↓
+          safe action
+              ↓
+ machine-readable Authority Receipt
+```
+
+Available surfaces:
+
+- `POST /api/investigate` — Bring Your Own Incident. Accepts a canonical/captured case or a live `txHash` intake.
+- `POST /api/incidents` — provider-neutral inbound operational webhook.
+- `POST /api/mcp` — bounded agent tool discovery/calls; no protected write tool.
+- `npm run mcp` — local stdio agent adapter.
+- `npm run lkb -- ...` — JSON-first CLI for incident intake and network checks.
+- `SKILL.md` — LLM-readable operating reference.
+- `/agent.html` — judge-facing explanation of the agent integration contract.
+
+A transaction-only intake deliberately does **not** invent DreamDEX-native semantics from a bare receipt. If the cause cannot be deterministically established, Last Known Book returns `UNKNOWN` plus `RETRY_READ` or `ESCALATE`, with `writeAuthorized:false`.
+
+### Authority Receipt
+
+`LKB-AUTHORITY-RECEIPT-v0.1` turns the safety boundary into a machine-readable artifact: report hash, recommended action, `writeAuthorized`, observed/inferred/unknown counts, blocking unknowns and explicit `executionPerformed:false`.
+
+A receipt can be consumed by another agent. It still cannot move money by itself.
+
+### Cross-network normalization
+
+`GET /api/network-check?network=shannon` and `?network=mainnet` read chain identity and ERC-20 `decimals()` using read-only RPC. This protects the 6-decimal Shannon tUSDC vs 18-decimal mainnet USDso boundary without performing a mainnet transaction.
+
+### Live event ingestion seam
+
+`scripts/watch-shannon-readonly.mjs` uses only `eth_chainId`, `eth_blockNumber` and `eth_getLogs` for a configured address/topic. Raw logs are emitted as intake candidates; they are not automatically promoted to semantic claims.
+
+See `docs/AGENT-INTEGRATION.md` for the complete contract and explicit non-actions.
+
 ## Production adoption path — without pretending the prototype is production
 
 The credible next path is incremental:
@@ -104,6 +151,15 @@ Optional Shannon read smoke:
 npm run live:read
 ```
 
+Agent-native read-only surfaces:
+
+```bash
+npm run lkb -- investigate data/cases/mint-pair-indexer-lag.json
+npm run lkb -- network-check shannon
+npm run lkb -- network-check mainnet
+npm run mcp
+```
+
 The judge-facing live panel is read-only. It never requests a wallet, key or signature.
 
 The protected Shannon write runners are intentionally not a one-command demo. They fail closed on chain, market, pool, lifecycle, book parameters, gas, collateral, allowance, cutoff and exact human-confirmation predicates.
@@ -120,7 +176,9 @@ The protected Shannon write runners are intentionally not a one-command demo. Th
 - judge-facing `Intent ≠ Venue Reality` casefile UI;
 - rendered 1280×720 causal-slice and reduced-motion assurance;
 - **real Last Known Book-originated Shannon behavior proof**: PostOnly placement → `OrderPlaced` / `OrderRested` → exact-order cancel → `OrderCancelled` → tUSDC restored exactly;
-- inference alone cannot authorize a write; deterministic predicates **and** explicit human confirmation are required.
+- inference alone cannot authorize a write; deterministic predicates **and** explicit human confirmation are required;
+- agent-native read-only intake + machine-readable Authority Receipt;
+- cross-network collateral normalization guard that verifies `decimals()` instead of assuming testnet scale.
 
 ## Truth boundary
 
@@ -130,7 +188,9 @@ Still **not** claimed:
 - MTTR / MTTRC improvement versus a measured manual baseline;
 - ROI, financial-impact distribution or incident prevalence;
 - fraud/manipulation detection without direct evidence;
-- that captured third-party replay transactions were originated by Last Known Book.
+- that captured third-party replay transactions were originated by Last Known Book;
+- that a bare tx receipt alone proves a DreamDEX root cause;
+- that an Authority Receipt executes or bypasses the protected write path.
 
 The real Shannon micro-proof is **technical + behavior + operational-containment evidence**, not production evidence or business-outcome proof.
 
@@ -142,6 +202,8 @@ See:
 - `docs/SDK-SNAPSHOT.md`
 - `docs/SDK-FEEDBACK.md`
 - `docs/UPSTREAM-FEEDBACK-DRAFT.md`
+- `docs/AGENT-INTEGRATION.md`
+- `SKILL.md`
 - `docs/DEMO-SCRIPT.md`
 - `docs/SUBMISSION-PACKAGE.md`
 - `docs/REQUIREMENTS-EVIDENCE-MATRIX.md`
