@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v7.3
-updated_utc: "2026-09-10T21:12:00Z"
+schema: LKB-CURRENT-v7.4
+updated_utc: "2026-09-10T21:18:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,18 +9,17 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: FINAL_DEMO_AND_SUBMISSION_ASSURANCE
-  status: MAIN_CANONICAL__EVIDENCE_DENSITY_SOURCE_CI_AND_CLOUDFLARE_PASS__LIVE_WITNESS_BROWSER_RECHECK_PENDING
+  status: MAIN_CANONICAL__FINAL_EVIDENCE_DENSITY_SOURCE_CI_AND_CLOUDFLARE_PASS__PRODUCTION_BROWSER_WITNESS_RECHECK_PENDING
 
 canonical_runtime:
   branch: main
   public_production_url: https://last-known-book.pages.dev
   source_of_truth: GITHUB_MAIN
-  evidence_density_product_commit: 5fdfb530361115ee955ec2d0f32071df549e13ba
-  assurance_test_fix_commit: ece387cbf4bf7bac166a84da0500ffaf9b3b98db
-  github_actions_run: 34529607842
+  validated_product_head: 15caef18b2e0a030a2e3027411f7cc385ee9628f
+  github_actions_run: 34530215938
   github_actions_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://85ca1829.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://78495708.last-known-book.pages.dev
   separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
 
 authority:
@@ -34,44 +33,46 @@ final_product_surface:
   visual_direction: THE_ATLAS_ROOM_V5_JURY_FIRST
   zero_flash_home_to_case_room: PASS
   mobile_reactivity: PROTECTED
-  supporting_pages:
-    methodology: /methodology.html
-    proof: /proof.html
-    proof_commitment: /proof.html#commitment
-    agent: /agent.html
-    docs: /docs.html
+  methodology: /methodology.html
+  proof: /proof.html
+  proof_commitment: /proof.html#commitment
+  proof_live_witnesses: /proof.html#live-witnesses
+  agent: /agent.html
+  docs: /docs.html
+  judge_packet_visual_proof_routes: PASS
+  judge_packet_direct_raw_commitment_link: REMOVED
 
-proof_room:
-  product_originated_real_shannon_behavior:
+proof_taxonomy:
+  captured_replay:
     status: PASS
-    path: POSTONLY_TO_REST_TO_EXACT_CANCEL
+    count: 4
+    ids: [LKB-001, LKB-002, LKB-003, LKB-004]
+    lkb_originated_writes: false
+  product_originated_packet003:
+    status: PASS
     chain_id: 50312
+    path: POSTONLY_TO_REST_TO_EXACT_CANCEL
     fills: 0
     collateral_reconciled_exactly: true
   live_read_only_witnesses:
-    source_ci_contract: PASS
-    cloudflare_deployment: PASS
-    production_browser_values: HUMAN_OR_BROWSER_RECHECK_PENDING
-    purpose: INDEPENDENT_EVIDENCE_DENSITY_NOT_TRANSACTION_COUNT
-    calls:
-      - eth_chainId
-      - eth_blockNumber
-      - eth_getTransactionReceipt_PUBLIC_LKB003_CAPTURE
-      - eth_getCode_DREAMDEX_BINARY_MARKETS_MODULE
-      - eth_call_TUSDC_DECIMALS
-    expected:
-      chain_id: 50312
-      dreamdex_module: 0x3ecC694Cef705358864a646142ac17A90E29e388
-      tusdc: 0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E
-      tusdc_decimals: 6
+    source_contract: PASS
+    github_actions: PASS
+    cloudflare_pages: PASS
+    production_browser_values: RECHECK_PENDING
+    checks:
+      - eth_chainId_plus_eth_blockNumber
+      - eth_getTransactionReceipt_public_LKB003_capture
+      - eth_getCode_DreamDEX_BinaryMarketsModule
+      - eth_call_tUSDC_decimals
     safety:
       - READ_ONLY
       - NO_WALLET
       - NO_SIGNING
       - NO_BROADCAST
       - FAIL_CLOSED_IF_RPC_UNAVAILABLE
-      - PUBLIC_CAPTURED_LKB003_RECEIPT_IS_NOT_PACKET003
-  proof_commitment:
+      - PUBLIC_LKB003_RECEIPT_IS_NOT_PACKET003
+  tamper_evident_commitment:
+    status: PASS
     judge_facing: VISUAL_RECEIPT
     raw_json_rendering: REMOVED
     raw_machine_artifact: /evidence/SHANNON-PROOF-003-COMMITMENT.json
@@ -82,41 +83,43 @@ competitive_evidence_strategy:
   rationale:
     - repeated identical PostOnly writes add low marginal evidence value
     - independent live witnesses answer distinct judge objections without increasing write risk
-    - a second product-originated write is valuable only if it proves a materially different missing DreamDEX semantic path
-  new_blockchain_write_now: NOT_AUTHORIZED_AND_NOT_RECOMMENDED_WITHOUT_HIGH_VALUE_GAP
+    - each evidence source must prove a different critical claim
+  second_product_originated_write:
+    default: DO_NOT_ADD
+    exception: ONLY_IF_MATERIAL_MISSING_DREAMDEX_SEMANTIC_PATH
+    authority: FRESH_EXACT_HUMAN_GATE_REQUIRED
 
 rubric_chain:
   sequence: RUBRIC_TO_PAIN_TO_PROBLEM_TO_DIFFERENTIATOR_TO_EXECUTION_TO_EVIDENCE_TO_STORY_TO_DEMO_TO_QA
-  rubric: PASS
-  pain: PASS
-  problem: PASS
-  differentiator: STRONG_PASS
-  execution: PASS
-  evidence: STRONG_PASS_SOURCE_AND_DEPLOY__LIVE_BROWSER_WITNESS_RECHECK_PENDING
-  story: PASS
-  demo: PENDING_BENITA_ENCODED_ARTIFACT
-  qa: PASS_REFRESHED
+  RUBRIC: PASS
+  PAIN: PASS
+  PROBLEM: PASS
+  DIFFERENTIATOR: STRONG_PASS
+  EXECUTION: PASS
+  EVIDENCE: STRONG_PASS_SOURCE_CI_DEPLOY__LIVE_BROWSER_WITNESS_RECHECK_PENDING
+  STORY: PASS
+  DEMO: PENDING_BENITA_ENCODED_ARTIFACT
+  QA: PASS_REFRESHED
 
 submission_package:
-  status: REFRESHED
-  production_url_stale_placeholder: REMOVED
-  next_build_question_stale_ingestion_claim: REMOVED
+  status: FINAL_CANDIDATE_VIDEO_AND_HUMAN_SUBMISSION_GATE_PENDING
+  stale_runtime_placeholders: REMOVED
+  stale_next_build_ingestion_claim: REMOVED
   proof_taxonomy: EXPLICIT
-  organizer_extension_best_current_source: 2026-09-11T23:59:00Z
-  final_cutoff_recheck_before_submit: REQUIRED_DUE_TO_CONFLICTING_ECOSYSTEM_MIRROR
+  final_cutoff_recheck_before_submit: REQUIRED
 
 benita_demo_handoff:
-  status: REFRESHED_FOR_PROOF_ROOM_LIVE_WITNESSES
+  status: READY_AND_REFRESHED
   document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
   runtime_to_record: https://last-known-book.pages.dev
-  target_duration: 2_to_3_minutes
   canonical_script: docs/DEMO-SCRIPT.md
+  target_duration: 2_to_3_minutes
   proof_taxonomy_must_remain_distinct:
     - CAPTURED_REPLAY
     - PRODUCT_ORIGINATED_PACKET003
     - LIVE_READ_ONLY_WITNESSES
     - TAMPER_EVIDENT_COMMITMENT
 
-next_gate: PRODUCTION_BROWSER_RECHECK_OF_LIVE_WITNESSES_THEN_BENITA_ENCODED_DEMO
+next_gate: PRODUCTION_BROWSER_RECHECK_OF_PROOF_LIVE_WITNESSES_THEN_BENITA_ENCODED_DEMO
 next_owner: HUMAN_USER_PLUS_BENITA_PLUS_TRACE_DESIGN_ASSURANCE
-next_exact_action: Open production /proof.html once in a normal browser and confirm the four LIVE READ-ONLY WITNESSES either resolve truthfully or fail closed without layout regressions. If PASS, proceed immediately to Benita recording and TRACE encoded-video review. Do not add another blockchain write unless a separate exact human gate approves a materially different proof path.
+next_exact_action: Open https://last-known-book.pages.dev/proof.html in a normal browser and confirm the four live witness cards resolve truthful values or fail closed cleanly with no mobile/layout regression. If PASS, record the browser result and proceed immediately to Benita recording plus TRACE encoded-video review. Do not add another blockchain write unless a separate exact human gate approves a materially different proof path.

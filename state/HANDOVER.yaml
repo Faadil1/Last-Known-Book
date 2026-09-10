@@ -1,33 +1,35 @@
-schema: LKB-HANDOVER-v7.3
-updated_utc: "2026-09-10T21:12:00Z"
+schema: LKB-HANDOVER-v7.4
+updated_utc: "2026-09-10T21:18:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: MAIN_CANONICAL__FINAL_EVIDENCE_DENSITY_DEPLOYED__BROWSER_WITNESS_RECHECK_NEXT
+lifecycle: MAIN_CANONICAL__FINAL_EVIDENCE_DENSITY_VALIDATED__BROWSER_WITNESS_RECHECK_NEXT
 
 canonical:
   branch: main
   public_runtime: https://last-known-book.pages.dev
   source_of_truth: GITHUB_MAIN
-  evidence_density_product_commit: 5fdfb530361115ee955ec2d0f32071df549e13ba
-  assurance_test_fix_commit: ece387cbf4bf7bac166a84da0500ffaf9b3b98db
-  github_actions_run: 34529607842
+  validated_product_head: 15caef18b2e0a030a2e3027411f7cc385ee9628f
+  github_actions_run: 34530215938
   github_actions_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://85ca1829.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://78495708.last-known-book.pages.dev
 
 material_decisions:
-  - Atlas Room V5 remains frozen as the final visual direction.
-  - The homepage was not expanded; additional proof density lives only in the Proof Room.
-  - Proof independence is more valuable than raw transaction count.
-  - Four live read-only witnesses are now deployed in Proof Room: Shannon chain/head, public LKB-003 captured receipt, DreamDEX BinaryMarketsModule bytecode and tUSDC decimals().
-  - These witnesses are separate from the Last Known Book-originated Packet 003 proof and from the four captured replay cases.
-  - The live witness source contract explicitly excludes wallet, signing and transaction-broadcast methods and fails closed if RPC cannot be verified.
-  - No additional blockchain write has been authorized.
-  - A future product-originated write is only worth considering if it proves a materially different, currently missing DreamDEX semantic path and receives a fresh exact human approval packet.
+  - Atlas Room V5 remains frozen as the final jury-first visual direction.
+  - The homepage remains concise; the evidence-density expansion lives in Proof Room and Judge Packet.
+  - Proof quality and independence are more valuable than raw transaction count.
+  - Four live read-only Shannon witnesses are implemented and deployed: chain/head, public LKB-003 captured receipt, DreamDEX BinaryMarketsModule bytecode and tUSDC decimals().
+  - The live witnesses are current read-only verification, not additional Last Known Book-originated trades.
+  - Product-originated Packet 003 remains the bounded real Shannon behavior proof.
+  - Captured replay cases, Packet 003, live witnesses and the tamper-evident commitment are four distinct evidence categories and must never be blurred in copy or demo narration.
+  - Public live witness source excludes wallet, signing and transaction-broadcast methods and fails closed if RPC cannot be verified.
+  - No additional blockchain write is authorized.
+  - A future product-originated write is only worth considering if it proves a materially different missing DreamDEX semantic path and receives a fresh exact human approval packet.
   - Proof Commitment remains a visual receipt; raw JSON is machine-readable audit evidence only.
-  - README, submission package, demo script and Benita handoff are aligned to production `main` and the updated proof taxonomy.
-  - Two CI failures on commit 5fdfb530 were stale literal test expectations only. They were replaced by semantic current-contract assertions on ece387c; GitHub Actions then passed.
+  - Judge Packet now routes Proof -> /proof.html, Commitment -> /proof.html#commitment and Live -> /proof.html#live-witnesses; no direct raw commitment JSON link remains in the Judge Packet source.
+  - README, submission package, demo script and Benita handoff are aligned to the production main URL and current evidence taxonomy.
+  - Final product head 15caef18 passed GitHub Actions and Cloudflare Pages.
 
 proof_taxonomy:
   captured_replay:
@@ -54,6 +56,7 @@ proof_taxonomy:
     write_methods: NONE
   commitment:
     role: PRE_JUDGING_TAMPER_EVIDENT_GIT_BINDING
+    judge_surface: /proof.html#commitment
     private_identifiers_published: false
 
 competitive_position:
@@ -75,7 +78,7 @@ rubric_chain:
     PROBLEM: PASS
     DIFFERENTIATOR: STRONG_PASS
     EXECUTION: PASS
-    EVIDENCE: STRONG_PASS_SOURCE_AND_DEPLOY__LIVE_BROWSER_WITNESS_RECHECK_PENDING
+    EVIDENCE: STRONG_PASS_SOURCE_CI_DEPLOY__LIVE_BROWSER_WITNESS_RECHECK_PENDING
     STORY: PASS
     DEMO: PENDING_ENCODED_ARTIFACT
     Q&A: PASS_REFRESHED
@@ -83,8 +86,7 @@ rubric_chain:
 submission_package:
   production_runtime: https://last-known-book.pages.dev
   video: PENDING_BENITA_PLUS_TRACE
-  best_current_organizer_extension: 2026-09-11T23:59:00Z
-  note: Somnia_Network current update says Sep 11 23:59 UTC; a lower-authority ecosystem mirror surfaced Sep 12, so re-read DoraHacks/organizer immediately before protected submit.
+  final_cutoff_recheck: REQUIRED
   protected_submit: HUMAN_ONLY
 
 benita:
@@ -100,13 +102,13 @@ benita:
   live_witness_failure_rule: DO_NOT_RETRY_REPEATEDLY_ON_CAMERA__CONTINUE_WITH_COMMITTED_PROOF
 
 remaining_P0:
-  - browser recheck production /proof.html live witness resolution and mobile reflow
-  - record outcome in canon if materially different from fail-closed design expectation
+  - production browser recheck of /proof.html live witness values and mobile reflow
+  - record browser outcome in canon if materially different from expected behavior
   - Benita records final 2-3 minute production demo
   - TRACE reviews encoded demo
   - human final video approval
   - final cover/thumbnail freeze if still needed
-  - final deadline recheck
+  - final deadline recheck immediately before protected submission
   - protected hackathon submission remains HUMAN_ONLY
 
 continuity:
