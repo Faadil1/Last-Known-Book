@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.7
-updated_utc: "2026-09-10T00:18:00Z"
+schema: LKB-CURRENT-v2.8
+updated_utc: "2026-09-10T00:29:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_UI_REWORK
-  status: DIRECTION_6_INTERACTIVE_UI_IMPLEMENTED_ON_BRANCH__CI_PENDING
+  stage: TERMINAL_ASSURANCE_DEPLOYMENT
+  status: DIRECTION_6_INTERACTIVE_UI_MERGED_AND_CI_PASS__VERCEL_RUNTIME_VERIFICATION_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_FOR_JUDGE_DEPLOYMENT
   live_readback: READ_ONLY
@@ -17,12 +17,14 @@ authority:
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  working_branch: rework/direction-6-interactive-ui
-  prior_main: 581028c662f47015d3234501227689b492b83ac8
+  direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
+  direction_6_pr: 13
+  direction_6_ci_run: 34421162093
+  direction_6_ci_status: PASS
   prior_vercel_deployment: dpl_64smusAJEA65zGdUNDU3mCpuMdqX
   prior_vercel_url: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app
 ui_direction_6:
-  status: IMPLEMENTED_CI_PENDING
+  status: MERGED_AND_CI_PASS
   identity:
     logo: brand-mark.svg
     visual_language: editorial_investigation_ledger
@@ -59,11 +61,16 @@ proof_status:
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
   production_evidence: ABSENT
+vercel:
+  deployment_protection_user_disabled: true
+  git_main_expected_to_autodeploy: true
+  connector_runtime_inspection: BLOCKED_BY_403_TEAM_SCOPE
+  public_alias_to_verify: https://last-known-book-faadil-s-projects.vercel.app
 remaining_P0:
-  - DIRECTION_6_PRODUCT_CI
-  - MERGE_IF_GREEN
-  - REDEPLOY_MERGED_DIRECTION_6_TO_VERCEL
-  - VERIFY_ANONYMOUS_HTTP_200_AND_LIVE_SHANNON_READBACK
+  - VERIFY_PUBLIC_ALIAS_HAS_DIRECTION_6_MAIN
+  - VERIFY_ANONYMOUS_HTTP_200
+  - VERIFY_API_SHANNON_READBACK
+  - VERIFY_BROWSER_LIVE_PANEL
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
 deadline:
@@ -75,5 +82,5 @@ truth_boundaries:
   captured_replays_are_not_product_originated_writes: true
   packet_003_remains_redacted: true
   production_readiness_claim: FORBIDDEN
-next_gate: DIRECTION_6_PRODUCT_CI_AND_MERGE_IF_GREEN
+next_gate: PUBLIC_VERCEL_RUNTIME_VERIFICATION_THEN_VIDEO
 next_owner: PROJECT_FINISHER
