@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v3.8
-updated_utc: "2026-09-10T12:55:00Z"
+schema: LKB-CURRENT-v3.9
+updated_utc: "2026-09-10T13:42:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_VISUAL_REWORK
-  status: HERO_RUNTIME_REJECTED__TRACE_TARGETED_REWORK_OPEN
+  status: APPROVED_EDITORIAL_REALISM_HERO_IMPLEMENTED__CI_PASS__PREVIEW_READY__VISUAL_RECHECK_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -17,42 +17,51 @@ authority:
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  rejected_runtime_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
-  rejected_runtime_capture: USER_SUPPLIED_SCREENSHOT_2026_09_10
+  implementation_branch: rework/approved-editorial-realism-hero-v2
+  implementation_pr: 17
+  implementation_head_before_state_update: 9efe3c21b9735a784b9b939ca09e29eeaf077fcd
+  implementation_ci_run: 34483720943
+  implementation_ci_status: PASS
+  vercel_preview_status: READY
+  vercel_preview_url: https://last-known-book-6fc1-git-rework-approv-28a635-faadil-s-projects.vercel.app
+  rejected_production_runtime_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
   prior_exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
-  prior_exact_hero_pr: 16
-  prior_exact_hero_ci_run: 34476646788
-  prior_exact_hero_ci_status: PASS
 visual_rework:
   trigger: USER_RUNTIME_REVIEW
-  verdict: TARGETED_REWORK_REQUIRED
-  failure_mode:
-    - hero reads as a screenshot-like concept poster rather than a believable environment
-    - binders read as pre-rendered/generated objects rather than materially credible physical binders
-    - scene depth and environmental realism are insufficient
-    - hotspots feel layered onto a baked image instead of integrated as a restrained product layer
+  reopen_verdict: TARGETED_REWORK_REQUIRED
   reopened_trace_gate: "2.25"
   supporting_trace_job: "4.75"
+  user_selected_direction: WARM_EDITORIAL_EVIDENCE_WORKSPACE_WITH_PHYSICAL_BINDERS
+  selection_status: APPROVED_FOR_IMPLEMENTATION
+  implementation_status: BRANCH_IMPLEMENTED_CI_PASS_PREVIEW_READY
   target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_LAYER
-  must_have:
-    - materially believable physical binders and evidence volumes
-    - coherent real-world spatial depth, lighting, occlusion and surface texture
-    - premium editorial/archive atmosphere grounded in product meaning
-    - interaction derived from scene geometry rather than poster overlays
-    - subtle parallax or depth response only where it improves spatial comprehension
-    - keyboard/focus and prefers-reduced-motion preserved
+  live_surface_contract:
+    - hero headline, subhead, body and CTAs remain live DOM
+    - Open Case Files affordance remains live interactive DOM
+    - Featured Investigations is live navigation mapped to LKB-001 through LKB-004
+    - approved scene image is environmental material, not the entire page UI
+    - restrained pointer depth only; prefers-reduced-motion preserved
+    - existing investigation workspace and proof surfaces remain unchanged
+  visual_recheck_must_confirm:
+    - environment reads as materially believable rather than screenshot/poster-like
+    - physical binders are visually credible and central
+    - live Open Case Files overlay cleanly masks/owns the corresponding scene affordance with no duplicate UI leak
+    - live hero copy remains readable without looking pasted onto the scene
+    - Featured Investigations feels connected to the hero rather than generic SaaS cards
+    - desktop and narrow/mobile crops preserve useful scene geometry
+    - no regression to generic dark trading-terminal or AI-slop aesthetics
   must_not_have:
-    - screenshot-as-hero treatment
-    - concept-art or fantasy-poster composition
-    - generic AI-generated product-scene artifacts
-    - floating decorative UI unrelated to scene geometry
-    - dark generic trading-terminal aesthetic
-  protected_product_layers:
-    - investigation workspace
-    - four canonical incident cases
-    - real Shannon proof rail
-    - live read-only Shannon readback
-    - premium /docs.html Judge Packet
+    - screenshot-as-entire-hero treatment
+    - duplicate baked/live hotspot visible at runtime
+    - concept-art/fantasy poster treatment
+    - generic AI trading terminal aesthetic
+    - interaction that fabricates stronger product proof
+protected_product_layers:
+  - investigation workspace
+  - four canonical incident cases
+  - real Shannon proof rail
+  - live read-only Shannon readback
+  - premium /docs.html Judge Packet
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -66,10 +75,11 @@ truth_boundaries:
   live_readback_is_not_a_new_transaction: true
   packet_003_remains_redacted: true
 remaining_P0:
-  - TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
-  - TRACE_GATE_4_75_REAL_HERO_ASSET_PRODUCTION
-  - IMPLEMENT_SELECTED_DIRECTION_ON_REVERSIBLE_BRANCH
-  - VERCEL_EXACT_RUNTIME_VISUAL_RECHECK
+  - VERCEL_PREVIEW_DESKTOP_VISUAL_RECHECK
+  - VERCEL_PREVIEW_NARROW_MOBILE_VISUAL_RECHECK
+  - TRACE_TARGETED_RUNTIME_RECHECK
+  - HUMAN_VISUAL_APPROVAL
+  - MERGE_AND_POST_MERGE_PRODUCTION_RECHECK
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
 remaining_P1:
@@ -80,5 +90,6 @@ remaining_P1:
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
-next_owner: TRACE_DESIGN_ASSURANCE
+next_gate: VERCEL_PREVIEW_VISUAL_RECHECK
+next_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_VISUAL_APPROVAL
+next_exact_action: Open PR 17 Vercel preview at desktop and narrow/mobile width, capture the hero, verify the approved realism/materiality target and absence of duplicate baked/live UI. If PASS, record TRACE targeted runtime PASS plus human visual approval before merge. If FAIL, keep PR 17 open and patch only the observed visual defect.
