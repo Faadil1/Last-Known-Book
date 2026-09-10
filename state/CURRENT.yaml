@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v3.7
-updated_utc: "2026-09-10T12:34:00Z"
+schema: LKB-CURRENT-v3.8
+updated_utc: "2026-09-10T12:55:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_VISUAL_FREEZE
-  status: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_MERGED__VERCEL_VISUAL_RECHECK_PENDING
+  stage: TERMINAL_ASSURANCE_VISUAL_REWORK
+  status: HERO_RUNTIME_REJECTED__TRACE_TARGETED_REWORK_OPEN
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -17,25 +17,42 @@ authority:
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
-  exact_hero_pr: 16
-  exact_hero_ci_run: 34476646788
-  exact_hero_ci_status: PASS
-  exact_visual_reference: USER_APPROVED_SCREENSHOT_2026_09_10
-visual_freeze:
-  hero:
-    target: EXACT_USER_APPROVED_REFERENCE_COMPOSITION
-    status: MERGED_CI_PASS
-    image_asset: hero-validated-scene.webp
-    image_asset_kind: optimized_webp_derivative_of_user_approved_reference
-    synthetic_placeholder_stack_active: false
-    interaction_scope:
-      - restrained photographic parallax
-      - transparent overview/evidence/timeline/method hotspots
-      - prefers-reduced-motion support
-  docs:
-    status: PREMIUM_HTML_JUDGE_PACKET_PRESERVED
-    primary_route: /docs.html
+  rejected_runtime_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
+  rejected_runtime_capture: USER_SUPPLIED_SCREENSHOT_2026_09_10
+  prior_exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
+  prior_exact_hero_pr: 16
+  prior_exact_hero_ci_run: 34476646788
+  prior_exact_hero_ci_status: PASS
+visual_rework:
+  trigger: USER_RUNTIME_REVIEW
+  verdict: TARGETED_REWORK_REQUIRED
+  failure_mode:
+    - hero reads as a screenshot-like concept poster rather than a believable environment
+    - binders read as pre-rendered/generated objects rather than materially credible physical binders
+    - scene depth and environmental realism are insufficient
+    - hotspots feel layered onto a baked image instead of integrated as a restrained product layer
+  reopened_trace_gate: "2.25"
+  supporting_trace_job: "4.75"
+  target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_LAYER
+  must_have:
+    - materially believable physical binders and evidence volumes
+    - coherent real-world spatial depth, lighting, occlusion and surface texture
+    - premium editorial/archive atmosphere grounded in product meaning
+    - interaction derived from scene geometry rather than poster overlays
+    - subtle parallax or depth response only where it improves spatial comprehension
+    - keyboard/focus and prefers-reduced-motion preserved
+  must_not_have:
+    - screenshot-as-hero treatment
+    - concept-art or fantasy-poster composition
+    - generic AI-generated product-scene artifacts
+    - floating decorative UI unrelated to scene geometry
+    - dark generic trading-terminal aesthetic
+  protected_product_layers:
+    - investigation workspace
+    - four canonical incident cases
+    - real Shannon proof rail
+    - live read-only Shannon readback
+    - premium /docs.html Judge Packet
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -43,12 +60,16 @@ proof_status:
   public_runtime_readback: PASS
   production_evidence: ABSENT
 truth_boundaries:
-  visual_freeze_changes_no_engine_semantics: true
-  visual_reference_does_not_change_proof_claims: true
+  hero_rework_changes_no_engine_semantics: true
+  hero_rework_changes_no_blockchain_authority: true
+  visual_rework_does_not_expand_proof_claims: true
   live_readback_is_not_a_new_transaction: true
   packet_003_remains_redacted: true
 remaining_P0:
-  - VERCEL_AUTODEPLOY_AND_EXACT_VISUAL_RECHECK
+  - TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
+  - TRACE_GATE_4_75_REAL_HERO_ASSET_PRODUCTION
+  - IMPLEMENT_SELECTED_DIRECTION_ON_REVERSIBLE_BRANCH
+  - VERCEL_EXACT_RUNTIME_VISUAL_RECHECK
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
 remaining_P1:
@@ -59,5 +80,5 @@ remaining_P1:
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: VERCEL_EXACT_VISUAL_RECHECK_THEN_FINAL_VIDEO
-next_owner: PROJECT_FINISHER
+next_gate: TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
+next_owner: TRACE_DESIGN_ASSURANCE
