@@ -67,7 +67,7 @@ function upgradeFooter() {
       </div>
       <div class="lkb-footer-col"><small>INVESTIGATE</small><button type="button" data-footer-scroll="investigations">Case register</button><button type="button" data-footer-scroll="methodology">Methodology</button><button type="button" data-footer-scroll="proof">Proof</button></div>
       <div class="lkb-footer-col"><small>VERIFY</small><a href="/docs.html">Judge Packet</a><a href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer">Proof commitment ↗</a><a href="https://shannon-explorer.somnia.network/tx/0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be" target="_blank" rel="noreferrer">Shannon explorer ↗</a></div>
-      <div class="lkb-footer-col"><small>PROJECT</small><a href="https://github.com/Faadil1/Last-Known-Book" target="_blank" rel="noreferrer">GitHub ↗</a><a href="/404.html">Error state</a><button type="button" data-footer-scroll="top">Back to top ↑</button></div>
+      <div class="lkb-footer-col"><small>PROJECT</small><a href="/agent.html">Agent interface</a><a href="https://github.com/Faadil1/Last-Known-Book" target="_blank" rel="noreferrer">GitHub ↗</a><a href="/404.html">Error state</a><button type="button" data-footer-scroll="top">Back to top ↑</button></div>
     </div>
     <div class="lkb-footer-manifesto" aria-hidden="true">EVIDENCE LIVES ON.</div>
     <div class="lkb-footer-bottom"><span>LAST KNOWN BOOK · SOMNIA SHANNON</span><span>Replay evidence ≠ production proof.</span></div>`;
