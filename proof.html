@@ -7,51 +7,83 @@
   <meta name="description" content="Judge-safe proof room for Last Known Book Shannon behavior evidence and proof commitment." />
   <link rel="icon" href="/brand-mark.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/atlas-room.css" />
+  <link rel="stylesheet" href="/atlas-room-v5.css" />
+  <link rel="stylesheet" href="/proof-room-v2.css" />
 </head>
 <body class="atlas-page">
   <header class="topbar">
     <a class="brand" href="/" aria-label="Last Known Book home"><img src="/brand-mark.svg" alt="" class="brand-mark" /><span class="brand-copy"><strong>Last Known Book</strong><small>Evidence lives on.</small></span></a>
-    <nav class="topnav" aria-label="Primary navigation"><a class="nav-link" href="/#investigations">Investigations</a><a class="nav-link" href="/methodology.html">Methodology</a><a class="nav-link is-active" href="/proof.html">Proof</a><a class="nav-link" href="/agent.html">Agent</a><a class="nav-link" href="/docs.html">Docs</a></nav>
-    <div class="topbar-actions"><div class="network-pill"><span class="network-dot"></span><span>Somnia Shannon</span></div><a class="primary-btn" href="/#investigations">Start an Investigation <span>→</span></a></div>
+    <nav class="topnav" aria-label="Primary navigation"><a class="nav-link" href="/?case=LKB-001">Cases</a><a class="nav-link" href="/methodology.html">Methodology</a><a class="nav-link is-active" href="/proof.html" aria-current="page">Proof</a><a class="nav-link" href="/agent.html">Agent</a><a class="nav-link" href="/docs.html">Docs</a></nav>
+    <div class="topbar-actions"><div class="network-pill"><span class="network-dot"></span><span>Somnia Shannon</span></div><a class="primary-btn" href="/?case=LKB-001">Open a Case <span>→</span></a></div>
   </header>
-  <main class="page-shell">
-    <a class="page-back" href="/">← RETURN TO THE ATLAS ROOM</a>
-    <div class="page-kicker">OUR PROOF COMMITMENT · JUDGE-SAFE</div>
-    <h1 class="page-title">Verifiable behavior. Explicit boundaries.</h1>
-    <p class="page-lede">The proof room separates captured replay evidence from the Last Known Book-originated Shannon behavior proof. It shows exactly what the product demonstrated, what was cryptographically committed before judging, and what is deliberately not claimed.</p>
 
-    <section class="proof-grid">
-      <article class="proof-panel">
+  <main class="page-shell proof-room-shell">
+    <a class="page-back" href="/">← RETURN TO THE ATLAS ROOM</a>
+
+    <section class="proof-room-intro">
+      <div>
+        <div class="page-kicker">PROOF ROOM · JUDGE-SAFE</div>
+        <h1 class="page-title">Verifiable behavior. Explicit boundaries.</h1>
+        <p class="page-lede">Last Known Book does not ask a judge to trust a screenshot or an AI explanation. The proof room shows what ran on Shannon, what was preserved before judging, and exactly where the claim stops.</p>
+      </div>
+      <aside class="proof-room-seal" aria-label="Proof status">
+        <small>PUBLIC PROOF STATUS</small>
+        <strong>Three proof classes pass.</strong>
+        <p>Technical · behavior · operational containment. Production evidence remains absent.</p>
+      </aside>
+    </section>
+
+    <section class="proof-room-grid" aria-label="Proof summary">
+      <article class="proof-room-card proof-room-card--green">
         <div class="page-kicker">REAL SHANNON BEHAVIOR PROOF</div>
         <h2>PostOnly → Rest → Exact Cancel</h2>
         <p>On Somnia Shannon chain 50312, Last Known Book revalidated the exact market context, placed a bounded PostOnly order, observed zero fills and a resting state, cancelled exactly the returned order, and reconciled collateral back to the original raw balance.</p>
-        <div class="proof-facts-grid">
-          <div class="proof-fact"><small>NETWORK</small><strong>Somnia Shannon · 50312</strong></div>
-          <div class="proof-fact"><small>FILLS</small><strong>0 fills</strong></div>
-          <div class="proof-fact"><small>EVENT CHAIN</small><strong>Placed → Rested → Cancelled</strong></div>
-          <div class="proof-fact"><small>COLLATERAL</small><strong>1 raw tUSDC → 1 raw tUSDC</strong></div>
+        <div class="proof-ledger">
+          <div class="proof-ledger-row"><small>NETWORK</small><strong>Somnia Shannon · 50312</strong><span class="proof-ledger-status">VERIFIED</span></div>
+          <div class="proof-ledger-row"><small>EVENT CHAIN</small><strong>OrderPlaced → OrderRested → OrderCancelled</strong><span class="proof-ledger-status">OBSERVED</span></div>
+          <div class="proof-ledger-row"><small>FILLS</small><strong>0 fills</strong><span class="proof-ledger-status">OBSERVED</span></div>
+          <div class="proof-ledger-row"><small>COLLATERAL</small><strong>1 raw tUSDC → 1 raw tUSDC</strong><span class="proof-ledger-status">RECONCILED</span></div>
         </div>
       </article>
-      <article class="proof-panel">
+
+      <article class="proof-room-card">
         <div class="page-kicker">TRUTH BOUNDARY</div>
         <h2>What this proof does not claim.</h2>
-        <p>It is technical + behavior + operational-containment evidence from testnet. It does not establish production reliability, profitability, ROI, incident prevalence, fraud detection, or MTTR improvement.</p>
-        <div class="proof-facts-grid">
-          <div class="proof-fact"><small>PRODUCTION EVIDENCE</small><strong>ABSENT</strong></div>
-          <div class="proof-fact"><small>AUTOMATIC SPEND</small><strong>NOT AUTHORIZED</strong></div>
+        <p>It is testnet technical, behavior and operational-containment evidence. It does not establish production reliability, profitability, ROI, incident prevalence, fraud detection or MTTR improvement.</p>
+        <div class="proof-ledger">
+          <div class="proof-ledger-row"><small>PRODUCTION EVIDENCE</small><strong>ABSENT</strong><code>BOUNDARY</code></div>
+          <div class="proof-ledger-row"><small>AUTOMATIC SPEND</small><strong>NOT AUTHORIZED</strong><code>BOUNDARY</code></div>
+          <div class="proof-ledger-row"><small>PUBLIC KEYS</small><strong>NO PRIVATE KEY · NO SIGNING</strong><code>BOUNDARY</code></div>
         </div>
       </article>
     </section>
 
-    <section class="proof-panel" style="margin-top:18px">
+    <section class="proof-room-card" style="margin-top:18px" aria-labelledby="commitment-title">
       <div class="page-kicker">TAMPER-EVIDENT COMMITMENT</div>
-      <h2>Public commitment to the preserved private proof object.</h2>
-      <p>The public commitment exposes no disposable wallet, transaction hash or order ID. Instead, it commits to the already-canonical private proof object through the Git blob identity and canonical merge commit, so the underlying receipt bundle cannot be silently rewritten after judging.</p>
-      <div id="proof-commitment-facts" class="proof-facts-grid" aria-live="polite"><div class="proof-fact"><small>STATUS</small><strong>Loading commitment…</strong></div></div>
-      <details style="margin-top:18px"><summary>Inspect the public commitment JSON</summary><pre id="proof-commitment-json">Loading…</pre></details>
+      <h2 id="commitment-title">A readable receipt, not a wall of JSON.</h2>
+      <p>The commitment proves that a private canonical proof object already existed in a specific Git state. The public page exposes only the identities needed to verify preservation — never the disposable wallet, transaction hashes or order ID.</p>
+
+      <div class="commitment-explainer" aria-label="How the proof commitment works">
+        <article class="commitment-step"><span>01</span><small>CAPTURE</small><strong>Proof object preserved</strong><p>The Shannon proof bundle is canonicalized before judge review.</p></article>
+        <article class="commitment-step"><span>02</span><small>FINGERPRINT</small><strong>Git blob identity</strong><p>The blob SHA identifies the exact preserved file contents.</p></article>
+        <article class="commitment-step"><span>03</span><small>ANCHOR</small><strong>Canonical merge commit</strong><p>The repository state provides a second tamper-evident reference.</p></article>
+        <article class="commitment-step"><span>04</span><small>DISCLOSE SAFELY</small><strong>Public receipt</strong><p>Judges can inspect the commitment without exposing private operational identifiers.</p></article>
+      </div>
+
+      <div id="proof-commitment-facts" class="commitment-facts" aria-live="polite"><div class="commitment-fact"><small>STATUS</small><strong>Loading commitment…</strong></div></div>
+
+      <div class="commitment-meaning">
+        <div><small>WHY IT MATTERS</small><h2>The evidence cannot be silently rewritten after judging starts.</h2></div>
+        <p>The public commitment binds this submission to a preserved proof object while keeping sensitive transaction identifiers out of the public judge surface. That makes the proof inspectable without turning disclosure into a security liability.</p>
+      </div>
+
+      <details class="raw-commitment">
+        <summary>Technical appendix · inspect raw commitment JSON</summary>
+        <pre id="proof-commitment-json">Loading…</pre>
+      </details>
     </section>
   </main>
+
   <script type="module" src="/proof-page.js"></script>
 </body>
 </html>
