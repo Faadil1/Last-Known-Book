@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v6.0
-updated_utc: "2026-09-10T19:27:00Z"
+schema: LKB-HANDOVER-v6.3
+updated_utc: "2026-09-10T19:54:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: ATLAS_ROOM_POLISH__SOURCE_CI_CLOUDFLARE_PASS__FINAL_RUNTIME_REVIEW_PENDING
+lifecycle: ATLAS_ROOM_V5_JURY_FIRST__RUNTIME_RECHECK_PENDING
 canonical_branch: main
 canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
 
@@ -11,11 +11,11 @@ active_candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  validated_head: c6b3287228eec08bf7092adbb1ef825ad903518a
-  ci_run: 34520313571
-  ci_status: PASS
+  validated_product_head: 246cbab5b72871ae6df5a5503c9b8b93d3197aef
+  product_ci_run: 34522852978
+  product_ci_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://08760cb6.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://e963f7d4.last-known-book.pages.dev
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
 
 promotion_chain:
@@ -24,20 +24,61 @@ promotion_chain:
   - PR18 component polish -> rework/approved-editorial-realism-hero-v2
   - PR17 hero -> main
 
-material_decisions:
-  - The Atlas Room remains the user-selected canonical visual direction.
-  - The UI must remain a live product surface; real photography is contextual illustration, never incident evidence and never one flattened screenshot.
-  - The user's Cloudflare recording confirmed Methodology, Proof HTML, Agent Interface, Featured Investigations and the canonical workspace are materially present.
-  - That recording also exposed five targeted issues: legacy hero flash on root navigation, hero too dark, unsupported cross-chain wording, imprecise context wording, and Agent navigation inconsistency.
-  - The targeted polish is now deployed at `c6b3287228eec08bf7092adbb1ef825ad903518a`.
-  - Atlas now loads as a static module dependency, removing the intentionally late dynamic import that could reveal the old hero first.
-  - Hero copy is now explicitly DreamDEX/venue-native and no longer claims cross-chain capability.
-  - Hero photo treatment is brighter/warmer while keeping the real photographic asset.
-  - Agent page navigation now follows Investigations / Methodology / Proof / Agent / Docs.
-  - GitHub Actions run `34520313571` passed after repairing a stale legacy regression assertion; the failure was test wording, not product behavior.
-  - Cloudflare Pages deployed the same validated head successfully at `https://08760cb6.last-known-book.pages.dev` and the stable branch alias remains `https://rework-atlas-room-v4.last-known-book.pages.dev`.
-  - Do not use `last-known-book.pages.dev` production for Atlas review yet because it is still tied to old main.
-  - No merge toward main is authorized until the polished runtime receives human + TRACE PASS.
+latest_material_decisions:
+  - A second runtime recording showed that Atlas V4 was still too dense for a first-time jury.
+  - The problem was information architecture rather than missing functionality: the root repeated investigation through the hero, a four-path index, Featured Investigations and then the entire case workspace.
+  - Atlas V5 changes the root into a jury-first product overview and moves detailed investigation work behind the Case Room.
+  - The duplicated four-path index is removed from the root.
+  - Featured Investigations is retained but renamed Featured Case Files so it functions as concrete examples rather than another generic investigation section.
+  - The default root no longer displays the full investigation workspace.
+  - `/investigations.html` is the semantic Case Room entry and redirects into the canonical `?case=LKB-*` workspace.
+  - Hero wording now explains the product directly: `POST-EXECUTION INCIDENT RESPONSE · DREAMDEX` and `Know what happened before your agent acts again.`
+  - The first explanatory section uses three jury questions: what happened, what is actually known, and what is safe to do next.
+  - Methodology, Proof, Agent and Docs remain dedicated pages; depth is intentionally distributed across pages instead of being repeated on the root.
+  - Mobile responsiveness is now explicitly load-bearing. Desktop navigation collapses to a native details menu; explainer/cards/workspace/proof layouts reflow at 980px and 680px breakpoints.
+  - The prior approved hero asset remains recoverable for provenance/rollback but is not the active root design.
+  - Real photographic imagery remains context, never evidence.
+  - No promotion toward main is authorized until desktop + mobile runtime receive human and TRACE PASS.
+
+jury_first_root_sequence:
+  - HERO__WHAT_IT_IS
+  - THREE_QUESTION_EXPLAINER__HOW_IT_WORKS
+  - FEATURED_CASE_FILES__CONCRETE_EXAMPLES
+  - JUDGE_FAST_LANE__VERIFIABLE_PROOF
+  - DREAMDEX_LOAD_BEARING__WHY_THIS_IS_NOT_GENERIC
+  - PREMIUM_CLOSE_AND_FOOTER
+
+case_room_contract:
+  semantic_route: /investigations.html
+  default_case: LKB-001
+  canonical_deep_links:
+    - /?case=LKB-001
+    - /?case=LKB-002
+    - /?case=LKB-003
+    - /?case=LKB-004
+  capabilities_preserved:
+    - Overview
+    - Evidence
+    - Timeline
+    - Method
+    - Intent_vs_Venue_Reality
+    - OBSERVED_INFERRED_UNKNOWN
+    - safe_action
+    - live_read_only_Shannon
+
+mobile_acceptance:
+  - top navigation is usable without horizontal overflow
+  - hero remains legible and CTA priority survives
+  - product-principle row stacks cleanly
+  - three-question explainer becomes one column
+  - Featured Case Files become one column on phone
+  - Judge Fast Lane becomes one column on phone
+  - Case Room becomes one-column workspace on tablet/narrow
+  - case register becomes one column on phone
+  - Intent vs Venue Reality stacks vertically
+  - Methodology and Proof grids stack
+  - focus states remain visible
+  - prefers-reduced-motion remains respected
 
 truth_and_authority:
   dreamdex_native_semantics_are_load_bearing: true
@@ -49,36 +90,25 @@ truth_and_authority:
   public_agent_surface_has_broadcast: false
   production_evidence: ABSENT
 
-key_files:
+key_v5_files:
   - atlas-room.js
-  - atlas-room.css
-  - hero-interactions.js
-  - methodology.html
-  - proof.html
-  - proof-page.js
-  - agent.html
+  - atlas-room-v5.css
+  - investigations.html
   - tests/atlas-room-v4.test.mjs
   - tests/approved-realism-hero-v2.test.mjs
-  - docs/ATLAS-ROOM-V4.md
+  - docs/ATLAS-ROOM-V5-JURY-FIRST.md
+  - state/ATLAS_V5_RUNTIME_GATE.md
   - state/CURRENT.yaml
   - state/HANDOVER.yaml
 
-final_runtime_acceptance:
-  - root page never visibly settles on old Same chain / Clearer answers hero before Atlas
-  - hero reads as warm premium investigation infrastructure and sells the product immediately
-  - copy stays DreamDEX/venue-native and truth-safe
-  - real contextual images load reliably
-  - Featured Investigations open correct LKB-001..004 cases
-  - Methodology remains complete and useful
-  - Proof remains HTML-first with inspectable public commitment and explicit claim boundary
-  - Agent page feels like the same product and same navigation story
-  - narrow/mobile layout, focus and reduced-motion pass
-
 remaining_P0:
-  - human + TRACE recheck of polished Cloudflare runtime
-  - update Demo/Q&A for HS-002 Authority Receipt without feature dumping
+  - human + TRACE review of fresh Atlas V5 root on desktop
+  - human + TRACE review at approximately 390-430px width
+  - Case Room deep-link desktop/mobile validation
+  - Methodology / Proof / Agent continuity validation
+  - update Demo and Q&A to present HS-002 Authority Receipt without feature dumping
   - promote PR21 -> PR19 -> PR18 -> PR17 -> main only after PASS
-  - final encoded 2-3 minute demo
+  - final 2-3 minute demo
   - TRACE encoded-video review
 
 continuity:
@@ -86,5 +116,5 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_gate: ATLAS_POLISHED_RUNTIME_HUMAN_AND_TRACE_RECHECK
-next_exact_action: Review `https://rework-atlas-room-v4.last-known-book.pages.dev` after Cloudflare has picked up `c6b3287`; test root, `?case=LKB-001`, `/methodology.html`, `/proof.html`, `/agent.html`, case deep-links and narrow/mobile. Record PASS/FAIL before promotion.
+next_exact_gate: ATLAS_V5_JURY_FIRST_RUNTIME_DESKTOP_MOBILE_RECHECK
+next_exact_action: Open `https://rework-atlas-room-v4.last-known-book.pages.dev` after the latest branch deployment. Review root desktop first, then phone width around 390-430px, then `/investigations.html`, `/methodology.html`, `/proof.html`, and `/agent.html`. Record explicit human + TRACE PASS/FAIL before promotion.
