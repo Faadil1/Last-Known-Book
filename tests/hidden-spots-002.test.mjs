@@ -68,14 +68,15 @@ test('bare live tx intake fails closed instead of inventing DreamDEX semantics',
 });
 
 test('agent surfaces stay read-only and expose the winning mechanism', async () => {
-  const [investigate, incidents, mcp, watcher, status, skill, agent] = await Promise.all([
+  const [investigate, incidents, mcp, watcher, status, skill, agent, docsInteractions] = await Promise.all([
     read('api/investigate.js'),
     read('api/incidents.js'),
     read('api/mcp.js'),
     read('scripts/watch-shannon-readonly.mjs'),
     read('api/agent-status.js'),
     read('SKILL.md'),
-    read('agent.html')
+    read('agent.html'),
+    read('docs-interactions.js')
   ]);
   assert.match(investigate, /writesAttempted: false/);
   assert.match(incidents, /READ_ONLY/);
@@ -89,6 +90,8 @@ test('agent surfaces stay read-only and expose the winning mechanism', async () 
   assert.match(skill, /lkb_authority_receipt/);
   assert.match(agent, /Bring your own incident/);
   assert.match(agent, /Get back bounded authority/);
+  assert.match(docsInteractions, /See the agent interface/);
+  assert.match(docsInteractions, /\/agent\.html/);
 });
 
 test('cross-network guard performs read-only ERC20 decimals lookup', async () => {
