@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v3.1
-updated_utc: "2026-09-10T00:57:00Z"
+schema: LKB-CURRENT-v3.2
+updated_utc: "2026-09-10T05:34:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_VIDEO
-  status: PUBLIC_DIRECTION_6_RUNTIME_AND_LIVE_SHANNON_PASS__JUDGE_DOCS_POLISHED__FINAL_VIDEO_AND_TRACE_REMAIN
+  stage: TERMINAL_ASSURANCE_VISUAL_POLISH
+  status: REFINED_INTERACTIVE_HERO_AND_JUDGE_PACKET_V2_IMPLEMENTED__CI_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -18,82 +18,71 @@ authority:
 candidate:
   canonical_branch: main
   direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
-  direction_6_ci_run: 34421162093
-  runtime_evidence_commit: f7d4239289e5c6a00108063f5baefb4b84ad794b
   judge_docs_fix_merge: 6d496d43ab466411be50dd5e72c3fe2c2673525e
-  judge_docs_fix_pr: 14
-  judge_docs_fix_ci_run: 34423333741
-  judge_docs_fix_ci_status: PASS
-ui_direction_6:
-  status: MERGED_CI_PASS_AND_RUNTIME_VERIFIED
-  identity:
-    logo: brand-mark.svg
-    visual_language: editorial_investigation_ledger
-    palette: ivory_deep_green_sand_sage
-    hero: Same_chain_Clearer_answers
+  working_branch: rework/refined-interactive-hero-docs-v2
+visual_rework:
+  trigger:
+    - user preferred the earlier refined binder/environment composition over the flatter placeholder book stack
+    - user wanted the environment itself to be interactive
+    - user rejected raw Markdown as the normal Docs experience
+  refined_hero:
+    status: IMPLEMENTED_CI_PENDING
+    environment_asset: hero-environment.svg
+    visual_language: quiet_alpine_evidence_archive
+    atmosphere: ivory_mist_mountains_pine_river_stone_bridge
+    archive_volumes:
+      - EVENTS__OBSERVE
+      - EVIDENCE__VERIFY
+      - TIMELINE__RECONSTRUCT
+      - METHOD__A_CLEARER_STORY
+    interactions:
+      - subtle pointer parallax between environment and archive stack
+      - independent volume lift/hover labels
+      - overview volume scrolls to investigations
+      - evidence volume opens Evidence tab
+      - timeline volume opens Timeline tab
+      - method volume opens Method tab
+      - prefers-reduced-motion disables parallax/transforms
+    implementation:
+      - hero-refined.css
+      - hero-interactions.js
+      - hero-environment.svg
+    blockchain_or_proof_semantics_changed: false
   judge_docs:
-    state: STYLED_INTEGRATED_VIEW_MERGED
-    route_preserved: /docs/SUBMISSION-PACKAGE.md
-    vercel_rewrite_destination: /docs.html
-    raw_source_available_secondarily: true
-    trigger: runtime video showed raw Markdown break from premium visual identity
-  interactions_verified_in_browser:
-    - public case deep links
-    - case switching across LKB-001 through LKB-004
-    - Overview/Evidence/Timeline/Method surface
-    - clickable event timeline and detail dialog
-    - LKB-004 exact-market residual settlement rendering
-  interactions_implemented_and_ci_guarded:
-    - case search with slash keyboard focus
-    - j/k keyboard case navigation
-    - shareable case deep links
-    - public case JSON export
-    - hero/nav scroll actions
-    - manual and 15-second live refresh
-  live_shannon:
-    status: PASS_RUNTIME
-    expected_chain_id: 50312
-    observed_chain_id: 50312
-    public_captured_tx_scope: LKB_003_ONLY
-    observed_tx_status: CONFIRMED
-    observed_sample_A:
-      head: 484279850
-      confirmations: 8422358
-    observed_sample_B:
-      head: 484280000
-      confirmations: 8422508
-    observed_delta:
-      head: 150
-      confirmations: 150
-    signing: false
-    wallet_connection: false
-    write_broadcast: false
-  privacy:
-    packet_003_wallet_exposed: false
-    packet_003_full_tx_hashes_exposed: false
-    private_key_allowed_in_vercel: false
+    status: INTERACTIVE_HTML_V2_IMPLEMENTED_CI_PENDING
+    primary_nav_target: /docs.html
+    raw_markdown_primary_path_removed: true
+    sections:
+      - Overview
+      - Judge in 60 Seconds
+      - Proof
+      - Mechanism
+      - Judge Q&A
+      - Sources
+    interactions:
+      - sticky section navigator
+      - scroll-aware active nav
+      - collapsible judge Q&A
+      - expand_all_q_and_a
+    raw_sources_available_secondarily: true
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
+  public_runtime_readback: PASS
   production_evidence: ABSENT
 vercel:
   project: last-known-book-6fc1
   production_domain: https://last-known-book-6fc1.vercel.app
-  deployment_ui_status: READY_LATEST
-  environment: PRODUCTION_CURRENT
-  anonymous_public_runtime: PASS_HUMAN_BROWSER_VIDEO
-  direction_6_runtime: PASS_HUMAN_BROWSER_VIDEO
-  live_shannon_surface: PASS_HUMAN_BROWSER_VIDEO
-runtime_evidence:
-  primary: evidence/runtime/VERCEL-DIRECTION6-LIVE-READBACK-2026-09-09.md
-  judge_docs_fix: evidence/runtime/DOCS-JUDGE-PATH-FIX-2026-09-09.md
-  uploaded_browser_video_redistributed: false
+  currently_verified_runtime: DIRECTION_6_PRE_REFINED_HERO
+  refined_hero_autodeploy_runtime_check: PENDING_AFTER_MERGE
 remaining_P0:
+  - RUN_CI_FOR_REFINED_INTERACTIVE_HERO_AND_DOCS_V2
+  - MERGE_IF_GREEN
+  - VERIFY_REFINED_HERO_AND_DOCS_V2_ON_PUBLIC_VERCEL
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
 remaining_P1:
-  - VERIFY_STYLED_DOCS_ROUTE_IN_NEXT_VERCEL_AUTODEPLOY
   - FINAL_COVER_IMAGE_EXPORT
   - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
   - OPTIONAL_SERVER_SIDE_PACKET_003_REDACTED_LIVE_PROOF
@@ -105,12 +94,11 @@ deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
 truth_boundaries:
-  public_runtime_pass_does_not_imply_production_readiness: true
+  visual_rework_does_not_change_engine_or_proof_semantics: true
+  interactive_environment_is_navigation_not_blockchain_action: true
   live_readback_is_not_a_new_transaction: true
-  captured_public_lkb003_tx_is_replay_evidence_not_packet003: true
   packet_003_remains_redacted: true
-  uploaded_browser_video_not_redistributed: true
-  docs_polish_does_not_change_engine_or_evidence_semantics: true
+  raw_docs_remain_audit_sources_not_primary_judge_experience: true
   production_readiness_claim: FORBIDDEN
-next_gate: FINAL_ENCODED_DEMO_VIDEO_THEN_TRACE_AND_FINAL_WINNING_INTELLIGENCE
-next_owner: PBPD_VIDEO_THEN_TRACE_THEN_PROJECT_FINISHER
+next_gate: PRODUCT_CI_THEN_VERCEL_RUNTIME_RECHECK
+next_owner: PROJECT_FINISHER

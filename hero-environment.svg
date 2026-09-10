@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Refined alpine evidence landscape</title>
+  <desc id="desc">A quiet ivory mountain valley, pine forest, river and stone bridge used as the atmospheric background for the Last Known Book interactive archive.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf7ed"/>
+      <stop offset=".52" stop-color="#e8e5da"/>
+      <stop offset="1" stop-color="#c9d2c7"/>
+    </linearGradient>
+    <linearGradient id="mountainBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7cec6"/>
+      <stop offset="1" stop-color="#9fac9f"/>
+    </linearGradient>
+    <linearGradient id="mountainFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9eaa9c"/>
+      <stop offset="1" stop-color="#718273"/>
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dfe5dc"/>
+      <stop offset=".5" stop-color="#c4d0c7"/>
+      <stop offset="1" stop-color="#f1eee5"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fffdf8" stop-opacity=".98"/>
+      <stop offset=".5" stop-color="#fffdf8" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#fffdf8" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff7d8" stop-opacity=".95"/>
+      <stop offset=".6" stop-color="#f7e9b2" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#f7e9b2" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="11" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .055"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="blur12"><feGaussianBlur stdDeviation="12"/></filter>
+    <filter id="blur24"><feGaussianBlur stdDeviation="24"/></filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1330" cy="210" r="145" fill="url(#sun)"/>
+
+  <g opacity=".58" filter="url(#blur12)">
+    <path d="M120 410 365 132 545 330 705 155 935 390 1150 225 1438 430 1600 415V560H0V478Z" fill="#d9ddd5"/>
+  </g>
+
+  <path d="M50 505 360 172 520 355 735 112 905 338 1110 178 1450 500 1600 460V625H0V564Z" fill="url(#mountainBack)" opacity=".78"/>
+  <path d="m310 225 50-53 48 58 42 78-44-34-36 20-36-17-41 28Z" fill="#f3f0e8" opacity=".92"/>
+  <path d="m673 184 62-72 61 84 38 82-54-32-43 24-35-21-59 35Z" fill="#f4f0e8" opacity=".9"/>
+  <path d="m1056 231 54-53 71 71 45 87-61-32-45 20-42-21-64 39Z" fill="#f2efe8" opacity=".82"/>
+
+  <path d="M0 580c170-94 285-98 425-52 130 43 218 37 341-23 149-74 307-69 461 17 131 73 246 77 373 37v341H0Z" fill="url(#mountainFront)" opacity=".84"/>
+
+  <path d="M1255 485c84 8 167 31 220 75 54 46 73 112 125 156v184h-461c24-93 62-164 116-221 56-58 74-127 0-194Z" fill="url(#river)" opacity=".98"/>
+  <path d="M1287 522c70 18 124 44 158 77 37 35 56 84 91 127" fill="none" stroke="#f7f4ed" stroke-width="16" stroke-linecap="round" opacity=".62"/>
+  <path d="M1277 553c82 8 154 35 209 82" fill="none" stroke="#a9bbb0" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+
+  <g opacity=".9" fill="#173f31">
+    <path d="M101 602l33-78 33 78h-18l25 56H94l25-56Z"/>
+    <path d="M198 625l42-104 42 104h-23l31 70H187l31-70Z"/>
+    <path d="M300 610l29-72 29 72h-16l23 51h-72l23-51Z"/>
+    <path d="M388 645l45-116 45 116h-24l35 76H377l35-76Z"/>
+    <path d="M503 620l34-85 34 85h-18l25 58h-82l25-58Z"/>
+    <path d="M594 650l46-121 46 121h-25l36 79H583l36-79Z"/>
+    <path d="M710 624l34-87 34 87h-18l26 59h-84l26-59Z"/>
+    <path d="M812 639l40-101 40 101h-22l31 69H803l31-69Z"/>
+    <path d="M923 618l32-78 32 78h-17l24 54h-78l24-54Z"/>
+  </g>
+
+  <g opacity=".46" fill="#355e4d">
+    <path d="M28 674l27-66 27 66H67l21 47H22l21-47Z"/>
+    <path d="M247 703l31-78 31 78h-17l24 54h-76l24-54Z"/>
+    <path d="M457 705l30-75 30 75h-16l23 52h-74l23-52Z"/>
+    <path d="M668 704l28-69 28 69h-15l21 49h-68l21-49Z"/>
+    <path d="M850 709l28-71 28 71h-15l22 50h-70l22-50Z"/>
+    <path d="M1018 692l35-87 35 87h-19l26 60h-84l26-60Z"/>
+  </g>
+
+  <g transform="translate(1238 452)" opacity=".9">
+    <path d="M0 106c42-79 103-118 184-116 79 2 132 38 176 113" fill="none" stroke="#716f63" stroke-width="18"/>
+    <path d="M-7 113h374" stroke="#77766b" stroke-width="12"/>
+    <path d="M43 112V77M93 112V38M143 112V15M193 112V7M243 112V25M293 112V57" stroke="#8e8b7e" stroke-width="7"/>
+    <path d="M7 103c44-71 100-104 171-104 70 0 128 34 177 101" fill="none" stroke="#d8d1c2" stroke-width="4"/>
+  </g>
+
+  <g opacity=".2" filter="url(#blur24)">
+    <ellipse cx="1050" cy="686" rx="290" ry="82" fill="#183d31"/>
+  </g>
+
+  <rect x="0" y="0" width="760" height="900" fill="url(#mist)"/>
+  <rect width="1600" height="900" filter="url(#grain)" opacity=".7"/>
+</svg>

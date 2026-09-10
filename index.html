@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#f4f0e7" />
   <link rel="icon" href="/brand-mark.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/hero-refined.css" />
 </head>
 <body>
   <header class="topbar">
@@ -23,7 +24,7 @@
       <button class="nav-link is-active" data-scroll-target="investigations">Investigations</button>
       <button class="nav-link" data-scroll-target="methodology">Methodology</button>
       <button class="nav-link" data-scroll-target="proof">Proof</button>
-      <a class="nav-link" href="/docs/SUBMISSION-PACKAGE.md" target="_blank" rel="noreferrer">Docs</a>
+      <a class="nav-link" href="/docs.html">Docs</a>
     </nav>
 
     <div class="topbar-actions">
@@ -36,7 +37,7 @@
   </header>
 
   <main id="top">
-    <section class="hero-section" aria-labelledby="hero-title">
+    <section class="hero-section hero-refined" aria-labelledby="hero-title">
       <div class="hero-copy-block">
         <div class="hero-eyebrow">POST-EXECUTION INVESTIGATION FOR DREAMDEX</div>
         <h1 id="hero-title">Same chain.<br/><em>Clearer answers.</em></h1>
@@ -53,19 +54,55 @@
         </div>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="book-stack">
-          <div class="book-sheet sheet-back"><span>OBSERVE</span></div>
-          <div class="book-sheet sheet-mid"><span>RECONSTRUCT</span></div>
-          <div class="book-sheet sheet-front">
-            <small>SAME EVENTS.</small>
-            <strong>A CLEARER<br/>STORY.</strong>
-            <div class="sheet-rule"></div>
-            <span>FACTS OVER ASSUMPTIONS</span>
+      <div class="hero-visual" aria-label="Interactive evidence archive in a quiet alpine landscape">
+        <div class="hero-scene">
+          <img class="hero-scene-backdrop" src="/hero-environment.svg" alt="" />
+          <div class="hero-atmosphere" aria-hidden="true"></div>
+          <div class="scene-guide" aria-hidden="true">ON-CHAIN EVENTS<br/>BECOME A<br/>VERIFIABLE NARRATIVE</div>
+
+          <div class="archive-stage" aria-label="Explore the Last Known Book investigation views">
+            <div class="archive-shadow" aria-hidden="true"></div>
+
+            <button class="archive-volume volume-events" type="button" data-archive-target="overview" aria-label="Open investigation overview">
+              <span class="volume-label">OPEN OVERVIEW</span>
+              <span class="volume-cover">
+                <span class="volume-index">01 · EVENTS</span>
+                <strong>OBSERVE</strong>
+                <small>WHAT THE CHAIN RECORDED</small>
+              </span>
+            </button>
+
+            <button class="archive-volume volume-evidence" type="button" data-archive-target="evidence" aria-label="Open evidence view">
+              <span class="volume-label">OPEN EVIDENCE</span>
+              <span class="volume-cover">
+                <span class="volume-index">02 · EVIDENCE</span>
+                <strong>VERIFY</strong>
+                <small>OBSERVED · INFERRED · UNKNOWN</small>
+              </span>
+            </button>
+
+            <button class="archive-volume volume-timeline" type="button" data-archive-target="timeline" aria-label="Open incident timeline">
+              <span class="volume-label">OPEN TIMELINE</span>
+              <span class="volume-cover">
+                <span class="volume-index">03 · TIMELINE</span>
+                <strong>RECONSTRUCT</strong>
+                <small>THE ORDER OF REAL EVENTS</small>
+              </span>
+            </button>
+
+            <button class="archive-volume volume-method" type="button" data-archive-target="method" aria-label="Open causal method view">
+              <span class="volume-label">OPEN METHOD</span>
+              <span class="volume-cover">
+                <span class="volume-index">04 · METHOD</span>
+                <strong>A CLEARER<br/>STORY.</strong>
+                <small>FACTS OVER ASSUMPTIONS</small>
+              </span>
+            </button>
           </div>
+
+          <div class="hero-interaction-note" aria-hidden="true"><span></span> MOVE · HOVER · OPEN THE ARCHIVE</div>
+          <div class="scene-caption" aria-hidden="true"><span>The chain remembers.</span><span><em>We help you read it.</em></span></div>
         </div>
-        <div class="hero-annotation annotation-a">ON-CHAIN EVENTS<br/><span>↓</span><br/>VERIFIABLE NARRATIVE</div>
-        <div class="hero-annotation annotation-b">The chain remembers.<br/><em>We help you read it.</em></div>
       </div>
     </section>
 
@@ -248,5 +285,6 @@
   </footer>
 
   <script type="module" src="/app.js"></script>
+  <script type="module" src="/hero-interactions.js"></script>
 </body>
 </html>

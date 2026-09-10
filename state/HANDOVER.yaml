@@ -1,59 +1,53 @@
-schema: LKB-HANDOVER-v3.5
-updated_utc: "2026-09-10T00:57:00Z"
+schema: LKB-HANDOVER-v3.6
+updated_utc: "2026-09-10T05:34:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: PUBLIC_DIRECTION_6_RUNTIME_AND_LIVE_SHANNON_PASS__JUDGE_DOCS_POLISHED__FINAL_VIDEO_REMAINS
+lifecycle: REFINED_INTERACTIVE_HERO_AND_JUDGE_PACKET_V2_IMPLEMENTED__CI_PENDING
 canonical_branch: main
+working_branch: rework/refined-interactive-hero-docs-v2
 direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
-direction_6_ci: PASS_RUN_34421162093
-runtime_evidence_commit: f7d4239289e5c6a00108063f5baefb4b84ad794b
 judge_docs_fix_merge: 6d496d43ab466411be50dd5e72c3fe2c2673525e
-judge_docs_fix_ci: PASS_RUN_34423333741
 material_decisions:
-  - User-approved Direction 6 is implemented, merged, CI-green and verified in the real public production runtime.
-  - Production URL: https://last-known-book-6fc1.vercel.app .
-  - Human browser video proved the Direction 6 identity, all four cases, working case switching, event-detail interaction and a live changing Shannon readback.
-  - LIVE SHANNON READBACK observed chain 50312 and a CONFIRMED public captured transaction. Head changed 484,279,850 -> 484,280,000 while confirmations changed 8,422,358 -> 8,422,508 in the same recording.
-  - This closes the public runtime, Direction 6 runtime and live-readback verification gates. The live path remains read-only and uses captured public LKB-003 evidence, not private Packet 003.
-  - Runtime review also exposed one presentation-only defect: the top-nav Docs action opened raw Markdown and broke the premium visual continuity.
-  - PR #14 repaired that path without changing the existing URL: Vercel rewrites /docs/SUBMISSION-PACKAGE.md to a styled Direction 6 judge packet at /docs.html, while explicit raw source remains available through GitHub links.
-  - PR #14 passed CI run 34423333741 and merged at 6d496d43ab466411be50dd5e72c3fe2c2673525e.
-  - The styled Judge Packet reinforces the same product story, REAL SHANNON PROOF, deterministic authority principle and proof-vs-production boundary.
-  - No engine logic, blockchain behavior, private proof, wallet identifier, transaction authority or protected submission authority changed in the Docs repair.
-  - Packet 003 wallet/full tx/orderId remain private/redacted. No private key is required or allowed for runtime verification.
-  - The user's uploaded browser video was analyzed for runtime evidence but was not copied into the public repository.
-vercel:
-  project: last-known-book-6fc1
-  production_domain: https://last-known-book-6fc1.vercel.app
-  deployment_status: READY_LATEST
-  environment: PRODUCTION_CURRENT
-  anonymous_public_runtime: PASS
-  direction_6_runtime: PASS
-  browser_live_panel: PASS
-  shannon_chain_id: 50312
-  public_tx_status: CONFIRMED
-  live_head_changed_during_capture: true
-  live_confirmations_changed_consistently: true
-  docs_styled_route:
-    implementation: MERGED
-    source_url: /docs/SUBMISSION-PACKAGE.md
-    destination: /docs.html
-    next_autodeploy_runtime_check: PENDING
+  - Public Direction 6 runtime and live Shannon readback remain PASS; this rework does not touch engine, proof semantics or blockchain behavior.
+  - User explicitly preferred the earlier refined binders-in-environment visual direction over the flatter CSS placeholder stack and approved an interactive environment.
+  - The hero now uses a dedicated original SVG landscape asset with ivory alpine mist, mountains, pine forest, river and stone bridge rather than a blank gradient-only placeholder surface.
+  - Four foreground archive volumes are now interactive and product-native: EVENTS/OBSERVE, EVIDENCE/VERIFY, TIMELINE/RECONSTRUCT and METHOD/A CLEARER STORY.
+  - Pointer movement creates a restrained parallax split between the landscape and archive stack; each volume has an independent hover lift and label.
+  - The archive interactions are useful navigation: overview scrolls to investigations; evidence/timeline/method open their real product tabs after scrolling into the investigation workspace.
+  - prefers-reduced-motion disables parallax and transform animation, preserving the prior accessibility/reduced-motion contract.
+  - The top-nav Docs action now targets /docs.html directly. The former Markdown URL rewrite remains for backward compatibility only.
+  - Docs V2 is a full premium Judge Packet rather than raw Markdown: Overview, Judge in 60 Seconds, Proof, Mechanism, Judge Q&A and Sources.
+  - Docs V2 includes sticky/scroll-aware section navigation and collapsible Q&A with an Expand all control. Raw Markdown/GitHub sources remain available secondarily for auditability.
+  - No private Packet 003 identifiers were added to either hero or Docs. No new transaction, signing path or wallet connection was introduced.
+  - New tests cover refined hero assets/interactions, reduced-motion presence, direct HTML Docs navigation and the integrated Judge Packet truth boundary.
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
   operational_containment: PASS
   public_runtime_readback: PASS
   production_evidence: ABSENT
+implementation:
+  hero_environment: hero-environment.svg
+  hero_style: hero-refined.css
+  hero_interactions: hero-interactions.js
+  docs_page: docs.html
+  docs_style: docs-refined.css
+  docs_interactions: docs-interactions.js
+  tests:
+    - tests/refined-hero.test.mjs
+    - tests/docs-view.test.mjs
 remaining_P0:
-  - create final encoded 2-3 minute demo video from docs/DEMO-SCRIPT.md
-  - TRACE review of the actual encoded video
+  - open PR for refined hero/docs V2
+  - require product CI + replay cleanliness PASS
+  - merge only if green
+  - verify public Vercel renders the refined environment, archive interactions and /docs.html rather than raw Markdown
+  - create final encoded 2-3 minute demo video from the final verified visual surface
+  - TRACE review of actual encoded video
 remaining_P1:
-  - verify styled Docs route after Vercel autodeploy of PR #14 merge
-  - export final cover/thumbnail image consistent with Direction 6
-  - insert final video URL into docs/SUBMISSION-PACKAGE.md
-  - optional server-side redacted Packet 003 live proof using Vercel Sensitive Environment Variables; never private key
+  - final cover/thumbnail export consistent with final refined hero
+  - insert final video URL in submission package
+  - optional server-side redacted Packet 003 live proof
   - optional upstream DreamDEX feedback publication
   - license choice
   - Winning Intelligence final recheck
@@ -61,9 +55,9 @@ remaining_P1:
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: FINAL_ENCODED_DEMO_VIDEO_THEN_TRACE_VIDEO_ASSURANCE
-next_exact_owner: PBPD_VIDEO_THEN_TRACE_THEN_PROJECT_FINISHER
-next_exact_action: Let Vercel autodeploy the latest main including the styled Judge Packet route, then use the verified production site as the visual source for the final 2-3 minute encoded film from docs/DEMO-SCRIPT.md. Route the actual encoded artifact through TRACE for readability, first-30-second comprehension, first-minute aha, replay-vs-real-proof separation and claim fidelity. Then run Winning Intelligence final recheck and Project Finisher terminal readiness before the protected submission gate.
+next_exact_gate: PRODUCT_CI_FOR_REFINED_HERO_DOCS_V2_THEN_PUBLIC_RUNTIME_RECHECK
+next_exact_owner: PROJECT_FINISHER
+next_exact_action: Open the refined hero/docs PR, require all product tests and deterministic replay cleanliness to remain green, merge if clean, then let Vercel autodeploy main and visually/runtime-verify the alpine archive hero, binder interactions and direct /docs.html Judge Packet. Only after this visual freeze should the final 2-3 minute video be encoded and sent to TRACE.
 blocked_actions:
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
