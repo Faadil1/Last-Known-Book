@@ -8,18 +8,9 @@
   <meta name="theme-color" content="#f4f0e7" />
   <link rel="icon" href="/brand-mark.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/styles.css" />
-  <style>
-    body{min-height:100vh;background:linear-gradient(180deg,#fbf8f1,#f0eadf)}
-    .docs-topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 28px;border-bottom:1px solid rgba(23,25,20,.12);background:rgba(255,253,248,.92);backdrop-filter:blur(18px)}
-    .docs-back{color:var(--green);text-decoration:none;font-size:12px;font-weight:750}.docs-back:hover{text-decoration:underline;text-underline-offset:3px}
-    .docs-shell{max-width:1180px;margin:0 auto;padding:54px 28px 72px}
-    .docs-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:28px;align-items:end;padding-bottom:34px;border-bottom:1px solid var(--line)}
-    .docs-eyebrow{font:800 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.22em;color:#74766e}.docs-hero h1{margin:13px 0 10px;font:700 clamp(48px,7vw,82px)/.88 Georgia,"Times New Roman",serif;letter-spacing:-.06em}.docs-hero h1 em{font-style:normal;color:var(--green)}.docs-hero p{margin:0;max-width:690px;color:#4d5048;font:17px/1.5 Georgia,"Times New Roman",serif}.docs-proof{border:1px solid var(--line);border-radius:18px;padding:18px;background:linear-gradient(145deg,#edf6ef,#fffdf8);box-shadow:var(--shadow)}.docs-proof small,.doc-card small,.docs-section-kicker{font:800 8px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.13em;color:#74766e}.docs-proof strong{display:block;margin:9px 0 12px;font:700 20px/1 Georgia,"Times New Roman",serif}.docs-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.docs-proof-grid span{padding:8px;border:1px solid var(--line);border-radius:9px;background:#fff;font:800 8px/1.2 ui-monospace,monospace;text-align:center}.docs-section{padding-top:34px}.docs-section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:14px}.docs-section h2{margin:5px 0 0;font:700 clamp(28px,4vw,44px)/1 Georgia,"Times New Roman",serif;letter-spacing:-.04em}.doc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.doc-card{display:block;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:16px;padding:18px;background:rgba(255,253,248,.9);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}.doc-card:hover{transform:translateY(-2px);border-color:var(--green);box-shadow:0 12px 28px rgba(31,36,28,.09)}.doc-card strong{display:block;margin:8px 0 6px;font:700 20px/1.05 Georgia,"Times New Roman",serif}.doc-card p{margin:0;color:#64665f;font-size:12px;line-height:1.55}.doc-card .arrow{display:block;margin-top:14px;color:var(--green);font-size:11px;font-weight:800}.docs-story{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.docs-story div{min-height:116px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}.docs-story span{font:800 8px/1 ui-monospace,monospace;color:var(--green)}.docs-story strong{display:block;margin-top:10px;font:650 15px/1.2 Georgia,"Times New Roman",serif}.truth-note{margin-top:28px;padding:18px;border-left:4px solid var(--green);background:#efe9dd}.truth-note strong{display:block;font:700 17px/1.2 Georgia,"Times New Roman",serif}.truth-note p{margin:7px 0 0;font-size:12px;line-height:1.55;color:#555850}.raw-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.raw-links a{color:var(--green);font-size:11px;font-weight:750}
-    @media(max-width:820px){.docs-hero{grid-template-columns:1fr}.doc-grid{grid-template-columns:1fr}.docs-story{grid-template-columns:1fr 1fr}.docs-topbar{padding:11px 16px}.docs-shell{padding:36px 16px 56px}}
-    @media(max-width:520px){.docs-story{grid-template-columns:1fr}.docs-proof-grid{grid-template-columns:1fr}}
-  </style>
+  <link rel="stylesheet" href="/docs-refined.css" />
 </head>
-<body>
+<body class="docs-body">
   <header class="docs-topbar">
     <a class="brand" href="/" aria-label="Last Known Book home">
       <img src="/brand-mark.svg" alt="" class="brand-mark" />
@@ -29,45 +20,92 @@
   </header>
 
   <main class="docs-shell">
-    <section class="docs-hero">
-      <div>
-        <div class="docs-eyebrow">JUDGE PACKET · SOMNIA × DREAMDEX EVENT CONTRACTS</div>
-        <h1>One product.<br/><em>One evidence trail.</em></h1>
-        <p>Last Known Book begins after an unexpected execution. It reconstructs DreamDEX venue reality, separates observed facts from inference, and allows only bounded evidence-backed containment.</p>
-      </div>
-      <aside class="docs-proof">
-        <small>REAL SHANNON PROOF</small>
-        <strong>PostOnly → rest → exact cancel</strong>
-        <div class="docs-proof-grid"><span>50312</span><span>0 FILLS</span><span>1 → 1 RAW</span></div>
-      </aside>
-    </section>
+    <aside class="docs-nav" aria-label="Judge packet navigation">
+      <small>JUDGE PACKET</small>
+      <a class="is-active" href="#overview" data-doc-target="overview">Overview</a>
+      <a href="#fast-lane" data-doc-target="fast-lane">60-second path</a>
+      <a href="#proof" data-doc-target="proof">Proof</a>
+      <a href="#mechanism" data-doc-target="mechanism">Mechanism</a>
+      <a href="#qa" data-doc-target="qa">Judge Q&A</a>
+      <a href="#sources" data-doc-target="sources">Sources</a>
+    </aside>
 
-    <section class="docs-section">
-      <div class="docs-section-head"><div><div class="docs-section-kicker">FAST LANE</div><h2>What to inspect.</h2></div></div>
-      <div class="doc-grid">
-        <a class="doc-card" href="https://github.com/Faadil1/Last-Known-Book" target="_blank" rel="noreferrer"><small>01 · SOURCE</small><strong>GitHub repository</strong><p>Implementation, CI, deterministic engine, replay fixtures and evidence boundaries.</p><span class="arrow">Open repository ↗</span></a>
-        <a class="doc-card" href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer"><small>02 · PROOF</small><strong>Proof commitment</strong><p>Public tamper-evident commitment to the private Packet 003 evidence bundle without exposing wallet or transaction identifiers.</p><span class="arrow">Open commitment ↗</span></a>
-        <a class="doc-card" href="/docs/SDK-FEEDBACK.md" target="_blank" rel="noreferrer"><small>03 · ECOSYSTEM</small><strong>SDK / docs feedback</strong><p>Concrete findings on market identity, bounded approvals, unit arithmetic and PostOnly reconciliation.</p><span class="arrow">Open feedback ↗</span></a>
-        <a class="doc-card" href="/docs/DEMO-SCRIPT.md" target="_blank" rel="noreferrer"><small>04 · DEMO</small><strong>2:35 demo contract</strong><p>The canonical judge story: intent vs reality, MINT_A_PAIR, safe refusal, real Shannon proof and sponsor-native necessity.</p><span class="arrow">Open script ↗</span></a>
-      </div>
-    </section>
+    <div class="docs-main">
+      <section class="docs-hero docs-section" id="overview">
+        <div>
+          <div class="docs-eyebrow">SOMNIA × DREAMDEX EVENT CONTRACTS · JUDGE PACKET</div>
+          <h1>One product.<br/><em>One evidence trail.</em></h1>
+          <p>Last Known Book begins after an unexpected execution. It reconstructs DreamDEX venue reality, separates observed facts from inference, and allows only bounded evidence-backed containment.</p>
+        </div>
+        <aside class="docs-proof">
+          <small>REAL SHANNON PROOF</small>
+          <strong>PostOnly → rest → exact cancel</strong>
+          <div class="docs-proof-grid"><span>50312</span><span>0 FILLS</span><span>1 → 1 RAW</span></div>
+        </aside>
+      </section>
 
-    <section class="docs-section">
-      <div class="docs-section-head"><div><div class="docs-section-kicker">MECHANISM</div><h2>The incident contract.</h2></div></div>
-      <div class="docs-story">
-        <div><span>01</span><strong>Capture agent intent</strong></div>
-        <div><span>02</span><strong>Reconstruct venue reality</strong></div>
-        <div><span>03</span><strong>Decode DreamDEX-native cause</strong></div>
-        <div><span>04</span><strong>Gate corrective authority</strong></div>
-        <div><span>05</span><strong>Reconcile final state</strong></div>
-      </div>
-      <div class="truth-note"><strong>The trading agent may be AI. The layer that decides whether money moves is not.</strong><p>Observed evidence can constrain automation. Inference can request more evidence. Unknown can stop the system. Testnet technical and behavior proof is not presented as production reliability, ROI, MTTR improvement or incident prevalence.</p></div>
-      <div class="raw-links">
-        <a href="https://github.com/Faadil1/Last-Known-Book/blob/main/docs/SUBMISSION-PACKAGE.md" target="_blank" rel="noreferrer">Submission package source ↗</a>
-        <a href="https://github.com/Faadil1/Last-Known-Book/blob/main/docs/REQUIREMENTS-EVIDENCE-MATRIX.md" target="_blank" rel="noreferrer">Requirements → evidence ↗</a>
-        <a href="/?case=LKB-001#live-readback">Live Shannon readback ↗</a>
-      </div>
-    </section>
+      <section class="docs-section" id="fast-lane">
+        <div class="docs-section-head"><div><div class="docs-section-kicker">JUDGE IN 60 SECONDS</div><h2>See the whole argument fast.</h2></div></div>
+        <p class="docs-section-intro">The quickest path is intentionally behavior-first: open the case, see the venue-native reveal, verify the real Shannon proof, then inspect the source and SDK feedback only if you want the deeper audit trail.</p>
+        <div class="fast-lane">
+          <article><span>1</span><strong>Open LKB-001</strong><p>Start with Agent Intent ≠ Venue Reality.</p></article>
+          <article><span>2</span><strong>See MINT_A_PAIR</strong><p>Land the reveal: “This wasn't a whale. It was a mint.”</p></article>
+          <article><span>3</span><strong>Inspect real proof</strong><p>PostOnly rested, zero fills, exact cancel, collateral restored.</p></article>
+          <article><span>4</span><strong>Check the boundary</strong><p>Testnet technical + behavior proof, not production evidence.</p></article>
+        </div>
+      </section>
+
+      <section class="docs-section" id="proof">
+        <div class="docs-section-head"><div><div class="docs-section-kicker">PROOF</div><h2>Receipts over claims.</h2></div></div>
+        <div class="doc-grid">
+          <a class="doc-card" href="/?case=LKB-001#proof"><small>01 · PRODUCT</small><strong>Real Shannon proof surface</strong><p>Judge-facing redacted proof plus the live read-only network verification rail.</p><span class="arrow">Open proof in product →</span></a>
+          <a class="doc-card" href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer"><small>02 · COMMITMENT</small><strong>Tamper-evident proof commitment</strong><p>Public commitment to the private Packet 003 bundle without wallet or transaction identifiers.</p><span class="arrow">Open commitment ↗</span></a>
+          <a class="doc-card" href="https://github.com/Faadil1/Last-Known-Book" target="_blank" rel="noreferrer"><small>03 · SOURCE</small><strong>GitHub + deterministic CI</strong><p>Implementation, fixtures, tests, replay generation and public/private evidence boundaries.</p><span class="arrow">Open repository ↗</span></a>
+          <a class="doc-card" href="/docs/SDK-FEEDBACK.md" target="_blank" rel="noreferrer"><small>04 · ECOSYSTEM</small><strong>SDK / docs feedback</strong><p>Concrete findings on market identity, bounded approvals, units and PostOnly reconciliation.</p><span class="arrow">Open feedback source ↗</span></a>
+        </div>
+        <div class="truth-note"><strong>What the proof demonstrates.</strong><p>Technical behavior and operational containment on Somnia Shannon: exact pre-write gating, a bounded PostOnly order, zero fills, `OrderPlaced → OrderRested`, exact returned-order cancellation, `OrderCancelled`, and collateral restored exactly. It does not demonstrate production reliability, ROI, MTTR improvement, incident prevalence or profitability.</p></div>
+      </section>
+
+      <section class="docs-section" id="mechanism">
+        <div class="docs-section-head"><div><div class="docs-section-kicker">MECHANISM</div><h2>The incident contract.</h2></div></div>
+        <p class="docs-section-intro">The product does not optimize for transaction count. It reconstructs what happened, classifies what is known, and only permits an action when grounded predicates justify it.</p>
+        <div class="docs-story">
+          <div><span>01</span><strong>Capture agent intent</strong></div>
+          <div><span>02</span><strong>Reconstruct venue reality</strong></div>
+          <div><span>03</span><strong>Decode DreamDEX-native cause</strong></div>
+          <div><span>04</span><strong>Gate corrective authority</strong></div>
+          <div><span>05</span><strong>Reconcile final state</strong></div>
+        </div>
+        <div class="truth-note"><strong>The trading agent may be AI. The layer that decides whether money moves is not.</strong><p>Observed evidence can constrain automation. Inference can request more evidence. Unknown can stop the system. DreamDEX-specific semantics — marketId, rolling pool binding, MINT_A_PAIR, resting escrow, lifecycle and native order events — are the causal vocabulary rather than sponsor decoration.</p></div>
+      </section>
+
+      <section class="docs-section" id="qa">
+        <div class="docs-section-head"><div><div class="docs-section-kicker">JUDGE Q&A</div><h2>The objections we expect.</h2></div><button class="secondary-btn mini" id="qa-expand-all" type="button">Expand all</button></div>
+        <div class="qa-list">
+          <details class="qa-item"><summary><strong>Isn't this just analytics?</strong><small>DIFFERENTIATOR</small></summary><p>No. Analytics describes a market. Last Known Book reconstructs one unexpected execution, identifies the DreamDEX-native cause, decides whether a corrective action is justified, and reconciles closure.</p></details>
+          <details class="qa-item"><summary><strong>Why not just inspect a block explorer?</strong><small>PRODUCT NEED</small></summary><p>An explorer shows transactions. It does not reconstruct Agent Intent vs Venue Reality, classify venue-specific cause, separate truth classes, apply an authority policy and close the incident as one evidence contract.</p></details>
+          <details class="qa-item"><summary><strong>Why does this require DreamDEX?</strong><small>SPONSOR FIT</small></summary><p>The mechanism depends on DreamDEX Event Contract semantics: durable marketId identity, rolling pool binding, MINT_A_PAIR, escrow behavior, lifecycle state and native order events. Removing those semantics collapses the current causal model.</p></details>
+          <details class="qa-item"><summary><strong>What is real versus replayed?</strong><small>TRUTH BOUNDARY</small></summary><p>Four casefiles are deterministic replays built from captured real Shannon incident evidence. Separately, Packet 003 is a Last Known Book-originated real Shannon testnet placement/rest/exact-cancel/reconciliation proof.</p></details>
+          <details class="qa-item"><summary><strong>Did the real Packet 003 order trade?</strong><small>PROOF SCOPE</small></summary><p>No. It was deliberately PostOnly, rested with zero fills, then the exact returned order was cancelled. That proves bounded authority and reconciliation, not profitable execution.</p></details>
+          <details class="qa-item"><summary><strong>Is WRITE REFUSED a failure?</strong><small>SAFETY</small></summary><p>No. Refusal is the correct behavior when evidence does not justify a write. A blind compensating transaction can turn one confusing incident into two.</p></details>
+          <details class="qa-item"><summary><strong>What business outcome is proven?</strong><small>CLAIM DISCIPLINE</small></summary><p>Operational containment is demonstrated on Shannon testnet. MTTR improvement, ROI, incident prevalence and production reliability are not yet proven and are not claimed.</p></details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sources">
+        <div class="docs-section-head"><div><div class="docs-section-kicker">AUDIT TRAIL</div><h2>Go as deep as you want.</h2></div></div>
+        <div class="doc-grid">
+          <a class="doc-card" href="https://github.com/Faadil1/Last-Known-Book/blob/main/docs/SUBMISSION-PACKAGE.md" target="_blank" rel="noreferrer"><small>RAW SOURCE</small><strong>Submission package</strong><p>The human-final-gate submission copy and truth boundaries.</p><span class="arrow">Open on GitHub ↗</span></a>
+          <a class="doc-card" href="https://github.com/Faadil1/Last-Known-Book/blob/main/docs/REQUIREMENTS-EVIDENCE-MATRIX.md" target="_blank" rel="noreferrer"><small>RAW SOURCE</small><strong>Requirements → evidence</strong><p>The explicit MUST / MUST_NOT coverage ledger.</p><span class="arrow">Open on GitHub ↗</span></a>
+          <a class="doc-card" href="/docs/DEMO-SCRIPT.md" target="_blank" rel="noreferrer"><small>FILM CONTRACT</small><strong>2:35 demo script</strong><p>The canonical judge story for the final encoded film.</p><span class="arrow">Open source ↗</span></a>
+          <a class="doc-card" href="/?case=LKB-001#live-readback"><small>LIVE</small><strong>Shannon readback</strong><p>Read-only chain/head/receipt verification from the live product.</p><span class="arrow">Open live panel →</span></a>
+        </div>
+      </section>
+
+      <footer class="docs-footer"><span>Last Known Book · Evidence lives on.</span><strong>Protected submission remains human-only.</strong></footer>
+    </div>
   </main>
+
+  <script type="module" src="/docs-interactions.js"></script>
 </body>
 </html>
