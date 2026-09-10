@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v6.3
-updated_utc: "2026-09-10T19:54:00Z"
+schema: LKB-HANDOVER-v6.4
+updated_utc: "2026-09-10T20:14:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: ATLAS_ROOM_V5_JURY_FIRST__RUNTIME_RECHECK_PENDING
+lifecycle: ATLAS_ROOM_V5_FINAL_POLISH__BENITA_DEMO_HANDOFF_READY
 canonical_branch: main
 canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
 
@@ -11,11 +11,11 @@ active_candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  validated_product_head: 246cbab5b72871ae6df5a5503c9b8b93d3197aef
-  product_ci_run: 34522852978
+  validated_runtime_head: 6d676d70dd7fa3a7cfe1ec957c9b9e32b0501c20
+  product_ci_run: 34524799147
   product_ci_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://e963f7d4.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://d7068e59.last-known-book.pages.dev
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
 
 promotion_chain:
@@ -24,21 +24,50 @@ promotion_chain:
   - PR18 component polish -> rework/approved-editorial-realism-hero-v2
   - PR17 hero -> main
 
-latest_material_decisions:
-  - A second runtime recording showed that Atlas V4 was still too dense for a first-time jury.
-  - The problem was information architecture rather than missing functionality: the root repeated investigation through the hero, a four-path index, Featured Investigations and then the entire case workspace.
-  - Atlas V5 changes the root into a jury-first product overview and moves detailed investigation work behind the Case Room.
-  - The duplicated four-path index is removed from the root.
-  - Featured Investigations is retained but renamed Featured Case Files so it functions as concrete examples rather than another generic investigation section.
-  - The default root no longer displays the full investigation workspace.
-  - `/investigations.html` is the semantic Case Room entry and redirects into the canonical `?case=LKB-*` workspace.
-  - Hero wording now explains the product directly: `POST-EXECUTION INCIDENT RESPONSE · DREAMDEX` and `Know what happened before your agent acts again.`
-  - The first explanatory section uses three jury questions: what happened, what is actually known, and what is safe to do next.
-  - Methodology, Proof, Agent and Docs remain dedicated pages; depth is intentionally distributed across pages instead of being repeated on the root.
-  - Mobile responsiveness is now explicitly load-bearing. Desktop navigation collapses to a native details menu; explainer/cards/workspace/proof layouts reflow at 980px and 680px breakpoints.
-  - The prior approved hero asset remains recoverable for provenance/rollback but is not the active root design.
-  - Real photographic imagery remains context, never evidence.
-  - No promotion toward main is authorized until desktop + mobile runtime receive human and TRACE PASS.
+latest_human_verdict:
+  status: PRODUCT_DIRECTION_PASS_TWO_POLISH_ITEMS_REQUESTED
+  accepted:
+    - jury-first root architecture
+    - Featured Case Files
+    - multi-page depth model
+    - mobile-reactive requirement and direction
+  polish_requested:
+    - remove brief legacy-UI flash when moving from home to Case Room
+    - replace raw-looking proof commitment presentation with a first-class page consistent with Methodology / Agent / Atlas visual language
+
+final_polish_result:
+  zero_flash_case_room:
+    implemented: true
+    files:
+      - atlas-route-transition.js
+      - hero-interactions.js
+    contract:
+      - home-to-case transition stays inside the already-rendered Atlas DOM
+      - `history.pushState` preserves canonical `?case=LKB-*` URLs
+      - Featured Case Files and primary case CTAs do not reload index.html
+      - browser back returns to jury-first home
+      - old pre-Atlas hero is therefore not re-rendered during the normal home-to-case path
+  proof_room_v2:
+    implemented: true
+    files:
+      - proof.html
+      - proof-page.js
+      - proof-room-v2.css
+    contract:
+      - proof is presented as visual ledger and receipt
+      - Shannon behavior proof remains explicit
+      - truth boundary remains explicit
+      - tamper-evident commitment is explained in four steps
+      - proof ID, network, proof classes and Git anchors are rendered as readable facts
+      - raw JSON is retained only as a collapsed technical appendix
+      - responsive proof commitment layout is protected
+  tests:
+    file: tests/atlas-room-v4.test.mjs
+    status: PASS
+    ci_run: 34524799147
+  cloudflare_pages:
+    status: PASS
+    atomic_preview: https://d7068e59.last-known-book.pages.dev
 
 jury_first_root_sequence:
   - HERO__WHAT_IT_IS
@@ -66,20 +95,6 @@ case_room_contract:
     - safe_action
     - live_read_only_Shannon
 
-mobile_acceptance:
-  - top navigation is usable without horizontal overflow
-  - hero remains legible and CTA priority survives
-  - product-principle row stacks cleanly
-  - three-question explainer becomes one column
-  - Featured Case Files become one column on phone
-  - Judge Fast Lane becomes one column on phone
-  - Case Room becomes one-column workspace on tablet/narrow
-  - case register becomes one column on phone
-  - Intent vs Venue Reality stacks vertically
-  - Methodology and Proof grids stack
-  - focus states remain visible
-  - prefers-reduced-motion remains respected
-
 truth_and_authority:
   dreamdex_native_semantics_are_load_bearing: true
   photo_assets_are_context_not_evidence: true
@@ -90,31 +105,37 @@ truth_and_authority:
   public_agent_surface_has_broadcast: false
   production_evidence: ABSENT
 
-key_v5_files:
-  - atlas-room.js
-  - atlas-room-v5.css
-  - investigations.html
-  - tests/atlas-room-v4.test.mjs
-  - tests/approved-realism-hero-v2.test.mjs
-  - docs/ATLAS-ROOM-V5-JURY-FIRST.md
-  - state/ATLAS_V5_RUNTIME_GATE.md
-  - state/CURRENT.yaml
-  - state/HANDOVER.yaml
+benita_demo_handoff:
+  status: READY
+  document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
+  stable_runtime: https://rework-atlas-room-v4.last-known-book.pages.dev
+  target_duration: 2_to_3_minutes
+  required_argument:
+    - unexpected execution
+    - venue reality
+    - OBSERVED / INFERRED / UNKNOWN
+    - bounded next action
+    - authority boundary
+    - verifiable Shannon proof
+    - tamper-evident public commitment
+  demo_do_not:
+    - feature dump
+    - open all four cases
+    - open raw commitment JSON unless asked
+    - claim production reliability or business outcomes
+    - expose private Packet 003 identifiers
+    - show private keys, signing or broadcast paths
 
 remaining_P0:
-  - human + TRACE review of fresh Atlas V5 root on desktop
-  - human + TRACE review at approximately 390-430px width
-  - Case Room deep-link desktop/mobile validation
-  - Methodology / Proof / Agent continuity validation
-  - update Demo and Q&A to present HS-002 Authority Receipt without feature dumping
-  - promote PR21 -> PR19 -> PR18 -> PR17 -> main only after PASS
-  - final 2-3 minute demo
-  - TRACE encoded-video review
+  - Benita records final 2-3 minute demo using handoff
+  - TRACE reviews encoded demo for judge comprehension, pacing, truth boundaries and visual continuity
+  - human user reviews encoded demo
+  - only after PASS, promote PR21 -> PR19 -> PR18 -> PR17 -> main
 
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_gate: ATLAS_V5_JURY_FIRST_RUNTIME_DESKTOP_MOBILE_RECHECK
-next_exact_action: Open `https://rework-atlas-room-v4.last-known-book.pages.dev` after the latest branch deployment. Review root desktop first, then phone width around 390-430px, then `/investigations.html`, `/methodology.html`, `/proof.html`, and `/agent.html`. Record explicit human + TRACE PASS/FAIL before promotion.
+next_exact_gate: BENITA_ENCODED_DEMO_PLUS_TRACE_VIDEO_REVIEW
+next_exact_action: Give Benita `docs/HANDOFF-BENITA-DEMO-2026-09-10.md` and the stable Cloudflare branch preview. Record the demo, then run TRACE encoded-video review before any promotion.
