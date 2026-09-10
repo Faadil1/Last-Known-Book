@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Last Known Book — Agent Interface</title>
+  <meta name="description" content="Read-only agent interface for Last Known Book incident investigation." />
+  <meta name="theme-color" content="#f4f0e7" />
+  <link rel="icon" href="/brand-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/agent.css" />
+</head>
+<body>
+  <header>
+    <a class="brand" href="/"><img src="/brand-mark.svg" alt=""/><span><strong>Last Known Book</strong><small>AGENT INTERFACE</small></span></a>
+    <nav><a href="/?case=LKB-001">Investigations</a><a href="/docs.html">Judge Packet</a><a href="https://github.com/Faadil1/Last-Known-Book" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">AGENT-NATIVE INCIDENT RESPONSE · READ ONLY BY DEFAULT</div>
+      <h1>Bring your own incident.<br/><em>Get back bounded authority.</em></h1>
+      <p>Last Known Book can accept a captured case or a live transaction intake, reconstruct what is actually established, and return a machine-readable Authority Receipt. The investigation interface never signs or broadcasts a transaction.</p>
+      <div class="chips"><span>OBSERVED</span><span>INFERRED</span><span>UNKNOWN</span><span class="guard">WRITE GATED</span></div>
+    </section>
+
+    <section class="flow" aria-label="Agent integration flow">
+      <article><small>01 · INPUT</small><strong>Agent intent + incident evidence</strong><p>Canonical case JSON or a transaction hash with optional market context.</p></article>
+      <b>→</b>
+      <article><small>02 · RECONSTRUCT</small><strong>Venue reality</strong><p>Deterministic DreamDEX semantics where evidence supports them; unknown stays unknown.</p></article>
+      <b>→</b>
+      <article><small>03 · RETURN</small><strong>Authority Receipt</strong><p>Recommended action, truth counts, blockers, report hash and explicit write authority.</p></article>
+    </section>
+
+    <section class="surface">
+      <div class="section-head"><div><small>INTEGRATION SURFACES</small><h2>One engine. Four ways in.</h2></div><span>NO WALLET · NO SIGNING · NO BROADCAST</span></div>
+      <div class="grid">
+        <article><small>HTTP</small><h3>POST /api/investigate</h3><p>Bring-your-own-incident endpoint for apps and backend services.</p><pre>{ "txHash": "0x…", "network": "shannon", "agentIntent": "BUY_NO 10 @ 0.42" }</pre></article>
+        <article><small>WEBHOOK</small><h3>POST /api/incidents</h3><p>Generic inbound operational webhook using the same fail-closed investigation path.</p><pre>incident source → LKB → report + authorityReceipt</pre></article>
+        <article><small>MCP</small><h3>POST /api/mcp</h3><p>Agent tool discovery/call surface plus a local stdio adapter for tool-capable clients.</p><pre>tools/list · tools/call · lkb_investigate</pre></article>
+        <article><small>CLI</small><h3>npm run lkb</h3><p>Machine-readable local investigation, transaction intake and network checks.</p><pre>npm run lkb -- tx 0x… shannon</pre></article>
+      </div>
+    </section>
+
+    <section class="authority">
+      <div><small>THE DIFFERENTIATOR</small><h2>The trading agent may be AI.<br/>The layer that decides whether money moves is not.</h2></div>
+      <pre>{
+  "recommendedAction": "ESCALATE",
+  "writeAuthorized": false,
+  "canMoveFunds": false,
+  "executionPerformed": false,
+  "inferenceCanAuthorizeSpend": false
+}</pre>
+    </section>
+
+    <section class="network">
+      <div class="section-head"><div><small>NETWORK NORMALIZATION</small><h2>Testnet assumptions do not leak into mainnet.</h2></div><a href="/api/network-check?network=shannon">Live Shannon check ↗</a></div>
+      <div class="network-grid"><article><strong>Shannon · 50312</strong><span>tUSDC · expected 6 decimals</span></article><article><strong>Mainnet · 5031</strong><span>USDso · expected 18 decimals</span></article><article><strong>Guard</strong><span>Read ERC-20 decimals() before scaling</span></article></div>
+    </section>
+
+    <section class="close"><small>REPRODUCIBLE BY DESIGN</small><h2>Every canonical case has a deterministic replay path.</h2><p><code>npm run replay</code> regenerates the machine-readable incident reports; <code>npm test</code> verifies they remain deterministic and byte-clean.</p><a href="/docs.html">Open the Judge Packet →</a></section>
+  </main>
+  <footer><span>LAST KNOWN BOOK · AGENT INTERFACE</span><strong>Evidence first. Inference bounded. Writes gated.</strong></footer>
+</body>
+</html>
