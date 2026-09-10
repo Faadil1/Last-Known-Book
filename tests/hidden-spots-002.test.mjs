@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { buildAuthorityReceipt } from '../src/authority-receipt.mjs';
+import { investigatePayload } from '../src/intake.mjs';
 import { formatRawUnits, parseHumanUnits } from '../src/network-normalization.mjs';
 
 const read = (path) => readFile(path, 'utf8');
@@ -31,6 +32,39 @@ test('network unit conversion keeps Shannon 6 and mainnet 18 decimal scales exac
   assert.equal(formatRawUnits('1250000', 6), '1.25');
   assert.equal(parseHumanUnits('1.25', 18), '1250000000000000000');
   assert.equal(formatRawUnits('1250000000000000000', 18), '1.25');
+});
+
+test('canonical case intake returns the existing deterministic engine plus authority receipt', async () => {
+  const caseData = JSON.parse(await read('data/cases/mint-pair-indexer-lag.json'));
+  const result = await investigatePayload({ caseData });
+  assert.equal(result.mode, 'CANONICAL_OR_CAPTURED_CASE');
+  assert.equal(result.report.caseId, 'LKB-001');
+  assert.equal(result.report.policy.writeAuthorized, false);
+  assert.equal(result.authorityReceipt.decision.executionPerformed, false);
+  assert.equal(result.authorityReceipt.reportHash, result.report.reportHash);
+});
+
+test('bare live tx intake fails closed instead of inventing DreamDEX semantics', async () => {
+  const fakeFetch = async (_url, options) => {
+    const request = JSON.parse(options.body);
+    const results = {
+      eth_chainId: '0xc488',
+      eth_blockNumber: '0x64',
+      eth_getTransactionReceipt: { status: '0x1', blockNumber: '0x60' }
+    };
+    return { ok: true, json: async () => ({ jsonrpc: '2.0', id: 1, result: results[request.method] }) };
+  };
+  const result = await investigatePayload({
+    txHash: `0x${'ab'.repeat(32)}`,
+    network: 'shannon',
+    agentIntent: 'BUY_NO 10 @ 0.42'
+  }, { fetchFn: fakeFetch });
+  assert.equal(result.mode, 'LIVE_TX_INTAKE');
+  assert.equal(result.report.rootCause, 'UNKNOWN');
+  assert.equal(result.report.policy.action, 'ESCALATE');
+  assert.equal(result.report.policy.writeAuthorized, false);
+  assert.ok(result.report.claims.some((claim) => claim.truthClass === 'UNKNOWN'));
+  assert.equal(result.authorityReceipt.decision.canMoveFunds, false);
 });
 
 test('agent surfaces stay read-only and expose the winning mechanism', async () => {
