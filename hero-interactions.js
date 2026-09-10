@@ -1,3 +1,5 @@
+import '/component-polish.js';
+
 const heroScene = document.querySelector('.hero-reference-scene');
 const heroPhoto = document.querySelector('.hero-reference-photo');
 const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
