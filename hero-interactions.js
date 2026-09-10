@@ -5,29 +5,6 @@ const heroPhoto = document.querySelector('.hero-reference-photo');
 const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
 const prefersReducedMotion = motionQuery?.matches ?? false;
 
-const APPROVED_HERO_PARTS = 7;
-
-async function loadApprovedHeroAsset() {
-  if (!heroPhoto) return;
-  heroPhoto.dataset.assetState = 'loading';
-  try {
-    const parts = await Promise.all(
-      Array.from({ length: APPROVED_HERO_PARTS }, (_, index) => {
-        const part = String(index + 1).padStart(2, '0');
-        return fetch(`/assets/hero-v2/part-${part}.b64`, { cache: 'force-cache' }).then((response) => {
-          if (!response.ok) throw new Error(`hero asset part ${part}: ${response.status}`);
-          return response.text();
-        });
-      })
-    );
-    heroPhoto.src = `data:image/webp;base64,${parts.map((part) => part.trim()).join('')}`;
-    heroPhoto.dataset.assetState = 'approved';
-  } catch (error) {
-    console.warn('Approved hero scene could not be assembled; retaining safe fallback.', error);
-    heroPhoto.dataset.assetState = 'fallback';
-  }
-}
-
 function scrollToInvestigations() {
   document.getElementById('investigations')?.scrollIntoView({
     behavior: prefersReducedMotion ? 'auto' : 'smooth',
@@ -51,12 +28,8 @@ function openFeaturedCase(caseId, tab = 'overview') {
 }
 
 function upgradeHeroSurface() {
-  const eyebrow = document.querySelector('.hero-eyebrow');
-  if (eyebrow) eyebrow.textContent = 'ON-CHAIN EVIDENCE · OFF-CHAIN CLARITY.';
-
   const heroVisual = document.querySelector('.hero-visual');
-  heroVisual?.setAttribute('aria-label', 'Warm editorial investigation workspace with physical Last Known Book case binders');
-  heroPhoto?.setAttribute('alt', 'Warm evidence workspace with physical case binders, archival papers and a mountain landscape beyond the window');
+  heroVisual?.setAttribute('aria-label', 'Atlas Room investigation environment');
 
   const mainHotspot = document.querySelector('.hotspot-main');
   if (mainHotspot) {
@@ -80,7 +53,7 @@ function installFeaturedInvestigations() {
   section.setAttribute('aria-labelledby', 'featured-investigations-title');
   section.innerHTML = `
     <div class="featured-header">
-      <h2 id="featured-investigations-title">Featured Investigations</h2>
+      <div><p>REAL CASES · REAL CONTEXT.</p><h2 id="featured-investigations-title">Featured Investigations</h2></div>
       <p>Four captured Shannon incident classes · evidence first</p>
     </div>
     <div class="featured-grid">
@@ -121,11 +94,10 @@ if (heroScene && heroPhoto && !prefersReducedMotion) {
       const rect = heroScene.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
       const y = (event.clientY - rect.top) / rect.height - 0.5;
-      heroScene.style.setProperty('--photo-x', `${(-x * 6).toFixed(2)}px`);
-      heroScene.style.setProperty('--photo-y', `${(-y * 4).toFixed(2)}px`);
+      heroScene.style.setProperty('--photo-x', `${(-x * 5).toFixed(2)}px`);
+      heroScene.style.setProperty('--photo-y', `${(-y * 3).toFixed(2)}px`);
     });
   });
-
   heroScene.addEventListener('pointerleave', () => {
     heroScene.style.setProperty('--photo-x', '0px');
     heroScene.style.setProperty('--photo-y', '0px');
@@ -135,10 +107,7 @@ if (heroScene && heroPhoto && !prefersReducedMotion) {
 document.querySelectorAll('.hero-hotspot[data-archive-target]').forEach((hotspot) => {
   hotspot.addEventListener('click', () => {
     const target = hotspot.dataset.archiveTarget;
-    if (target === 'overview') {
-      openFeaturedCase('LKB-001');
-      return;
-    }
+    if (target === 'overview') return openFeaturedCase('LKB-001');
     if (['evidence', 'timeline', 'method'].includes(target)) activateProductView(target);
   });
 });
@@ -154,4 +123,7 @@ motionQuery?.addEventListener?.('change', () => {
 
 upgradeHeroSurface();
 installFeaturedInvestigations();
-loadApprovedHeroAsset();
+
+// Atlas Room is deliberately loaded after the proven interaction layer so it can
+// transition the visual system without deleting the investigation runtime.
+import('/atlas-room.js');
