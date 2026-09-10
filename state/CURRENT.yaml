@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v4.7
-updated_utc: "2026-09-10T18:53:00Z"
+schema: LKB-CURRENT-v4.8
+updated_utc: "2026-09-10T19:01:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,7 +9,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
-  status: ATLAS_ROOM_V4__SOURCE_AND_CI_PASS__CLOUDFLARE_WRONG_BRANCH_DIAGNOSED__ALTERNATE_RUNTIME_RECHECK_PENDING
+  status: ATLAS_ROOM_V4__CORRECT_CLOUDFLARE_BRANCH_PREVIEW_DEPLOYED__RUNTIME_RECHECK_PENDING
 
 authority:
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
@@ -22,8 +22,8 @@ candidate:
   atlas_room_branch: rework/atlas-room-v4
   atlas_room_pr: 21
   atlas_room_base: rework/hidden-spots-002-agent-native
-  atlas_room_validated_head: e1a1196a9eccdbaeacbf8f3d180f9f4cb076c68c
-  atlas_room_ci_run: 34516058571
+  atlas_room_current_head: 8ee7ebc41440730b87a18dd077d96e0d6b922de5
+  atlas_room_ci_run: 34517758411
   atlas_room_ci_status: PASS
   primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
   secondary_vercel_status: USER_AVAILABLE_FOR_IMPORT
@@ -31,7 +31,7 @@ candidate:
 visual_direction:
   selected: THE_ATLAS_ROOM
   selected_by: HUMAN_USER
-  status: SOURCE_IMPLEMENTED_AND_CI_PASS
+  status: SOURCE_IMPLEMENTED_CI_PASS_CLOUDFLARE_PREVIEW_READY
   runtime_rule: SELECTED_REFERENCE_IS_DIRECTION_NOT_FLAT_SCREENSHOT
   implementation:
     - live DOM hero/navigation/CTAs/cards
@@ -49,22 +49,19 @@ visual_direction:
     unsupported_vanity_metrics_visible_in_atlas: false
     production_evidence: ABSENT
 
-cloudflare_diagnosis:
-  observed_from_user_dashboard_video: true
+cloudflare_runtime:
   pages_project: last-known-book
-  automatic_deployments: enabled
-  production_source_branch: main
-  production_source_commit: c4542923d545329c6d7ab30d85e070fb22575626
-  github_main_matches_cloudflare_source: true
-  atlas_candidate_branch: rework/atlas-room-v4
-  atlas_candidate_head: e1a1196a9eccdbaeacbf8f3d180f9f4cb076c68c
-  verdict: OLD_UI_IS_EXPECTED_WRONG_BRANCH_ROUTING_NOT_CACHE_OR_ATLAS_FAILURE
+  production_url: https://last-known-book.pages.dev
+  production_branch: main
+  production_commit: c4542923d545329c6d7ab30d85e070fb22575626
+  production_behavior: EXPECTED_OLD_PRE_ATLAS_UI
+  branch_preview_status: SUCCESS
+  branch_preview_commit: 8ee7ebc41440730b87a18dd077d96e0d6b922de5
+  branch_preview_url: https://rework-atlas-room-v4.last-known-book.pages.dev
+  atomic_preview_url: https://0fa78696.last-known-book.pages.dev
+  cloudflare_check: SUCCESS
+  diagnosis: OLD_PRODUCTION_URL_WAS_WRONG_BRANCH_NOT_CACHE_OR_ATLAS_FAILURE
   do_not_merge_main_just_to_refresh_cloudflare: true
-  valid_test_options:
-    - Cloudflare Pages preview branch for rework/atlas-room-v4
-    - temporarily set Cloudflare production branch to rework/atlas-room-v4 on a test-only Pages project
-    - deploy exact Atlas branch/head through Codex/Wrangler
-    - import exact Atlas branch into second Vercel account
 
 hidden_spots_002:
   inherited_from_pr19: true
@@ -97,13 +94,12 @@ hosting_strategy:
   primary_vercel_plan: HOBBY
   primary_vercel_current_state: RATE_LIMITED
   secondary_vercel: USER_AVAILABLE_FOR_MANUAL_GITHUB_IMPORT
-  cloudflare_pages_current_binding: MAIN_OLD_VERSION
-  cloudflare_target_for_test: REWORK_ATLAS_ROOM_V4_OR_EXACT_HEAD_E1A1196
+  cloudflare_pages_production: OLD_MAIN_REFERENCE
+  cloudflare_pages_atlas_preview: READY
 
 remaining_P0:
-  - DEPLOY_EXACT_ATLAS_BRANCH_TO_SECOND_VERCEL_OR_CLOUDFLARE_PREVIEW
-  - DESKTOP_ATLAS_RUNTIME_RECHECK
-  - NARROW_MOBILE_ATLAS_RUNTIME_RECHECK
+  - DESKTOP_ATLAS_RUNTIME_RECHECK_ON_BRANCH_PREVIEW
+  - NARROW_MOBILE_ATLAS_RUNTIME_RECHECK_ON_BRANCH_PREVIEW
   - METHODOLOGY_ROUTE_RECHECK
   - PROOF_COMMITMENT_HTML_RECHECK
   - AGENT_INTERFACE_NAV_CONTINUITY_RECHECK
@@ -124,6 +120,6 @@ deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
 
-next_gate: ATLAS_ROOM_CORRECT_BRANCH_RUNTIME_RECHECK
+next_gate: ATLAS_ROOM_CLOUDFLARE_BRANCH_PREVIEW_RUNTIME_RECHECK
 next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Deploy `rework/atlas-room-v4` at exact head `e1a1196a9eccdbaeacbf8f3d180f9f4cb076c68c` on the second Vercel account or a Cloudflare Pages preview/retargeted test deployment. Do not use the current `last-known-book.pages.dev` production URL for Atlas review because it is correctly serving old `main@c454292`. Inspect home desktop/mobile plus `/methodology.html`, `/proof.html`, `/agent.html`, and case deep-links; record human + TRACE PASS/FAIL before promotion.
+next_exact_action: Review `https://rework-atlas-room-v4.last-known-book.pages.dev` (or atomic `https://0fa78696.last-known-book.pages.dev`) rather than the production `last-known-book.pages.dev` URL. Inspect home desktop/mobile plus `/methodology.html`, `/proof.html`, `/agent.html`, case deep-links, focus and reduced-motion behavior. Record human + TRACE PASS/FAIL before promotion.
