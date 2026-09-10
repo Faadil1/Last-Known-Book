@@ -1,179 +1,189 @@
 # Last Known Book — Canonical Demo Film Contract
 
-Status: **WINNING INTELLIGENCE TARGETED REWORK — VIDEO SCRIPT FROZEN FOR FIRST ENCODE**  
+Status: **FINAL BENITA RECORDING CONTRACT — TRACE ENCODED-VIDEO GATE PENDING**  
 Target runtime: **155 seconds (2:35)**  
 Allowed final range: **120–180 seconds**  
+Production runtime: **https://last-known-book.pages.dev**  
 Product: **Last Known Book**  
 Tagline: **Reconstruct the market your agent actually traded.**
 
-This is the canonical first encoded demo contract. It optimizes judge comprehension, not feature count.
+This film optimizes judge comprehension and evidence quality, not feature count.
 
-## Truth rules for the film
+## Truth rules
 
-- Captured Shannon incident cases are **replay evidence**, not Last Known Book-originated writes.
+- Four incident cases are deterministic replays from captured Shannon evidence, not Last Known Book-originated writes.
 - Packet 003 is a separate **Last Known Book-originated real Shannon testnet behavior proof**.
+- The Proof Room's live witnesses are current **read-only verification**, not additional product-originated trades.
 - Packet 003 proves technical behavior and operational containment, not production reliability, profitability, ROI, prevalence, fraud detection or MTTR improvement.
-- Do not show the disposable wallet, private key, seed phrase or full private receipt bundle.
-- No live blockchain write is required in the film.
-- If an explorer or network surface is slow, use committed evidence and label it as captured proof. Never fabricate a live success.
+- No private Packet 003 identifiers, disposable wallet, private key, seed phrase or private receipt bundle may appear.
+- No blockchain write is required in the film.
+- If a live witness is unavailable, show the fail-closed state or rely on committed proof. Never fabricate live success.
 
-## 0:00–0:10 — Hook
+## 0:00–0:18 — Hero / pain
 
 ### Picture
-Open immediately on the casefile, not architecture. Show **AGENT INTENT ≠ VENUE REALITY**.
+Open the production Atlas Room. Keep the hero and the three questions visible:
+
+- What happened?
+- What do we actually know?
+- What is safe to do next?
 
 ### Voice
-> An autonomous trading agent gets an execution that looks wrong. Was it bad trading — or did we misunderstand what the venue actually did?
+> An autonomous trading agent has already acted, and the execution looks wrong. The dangerous part is what happens next: if we misunderstand what the venue actually did, a corrective trade can create a second incident. Last Known Book reconstructs the execution before the agent acts again.
 
 ### Judge objective
-Understand the tension in one view.
+Know the user, moment and consequence in under twenty seconds.
 
 ---
 
-## 0:10–0:25 — Pain / baseline
+## 0:18–0:55 — One incident / causal reveal
 
 ### Picture
-Quick controlled focus across intent, venue reality, evidence and authority gate.
+Open **LKB-001 — Mint + Indexer Lag**. Show:
+
+`AGENT INTENT ≠ VENUE REALITY`
+
+Then keep the causal slice legible:
+
+`MINT_A_PAIR + CHAIN_INDEXER_DIVERGENCE → RETRY_READ → WRITE REFUSED`
+
+Briefly show `OBSERVED / INFERRED / UNKNOWN`.
 
 ### Voice
-> Today, an operator can jump between the order request, receipts, balances, the order book and an indexer — and still choose the wrong corrective action. Last Known Book reconstructs one incident as a single evidence contract.
-
-### Judge objective
-Specific user: autonomous DreamDEX agent operator.  
-Specific moment: unexpected execution.  
-Baseline: manual cross-surface reconciliation.
-
----
-
-## 0:25–0:55 — Hero causal reveal
-
-### Picture
-Use `LKB-001`. Keep the full causal slice visible:
-
-`AGENT INTENT ≠ VENUE REALITY → MINT_A_PAIR + CHAIN_INDEXER_DIVERGENCE → MIXED → RETRY_READ → WRITE REFUSED`
-
-### Voice
-> Here the apparent execution is easy to misread. DreamDEX matched the complementary sides through `MINT_A_PAIR`, while indexed verification lagged behind chain truth. Last Known Book corrects the economics, separates what is observed from what is inferred, and refuses a blind resubmission.
+> Here the execution is easy to misread. DreamDEX matched complementary sides through `MINT_A_PAIR`, while indexed verification lagged behind chain truth. Last Known Book reconstructs venue reality, separates observed facts from inference and unknowns, and refuses a blind resubmission.
 >
 > **This wasn't a whale. It was a mint.**
 
 ### Judge objective
-Land the 24-hour memory hook before minute one.
+Land the unique mechanism and memory hook before minute one.
 
 ---
 
-## 0:55–1:20 — Generality without a feature dump
+## 0:55–1:15 — Show it is a mechanism, not a one-case trick
 
 ### Picture
-Click through two cases quickly:
-
-1. resting SELL escrow;
-2. expected-vs-actual fill.
+Do not tour all four cases. Use the Methodology surface or one quick secondary case reference to show that the same contract handles another DreamDEX-native cause such as resting SELL escrow.
 
 ### Voice
-> The same incident contract handles very different causes. A resting sell can escrow outcome tokens without losing them. A fill can differ from the request and still be correctly reconciled. In both cases, a compensating trade would create a second incident, so the correct response can be `NO_ACTION`.
+> The same incident contract handles different venue-native causes. A resting sell can move outcome inventory into venue escrow without losing it. When the state is already explained, the correct action can be `NO_ACTION` rather than another trade.
 
 ### Judge objective
-Show this is a mechanism, not a one-case trick.
+Establish generality without feature dumping.
 
 ---
 
-## 1:20–1:55 — Real Last Known Book-originated Shannon proof
+## 1:15–1:58 — Proof Room: originated proof + independent live witnesses
 
 ### Picture
-Show the redacted **REAL SHANNON PROOF** card. Use simple event animation or progressive highlights; do not expose private identifiers.
+Open **https://last-known-book.pages.dev/proof.html**.
 
-Required visible sequence:
+First show the real behavior proof:
 
 `Shannon 50312`  
-`fresh exact market / pool / Trading gate`  
-`PostOnly placement: receipt success`  
+`PostOnly`  
 `0 fills`  
-`OrderPlaced → OrderRested`  
-`exact returned order cancelled`  
-`OrderCancelled`  
+`OrderPlaced → OrderRested → OrderCancelled`  
 `tUSDC 1 raw → 1 raw`
 
+Then show the **LIVE READ-ONLY WITNESSES** panel. Let it display naturally. The desired visible checks are:
+
+- current Shannon chain ID + head;
+- public captured `LKB-003` receipt;
+- DreamDEX BinaryMarketsModule bytecode present;
+- tUSDC `decimals() = 6`.
+
 ### Voice
-> Replay evidence is useful, but we also wanted a product-originated proof. On Shannon chain 50312, Last Known Book revalidated the exact market, pool, lifecycle and order-book parameters before execution. A bounded PostOnly order was placed, rested with zero fills, and returned one order ID. We cancelled exactly that order. DreamDEX emitted `OrderPlaced`, `OrderRested` and `OrderCancelled`, and collateral reconciled exactly from one raw tUSDC back to one raw.
+> Replay evidence is useful, but Last Known Book also originated a bounded Shannon proof. It revalidated the exact market context, placed one PostOnly order, observed zero fills and a resting state, cancelled exactly the returned order, then reconciled collateral back to the starting raw balance.
+>
+> The Proof Room also checks Shannon live, read-only: the network and head, a separate public captured receipt, the DreamDEX module's deployed bytecode and tUSDC units. These are independent witnesses, not extra trades. If the RPC cannot be verified, the page fails closed instead of inventing a pass.
 
 ### Judge objective
-Make `TECHNICAL_PROOF + BEHAVIOR_PROOF` undeniable without overstating outcome proof.
+Make the evidence stack feel independently verifiable, not screenshot-dependent.
 
 ---
 
-## 1:55–2:15 — Why DreamDEX is load-bearing
+## 1:58–2:12 — Tamper-evident commitment / truth boundary
 
 ### Picture
-Overlay only the primitives that matter:
+Scroll to the visual commitment:
 
-`marketId` · rolling pool binding · lifecycle · `MINT_A_PAIR` · resting escrow · native order events.
+`CAPTURE → FINGERPRINT → ANCHOR → PUBLIC RECEIPT`
+
+Keep `PRODUCTION EVIDENCE = ABSENT` visible at least once.
 
 ### Voice
-> DreamDEX is not a logo in the stack. `marketId`, rolling pool binding, Event Contract lifecycle, `MINT_A_PAIR`, escrow semantics and native order events are the vocabulary Last Known Book uses to explain what actually happened.
+> The private proof bundle is also bound to a pre-judging Git fingerprint and canonical commit reference. The public receipt proves preservation without publishing private operational identifiers. And the claim stops here: this is testnet technical, behavior and containment proof — not production performance evidence.
 
 ### Judge objective
-Close sponsor-native-necessity Q&A before it is asked.
+Turn claim discipline into credibility.
 
 ---
 
-## 2:15–2:30 — Ecosystem value + truth boundary
+## 2:12–2:28 — Agent-native close
 
 ### Picture
-Show a clean excerpt/title from `docs/SDK-FEEDBACK.md`, then return to the product.
+Open **https://last-known-book.pages.dev/agent.html**. Show the incident intake → truth classes → safe action → Authority Receipt flow. Do not tour every API.
 
 ### Voice
-> The build also produced concrete SDK and documentation feedback around market identity, bounded approvals, raw-unit arithmetic and PostOnly event reconciliation. This is real testnet behavior evidence — not a claim of production reliability, ROI or incident prevalence.
+> Last Known Book is not only a human dashboard. An upstream agent can submit an incident through HTTP, webhook, MCP or CLI and receive the same deterministic Authority Receipt. A receipt can recommend or refuse. It cannot move money by itself.
 
 ### Judge objective
-Business/ecosystem value without fake metrics.
+Show adoption path and agent-native relevance without weakening authority.
 
 ---
 
-## 2:30–2:35 — Close
+## 2:28–2:35 — Close
 
 ### Picture
-Wordmark + hero product frame.
+Return to the Last Known Book wordmark or strongest Atlas frame.
 
 ### Voice
-> **Last Known Book. Reconstruct the market your agent actually traded.**
+> **The trading agent may be AI. The layer that decides whether money moves is not. Last Known Book — reconstruct the market your agent actually traded.**
 
 ## Required screen text
 
-The encoded film must make these strings legible at least once:
+The final encoded film must make these strings legible at least once:
 
 - `LAST KNOWN BOOK`
 - `AGENT INTENT ≠ VENUE REALITY`
 - `MINT_A_PAIR + CHAIN_INDEXER_DIVERGENCE`
+- `OBSERVED / INFERRED / UNKNOWN`
 - `WRITE REFUSED`
-- `REAL SHANNON PROOF`
+- `REAL SHANNON BEHAVIOR PROOF`
 - `0 FILLS`
 - `OrderPlaced → OrderRested → OrderCancelled`
 - `tUSDC 1 → 1 RAW`
-- `TESTNET BEHAVIOR PROOF ≠ PRODUCTION EVIDENCE`
+- `LIVE READ-ONLY WITNESSES`
+- `PRODUCTION EVIDENCE · ABSENT` or equivalent visible boundary
+- `Authority Receipt`
 
 ## Editing constraints
 
-- Do not open with a technology-stack montage.
-- Do not spend more time on architecture than on behavior.
-- Do not introduce a second narrative or product name.
-- Keep captured replay and product-originated Packet 003 proof visually distinct.
-- Avoid generic crypto-trading B-roll, dark dashboard montage or decorative blockchain imagery.
-- Every technical detail shown must answer a likely judge objection.
-- Prefer screen capture + purposeful annotations over slides.
+- Use only the production URL `https://last-known-book.pages.dev` and its pages.
+- Do not open with architecture, CLI or a technology montage.
+- Do not spend more time on architecture than behavior.
+- Do not tour all four cases.
+- Keep captured replay, product-originated Packet 003 proof and live read-only witnesses visually/conceptually distinct.
+- Do not open raw proof JSON in the primary demo.
+- Avoid generic crypto B-roll, decorative blockchain footage or unrelated dashboard shots.
+- Prefer screen capture + deliberate cursor movement + minimal annotations.
+- If live witnesses are unavailable during recording, do not repeatedly refresh on camera. Continue with the committed behavior proof and truth boundary.
+- Optional mobile insert only after the core argument is already complete.
 
 ## TRACE final encoded-video gate
 
-Before the video is considered complete, TRACE must review the **encoded artifact**, not only this script, for:
+Before the video is complete, TRACE must review the encoded artifact for:
 
-- first-view clarity;
-- first-30-second problem/mechanism comprehension;
-- first-minute aha;
-- text readability at normal playback speed;
-- replay-vs-real-proof truth separation;
-- claim fidelity;
+- first-time comprehension in the first 20 seconds;
+- problem/mechanism comprehension in the first 30 seconds;
+- first-minute causal aha;
+- readability at normal playback speed;
+- replay vs originated proof vs live read-only witness separation;
+- Proof Room continuity and no raw JSON dependency;
+- authority-boundary clarity;
 - audio intelligibility;
-- visual continuity with the judge-facing product;
-- final duration within 2–3 minutes.
+- product visual continuity;
+- final duration within 2–3 minutes;
+- no unsupported claims.
 
 `SCRIPT_READY != VIDEO_READY`.

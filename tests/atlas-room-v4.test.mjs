@@ -87,12 +87,33 @@ test('Proof commitment is a judge-facing visual receipt and no raw JSON is rende
   assert.match(proofHtml, /PRODUCTION EVIDENCE/);
   assert.match(proofHtml, /class="atlas-mobile-nav"/);
   assert.match(proofJs, /SHANNON-PROOF-003-COMMITMENT\.json/);
-  assert.doesNotMatch(proofJs, /JSON\.stringify/);
-  assert.match(proofJs, /fail closed/);
+  assert.doesNotMatch(proofJs, /raw\.textContent/);
+  assert.match(proofJs, /fail closed/i);
   assert.match(proofCss, /proof-ledger/);
   assert.match(proofCss, /commitment-explainer/);
   assert.match(proofCss, /@media\(max-width:620px\)/);
   assert.match(heroJs, /\/proof\.html#commitment/);
+});
+
+test('Proof Room adds independent live on-chain witnesses without any write surface', () => {
+  assert.match(proofHtml, /LIVE READ-ONLY WITNESSES/);
+  assert.match(proofHtml, /Four independent checks against Shannon now/);
+  assert.match(proofHtml, /PUBLIC CAPTURED TX · LKB-003/);
+  assert.match(proofHtml, /DREAMDEX MODULE/);
+  assert.match(proofJs, /eth_chainId/);
+  assert.match(proofJs, /eth_blockNumber/);
+  assert.match(proofJs, /eth_getTransactionReceipt/);
+  assert.match(proofJs, /eth_getCode/);
+  assert.match(proofJs, /eth_call/);
+  assert.match(proofJs, /0x313ce567/);
+  assert.match(proofJs, /50312/);
+  assert.match(proofJs, /0x3ecC694Cef705358864a646142ac17A90E29e388/);
+  assert.match(proofJs, /0x70a86D8842FB63C4Ad2b7cdddF530eBf1BB25d8E/);
+  assert.doesNotMatch(proofJs, /eth_sendRawTransaction/);
+  assert.doesNotMatch(proofJs, /eth_sendTransaction/);
+  assert.doesNotMatch(proofJs, /eth_requestAccounts/);
+  assert.doesNotMatch(proofJs, /personal_sign/);
+  assert.match(proofCss, /live-witness-grid/);
 });
 
 test('Atlas loads synchronously with the proven interaction layer and keeps reduced-motion behavior', () => {

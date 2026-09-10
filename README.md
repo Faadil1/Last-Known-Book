@@ -2,81 +2,100 @@
 
 **Reconstruct the market your agent actually traded.**
 
-Last Known Book is a post-execution incident-response system for autonomous agents trading DreamDEX Event Contracts on Somnia.
+Production: **https://last-known-book.pages.dev**
 
-When an agent gets an unexpected execution, Last Known Book reconstructs **Agent Intent vs Venue Reality**, applies DreamDEX-native semantic decoders, separates **OBSERVED / INFERRED / UNKNOWN**, and closes the incident through an authority-aware action or explicit no-action followed by reconciliation.
+Last Known Book is post-execution incident response for autonomous agents trading DreamDEX Event Contracts on Somnia. When an execution looks wrong, it reconstructs **Agent Intent vs Venue Reality**, applies DreamDEX-native semantic decoders, separates **OBSERVED / INFERRED / UNKNOWN**, and returns a bounded next action plus a deterministic Authority Receipt.
 
 > **The trading agent may be AI. The layer that decides whether money moves is not.**
->
-> AI can interpret. Evidence can constrain. Deterministic predicates + explicit human authority decide the write.
+
+Inference can explain or request more evidence. It cannot authorize spend by itself.
 
 ## Judge Fast Lane — 60 seconds
 
-1. Open the live judge surface and select **LKB-001**.
-2. Read one causal slice: `AGENT INTENT ≠ VENUE REALITY → MINT_A_PAIR + CHAIN_INDEXER_DIVERGENCE → RETRY_READ → WRITE REFUSED`.
+1. Open **https://last-known-book.pages.dev** and select **LKB-001**.
+2. Follow `AGENT INTENT ≠ VENUE REALITY → MINT_A_PAIR + CHAIN_INDEXER_DIVERGENCE → RETRY_READ → WRITE REFUSED`.
 3. Land the memory hook: **This wasn't a whale. It was a mint.**
-4. Read the **REAL SHANNON PROOF** card: chain `50312` → PostOnly → `0 fills` → `OrderPlaced → OrderRested → OrderCancelled` → `tUSDC 1 raw → 1 raw`.
-5. Use the **LIVE SHANNON READBACK** panel to verify the network head and a public captured transaction without signing or connecting a wallet.
-6. Open `/agent.html` to see how another agent can hand an incident to Last Known Book and consume a machine-readable Authority Receipt.
-7. Inspect `docs/SDK-FEEDBACK.md`, `docs/DEMO-SCRIPT.md` and CI if deeper technical validation is needed.
+4. Open **/proof.html** for the Last Known Book-originated Shannon proof: `50312 → PostOnly → 0 fills → OrderPlaced → OrderRested → exact cancel → OrderCancelled → tUSDC 1 raw → 1 raw`.
+5. Read the **LIVE READ-ONLY WITNESSES**: current Shannon chain/head, a public captured LKB-003 receipt, DreamDEX BinaryMarketsModule bytecode and tUSDC `decimals()`.
+6. Inspect the visual proof commitment. The raw JSON remains a machine-readable artifact but is not the judge-facing experience.
+7. Open **/agent.html** to see Bring Your Own Incident + deterministic Authority Receipt through HTTP, webhook, MCP or CLI.
 
-Judge code candidate: `6ee02917aa92951dc1222282367ef7599095bffa`  
-Winning Intelligence CI: `34361037435` — PASS (engine tests + proof/redaction tests + deterministic replay cleanliness).
+Canonical source: `main`. Current validation status is recorded in `state/CURRENT.yaml` and `state/HANDOVER.yaml` rather than hardcoded here so the README does not go stale after every final-assurance commit.
 
-## Why now: rolling markets make stale state dangerous
+## The problem
 
-DreamDEX Event Contracts are rolling windows: a market expires, a successor opens, and pools may be recycled. The current DreamDEX developer documentation therefore recommends treating `marketId` as the durable identity, re-reading current on-chain lifecycle before writes, and never hardcoding a per-window pool.
+An autonomous agent can submit a valid transaction while the operator still has the wrong explanation of what happened at the venue. Order intent, receipts, balances, the order book, lifecycle and indexed state can each be individually real while telling an incomplete story.
 
-That is exactly the incident boundary Last Known Book protects:
+The risk is the second action: a blind retry, compensating trade or redeem can turn one confusing incident into two.
 
-`marketId changes → market-specific state must be treated as stale → reconstruct before any corrective write`
+Last Known Book starts **after execution** and asks three questions:
 
-As agent loops become faster and more autonomous, an execution-assurance layer becomes more important because a stale order, pool binding, indexed lifecycle or misunderstood fill path can turn one unexpected execution into a second transaction.
+1. What happened?
+2. What do we actually know?
+3. What is safe to do next?
 
-## Product contract
+## Why DreamDEX is load-bearing
 
-- Post-execution assurance, not a prediction agent or generic analytics dashboard.
-- DreamDEX-native semantics are load-bearing: `marketId`, on-chain lifecycle, escrow, fill paths, `MINT_A_PAIR`, settlement and exact-market recovery.
-- Chain truth outranks lagging indexed state for writes and final reconciliation.
-- Inference alone never authorizes spend.
-- A truthful `NO_ACTION`, `RETRY_READ`, or `ESCALATE` is preferable to an unsafe corrective transaction.
-- No Matchday Pulse source code is reused; this repository is implemented from scratch.
+This is not generic transaction analytics. The causal model depends on DreamDEX Event Contract semantics:
 
-## Hero line
+- durable `marketId` identity and rolling pool binding;
+- current on-chain lifecycle;
+- `MINT_A_PAIR` fill economics;
+- resting SELL escrow;
+- expected-vs-actual fill reconciliation;
+- exact-market residual settlement;
+- native `OrderPlaced`, `OrderRested` and `OrderCancelled` events.
 
-> **This wasn't a whale. It was a mint.**
+Removing those semantics changes both the explanation and whether another action is justified.
 
-The deterministic casefile engine now covers four captured real Shannon incident classes: `MINT_A_PAIR` + indexer lag, resting SELL escrow, expected-vs-actual fill, and exact-market residual settlement. Captured cases remain explicitly labeled as replay evidence from public sources.
+## Four captured incident classes
 
-Separately, Last Known Book has now originated one bounded **real Shannon testnet proof** of its authority and reconciliation path: an exact-market PostOnly order rested with zero fills, the exact returned order was cancelled, native order events were reconciled, and tUSDC collateral returned exactly to its pre-placement balance. The public repo keeps wallet and transaction identifiers redacted; the complete receipt bundle is preserved in private PBPD canon.
+- **LKB-001 — Mint + Indexer Lag:** chain success + `MINT_A_PAIR` while indexed verification lags → `RETRY_READ`, no resubmit.
+- **LKB-002 — Resting Sell Escrow:** inventory is committed by the venue, not lost → `NO_ACTION`.
+- **LKB-003 — Fill Dislocation:** actual execution differs from request but reconciles correctly → `NO_ACTION`.
+- **LKB-004 — Settlement Residual:** exact-market lifecycle determines whether a residual is actionable → fail closed without fresh authority.
 
-## Where Last Known Book sits
+These are deterministic replays from captured Shannon evidence. They are not represented as Last Known Book-originated writes.
 
-```text
-autonomous DreamDEX agent
-        ↓
-DreamDEX execution
-        ↓
-unexpected result / ambiguous venue state
-        ↓
-┌───────────────────────────────┐
-│        LAST KNOWN BOOK        │
-│ Intent vs Venue Reality       │
-│ DreamDEX semantic decoders    │
-│ OBSERVED / INFERRED / UNKNOWN │
-│ deterministic authority gate  │
-└───────────────────────────────┘
-        ↓
-NO_ACTION / RETRY_READ / ESCALATE / bounded exact action
-        ↓
-reconciled incident receipt + operator-visible closure
-```
+## Evidence stack
 
-This is intentionally not another alpha engine. It is the assurance layer between **an agent that already acted** and **the decision about what happens next**.
+### 1. Product-originated real Shannon behavior proof
 
-## Agent-native integration — HS-002
+Packet 003 is a bounded Somnia Shannon testnet proof originated by Last Known Book:
 
-Last Known Book is no longer only a human-facing investigation surface. The same bounded mechanism can now be consumed by an upstream agent or incident router:
+- chain `50312`;
+- exact market/pool/lifecycle/order parameters revalidated before the write;
+- one PostOnly order;
+- `0 fills`;
+- `OrderPlaced → OrderRested`;
+- exact returned order cancelled;
+- `OrderCancelled`;
+- tUSDC collateral reconciled exactly `1 raw → 1 raw`.
+
+This proves technical behavior + operational containment. It does **not** prove production reliability, profitability, ROI or MTTR improvement.
+
+### 2. Independent live read-only witnesses
+
+The Proof Room verifies four separate facts against Shannon at runtime using read-only JSON-RPC:
+
+- `eth_chainId` + `eth_blockNumber`;
+- `eth_getTransactionReceipt` for the public captured LKB-003 transaction;
+- `eth_getCode` for the DreamDEX BinaryMarketsModule;
+- `eth_call` for tUSDC `decimals()`.
+
+No wallet, signing or transaction broadcast method is used. If RPC verification is unavailable, the UI fails closed rather than showing a fabricated pass.
+
+### 3. Tamper-evident proof commitment
+
+`/proof.html#commitment` presents a visual receipt that binds the preserved private Packet 003 proof object to Git identities while keeping private wallet/transaction/order identifiers out of the public judge surface.
+
+The underlying machine-readable artifact remains at `evidence/SHANNON-PROOF-003-COMMITMENT.json` for auditability only.
+
+### 4. Deterministic replay + CI
+
+The repository tests engine semantics, case coverage, proof/redaction boundaries, agent tools, UI contracts, mobile/reduced-motion requirements and the absence of protected write methods from public surfaces.
+
+## Agent-native integration
 
 ```text
 DreamDEX event / tx / captured case
@@ -94,46 +113,34 @@ DreamDEX event / tx / captured case
 
 Available surfaces:
 
-- `POST /api/investigate` — Bring Your Own Incident. Accepts a canonical/captured case or a live `txHash` intake.
-- `POST /api/incidents` — provider-neutral inbound operational webhook.
-- `POST /api/mcp` — bounded agent tool discovery/calls; no protected write tool.
-- `npm run mcp` — local stdio agent adapter.
-- `npm run lkb -- ...` — JSON-first CLI for incident intake and network checks.
-- `SKILL.md` — LLM-readable operating reference.
-- `/agent.html` — judge-facing explanation of the agent integration contract.
+- `POST /api/investigate` — Bring Your Own Incident;
+- `POST /api/incidents` — provider-neutral inbound operational webhook;
+- `POST /api/mcp` — bounded remote tool surface;
+- `npm run mcp` — local stdio MCP adapter;
+- `npm run lkb -- ...` — JSON-first CLI;
+- `SKILL.md` — LLM-readable operating reference;
+- `/agent.html` — judge-facing agent contract.
 
-A transaction-only intake deliberately does **not** invent DreamDEX-native semantics from a bare receipt. If the cause cannot be deterministically established, Last Known Book returns `UNKNOWN` plus `RETRY_READ` or `ESCALATE`, with `writeAuthorized:false`.
+A bare transaction hash does not authorize Last Known Book to invent DreamDEX semantics. If the cause cannot be established deterministically, the system returns `UNKNOWN` with `RETRY_READ` or `ESCALATE` and `writeAuthorized:false`.
 
 ### Authority Receipt
 
-`LKB-AUTHORITY-RECEIPT-v0.1` turns the safety boundary into a machine-readable artifact: report hash, recommended action, `writeAuthorized`, observed/inferred/unknown counts, blocking unknowns and explicit `executionPerformed:false`.
+`LKB-AUTHORITY-RECEIPT-v0.1` contains the report hash, recommended action, `writeAuthorized`, truth-class counts, blocking unknowns and `executionPerformed:false`.
 
-A receipt can be consumed by another agent. It still cannot move money by itself.
+Another agent can consume the receipt. The receipt still cannot move money by itself.
 
-### Cross-network normalization
+## Production adoption path
 
-`GET /api/network-check?network=shannon` and `?network=mainnet` read chain identity and ERC-20 `decimals()` using read-only RPC. This protects the 6-decimal Shannon tUSDC vs 18-decimal mainnet USDso boundary without performing a mainnet transaction.
+Basic incident intake, webhook, HTTP, MCP/CLI integration and Authority Receipts already exist. The credible next steps are:
 
-### Live event ingestion seam
-
-`scripts/watch-shannon-readonly.mjs` uses only `eth_chainId`, `eth_blockNumber` and `eth_getLogs` for a configured address/topic. Raw logs are emitted as intake candidates; they are not automatically promoted to semantic claims.
-
-See `docs/AGENT-INTEGRATION.md` for the complete contract and explicit non-actions.
-
-## Production adoption path — without pretending the prototype is production
-
-The credible next path is incremental:
-
-1. ingest execution incidents continuously from an autonomous trading agent;
-2. persist immutable incident receipts keyed by durable market identity;
-3. measure a real operator baseline for mean time to root cause and containment;
-4. expand the live incident corpus while preserving replay-vs-originated-proof labels;
-5. harden identity, privacy, deployment and action-policy controls;
+1. persist immutable incident receipts keyed by durable market identity;
+2. expand the live incident corpus;
+3. measure a real operator baseline for time-to-root-cause and containment;
+4. harden identity, privacy, deployment and action-policy controls;
+5. extend deterministic DreamDEX semantic coverage;
 6. only then evaluate production write authority and measured business outcomes.
 
-The prototype does **not** claim those later steps are already complete.
-
-## Run the proof locally
+## Run locally
 
 Requires Node 20+.
 
@@ -145,78 +152,52 @@ npm run serve
 
 Then open `http://localhost:4173`.
 
-Optional Shannon read smoke:
+Optional read-only surfaces:
 
 ```bash
 npm run live:read
-```
-
-Agent-native read-only surfaces:
-
-```bash
 npm run lkb -- investigate data/cases/mint-pair-indexer-lag.json
 npm run lkb -- network-check shannon
 npm run lkb -- network-check mainnet
 npm run mcp
 ```
 
-The judge-facing live panel is read-only. It never requests a wallet, key or signature.
-
-The protected Shannon write runners are intentionally not a one-command demo. They fail closed on chain, market, pool, lifecycle, book parameters, gas, collateral, allowance, cutoff and exact human-confirmation predicates.
-
-## What is proven in v0.2
-
-- deterministic DreamDEX semantic decoders;
-- `MINT_A_PAIR` accounting correction;
-- chain-success/indexer-unavailable → `RETRY_READ`, never blind resubmit;
-- resting SELL escrow → `NO_ACTION` when state is already explained;
-- exact-market residual settlement classification, including zero-value losing residuals and already-redeemed positions;
-- `OBSERVED / INFERRED / UNKNOWN` claim boundary;
-- stable machine-readable incident-report hashes and deterministic replay;
-- judge-facing `Intent ≠ Venue Reality` casefile UI;
-- rendered 1280×720 causal-slice and reduced-motion assurance;
-- **real Last Known Book-originated Shannon behavior proof**: PostOnly placement → `OrderPlaced` / `OrderRested` → exact-order cancel → `OrderCancelled` → tUSDC restored exactly;
-- inference alone cannot authorize a write; deterministic predicates **and** explicit human confirmation are required;
-- agent-native read-only intake + machine-readable Authority Receipt;
-- cross-network collateral normalization guard that verifies `decimals()` instead of assuming testnet scale.
+Protected Shannon write runners are intentionally not a one-command demo. Any additional blockchain write requires fresh exact human authorization and fails closed on chain, market, pool, lifecycle, book parameters, gas, collateral, allowance, cutoff and closure predicates.
 
 ## Truth boundary
 
 Still **not** claimed:
 
-- production readiness or production reliability;
-- MTTR / MTTRC improvement versus a measured manual baseline;
-- ROI, financial-impact distribution or incident prevalence;
+- production readiness or reliability;
+- MTTR / MTTRC improvement versus a measured baseline;
+- ROI, profitability, incident prevalence or financial-impact distribution;
 - fraud/manipulation detection without direct evidence;
-- that captured third-party replay transactions were originated by Last Known Book;
-- that a bare tx receipt alone proves a DreamDEX root cause;
-- that an Authority Receipt executes or bypasses the protected write path.
+- that captured replay transactions were originated by Last Known Book;
+- that live read-only witnesses are additional product-originated trades;
+- that a bare receipt proves a DreamDEX root cause;
+- that an Authority Receipt executes or bypasses protected write authority.
 
-The real Shannon micro-proof is **technical + behavior + operational-containment evidence**, not production evidence or business-outcome proof.
+## Key files
 
-## Current DreamDEX build assumptions
-
-Rechecked for the Shannon proof against the current Event Contracts surface: `@somnia-chain/markets-sdk` **0.28.0+** is required for current tick handling; the proof runner pins `0.29.0`. Shannon is chain **50312**; testnet collateral is **tUSDC with 6 decimals**; `marketId` is the durable incident identity and pools may be recycled.
-
-See:
-- `docs/SDK-SNAPSHOT.md`
-- `docs/SDK-FEEDBACK.md`
-- `docs/UPSTREAM-FEEDBACK-DRAFT.md`
-- `docs/AGENT-INTEGRATION.md`
-- `SKILL.md`
 - `docs/DEMO-SCRIPT.md`
+- `docs/HANDOFF-BENITA-DEMO-2026-09-10.md`
 - `docs/SUBMISSION-PACKAGE.md`
+- `docs/AGENT-INTEGRATION.md`
+- `docs/SDK-FEEDBACK.md`
 - `docs/REQUIREMENTS-EVIDENCE-MATRIX.md`
 - `evidence/REALITY-SOURCES.md`
 - `evidence/SHANNON-PROOF-003-COMMITMENT.json`
+- `state/CURRENT.yaml`
+- `state/HANDOVER.yaml`
 
 ## Canonical state
 
 Start with `state/HANDOVER.yaml`.
 
-Upstream:
-- PBPD PRD/state: `Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/`
-- HOI decision/evidence: `Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/`
-- TRACE design contract: `Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/`
+Upstream canon:
 
-Lifecycle promotion is evidence-gated. `BUILD_CANDIDATE_READY` is emitted only after the requirements-to-evidence matrix is green; terminal submission readiness belongs to Project Finisher and remains separate from protected submission.
+- PBPD: `Faadil1/pbpd-cowork-system/projects/dreamdex-execution-incident-response/`
+- Hackathon Opportunity Intelligence: `Faadil1/hackathon-opportunity-intelligence/decisions/event-contracts-2026/`
+- TRACE: `Faadil1/trace-design-workflow/state/projects/dreamdex-execution-incident-response/`
+
+Final submission remains protected and human-only.

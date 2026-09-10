@@ -35,7 +35,7 @@
       <div>
         <div class="page-kicker">PROOF ROOM · JUDGE-SAFE</div>
         <h1 class="page-title">Verifiable behavior. Explicit boundaries.</h1>
-        <p class="page-lede">Last Known Book does not ask a judge to trust a screenshot or an AI explanation. The proof room shows what ran on Shannon, what was preserved before judging, and exactly where the claim stops.</p>
+        <p class="page-lede">Last Known Book does not ask a judge to trust a screenshot or an AI explanation. The proof room separates a product-originated Shannon behavior proof, independent live read-only witnesses, and a tamper-evident pre-judging commitment.</p>
       </div>
       <aside class="proof-room-seal" aria-label="Proof status">
         <small>PUBLIC PROOF STATUS</small>
@@ -67,6 +67,24 @@
           <div class="proof-ledger-row"><small>PUBLIC KEYS</small><strong>NO PRIVATE KEY · NO SIGNING</strong><code>BOUNDARY</code></div>
         </div>
       </article>
+    </section>
+
+    <section id="live-witnesses" class="proof-room-card live-witness-card" aria-labelledby="live-witness-title">
+      <div class="live-witness-head">
+        <div>
+          <div class="page-kicker">LIVE READ-ONLY WITNESSES</div>
+          <h2 id="live-witness-title">Four independent checks against Shannon now.</h2>
+          <p>These calls do not create proof by repetition. They independently verify the network, a public captured receipt, DreamDEX contract presence and collateral units. If RPC access is unavailable, the surface fails closed instead of inventing a pass.</p>
+        </div>
+        <button id="refresh-live-proof" class="copy-commitment" type="button">REFRESH LIVE</button>
+      </div>
+      <div id="live-proof-witnesses" class="live-witness-grid" aria-live="polite">
+        <div class="live-witness"><small>NETWORK</small><strong>Checking…</strong><span>eth_chainId + eth_blockNumber</span></div>
+        <div class="live-witness"><small>PUBLIC CAPTURED TX · LKB-003</small><strong>Checking…</strong><span>eth_getTransactionReceipt</span></div>
+        <div class="live-witness"><small>DREAMDEX MODULE</small><strong>Checking…</strong><span>eth_getCode</span></div>
+        <div class="live-witness"><small>tUSDC UNITS</small><strong>Checking…</strong><span>eth_call · decimals()</span></div>
+      </div>
+      <div class="live-witness-boundary"><strong>READ ONLY.</strong><span>No wallet · no signature · no transaction broadcast · no Packet 003 private identifiers.</span></div>
     </section>
 
     <section id="commitment" class="proof-room-card" style="margin-top:18px" aria-labelledby="commitment-title">

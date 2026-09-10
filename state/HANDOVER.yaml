@@ -1,116 +1,117 @@
-schema: LKB-HANDOVER-v7.1
-updated_utc: "2026-09-10T20:39:00Z"
+schema: LKB-HANDOVER-v7.2
+updated_utc: "2026-09-10T21:05:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: MAIN_CANONICAL__BENITA_FINAL_DEMO_NEXT
+lifecycle: MAIN_CANONICAL__FINAL_EVIDENCE_DENSITY_RECHECK_NEXT
 
 canonical:
   branch: main
-  product_release_merge: 8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34
-  judge_packet_commitment_route_fix: 9e74ff855b7a57565179eb253adca6152ee2b6f7
-  validated_state_snapshot: 19de834aaff3f0dd85dcc98d57b0d12030f4e287
-  validated_state_ci_run: 34527417622
   public_runtime: https://last-known-book.pages.dev
-  cloudflare_pages: PASS
   source_of_truth: GITHUB_MAIN
   branch_preview_is_obsolete_for_demo: true
 
-promotion_history:
-  user_authorized_direct_main_promotion: true
-  pr21: MERGED_TO_MAIN
-  pr17: CLOSED_MERGED
-  pr18: CLOSED_SUPERSEDED
-  pr19: CLOSED_SUPERSEDED
-  remaining_nested_pr_promotion_work: NONE
-
 material_decisions:
-  - Atlas Room V5 is the final selected visual direction.
-  - The root is jury-first and does not dump the entire investigation workspace.
-  - Featured Case Files remain as concrete examples.
-  - Methodology, Proof, Agent and Docs are separate depth surfaces.
-  - Home-to-Case-Room transition is in-place with history.pushState and must not flash the legacy hero.
-  - Proof Commitment is judge-facing at `/proof.html#commitment` as a visual receipt.
-  - Raw commitment JSON is not rendered in the Proof Room and is not linked directly from judge-facing product surfaces.
-  - The JSON file remains public only as a machine-readable evidence artifact.
-  - Judge Packet legacy commitment navigation is also rewritten to the visual receipt.
-  - Mobile responsiveness, visible focus and prefers-reduced-motion remain load-bearing.
-  - Real photography is contextual illustration, never incident evidence.
-  - Inference alone cannot authorize funds; no public wallet/private-key/signing/broadcast path exists.
-  - Production evidence remains ABSENT and no ROI/MTTR/profitability/prevalence/fraud claim is allowed.
+  - Atlas Room V5 remains the final selected visual direction.
+  - The homepage remains jury-first; no new feature section was added there.
+  - The Proof Room is the only product surface expanded in this step.
+  - Proof quality and independence are more valuable than raw on-chain transaction count.
+  - A second identical PostOnly transaction is not considered a meaningful evidence upgrade.
+  - Four live read-only witnesses were added to the Proof Room: Shannon chain/head, public LKB-003 captured receipt, DreamDEX BinaryMarketsModule bytecode and tUSDC decimals().
+  - The live witnesses are explicitly separate from the Last Known Book-originated Packet 003 behavior proof.
+  - Live witnesses use only read-only JSON-RPC and fail closed when unavailable.
+  - No new blockchain write is authorized by this workstream step.
+  - Any future product-originated write requires a fresh exact human approval packet and must prove a materially different missing semantic claim.
+  - Proof Commitment remains a visual receipt; raw JSON is machine-readable evidence only and is not rendered or linked as the primary judge experience.
+  - Submission package, README, canonical demo script and Benita handoff were refreshed to remove stale runtime / next-build claims and align proof taxonomy.
 
-validation:
-  main_product_merge_ci: PASS
-  main_product_merge_ci_run: 34526856417
-  post_merge_commitment_route_ci: PASS
-  post_merge_commitment_route_ci_run: 34527128539
-  canonical_state_snapshot_ci: PASS
-  canonical_state_snapshot_ci_run: 34527417622
-  cloudflare_pages_main: PASS
-  cloudflare_atomic_for_state_snapshot: https://752adb63.last-known-book.pages.dev
-  cloudflare_workers_check: NON_JUDGE_FACING_NOT_RUNTIME_GATE
+proof_taxonomy:
+  captured_replay:
+    count: 4
+    ids: [LKB-001, LKB-002, LKB-003, LKB-004]
+    role: DISTINCT_SHANNON_INCIDENT_CLASSES_REPLAYED_DETERMINISTICALLY
+    lkb_originated_writes: false
+  product_originated:
+    id: SHANNON_PACKET_003
+    role: REAL_BOUNDED_POSTONLY_REST_EXACT_CANCEL_BEHAVIOR_PROOF
+    chain_id: 50312
+    fills: 0
+    collateral_restored_exactly: true
+  live_read_only:
+    role: CURRENT_INDEPENDENT_CHAIN_WITNESSES
+    checks:
+      - eth_chainId_plus_eth_blockNumber
+      - eth_getTransactionReceipt_public_LKB003_capture
+      - eth_getCode_DreamDEX_BinaryMarketsModule
+      - eth_call_tUSDC_decimals
+    write_methods: NONE
+  commitment:
+    role: PRE_JUDGING_TAMPER_EVIDENT_GIT_BINDING
+    private_identifiers_published: false
 
-product_map:
-  home: /
-  case_room: /?case=LKB-001
-  case_room_entry: /investigations.html
-  methodology: /methodology.html
-  proof_room: /proof.html
-  visual_proof_commitment: /proof.html#commitment
-  agent_interface: /agent.html
-  judge_packet: /docs.html
+competitive_context:
+  high_signal_observation:
+    - LevelField publicly emphasizes 26_of_26_onchain_attestations_verified
+    - Lucid publicly emphasizes a large live contract surface and read-only verification
+  lkb_response:
+    - do_not_chase_raw_counts
+    - make each proof source answer a different judge objection
+    - retain original post_execution_forensics_and_authority_differentiator
+    - use live read-only witnesses to increase verifiability without adding risky writes
 
-proof:
-  real_shannon_behavior: POSTONLY_TO_REST_TO_EXACT_CANCEL
-  chain_id: 50312
-  zero_fills: true
-  collateral_restored_exactly: true
-  production_evidence: ABSENT
-  raw_commitment_artifact: /evidence/SHANNON-PROOF-003-COMMITMENT.json
-  raw_commitment_demo_rule: DO_NOT_OPEN
-  private_packet_003_identifiers: KEEP_REDACTED
+rubric_chain:
+  sequence: RUBRIC -> PAIN -> PROBLEM -> DIFFERENTIATOR -> EXECUTION -> EVIDENCE -> STORY -> DEMO -> Q&A
+  status:
+    RUBRIC: PASS
+    PAIN: PASS
+    PROBLEM: PASS
+    DIFFERENTIATOR: STRONG_PASS
+    EXECUTION: PASS
+    EVIDENCE: STRONG_PASS_PENDING_NEW_LIVE_WITNESS_RUNTIME_RECHECK
+    STORY: PASS
+    DEMO: PENDING_ENCODED_ARTIFACT
+    Q&A: PASS_REFRESHED
 
-agent_native_hs002:
-  status: CANONICAL_ON_MAIN
-  capabilities:
-    - Bring Your Own Incident
-    - provider-neutral incident webhook
-    - HTTP investigate
-    - MCP remote
-    - MCP stdio
-    - JSON-first CLI
-    - read-only watcher
-    - dynamic collateral normalization
-    - deterministic Authority Receipt
+updated_artifacts:
+  - README.md
+  - proof.html
+  - proof-page.js
+  - proof-room-v2.css
+  - tests/atlas-room-v4.test.mjs
+  - docs/SUBMISSION-PACKAGE.md
+  - docs/DEMO-SCRIPT.md
+  - docs/HANDOFF-BENITA-DEMO-2026-09-10.md
+  - state/CURRENT.yaml
+  - state/HANDOVER.yaml
+
+submission_package:
+  production_runtime: https://last-known-book.pages.dev
+  video: PENDING_BENITA_PLUS_TRACE
+  current_organizer_extension: 2026-09-11T23:59:00Z
+  final_cutoff_recheck: REQUIRED
+  protected_submit: HUMAN_ONLY
 
 benita:
-  handoff: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
   runtime: https://last-known-book.pages.dev
-  target_duration: 2_to_3_minutes
-  sequence:
-    - Hero thesis
-    - LKB-001 one-case walkthrough
-    - Intent vs Venue Reality plus OBSERVED INFERRED UNKNOWN
-    - one DreamDEX-native causal reveal
-    - Proof Room visual receipt
-    - Agent Interface and authority close
-  close: The trading agent may be AI. The layer that decides whether money moves is not.
-  do_not_show:
-    - raw commitment JSON
-    - private Packet 003 identifiers
-    - secrets or environment variables
-    - unsupported business or production claims
-
-trace:
-  repository: Faadil1/trace-design-workflow
-  project_state: state/projects/dreamdex-execution-incident-response/CURRENT.yaml
-  current_gate: 6.8-BENITA-FINAL-DEMO
-  next_output: BENITA_ENCODED_DEMO_FOR_TRACE_REVIEW
+  canonical_script: docs/DEMO-SCRIPT.md
+  handoff: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
+  proof_sequence:
+    - one_case_causal_reveal
+    - product_originated_Packet003
+    - independent_live_read_only_witnesses
+    - visual_commitment
+    - agent_authority_close
+  live_witness_failure_rule: DO_NOT_RETRY_REPEATEDLY_ON_CAMERA__CONTINUE_WITH_COMMITTED_PROOF
 
 remaining_P0:
-  - Benita records final 2-3 minute video against clean production URL
-  - TRACE reviews encoded video for judge comprehension, pacing, visual continuity and truth boundary
+  - GitHub Actions validate new evidence-density commit
+  - Cloudflare Pages deploy new main
+  - human/runtime recheck of /proof.html live witnesses and mobile reflow
+  - Benita records final 2-3 minute production demo
+  - TRACE reviews encoded demo
   - human final video approval
+  - final cover/thumbnail freeze if not already complete
+  - final cutoff recheck
   - protected hackathon submission remains HUMAN_ONLY
 
 continuity:
@@ -118,4 +119,4 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_action: Do not reopen UI design unless a production regression is found. Benita records against https://last-known-book.pages.dev using the handoff, then provide the encoded video to TRACE for final judge-performance review before human-only submission.
+next_exact_action: Validate the new main evidence-density candidate. If GitHub Actions + Cloudflare Pages + production Proof Room live witnesses pass, record that PASS in CURRENT/HANDOVER and move immediately to Benita encoded demo. Do not reopen broad product design and do not add a blockchain write without a fresh exact human gate.
