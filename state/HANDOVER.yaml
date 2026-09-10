@@ -1,99 +1,76 @@
-schema: LKB-HANDOVER-v4.4
-updated_utc: "2026-09-10T16:27:00Z"
+schema: LKB-HANDOVER-v4.5
+updated_utc: "2026-09-10T17:48:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: COMPONENT_POLISH_V3__CI_PASS__PREVIEW_READY__VISUAL_RECHECK_PENDING
+lifecycle: HIDDEN_SPOTS_002_AGENT_NATIVE_IMPLEMENTED__CI_PREVIEW_PENDING
 canonical_branch: main
 hero_implementation_branch: rework/approved-editorial-realism-hero-v2
 hero_implementation_pr: 17
-hero_implementation_ci: PASS
-hero_vercel_preview_status: READY
 polish_branch: rework/benita-component-polish-v3
 polish_pr: 18
-polish_base_head: 2679c241a6901d77d1950383a648f33a601531dc
-polish_validated_head: 02ed66795b3849dfbfba7361e01b87ab045eaf60
-polish_ci_run: 34501878645
-polish_ci_status: PASS
-polish_vercel_preview_status: READY
-polish_vercel_preview_url: https://last-known-book-6fc1-git-rework-benita-549168-faadil-s-projects.vercel.app
-polish_contract: docs/TRACE-COMPONENT-POLISH-V3-2026-09-10.md
-previous_rejected_runtime: https://last-known-book-6fc1.vercel.app/?case=LKB-001
+reinforcement_branch: feature/hidden-spots-002-agent-native
+reinforcement_base_head: df9294471062eb0a1ccbb05e1e70d5459f164deb
+reinforcement_contract: docs/HIDDEN-SPOTS-002.md
+agent_integration_doc: docs/AGENT-INTEGRATION.md
 material_decisions:
-  - The warm editorial physical-binder hero direction remains approved and is not reopened by this step.
-  - A second bounded visual-system pass was authorized using specialist component galleries supplied by the user as reference categories: Navbar Gallery, Supahero/ScreensDesign, CTA.gallery, Footer.design and 404s.design.
-  - These references inform component principles only; no external layout is copied.
-  - The polish is isolated on `rework/benita-component-polish-v3`, branched from PR #17 head `2679c241a6901d77d1950383a648f33a601531dc`, so the approved hero implementation remains recoverable and directly comparable.
-  - PR #18 targets the hero implementation branch rather than main. Its only purpose is to validate and optionally promote the component polish layer before PR #17's mainline promotion gate.
-  - `component-polish.css` adds sticky navbar compression, active navigation state, refined hero micro-hierarchy, restrained featured-case interaction, a dedicated pre-footer CTA and a structured evidence-native footer.
-  - `component-polish.js` installs the stylesheet, scroll-aware navigation state, live final CTA and upgraded footer. It does not change engine semantics or evidence truth.
-  - `hero-interactions.js` imports the component polish layer while preserving the approved hero asset loader, real case navigation, live hotspot behavior and reduced-motion behavior.
-  - `404.html` introduces a branded safe-recovery error state that routes only to known case and Judge Packet paths and explicitly avoids fabricating missing evidence.
-  - `tests/component-polish-v3.test.mjs` guards the live navigation/CTA/footer/404/reduced-motion contract.
-  - GitHub Actions validation passed for polish head `02ed66795b3849dfbfba7361e01b87ab045eaf60` in run `34501878645`.
-  - Vercel reports PR #18 preview READY at `https://last-known-book-6fc1-git-rework-benita-549168-faadil-s-projects.vercel.app`.
-  - CI PASS and Vercel READY are not visual approval. Desktop, narrow/mobile and `/404.html` still require runtime inspection and explicit human approval before PR #18 can merge.
-  - `/docs.html`, the investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain protected.
-  - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path, proof claims, live-readback authority or protected submission authority changed.
-reference_principles:
-  navbar_gallery: navigation hierarchy, sticky/static clarity, active-state legibility, mobile restraint
-  supahero_screensdesign: hero hierarchy and composition quality bar
-  cta_gallery: conversion hierarchy, contrast and action clarity
-  footer_design: utility-first footer architecture plus memorable brand close
-  404s_design: useful branded recovery rather than dead-end errors
-trace_position:
-  hero_direction_selection: PASS_APPROVED_FOR_IMPLEMENTATION
-  hero_source_and_ci: PASS
-  component_polish_v3_source_and_ci: PASS
-  component_polish_v3_preview: READY
-  component_polish_v3_visual_review: PENDING
-  terminal_freeze: NOT_AUTHORIZED_YET
-visual_acceptance_checklist:
-  - sticky navbar feels quieter and clearer, not heavier
-  - active navigation state remains obvious but restrained
-  - approved physical-binder hero remains the visual anchor
-  - final CTA feels product-native rather than generic marketing
-  - footer improves verification/navigation utility and ends with a clear brand moment
-  - 404 state feels intentionally Last Known Book and returns to known evidence paths
-  - desktop and narrow/mobile crops remain usable
-  - reduced-motion remains truthful and usable
-proof_status:
-  technical_proof: PASS_REAL_SHANNON
-  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
-  operational_containment: PASS
-  public_runtime_readback: PASS
-  production_evidence: ABSENT
+  - The user authorized applying all discovered hidden spots that materially improve the final product and strengthen differentiation, while preserving safety and truth boundaries.
+  - HS-002 is isolated on `feature/hidden-spots-002-agent-native`, branched from the latest component-polish branch so hero and visual work remain reversible.
+  - A live **Bring your own incident** section now accepts txHash, marketId and agent intent through a read-only HTTP intake. Minimal evidence deliberately returns `EVIDENCE_REQUIRED` + `RETRY_READ` and never fabricates a root cause.
+  - `src/agent-native.mjs` creates deterministic `LKB-AUTHORITY-RECEIPT-v0.1` receipts with report hash, root cause, safe next action, explicit `writeAuthorized`, truth-class counts, receipt hash and the authority marker `MODEL_INFERENCE_ALONE_CANNOT_AUTHORIZE_FUNDS`.
+  - `scripts/lkb-mcp.mjs` exposes read-only MCP tools `investigate_incident`, `evaluate_authority`, and `get_safe_action` for agent runtimes.
+  - `scripts/investigate.mjs` exposes machine-readable CLI investigation via `npm run investigate -- <incident.json>`.
+  - `POST /api/incident-webhook` provides generic operational intake without arbitrary outbound callbacks, avoiding turning the public demo into a relay/SSRF surface.
+  - Slack and Discord notification payload adapters are generated from the bounded Authority Receipt; the public demo does not send external notifications automatically.
+  - `scripts/watch-dreamdex.mjs` adds read-only JSON-RPC event ingestion using `eth_blockNumber` + `eth_getLogs`; raw logs remain intake evidence and do not become causal claims until reconstruction.
+  - `scripts/read-token-decimals.mjs` dynamically reads ERC20 `decimals()` over JSON-RPC. `normalizeTokenAmount` is tested with 6- and 18-decimal values so Shannon/mainnet scale is not assumed.
+  - The investigation toolbar gains a **Reproduce** action that copies the deterministic replay command for the current case.
+  - Tests explicitly guard fail-closed BYOI behavior, deterministic authority receipts, decimal normalization, bounded notification payloads and absence of signing/broadcast primitives from the agent-native surfaces.
+  - The component-polish direction, physical-binder hero, four canonical cases, real Shannon proof rail, live read-only Shannon readback and `/docs.html` remain protected.
+  - HS-002 does not add a repository license because that changes legal reuse rights and needs explicit human policy choice.
+  - HS-002 does not claim the sponsor/upstream issue has been published; the draft exists but third-party GitHub write authority remains unavailable.
+  - No wallet connection, private-key path, automatic compensating trade, mainnet write, Packet 003 de-redaction or model-authorized spend was added.
+product_differentiation_story:
+  flow: DREAMDEX_EVENT_OR_AGENT_INCIDENT -> READ_ONLY_INTAKE -> RECONSTRUCTION -> OBSERVED_INFERRED_UNKNOWN -> AUTHORITY_RECEIPT -> OPERATOR_OR_MCP_OR_CLI_OR_WEBHOOK
+  key_line: The trading agent may be AI. The layer that decides whether money moves is not.
+  judge_value:
+    - product can ingest a new incident rather than only replay four fixed cases
+    - downstream agents can consume a bounded authority decision through MCP/CLI/HTTP
+    - live events have a truthful read-only ingestion path
+    - reproducibility is evaluator-visible
+    - cross-network collateral scale is guarded dynamically rather than assumed
+validation_status:
+  implementation_source: COMPLETE
+  ci: PENDING
+  vercel_preview: PENDING
+  runtime_visual: PENDING
+  terminal_promotion: NOT_AUTHORIZED_YET
 remaining_P0:
-  - visually inspect PR 18 preview navbar, hero, Featured Investigations, final CTA and footer on desktop
-  - visually inspect PR 18 preview at narrow/mobile width
-  - verify `/404.html` recovery state
-  - run TRACE targeted runtime recheck
-  - obtain explicit human visual approval of PR 18 preview
-  - merge PR 18 into rework/approved-editorial-realism-hero-v2 only after PASS
-  - re-run PR 17 terminal preview gate and merge PR 17 only after PASS
-  - post-merge production visual recheck
-  - create final encoded 2-3 minute demo from the frozen production surface
-  - TRACE review of the actual encoded demo
-remaining_P1:
-  - final cover/thumbnail export from the frozen hero
-  - insert final video URL into submission package
-  - Winning Intelligence final recheck
-  - Project Finisher terminal reaudit
-deadline:
-  extended_through_date: "2026-09-11"
-  exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: COMPONENT_POLISH_V3_RUNTIME_VISUAL_RECHECK
-next_exact_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_VISUAL_APPROVAL
-next_exact_action: Open PR #18 Vercel preview at desktop and narrow/mobile widths and inspect navbar, hero, Featured Investigations, final CTA, footer and `/404.html`. CI and preview are green but do not authorize promotion. PASS plus explicit human approval permits merging PR #18 into `rework/approved-editorial-realism-hero-v2`; FAIL permits only targeted visual patching on the isolated polish branch.
+  - run CI for `feature/hidden-spots-002-agent-native`
+  - obtain isolated Vercel preview
+  - verify `/api/investigate` GET/POST and fail-closed result
+  - verify `/api/incident-webhook` bounded intake
+  - verify MCP/CLI unit contract through CI
+  - inspect Bring Your Own Incident section on desktop and narrow/mobile
+  - ensure component-polish/hero visual quality has not regressed
+  - obtain explicit human approval before promoting HS-002 into the polish branch
+  - preserve existing PR #18 and PR #17 promotion gates
+  - post-merge production recheck
+  - final encoded 2-3 minute demo and TRACE video review
+human_only_or_external:
+  - choose repository license if desired
+  - publish upstream sponsor issue through an authorized GitHub identity if desired
 blocked_actions:
-  - no terminal visual freeze before preview visual PASS and explicit human approval
-  - no merge of PR 18 solely because CI/Vercel status is green
-  - no merge of PR 17 to main before the terminal visual gate passes
+  - no promotion solely because CI or Vercel is green
+  - no terminal visual freeze before actual runtime review
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
   - no protected hackathon submission without explicit human approval
-  - no unsupported production/MTTR/ROI/prevalence/fraud claims
+  - no unsupported production, ROI, MTTR, prevalence or fraud claims
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
   next_conversation_should_start_here: true
+next_exact_gate: HIDDEN_SPOTS_002_CI_AND_PREVIEW
+next_exact_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE
+next_exact_action: Validate `feature/hidden-spots-002-agent-native` with GitHub Actions and Vercel preview, then test BYOI, Authority Receipt, webhook, MCP/CLI contracts and desktop/mobile integration. If all pass and the user approves the runtime, promote only this bounded reinforcement into `rework/benita-component-polish-v3` before continuing PR #18 and PR #17 gates.
