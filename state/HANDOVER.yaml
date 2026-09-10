@@ -1,5 +1,5 @@
-schema: LKB-HANDOVER-v6.4
-updated_utc: "2026-09-10T20:14:00Z"
+schema: LKB-HANDOVER-v6.5
+updated_utc: "2026-09-10T20:19:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
@@ -11,12 +11,13 @@ active_candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  validated_runtime_head: 6d676d70dd7fa3a7cfe1ec957c9b9e32b0501c20
-  product_ci_run: 34524799147
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+  product_ci_run: 34525245441
   product_ci_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://d7068e59.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
+  separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
 
 promotion_chain:
   - PR21 Atlas Room -> rework/hidden-spots-002-agent-native
@@ -43,10 +44,10 @@ final_polish_result:
       - hero-interactions.js
     contract:
       - home-to-case transition stays inside the already-rendered Atlas DOM
-      - `history.pushState` preserves canonical `?case=LKB-*` URLs
+      - history.pushState preserves canonical `?case=LKB-*` URLs
       - Featured Case Files and primary case CTAs do not reload index.html
       - browser back returns to jury-first home
-      - old pre-Atlas hero is therefore not re-rendered during the normal home-to-case path
+      - old pre-Atlas hero is not re-rendered during the normal home-to-case path
   proof_room_v2:
     implemented: true
     files:
@@ -60,14 +61,14 @@ final_polish_result:
       - tamper-evident commitment is explained in four steps
       - proof ID, network, proof classes and Git anchors are rendered as readable facts
       - raw JSON is retained only as a collapsed technical appendix
-      - responsive proof commitment layout is protected
+      - responsive commitment layout and mobile navigation are protected
   tests:
     file: tests/atlas-room-v4.test.mjs
     status: PASS
-    ci_run: 34524799147
+    ci_run: 34525245441
   cloudflare_pages:
     status: PASS
-    atomic_preview: https://d7068e59.last-known-book.pages.dev
+    atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
 
 jury_first_root_sequence:
   - HERO__WHAT_IT_IS
@@ -109,6 +110,7 @@ benita_demo_handoff:
   status: READY
   document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
   stable_runtime: https://rework-atlas-room-v4.last-known-book.pages.dev
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
   target_duration: 2_to_3_minutes
   required_argument:
     - unexpected execution
