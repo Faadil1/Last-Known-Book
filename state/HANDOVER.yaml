@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v4.6
-updated_utc: "2026-09-10T17:37:00Z"
+schema: LKB-HANDOVER-v4.7
+updated_utc: "2026-09-10T17:43:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: HS_002_AGENT_NATIVE__SOURCE_CI_PASS__VERCEL_READY__RUNTIME_RECHECK_PENDING
+lifecycle: HS_002_AGENT_NATIVE__FINAL_SOURCE_CI_PASS__VERCEL_READY__RUNTIME_RECHECK_PENDING
 canonical_branch: main
 hero_implementation_branch: rework/approved-editorial-realism-hero-v2
 hero_implementation_pr: 17
@@ -12,31 +12,31 @@ polish_pr: 18
 hidden_spots_branch: rework/hidden-spots-002-agent-native
 hidden_spots_pr: 19
 hidden_spots_base: rework/benita-component-polish-v3
-validated_implementation_head: d7e8d047813d992baaee12aca007b8aa57e888b4
-ci_run: 34508962764
+validated_implementation_head: 25f083b4e0f2c8efad79f99b5bcb9b586b8700db
+ci_run: 34509507704
 ci_status: PASS
 vercel_status: READY
 vercel_preview_url: https://last-known-book-6fc1-git-rework-hidden-b7ce04-faadil-s-projects.vercel.app
-vercel_deployment: CrsGkA9P6a8swZiGYmDpYfshjW82
+vercel_deployment: 5j13ZPzmt2pqTjmNfbrru2RJH75B
 material_decisions:
-  - User authorized applying all newly identified hidden spots that materially improve differentiation and final-product strength, while preserving truth, safety and legal boundaries.
-  - HS-002 is implemented on isolated PR #19 and targets the existing component-polish branch rather than main.
-  - The winning product story is now agent-native: `DreamDEX event/tx -> Last Known Book -> OBSERVED/INFERRED/UNKNOWN -> cause or fail-closed UNKNOWN -> safe action -> Authority Receipt -> operator/upstream agent`.
-  - `POST /api/investigate` supports canonical captured cases and live transaction intake. Bare transaction receipts never get fabricated DreamDEX causality; without a deterministic semantic decoder the system stays UNKNOWN and returns RETRY_READ/ESCALATE with no write authority.
-  - `POST /api/incidents` is a provider-neutral operational webhook. Slack/Discord-specific adapters are deliberately deferred because the generic seam is stronger, less secret-dependent and easier to extend after the hackathon.
-  - `LKB-AUTHORITY-RECEIPT-v0.1` is deterministic and machine-readable. It includes report/receipt hashes, truth-class counts, blocking unknowns, recommended action, write authorization and `executionPerformed:false`.
-  - Agent access exists through `/api/mcp`, local `npm run mcp`, JSON-first `npm run lkb`, repository `SKILL.md`, `/agent.html`, and public GET `/api/agent-status` capability self-test.
-  - Public agent surfaces expose investigation/read functionality only. They do not expose private keys, signing, broadcast, wallet clients or the protected blockchain write runner.
-  - `scripts/watch-shannon-readonly.mjs` provides the live ingestion seam with `eth_chainId`, `eth_blockNumber`, and `eth_getLogs`; raw logs remain intake candidates until deterministic decoding establishes semantics.
-  - Cross-network normalization explicitly guards Shannon chain 50312 / tUSDC 6 decimals vs Somnia mainnet chain 5031 / USDso 18 decimals using read-only `eth_call` to ERC20 `decimals()` before scaling.
-  - Exact unit conversion uses decimal strings and BigInt rather than floating-point arithmetic.
-  - Canonical cases are agent-reproducible through `lkb_reproduce_case` and the existing `npm run replay` + `npm test` path.
-  - CI run 34508962764 passed on implementation head d7e8d047813d992baaee12aca007b8aa57e888b4 after fixing a guard-test false positive. The failed prior run was test-quality noise: it matched the literal safety field `privateKeyAccepted:false`, not an actual private-key path.
-  - Vercel reports the PR #19 preview Ready at the stable branch preview URL. Connected runtime-content fetch is unavailable, so Ready is not being misreported as endpoint/visual PASS.
-  - Upstream sponsor-feedback publication was retried against `somnia-chain/dreamdex-bot-kit` after checking for an obvious duplicate. GitHub returned `403 Resource not accessible by integration`; therefore no public upstream issue is claimed. The draft remains ready for a manual or differently authorized path.
-  - Repository license is still deliberately unselected because it changes legal reuse rights and needs explicit human license choice.
-  - Protected write automation remains explicitly excluded because it would weaken the central authority differentiator.
-  - No new blockchain write, mainnet write, Packet 003 private identifier, production-reliability claim, ROI claim, MTTR claim or fraud claim was introduced.
+  - User authorized implementing all identified hidden spots that materially strengthen differentiation and winning potential, bounded by truth, authority, privacy and legal constraints.
+  - HS-002 is isolated on PR #19 into the already-isolated component-polish branch, preserving easy rollback and the existing PR18/PR17 promotion gates.
+  - Bring Your Own Incident is implemented through `POST /api/investigate`; canonical captured cases use the deterministic DreamDEX engine, while bare transaction intake is read-only and fails closed rather than inventing venue semantics.
+  - `POST /api/incidents` is the stable provider-neutral inbound webhook seam. Slack/Discord-specific adapters are deliberately deferred as downstream conveniences, not core winning mechanism.
+  - `LKB-AUTHORITY-RECEIPT-v0.1` makes the authority decision consumable by another machine without executing it. It carries deterministic report/receipt hashes, truth-class counts, blockers, recommended action, `writeAuthorized`, and `executionPerformed:false`.
+  - Agent-native access exists via `POST /api/mcp`, local `npm run mcp`, `npm run lkb`, repository `SKILL.md`, judge-facing `/agent.html`, and public GET `/api/agent-status`.
+  - Public agent surfaces intentionally expose no private-key, wallet-client, signing, broadcast or protected-write execution path.
+  - The read-only Shannon watcher uses `eth_chainId`, `eth_blockNumber`, and `eth_getLogs`; raw logs remain intake candidates until a deterministic decoder establishes DreamDEX semantics.
+  - Cross-network normalization guards Shannon 50312/tUSDC/6 decimals against Somnia mainnet 5031/USDso/18 decimals by reading ERC-20 `decimals()` through `eth_call` rather than carrying a testnet scale assumption forward.
+  - Exact unit conversion uses decimal strings and BigInt.
+  - Canonical case reproduction is exposed to agents through `lkb_reproduce_case`, backed by existing `npm run replay` + `npm test` determinism.
+  - Judge discoverability was reinforced after the first HS-002 pass: `docs-interactions.js` now adds the Agent Interface to the Judge Fast Lane and evidence/source cards, so the differentiator is not buried in README/API documentation.
+  - Final HS-002 implementation head `25f083b4e0f2c8efad79f99b5bcb9b586b8700db` passed CI run `34509507704`. Vercel reports the branch preview Ready with deployment `5j13ZPzmt2pqTjmNfbrru2RJH75B`.
+  - Vercel Ready is not being conflated with runtime endpoint/visual PASS because connected content fetching for this preview is unavailable. Human/browser runtime review remains required.
+  - Upstream sponsor-feedback publication was retried against `somnia-chain/dreamdex-bot-kit` after an obvious-duplicate search. GitHub again returned 403 Resource not accessible by integration; no issue publication is claimed.
+  - Repository license remains unselected because legal reuse rights require explicit human license choice.
+  - Protected write automation remains rejected because exposing it through agent surfaces would weaken the core differentiator.
+  - No new blockchain write, mainnet write, Packet 003 private identifier, production reliability claim, ROI claim, MTTR claim, prevalence claim or fraud claim was introduced.
 key_files:
   - src/intake.mjs
   - src/authority-receipt.mjs
@@ -55,18 +55,26 @@ key_files:
   - SKILL.md
   - docs/AGENT-INTEGRATION.md
   - docs/UPSTREAM-FEEDBACK-DRAFT.md
+  - docs-interactions.js
   - tests/hidden-spots-002.test.mjs
   - README.md
   - state/CURRENT.yaml
   - state/HANDOVER.yaml
+winning_story:
+  before: POST_EXECUTION_INVESTIGATION_PRODUCT_WITH_REAL_SHANNON_PROOF
+  after: AGENT_NATIVE_POST_EXECUTION_INCIDENT_RESPONSE_LAYER_WITH_MACHINE_READABLE_AUTHORITY
+  canonical_flow: DREAMDEX_EVENT_OR_TX -> LKB_INTAKE -> OBSERVED_INFERRED_UNKNOWN -> ROOT_CAUSE_OR_FAIL_CLOSED_UNKNOWN -> SAFE_ACTION -> AUTHORITY_RECEIPT -> OPERATOR_OR_UPSTREAM_AGENT
+  canonical_line: "The trading agent may be AI. The layer that decides whether money moves is not."
+  judge_discovery: MAIN_JUDGE_PACKET_NOW_SURFACES_AGENT_INTERFACE_DIRECTLY
 validation_evidence:
   source_and_tests:
     verdict: PASS
-    run: 34508962764
-    implementation_head: d7e8d047813d992baaee12aca007b8aa57e888b4
+    run: 34509507704
+    implementation_head: 25f083b4e0f2c8efad79f99b5bcb9b586b8700db
   deployment:
     verdict: READY_NOT_YET_RUNTIME_VERIFIED
     url: https://last-known-book-6fc1-git-rework-hidden-b7ce04-faadil-s-projects.vercel.app
+    deployment: 5j13ZPzmt2pqTjmNfbrru2RJH75B
   public_agent_runtime:
     status: PENDING_HUMAN_OR_BROWSER_READBACK
     priority_paths:
@@ -78,10 +86,10 @@ validation_evidence:
     status: BLOCKED_403_NOT_PUBLISHED
     target: somnia-chain/dreamdex-bot-kit
 promotion_chain:
-  - PR19 must receive runtime/TRACE/human PASS before merge into rework/benita-component-polish-v3
-  - PR18 then retains its desktop/mobile/404 visual gate before merge into the hero branch
-  - PR17 then retains its terminal visual/runtime gate before main
-  - production must be rechecked after final merge before the demo is frozen
+  - PR19 requires runtime/TRACE/human PASS before merge into rework/benita-component-polish-v3
+  - PR18 retains desktop/mobile/404 visual gate before merge into hero branch
+  - PR17 retains terminal visual/runtime gate before main
+  - production recheck precedes final demo freeze
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -92,11 +100,11 @@ remaining_P0:
   - human/browser review of PR19 preview and /agent.html
   - runtime GET /api/agent-status check
   - runtime Shannon network normalization check
-  - attempt runtime mainnet normalization check if RPC reachable
-  - TRACE HS-002 product-reinforcement verdict
+  - attempt runtime mainnet normalization check if public RPC reachable
+  - TRACE HS-002 runtime verdict
   - explicit human approval of HS-002
   - merge PR19 only after PASS
-  - revalidate PR18 then PR17 through their existing visual gates
+  - revalidate PR18 then PR17 through existing visual gates
   - final 2-3 minute encoded demo
   - TRACE encoded-video review
 remaining_P1:
@@ -118,4 +126,4 @@ continuity:
   next_conversation_should_start_here: true
 next_exact_gate: HS_002_RUNTIME_AND_TRACE_RECHECK
 next_exact_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Open the PR19 Vercel preview, inspect `/agent.html`, then verify GET `/api/agent-status` and `/api/network-check?network=shannon`; attempt mainnet normalization only as a read. If these and TRACE/human review pass, merge PR19 into the polish branch and continue PR18/PR17 promotion gates. Do not infer endpoint success from Vercel Ready alone.
+next_exact_action: Open PR19 Vercel preview, inspect `/agent.html`, then verify GET `/api/agent-status` and `/api/network-check?network=shannon`; attempt mainnet normalization only as a read. If these and TRACE/human review pass, merge PR19 into the polish branch and continue PR18/PR17 promotion gates. Do not infer endpoint success from Vercel Ready alone.
