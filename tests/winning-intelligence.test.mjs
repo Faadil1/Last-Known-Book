@@ -66,8 +66,9 @@ test('judge fast lane and deterministic authority positioning are present', asyn
   const readme = await readFile('README.md', 'utf8');
   assert.match(readme, /Judge Fast Lane — 60 seconds/);
   assert.match(readme, /The trading agent may be AI\. The layer that decides whether money moves is not\./);
-  assert.match(readme, /rolling markets make stale state dangerous/i);
-  assert.match(readme, /Where Last Known Book sits/);
+  assert.match(readme, /rolling pool binding/i);
+  assert.match(readme, /The risk is the second action/i);
+  assert.match(readme, /What is safe to do next\?/i);
 });
 
 test('public proof commitment contains no private transaction or wallet identifiers', async () => {
@@ -80,7 +81,8 @@ test('public proof commitment contains no private transaction or wallet identifi
 
 test('submission package preserves proof versus production boundary', async () => {
   const submission = await readFile('docs/SUBMISSION-PACKAGE.md', 'utf8');
-  assert.match(submission, /technical \+ behavior \+ operational-containment proof/i);
+  assert.match(submission, /technical \+ behavior \+ operational-containment (?:proof|evidence)/i);
   assert.match(submission, /do not claim production reliability/i);
   assert.match(submission, /explicit human authorization for the protected submission action/i);
+  assert.match(submission, /independent evidence density/i);
 });
