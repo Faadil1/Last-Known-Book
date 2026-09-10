@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v6.2
-updated_utc: "2026-09-10T20:13:00Z"
+schema: LKB-CURRENT-v6.3
+updated_utc: "2026-09-10T20:18:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -21,13 +21,14 @@ candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  validated_runtime_head: 6d676d70dd7fa3a7cfe1ec957c9b9e32b0501c20
-  ci_run: 34524799147
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+  ci_run: 34525245441
   ci_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://d7068e59.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
   primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
+  separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
 
 latest_human_feedback:
   source: USER_UPLOADED_RUNTIME_RECORDING_2026_09_10_C
@@ -63,7 +64,7 @@ final_polish:
       - tamper-evident commitment explained as capture -> fingerprint -> anchor -> public receipt
       - commitment hashes rendered as readable facts
       - raw JSON demoted to collapsed technical appendix
-      - mobile layouts explicitly supported
+      - responsive proof commitment layout and mobile navigation protected
 
 atlas_room_v5_jury_first:
   root_sequence:
@@ -98,6 +99,7 @@ mobile_contract:
   intent_reality_stack_at: 680px
   proof_method_grids_single_column_at: 680px
   proof_commitment_single_column_at: 620px
+  proof_mobile_navigation: REQUIRED
   prefers_reduced_motion: REQUIRED
 
 proof_status:
@@ -117,6 +119,7 @@ benita_demo_handoff:
   status: READY
   document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
   runtime_to_record: https://rework-atlas-room-v4.last-known-book.pages.dev
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
   target_duration: 2_to_3_minutes
   narrative: unexpected_execution_to_venue_reality_to_truth_classes_to_safe_action_to_authority_boundary_to_verifiable_proof
   raw_commitment_json_in_primary_demo: DO_NOT_OPEN_UNLESS_ASKED
