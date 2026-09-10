@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-test('Docs navigation is routed to the styled judge packet on Vercel', async () => {
+test('Docs navigation is routed to the styled judge packet', async () => {
   const config = JSON.parse(await readFile('vercel.json', 'utf8'));
   const rewrite = config.rewrites?.find((item) => item.source === '/docs/SUBMISSION-PACKAGE.md');
   assert.ok(rewrite, 'Docs source route must be rewritten');
@@ -21,10 +21,19 @@ test('styled judge packet preserves product identity, proof and truth boundaries
   assert.match(docs, /REAL SHANNON PROOF/);
   assert.match(docs, /PostOnly → rest → exact cancel/);
   assert.match(docs, /The trading agent may be AI\. The layer that decides whether money moves is not\./);
-  assert.match(docs, /does not demonstrate production reliability/i);
+  assert.match(docs, /production reliability evidence/i);
   assert.match(docs, /Protected submission remains human-only/);
   assert.match(docs, /Judge Q&A/);
   assert.match(docs, /Back to investigations/);
+  assert.match(docs, /Four proof categories, four different jobs/);
+  assert.match(docs, /live read-only witnesses/i);
+});
+
+test('judge packet routes commitment and live evidence to styled product surfaces', async () => {
+  const docs = await readFile('docs.html', 'utf8');
+  assert.match(docs, /href="\/proof\.html#commitment"/);
+  assert.match(docs, /href="\/proof\.html#live-witnesses"/);
+  assert.equal(docs.includes('href="/evidence/SHANNON-PROOF-003-COMMITMENT.json"'), false, 'judge packet must not link directly to raw commitment JSON');
 });
 
 test('judge packet interactions and refined styling are loaded', async () => {
