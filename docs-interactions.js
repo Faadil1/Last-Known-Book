@@ -30,3 +30,25 @@ expandAll?.addEventListener('click', () => {
   questions.forEach((item) => { item.open = shouldOpen; });
   expandAll.textContent = shouldOpen ? 'Collapse all' : 'Expand all';
 });
+
+function exposeAgentNativeLayer() {
+  const fastLane = document.querySelector('#fast-lane .fast-lane');
+  if (fastLane && !fastLane.querySelector('[data-agent-fast-lane]')) {
+    const item = document.createElement('article');
+    item.dataset.agentFastLane = 'true';
+    item.innerHTML = '<span>5</span><strong>See the agent interface</strong><p>Hand an incident to LKB and get back a bounded machine-readable Authority Receipt.</p><a href="/agent.html">Open agent interface →</a>';
+    fastLane.appendChild(item);
+  }
+
+  const sourceGrid = document.querySelector('#sources .doc-grid');
+  if (sourceGrid && !sourceGrid.querySelector('[data-agent-doc-card]')) {
+    const card = document.createElement('a');
+    card.className = 'doc-card';
+    card.dataset.agentDocCard = 'true';
+    card.href = '/agent.html';
+    card.innerHTML = '<small>AGENT NATIVE</small><strong>Bring Your Own Incident</strong><p>HTTP, webhook, MCP/stdio, CLI, read-only network normalization and machine-readable Authority Receipts.</p><span class="arrow">Open agent interface →</span>';
+    sourceGrid.prepend(card);
+  }
+}
+
+exposeAgentNativeLayer();

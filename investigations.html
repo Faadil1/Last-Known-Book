@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Last Known Book — Case Room</title>
+  <meta name="description" content="Open the Last Known Book case workspace." />
+  <meta name="theme-color" content="#f4f0e7" />
+  <script>
+    const target = new URL('/', window.location.origin);
+    const incoming = new URLSearchParams(window.location.search);
+    target.searchParams.set('case', incoming.get('case') || 'LKB-001');
+    for (const [key, value] of incoming.entries()) {
+      if (key !== 'case') target.searchParams.set(key, value);
+    }
+    window.location.replace(target.toString());
+  </script>
+</head>
+<body>
+  <noscript><p>Open <a href="/?case=LKB-001">LKB-001 in the Case Room</a>.</p></noscript>
+</body>
+</html>

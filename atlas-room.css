@@ -1,0 +1,134 @@
+/* Last Known Book — Atlas Room v4
+   TRACE direction: editorial investigation room, real imagery, live DOM, bounded interaction.
+   This layer intentionally overrides prior hero polish without deleting the proven investigation runtime. */
+
+:root{
+  --atlas-ink:#171914;
+  --atlas-paper:#f7f3e9;
+  --atlas-paper-2:#eee8dc;
+  --atlas-green:#0f4f3b;
+  --atlas-green-2:#173f32;
+  --atlas-brass:#b58a4d;
+  --atlas-line:rgba(29,38,31,.14);
+  --atlas-shadow:0 22px 60px rgba(20,24,19,.12);
+}
+
+body.atlas-room-v4{background:var(--atlas-paper);color:var(--atlas-ink)}
+body.atlas-room-v4 .topbar{position:sticky;top:0;z-index:90;background:rgba(250,247,239,.955);border-bottom:1px solid rgba(28,36,30,.12);backdrop-filter:blur(20px)}
+body.atlas-room-v4 .brand-copy strong{letter-spacing:-.05em}
+body.atlas-room-v4 .nav-link{color:#252a25}
+body.atlas-room-v4 .nav-link:hover,body.atlas-room-v4 .nav-link.is-active{color:var(--atlas-green)}
+body.atlas-room-v4 .nav-link.is-active:after{background:var(--atlas-green)}
+
+body.atlas-room-v4 .hero-section.hero-refined{min-height:610px;background:#111711}
+body.atlas-room-v4 .hero-refined .hero-copy-block{width:min(610px,47vw);padding-top:54px}
+body.atlas-room-v4 .hero-refined .hero-eyebrow{color:rgba(255,255,255,.82);letter-spacing:.30em}
+body.atlas-room-v4 .hero-refined h1{font-size:clamp(72px,6.15vw,104px);max-width:700px;letter-spacing:-.062em}
+body.atlas-room-v4 .hero-refined .hero-subhead{font-size:clamp(22px,1.8vw,28px);max-width:620px}
+body.atlas-room-v4 .hero-refined .hero-body{max-width:590px}
+body.atlas-room-v4 .hero-reference-photo{object-position:54% 56%;filter:saturate(.94) contrast(1.02) brightness(.91) sepia(.06)}
+body.atlas-room-v4 .hero-reference-scene:before{background:linear-gradient(90deg,rgba(7,11,8,.95) 0%,rgba(7,11,8,.88) 28%,rgba(7,11,8,.57) 44%,rgba(7,11,8,.22) 60%,rgba(7,11,8,.03) 80%),linear-gradient(0deg,rgba(7,11,8,.28),transparent 44%)}
+body.atlas-room-v4 .hero-feature-row{max-width:620px;margin-top:27px}
+body.atlas-room-v4 .hero-feature p{font-size:13px}
+body.atlas-room-v4 .hotspot-main{left:auto;right:7%;top:22%;width:250px;border-color:rgba(249,246,236,.58);background:rgba(10,47,36,.78);box-shadow:0 12px 34px rgba(0,0,0,.16);backdrop-filter:blur(10px)}
+body.atlas-room-v4 .hotspot-main:hover,body.atlas-room-v4 .hotspot-main:focus-visible{background:rgba(10,61,45,.94);transform:translateY(-2px)}
+body.atlas-room-v4 .hero-hotspot:not(.hotspot-main){display:none}
+
+/* Atlas index cards */
+.atlas-index{padding:18px clamp(28px,3.5vw,58px);background:#fbf8f0;border-bottom:1px solid var(--atlas-line)}
+.atlas-index-grid{max-width:1480px;margin:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.atlas-index-card{position:relative;min-height:142px;display:grid;grid-template-columns:1fr 118px;gap:16px;padding:17px;border:1px solid var(--atlas-line);border-radius:10px;background:rgba(255,255,255,.62);overflow:hidden;text-decoration:none;color:var(--atlas-ink);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.atlas-index-card:hover,.atlas-index-card:focus-visible{transform:translateY(-3px);box-shadow:var(--atlas-shadow);border-color:rgba(15,79,59,.28);outline:none}
+.atlas-index-card small{display:block;margin-bottom:7px;font:800 8px/1 ui-monospace,monospace;letter-spacing:.23em;color:#697168;text-transform:uppercase}
+.atlas-index-card h3{margin:0 0 8px;font:500 21px/1 Georgia,"Times New Roman",serif}
+.atlas-index-card p{margin:0 0 12px;font:500 13px/1.35 Georgia,"Times New Roman",serif;color:#5a5f59}
+.atlas-index-card .atlas-link{font:700 11px/1 ui-monospace,monospace;letter-spacing:.08em;color:var(--atlas-green)}
+.atlas-index-card img{width:118px;height:108px;object-fit:cover;border-radius:7px;border:1px solid rgba(20,30,24,.09);filter:saturate(.82) contrast(1.02)}
+.atlas-index-card.agent-preview img{filter:saturate(.72) brightness(.68) contrast(1.08)}
+
+/* Replace unsupported vanity counts with a truthful, judge-safe band. */
+body.atlas-room-v4 .hero-metrics-strip{display:none}
+.atlas-truth-band{padding:17px clamp(28px,3.5vw,58px);background:#f0eadf;border-top:1px solid var(--atlas-line);border-bottom:1px solid var(--atlas-line)}
+.atlas-truth-band-inner{max-width:1480px;margin:auto;display:grid;grid-template-columns:1.5fr repeat(4,1fr);align-items:center;gap:0}
+.atlas-truth-band .thesis{padding-right:28px;font:500 18px/1.28 Georgia,"Times New Roman",serif}
+.atlas-truth-band .truth-item{min-height:52px;padding:8px 22px;border-left:1px solid var(--atlas-line)}
+.atlas-truth-band small{display:block;font:800 8px/1 ui-monospace,monospace;letter-spacing:.2em;color:#73766f;text-transform:uppercase}
+.atlas-truth-band strong{display:block;margin-top:8px;font:500 16px/1.15 Georgia,"Times New Roman",serif;color:#1d2822}
+
+/* Featured cases become visual dossiers while keeping the existing case navigation. */
+body.atlas-room-v4 .featured-investigations{padding-top:28px;padding-bottom:30px;background:#f9f5ec}
+body.atlas-room-v4 .featured-header{align-items:flex-end}
+body.atlas-room-v4 .featured-header h2{font-size:28px;letter-spacing:-.03em}
+body.atlas-room-v4 .featured-grid{gap:13px}
+body.atlas-room-v4 .featured-card{grid-template-columns:1fr 24px;grid-template-rows:110px auto;min-height:240px;padding:0;overflow:hidden;background:#fffdf8}
+body.atlas-room-v4 .featured-card .case-photo{grid-column:1/-1;width:100%;height:110px;object-fit:cover;filter:saturate(.78) contrast(1.04);border-bottom:1px solid var(--atlas-line);transition:transform .28s ease,filter .28s ease}
+body.atlas-room-v4 .featured-card:hover .case-photo,body.atlas-room-v4 .featured-card:focus-visible .case-photo{transform:scale(1.025);filter:saturate(.92) contrast(1.03)}
+body.atlas-room-v4 .featured-card .featured-copy{padding:14px 0 16px 15px}
+body.atlas-room-v4 .featured-card .featured-arrow{padding:18px 14px 0 0}
+body.atlas-room-v4 .featured-icon{display:none}
+body.atlas-room-v4 .featured-copy strong{font-size:18px}
+body.atlas-room-v4 .featured-copy span{font-size:13px}
+
+/* Investigation workspace transition: keep function, lighten presentation. */
+body.atlas-room-v4 .investigation-shell{margin-top:0;background:#f8f4eb;border-top:1px solid var(--atlas-line)}
+body.atlas-room-v4 .case-sidebar,body.atlas-room-v4 .proof-rail{background:#f1ece2}
+body.atlas-room-v4 .case-workspace{background:#fbf9f3}
+body.atlas-room-v4 .rail-card,body.atlas-room-v4 .intent-reality-card,body.atlas-room-v4 .containment-card{border-radius:10px}
+
+.atlas-dreamdex-note{max-width:1480px;margin:26px auto 0;padding:22px 24px;display:grid;grid-template-columns:minmax(240px,.9fr) 1.8fr;gap:30px;border:1px solid rgba(15,79,59,.18);border-radius:12px;background:linear-gradient(120deg,#123c30,#0b211a);color:#f7f3e9}
+.atlas-dreamdex-note small{font:800 8px/1 ui-monospace,monospace;letter-spacing:.24em;color:#b8c9c0}
+.atlas-dreamdex-note h2{margin:10px 0 0;font:500 28px/1.02 Georgia,serif;letter-spacing:-.035em}
+.atlas-dreamdex-note p{margin:0;font:500 15px/1.5 Georgia,serif;color:#d9dfda}
+.atlas-dreamdex-primitives{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.atlas-dreamdex-primitives span{padding:7px 9px;border:1px solid rgba(255,255,255,.18);border-radius:999px;font:700 9px/1 ui-monospace,monospace;letter-spacing:.08em;color:#f1ede4}
+
+/* Shared standalone Methodology / Proof pages */
+.atlas-page{min-height:100vh;background:#f7f3e9;color:#1a1e1a}
+.atlas-page .page-shell{max-width:1180px;margin:auto;padding:70px 28px 90px}
+.atlas-page .page-kicker{font:800 9px/1 ui-monospace,monospace;letter-spacing:.28em;color:#617069;text-transform:uppercase}
+.atlas-page .page-title{max-width:850px;margin:14px 0 18px;font:500 clamp(52px,7vw,92px)/.94 Georgia,serif;letter-spacing:-.06em}
+.atlas-page .page-lede{max-width:760px;font:500 20px/1.48 Georgia,serif;color:#545c56}
+.atlas-page .page-back{display:inline-flex;gap:8px;margin-bottom:34px;color:#154d3a;text-decoration:none;font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em}
+.atlas-page .method-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:44px}
+.atlas-page .method-step,.atlas-page .proof-panel{padding:22px;border:1px solid var(--atlas-line);border-radius:12px;background:#fffdf8}
+.atlas-page .method-step span{display:grid;place-items:center;width:33px;height:33px;border-radius:50%;background:#e5eee8;color:#0f4f3b;font:800 10px/1 ui-monospace,monospace}
+.atlas-page .method-step h3{margin:28px 0 8px;font:500 18px/1 Georgia,serif}
+.atlas-page .method-step p,.atlas-page .proof-panel p{margin:0;font:500 14px/1.45 Georgia,serif;color:#5d635e}
+.atlas-page .truth-classes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.atlas-page .truth-class{padding:22px;border-radius:12px;border:1px solid var(--atlas-line);background:#fffdf8}
+.atlas-page .truth-class strong{display:block;font:700 12px/1 ui-monospace,monospace;letter-spacing:.12em;color:#0f4f3b}
+.atlas-page .truth-class p{font:500 15px/1.45 Georgia,serif;color:#555d57}
+.atlas-page .proof-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:40px}
+.atlas-page .proof-facts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
+.atlas-page .proof-fact{padding:15px;border:1px solid var(--atlas-line);border-radius:9px;background:#f6f1e8}
+.atlas-page .proof-fact small{display:block;font:800 8px/1 ui-monospace,monospace;letter-spacing:.18em;color:#777b75}
+.atlas-page .proof-fact strong{display:block;margin-top:8px;font:500 16px/1.2 Georgia,serif}
+.atlas-page pre{overflow:auto;padding:18px;border-radius:10px;background:#10231d;color:#dfe8e2;font:500 12px/1.55 ui-monospace,monospace}
+
+@media(max-width:980px){
+  body.atlas-room-v4 .hero-section.hero-refined{min-height:720px}
+  body.atlas-room-v4 .hero-refined .hero-copy-block{width:72vw}
+  body.atlas-room-v4 .hero-reference-photo{object-position:58% center}
+  body.atlas-room-v4 .hotspot-main{right:4%;top:25%}
+  .atlas-index-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .atlas-truth-band-inner{grid-template-columns:1fr 1fr}.atlas-truth-band .thesis{grid-column:1/-1;padding:0 0 14px}.atlas-truth-band .truth-item{border-left:0;border-top:1px solid var(--atlas-line);padding-left:0}
+  .atlas-page .method-steps{grid-template-columns:repeat(2,1fr)}
+  .atlas-page .proof-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  body.atlas-room-v4 .hero-section.hero-refined{min-height:760px}
+  body.atlas-room-v4 .hero-refined .hero-copy-block{width:100%;padding:46px 24px 36px}
+  body.atlas-room-v4 .hero-refined h1{font-size:56px}
+  body.atlas-room-v4 .hero-reference-photo{object-position:64% center;filter:saturate(.88) contrast(1.03) brightness(.72) sepia(.04)}
+  body.atlas-room-v4 .hero-reference-scene:before{background:linear-gradient(90deg,rgba(7,11,8,.92),rgba(7,11,8,.54)),linear-gradient(0deg,rgba(7,11,8,.42),transparent 55%)}
+  body.atlas-room-v4 .hotspot-main{display:none}
+  .atlas-index{padding:14px 14px}.atlas-index-grid{grid-template-columns:1fr}.atlas-index-card{grid-template-columns:1fr 96px;min-height:128px}.atlas-index-card img{width:96px;height:94px}
+  body.atlas-room-v4 .featured-grid{grid-template-columns:1fr}
+  .atlas-truth-band{padding:16px 20px}.atlas-truth-band-inner{grid-template-columns:1fr}.atlas-truth-band .truth-item{padding:12px 0}
+  .atlas-dreamdex-note{margin:18px 14px 0;grid-template-columns:1fr;padding:20px}
+  .atlas-page .page-shell{padding:46px 20px 70px}.atlas-page .method-steps,.atlas-page .truth-classes{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .atlas-index-card,body.atlas-room-v4 .featured-card,body.atlas-room-v4 .hotspot-main{transition:none!important;transform:none!important}
+}

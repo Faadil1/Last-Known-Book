@@ -1,84 +1,129 @@
-schema: LKB-CURRENT-v3.8
-updated_utc: "2026-09-10T12:55:00Z"
+schema: LKB-CURRENT-v6.3
+updated_utc: "2026-09-10T20:18:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
   internal_project_slug: dreamdex-execution-incident-response
   tagline: Reconstruct the market your agent actually traded.
+
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_VISUAL_REWORK
-  status: HERO_RUNTIME_REJECTED__TRACE_TARGETED_REWORK_OPEN
+  stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
+  status: ATLAS_ROOM_V5_FINAL_POLISH__ZERO_FLASH_AND_PROOF_RECEIPT_PASS__BENITA_DEMO_HANDOFF_READY
+
 authority:
-  stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
-  live_readback: READ_ONLY_VERIFIED
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
+
 candidate:
-  canonical_branch: main
-  rejected_runtime_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
-  rejected_runtime_capture: USER_SUPPLIED_SCREENSHOT_2026_09_10
-  prior_exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
-  prior_exact_hero_pr: 16
-  prior_exact_hero_ci_run: 34476646788
-  prior_exact_hero_ci_status: PASS
-visual_rework:
-  trigger: USER_RUNTIME_REVIEW
-  verdict: TARGETED_REWORK_REQUIRED
-  failure_mode:
-    - hero reads as a screenshot-like concept poster rather than a believable environment
-    - binders read as pre-rendered/generated objects rather than materially credible physical binders
-    - scene depth and environmental realism are insufficient
-    - hotspots feel layered onto a baked image instead of integrated as a restrained product layer
-  reopened_trace_gate: "2.25"
-  supporting_trace_job: "4.75"
-  target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_LAYER
-  must_have:
-    - materially believable physical binders and evidence volumes
-    - coherent real-world spatial depth, lighting, occlusion and surface texture
-    - premium editorial/archive atmosphere grounded in product meaning
-    - interaction derived from scene geometry rather than poster overlays
-    - subtle parallax or depth response only where it improves spatial comprehension
-    - keyboard/focus and prefers-reduced-motion preserved
-  must_not_have:
-    - screenshot-as-hero treatment
-    - concept-art or fantasy-poster composition
-    - generic AI-generated product-scene artifacts
-    - floating decorative UI unrelated to scene geometry
-    - dark generic trading-terminal aesthetic
-  protected_product_layers:
-    - investigation workspace
-    - four canonical incident cases
-    - real Shannon proof rail
-    - live read-only Shannon readback
-    - premium /docs.html Judge Packet
+  canonical_main: c4542923d545329c6d7ab30d85e070fb22575626
+  branch: rework/atlas-room-v4
+  pr: 21
+  base: rework/hidden-spots-002-agent-native
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+  ci_run: 34525245441
+  ci_status: PASS
+  cloudflare_pages_status: PASS
+  cloudflare_atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
+  cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
+  primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
+  separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
+
+latest_human_feedback:
+  source: USER_UPLOADED_RUNTIME_RECORDING_2026_09_10_C
+  verdict: PASS_WITH_TWO_TARGETED_POLISH_ITEMS
+  passed:
+    - jury-first home is clear
+    - information architecture no longer feels overloaded
+    - Featured Case Files can remain
+    - desktop and mobile direction accepted
+  requested_fixes:
+    - home-to-investigation transition briefly exposed the old UI direction
+    - proof commitment looked like raw markdown or JSON instead of a first-class product page
+
+final_polish:
+  zero_flash_case_room:
+    status: IMPLEMENTED_AND_TESTED
+    mechanism: in_place_history_pushState_transition_with_existing_live_case_workspace
+    file: atlas-route-transition.js
+    behavior:
+      - Featured Case File click enters Case Room without reloading index.html
+      - hero and topbar case CTAs enter Case Room without reloading index.html
+      - browser back restores the jury-first home state
+      - canonical ?case=LKB-001..004 URLs remain shareable
+  proof_room_v2:
+    status: IMPLEMENTED_AND_TESTED
+    files:
+      - proof.html
+      - proof-page.js
+      - proof-room-v2.css
+    presentation:
+      - real Shannon behavior proof presented as a visual ledger
+      - truth boundary presented alongside proof
+      - tamper-evident commitment explained as capture -> fingerprint -> anchor -> public receipt
+      - commitment hashes rendered as readable facts
+      - raw JSON demoted to collapsed technical appendix
+      - responsive proof commitment layout and mobile navigation protected
+
+atlas_room_v5_jury_first:
+  root_sequence:
+    - HERO__WHAT_IT_IS
+    - THREE_QUESTION_EXPLAINER__HOW_IT_WORKS
+    - FEATURED_CASE_FILES__CONCRETE_EXAMPLES
+    - JUDGE_FAST_LANE__VERIFIABLE_PROOF
+    - DREAMDEX_LOAD_BEARING__WHY_THIS_IS_NOT_GENERIC
+    - PREMIUM_CLOSE_AND_FOOTER
+  case_room:
+    semantic_route: /investigations.html
+    canonical_deep_links: /?case=LKB-001 through /?case=LKB-004
+    root_workspace_default_visibility: HIDDEN
+  supporting_pages:
+    - /methodology.html
+    - /proof.html
+    - /agent.html
+    - /docs.html
+  protected_differentiator:
+    - venue reality reconstruction
+    - OBSERVED / INFERRED / UNKNOWN
+    - bounded next action
+    - deterministic Authority Receipt
+    - inference alone cannot move funds
+
+mobile_contract:
+  desktop_nav_to_native_details_menu_at: 980px
+  one_column_explainer_at: 980px
+  one_column_featured_cases_at: 680px
+  workspace_single_column_at: 980px
+  case_register_single_column_at: 680px
+  intent_reality_stack_at: 680px
+  proof_method_grids_single_column_at: 680px
+  proof_commitment_single_column_at: 620px
+  proof_mobile_navigation: REQUIRED
+  prefers_reduced_motion: REQUIRED
+
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
-  public_runtime_readback: PASS
   production_evidence: ABSENT
-truth_boundaries:
-  hero_rework_changes_no_engine_semantics: true
-  hero_rework_changes_no_blockchain_authority: true
-  visual_rework_does_not_expand_proof_claims: true
-  live_readback_is_not_a_new_transaction: true
-  packet_003_remains_redacted: true
-remaining_P0:
-  - TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
-  - TRACE_GATE_4_75_REAL_HERO_ASSET_PRODUCTION
-  - IMPLEMENT_SELECTED_DIRECTION_ON_REVERSIBLE_BRANCH
-  - VERCEL_EXACT_RUNTIME_VISUAL_RECHECK
-  - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
-  - TRACE_FINAL_VIDEO_REVIEW
-remaining_P1:
-  - FINAL_COVER_EXPORT_FROM_FROZEN_VISUAL
-  - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
-  - WINNING_INTELLIGENCE_FINAL_RECHECK
-  - PROJECT_FINISHER_TERMINAL_REAUDIT
-deadline:
-  extended_through_date: "2026-09-11"
-  exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
-next_owner: TRACE_DESIGN_ASSURANCE
+
+truth_boundary:
+  real_photos_are_context_not_incident_evidence: true
+  unsupported_cross_chain_claims: false
+  inference_can_authorize_spend: false
+  public_agent_surface_has_private_key_signing_or_broadcast: false
+  production_evidence: ABSENT
+
+benita_demo_handoff:
+  status: READY
+  document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
+  runtime_to_record: https://rework-atlas-room-v4.last-known-book.pages.dev
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+  target_duration: 2_to_3_minutes
+  narrative: unexpected_execution_to_venue_reality_to_truth_classes_to_safe_action_to_authority_boundary_to_verifiable_proof
+  raw_commitment_json_in_primary_demo: DO_NOT_OPEN_UNLESS_ASKED
+
+next_gate: BENITA_ENCODED_DEMO_PLUS_TRACE_VIDEO_REVIEW
+next_owner: BENITA_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
+next_exact_action: Benita records the 2-3 minute demo against the stable Cloudflare branch preview using the handoff sequence. Then TRACE reviews the encoded video for judge comprehension, pacing, truth boundaries, zero-flash Case Room continuity and Proof Room clarity before promotion to PR19/18/17/main.

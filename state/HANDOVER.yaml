@@ -1,66 +1,143 @@
-schema: LKB-HANDOVER-v4.1
-updated_utc: "2026-09-10T12:57:00Z"
+schema: LKB-HANDOVER-v6.5
+updated_utc: "2026-09-10T20:19:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: HERO_RUNTIME_REJECTED__TRACE_TARGETED_REWORK_OPEN
+lifecycle: ATLAS_ROOM_V5_FINAL_POLISH__BENITA_DEMO_HANDOFF_READY
 canonical_branch: main
-canonical_state_commit: 511248fd4c67adf454bd717ad1f665d7140ad3de
-trace_rework_contract_commit: 54330810adb7aeb3e192ad3f6b063f094bc83acd
-prior_exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
-prior_exact_hero_pr: 16
-prior_exact_hero_ci: PASS_RUN_34476646788
-runtime_review_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
-material_decisions:
-  - The previous terminal visual-freeze candidate is explicitly rejected after user review of the deployed runtime.
-  - The problem is not a small crop or CSS mismatch. The current hero reads as a screenshot-like/concept-poster image with hotspots layered on top rather than a believable real-world interactive archive environment.
-  - The previous instruction to reproduce the approved concept image literally is superseded by the user's clarified intent: real physical binders in a credible real environment with restrained premium interaction.
-  - TRACE is reopened narrowly at Gate 2.25 Visual Prototype, with Gate 4.75 Visual Asset Production as the supporting production job after direction selection.
-  - Gate 0/product truth is not reopened. The core product, proof contract and authority boundaries remain frozen.
-  - Three coherent prototype directions are required before another major hero implementation: Evidence Cabinet, Field Archive, Spatial Case Table.
-  - References are routed by the unresolved realism/materiality job, not for style copying. Current high-signal TRACE sources include met_collection, annual_report_archive/editorial references, cue_design, and bounded interaction references such as rare_ui/react_bits only after the physical scene geometry is owned by Last Known Book.
-  - Avoid another monolithic image that bakes the entire environment and fake UI into one poster. Prefer layered scene architecture or a genuinely believable photographic plate with semantic interaction aligned to real geometry.
-  - `/docs.html`, the investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain protected and unchanged.
-  - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path, live-readback authority or protected submission authority changed.
-rework_contract:
-  path: docs/TRACE-HERO-REALISM-REWORK-2026-09-10.md
-  verdict: TARGETED_REWORK_REQUIRED
-  reopened_gate: "2.25"
-  supporting_gate: "4.75"
-  target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_LAYER
-proof_status:
-  technical_proof: PASS_REAL_SHANNON
-  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
-  operational_containment: PASS
-  public_runtime_readback: PASS
+canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
+
+active_candidate:
+  branch: rework/atlas-room-v4
+  pr: 21
+  base: rework/hidden-spots-002-agent-native
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+  product_ci_run: 34525245441
+  product_ci_status: PASS
+  cloudflare_pages_status: PASS
+  cloudflare_atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
+  cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
+  separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
+
+promotion_chain:
+  - PR21 Atlas Room -> rework/hidden-spots-002-agent-native
+  - PR19 HS-002 -> rework/benita-component-polish-v3
+  - PR18 component polish -> rework/approved-editorial-realism-hero-v2
+  - PR17 hero -> main
+
+latest_human_verdict:
+  status: PRODUCT_DIRECTION_PASS_TWO_POLISH_ITEMS_REQUESTED
+  accepted:
+    - jury-first root architecture
+    - Featured Case Files
+    - multi-page depth model
+    - mobile-reactive requirement and direction
+  polish_requested:
+    - remove brief legacy-UI flash when moving from home to Case Room
+    - replace raw-looking proof commitment presentation with a first-class page consistent with Methodology / Agent / Atlas visual language
+
+final_polish_result:
+  zero_flash_case_room:
+    implemented: true
+    files:
+      - atlas-route-transition.js
+      - hero-interactions.js
+    contract:
+      - home-to-case transition stays inside the already-rendered Atlas DOM
+      - history.pushState preserves canonical `?case=LKB-*` URLs
+      - Featured Case Files and primary case CTAs do not reload index.html
+      - browser back returns to jury-first home
+      - old pre-Atlas hero is not re-rendered during the normal home-to-case path
+  proof_room_v2:
+    implemented: true
+    files:
+      - proof.html
+      - proof-page.js
+      - proof-room-v2.css
+    contract:
+      - proof is presented as visual ledger and receipt
+      - Shannon behavior proof remains explicit
+      - truth boundary remains explicit
+      - tamper-evident commitment is explained in four steps
+      - proof ID, network, proof classes and Git anchors are rendered as readable facts
+      - raw JSON is retained only as a collapsed technical appendix
+      - responsive commitment layout and mobile navigation are protected
+  tests:
+    file: tests/atlas-room-v4.test.mjs
+    status: PASS
+    ci_run: 34525245441
+  cloudflare_pages:
+    status: PASS
+    atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
+
+jury_first_root_sequence:
+  - HERO__WHAT_IT_IS
+  - THREE_QUESTION_EXPLAINER__HOW_IT_WORKS
+  - FEATURED_CASE_FILES__CONCRETE_EXAMPLES
+  - JUDGE_FAST_LANE__VERIFIABLE_PROOF
+  - DREAMDEX_LOAD_BEARING__WHY_THIS_IS_NOT_GENERIC
+  - PREMIUM_CLOSE_AND_FOOTER
+
+case_room_contract:
+  semantic_route: /investigations.html
+  default_case: LKB-001
+  canonical_deep_links:
+    - /?case=LKB-001
+    - /?case=LKB-002
+    - /?case=LKB-003
+    - /?case=LKB-004
+  capabilities_preserved:
+    - Overview
+    - Evidence
+    - Timeline
+    - Method
+    - Intent_vs_Venue_Reality
+    - OBSERVED_INFERRED_UNKNOWN
+    - safe_action
+    - live_read_only_Shannon
+
+truth_and_authority:
+  dreamdex_native_semantics_are_load_bearing: true
+  photo_assets_are_context_not_evidence: true
+  unsupported_cross_chain_claims: false
+  inference_can_authorize_spend: false
+  public_agent_surface_has_private_key: false
+  public_agent_surface_has_signing: false
+  public_agent_surface_has_broadcast: false
   production_evidence: ABSENT
+
+benita_demo_handoff:
+  status: READY
+  document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
+  stable_runtime: https://rework-atlas-room-v4.last-known-book.pages.dev
+  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+  target_duration: 2_to_3_minutes
+  required_argument:
+    - unexpected execution
+    - venue reality
+    - OBSERVED / INFERRED / UNKNOWN
+    - bounded next action
+    - authority boundary
+    - verifiable Shannon proof
+    - tamper-evident public commitment
+  demo_do_not:
+    - feature dump
+    - open all four cases
+    - open raw commitment JSON unless asked
+    - claim production reliability or business outcomes
+    - expose private Packet 003 identifiers
+    - show private keys, signing or broadcast paths
+
 remaining_P0:
-  - invoke TRACE project assurance from canonical state and record Gate 2.25 reopen
-  - produce/compare three coherent hero prototypes
-  - select one direction with the user
-  - produce the real hero asset/layer system under Gate 4.75
-  - implement selected direction on a reversible branch
-  - verify the deployed runtime at desktop and narrow/mobile contexts
-  - create the final encoded 2-3 minute demo only after visual approval
-  - TRACE review of the actual encoded demo
-remaining_P1:
-  - final cover/thumbnail export from the approved frozen hero
-  - insert final video URL into submission package
-  - Winning Intelligence final recheck
-  - Project Finisher terminal reaudit
-deadline:
-  extended_through_date: "2026-09-11"
-  exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
-next_exact_owner: TRACE_DESIGN_ASSURANCE
-next_exact_action: Read Faadil1/trace-design-workflow project state plus adapter, record the concrete runtime mismatch as a valid reopen trigger, then produce three coherent full-surface hero prototypes before any major implementation. Do not freeze or capture the final demo until the selected direction is approved in the deployed runtime.
-blocked_actions:
-  - no blockchain write without fresh exact human approval
-  - no private Packet 003 identifier publication without explicit human approval
-  - no protected hackathon submission without explicit human approval
-  - no unsupported production/MTTR/ROI/prevalence/fraud claims
-  - no terminal visual freeze before user-approved runtime recheck
+  - Benita records final 2-3 minute demo using handoff
+  - TRACE reviews encoded demo for judge comprehension, pacing, truth boundaries and visual continuity
+  - human user reviews encoded demo
+  - only after PASS, promote PR21 -> PR19 -> PR18 -> PR17 -> main
+
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
   next_conversation_should_start_here: true
+
+next_exact_gate: BENITA_ENCODED_DEMO_PLUS_TRACE_VIDEO_REVIEW
+next_exact_action: Give Benita `docs/HANDOFF-BENITA-DEMO-2026-09-10.md` and the stable Cloudflare branch preview. Record the demo, then run TRACE encoded-video review before any promotion.

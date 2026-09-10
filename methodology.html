@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Methodology — Last Known Book</title>
+  <meta name="description" content="How Last Known Book moves from raw DreamDEX evidence to a bounded operational decision." />
+  <link rel="icon" href="/brand-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/atlas-room.css" />
+</head>
+<body class="atlas-page">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Last Known Book home"><img src="/brand-mark.svg" alt="" class="brand-mark" /><span class="brand-copy"><strong>Last Known Book</strong><small>Evidence lives on.</small></span></a>
+    <nav class="topnav" aria-label="Primary navigation"><a class="nav-link" href="/#investigations">Investigations</a><a class="nav-link is-active" href="/methodology.html">Methodology</a><a class="nav-link" href="/proof.html">Proof</a><a class="nav-link" href="/agent.html">Agent</a><a class="nav-link" href="/docs.html">Docs</a></nav>
+    <div class="topbar-actions"><div class="network-pill"><span class="network-dot"></span><span>Somnia Shannon</span></div><a class="primary-btn" href="/#investigations">Start an Investigation <span>→</span></a></div>
+  </header>
+  <main class="page-shell">
+    <a class="page-back" href="/">← RETURN TO THE ATLAS ROOM</a>
+    <div class="page-kicker">OPEN METHODOLOGY · NO BLACK BOX</div>
+    <h1 class="page-title">From fragmented evidence to a bounded decision.</h1>
+    <p class="page-lede">Last Known Book does not ask a model to invent a story. It reconstructs a DreamDEX incident in stages, labels what is known versus inferred, and lets evidence determine whether the safest response is action, retry, escalation — or doing nothing.</p>
+
+    <section class="method-steps" aria-label="Five methodology stages">
+      <article class="method-step"><span>01</span><h3>Capture</h3><p>Collect the agent intent, transaction evidence, market identity, balances, order events and relevant indexed state.</p></article>
+      <article class="method-step"><span>02</span><h3>Reconstruct</h3><p>Align the request with the actual DreamDEX venue path so expected behavior and observed behavior can be compared directly.</p></article>
+      <article class="method-step"><span>03</span><h3>Classify</h3><p>Tag each material claim as OBSERVED, INFERRED or UNKNOWN. Unknowns remain visible instead of being smoothed over.</p></article>
+      <article class="method-step"><span>04</span><h3>Explain</h3><p>Apply DreamDEX-native causal semantics such as MINT_A_PAIR, resting escrow, lifecycle state and event-chain reconciliation.</p></article>
+      <article class="method-step"><span>05</span><h3>Decide</h3><p>Produce a safe next action and Authority Receipt. Inference alone cannot authorize spend.</p></article>
+    </section>
+
+    <section class="truth-classes" aria-label="Truth classes">
+      <article class="truth-class"><strong>OBSERVED</strong><p>Directly supported by captured or live-read evidence: receipts, balances, lifecycle state, market IDs and native events.</p></article>
+      <article class="truth-class"><strong>INFERRED</strong><p>A bounded interpretation supported by observed evidence. It can explain, prioritize or recommend — but it does not become authority.</p></article>
+      <article class="truth-class"><strong>UNKNOWN</strong><p>An unresolved gap. Unknown evidence can stop a write, force a retry read, or require escalation.</p></article>
+    </section>
+
+    <section class="atlas-dreamdex-note" aria-label="DreamDEX-specific methodology">
+      <div><small>VENUE-NATIVE CAUSALITY</small><h2>Why the method cannot be generic.</h2></div>
+      <div><p>DreamDEX Event Contracts have semantics that change what an execution means. Last Known Book treats <code>marketId</code>, current lifecycle, MINT_A_PAIR, resting SELL escrow and native order events as part of the reasoning substrate rather than branding around a generic analytics engine.</p><div class="atlas-dreamdex-primitives"><span>marketId</span><span>lifecycle</span><span>MINT_A_PAIR</span><span>escrow</span><span>OrderPlaced</span><span>OrderRested</span><span>OrderCancelled</span></div></div>
+    </section>
+  </main>
+</body>
+</html>
