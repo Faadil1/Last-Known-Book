@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v6.1
-updated_utc: "2026-09-10T19:53:00Z"
+schema: LKB-CURRENT-v6.2
+updated_utc: "2026-09-10T20:13:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,7 +9,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
-  status: ATLAS_ROOM_V5_JURY_FIRST__SOURCE_CI_CLOUDFLARE_PASS__HUMAN_DESKTOP_MOBILE_RECHECK_PENDING
+  status: ATLAS_ROOM_V5_FINAL_POLISH__ZERO_FLASH_AND_PROOF_RECEIPT_PASS__BENITA_DEMO_HANDOFF_READY
 
 authority:
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
@@ -21,73 +21,90 @@ candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  validated_product_head: 246cbab5b72871ae6df5a5503c9b8b93d3197aef
-  ci_run: 34522852978
+  validated_runtime_head: 6d676d70dd7fa3a7cfe1ec957c9b9e32b0501c20
+  ci_run: 34524799147
   ci_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://e963f7d4.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://d7068e59.last-known-book.pages.dev
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
   primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
 
 latest_human_feedback:
-  source: USER_UPLOADED_RUNTIME_RECORDING_2026_09_10_B
-  verdict_on_v4: PARTIAL_PASS_INFORMATION_ARCHITECTURE_TOO_DENSE
-  findings:
-    - root repeated investigation language and concepts too often
-    - four-path investigation card plus Featured Investigations plus full workspace created duplication
-    - full case workspace on the default root slowed jury comprehension
-    - multiple pages are acceptable if the hero/root makes the essential product story obvious
-    - mobile reactivity is explicitly required
+  source: USER_UPLOADED_RUNTIME_RECORDING_2026_09_10_C
+  verdict: PASS_WITH_TWO_TARGETED_POLISH_ITEMS
+  passed:
+    - jury-first home is clear
+    - information architecture no longer feels overloaded
+    - Featured Case Files can remain
+    - desktop and mobile direction accepted
+  requested_fixes:
+    - home-to-investigation transition briefly exposed the old UI direction
+    - proof commitment looked like raw markdown or JSON instead of a first-class product page
+
+final_polish:
+  zero_flash_case_room:
+    status: IMPLEMENTED_AND_TESTED
+    mechanism: in_place_history_pushState_transition_with_existing_live_case_workspace
+    file: atlas-route-transition.js
+    behavior:
+      - Featured Case File click enters Case Room without reloading index.html
+      - hero and topbar case CTAs enter Case Room without reloading index.html
+      - browser back restores the jury-first home state
+      - canonical ?case=LKB-001..004 URLs remain shareable
+  proof_room_v2:
+    status: IMPLEMENTED_AND_TESTED
+    files:
+      - proof.html
+      - proof-page.js
+      - proof-room-v2.css
+    presentation:
+      - real Shannon behavior proof presented as a visual ledger
+      - truth boundary presented alongside proof
+      - tamper-evident commitment explained as capture -> fingerprint -> anchor -> public receipt
+      - commitment hashes rendered as readable facts
+      - raw JSON demoted to collapsed technical appendix
+      - mobile layouts explicitly supported
 
 atlas_room_v5_jury_first:
-  decision: APPROVED_FOR_RUNTIME_RECHECK
-  architecture:
-    root:
-      - Atlas hero: what the product is
-      - One incident / three questions: what happened / what is known / what is safe next
-      - Featured Case Files: four concrete examples
-      - Judge Fast Lane: verifiable proof and bounded claims
-      - DreamDEX load-bearing semantics
-      - premium footer
-    case_room:
-      semantic_route: /investigations.html
-      canonical_deep_links: /?case=LKB-001 through /?case=LKB-004
-      root_workspace_default_visibility: HIDDEN
-    supporting_pages:
-      - /methodology.html
-      - /proof.html
-      - /agent.html
-      - /docs.html
-  copy_changes:
-    eyebrow: POST-EXECUTION INCIDENT RESPONSE · DREAMDEX
-    subhead: Know what happened before your agent acts again.
-    featured_label: Featured Case Files
+  root_sequence:
+    - HERO__WHAT_IT_IS
+    - THREE_QUESTION_EXPLAINER__HOW_IT_WORKS
+    - FEATURED_CASE_FILES__CONCRETE_EXAMPLES
+    - JUDGE_FAST_LANE__VERIFIABLE_PROOF
+    - DREAMDEX_LOAD_BEARING__WHY_THIS_IS_NOT_GENERIC
+    - PREMIUM_CLOSE_AND_FOOTER
+  case_room:
+    semantic_route: /investigations.html
+    canonical_deep_links: /?case=LKB-001 through /?case=LKB-004
+    root_workspace_default_visibility: HIDDEN
+  supporting_pages:
+    - /methodology.html
+    - /proof.html
+    - /agent.html
+    - /docs.html
   protected_differentiator:
     - venue reality reconstruction
     - OBSERVED / INFERRED / UNKNOWN
     - bounded next action
     - deterministic Authority Receipt
     - inference alone cannot move funds
-  mobile_contract:
-    desktop_nav_to_native_details_menu_at: 980px
-    one_column_explainer_at: 980px
-    one_column_featured_cases_at: 680px
-    workspace_single_column_at: 980px
-    case_register_single_column_at: 680px
-    intent_reality_stack_at: 680px
-    proof_method_grids_single_column_at: 680px
-    prefers_reduced_motion: REQUIRED
 
-implementation:
-  changed_or_added:
-    - atlas-room.js
-    - atlas-room-v5.css
-    - investigations.html
-    - tests/atlas-room-v4.test.mjs
-    - tests/approved-realism-hero-v2.test.mjs
-    - docs/ATLAS-ROOM-V5-JURY-FIRST.md
-    - state/ATLAS_V5_RUNTIME_GATE.md
-  ci_note: First V5 run failed only because a legacy regression expected obsolete V4 copy; test was aligned to V5 and the final product head passed.
+mobile_contract:
+  desktop_nav_to_native_details_menu_at: 980px
+  one_column_explainer_at: 980px
+  one_column_featured_cases_at: 680px
+  workspace_single_column_at: 980px
+  case_register_single_column_at: 680px
+  intent_reality_stack_at: 680px
+  proof_method_grids_single_column_at: 680px
+  proof_commitment_single_column_at: 620px
+  prefers_reduced_motion: REQUIRED
+
+proof_status:
+  technical_proof: PASS_REAL_SHANNON
+  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
+  operational_containment: PASS
+  production_evidence: ABSENT
 
 truth_boundary:
   real_photos_are_context_not_incident_evidence: true
@@ -96,11 +113,14 @@ truth_boundary:
   public_agent_surface_has_private_key_signing_or_broadcast: false
   production_evidence: ABSENT
 
-proof_status:
-  technical_proof: PASS_REAL_SHANNON
-  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
-  operational_containment: PASS
+benita_demo_handoff:
+  status: READY
+  document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
+  runtime_to_record: https://rework-atlas-room-v4.last-known-book.pages.dev
+  target_duration: 2_to_3_minutes
+  narrative: unexpected_execution_to_venue_reality_to_truth_classes_to_safe_action_to_authority_boundary_to_verifiable_proof
+  raw_commitment_json_in_primary_demo: DO_NOT_OPEN_UNLESS_ASKED
 
-next_gate: ATLAS_V5_JURY_FIRST_RUNTIME_DESKTOP_MOBILE_RECHECK
-next_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Review the fresh Cloudflare branch preview on root desktop and approximately 390-430px mobile, then open the Case Room, Methodology, Proof and Agent. Confirm jury comprehension, no investigation repetition overload, case deep-link integrity and mobile usability before any promotion to PR19/18/17/main.
+next_gate: BENITA_ENCODED_DEMO_PLUS_TRACE_VIDEO_REVIEW
+next_owner: BENITA_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
+next_exact_action: Benita records the 2-3 minute demo against the stable Cloudflare branch preview using the handoff sequence. Then TRACE reviews the encoded video for judge comprehension, pacing, truth boundaries, zero-flash Case Room continuity and Proof Room clarity before promotion to PR19/18/17/main.
