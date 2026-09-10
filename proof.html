@@ -69,7 +69,7 @@
       </article>
     </section>
 
-    <section class="proof-room-card" style="margin-top:18px" aria-labelledby="commitment-title">
+    <section id="commitment" class="proof-room-card" style="margin-top:18px" aria-labelledby="commitment-title">
       <div class="page-kicker">TAMPER-EVIDENT COMMITMENT</div>
       <h2 id="commitment-title">A readable receipt, not a wall of JSON.</h2>
       <p>The commitment proves that a private canonical proof object already existed in a specific Git state. The public page exposes only the identities needed to verify preservation — never the disposable wallet, transaction hashes or order ID.</p>
@@ -85,13 +85,8 @@
 
       <div class="commitment-meaning">
         <div><small>WHY IT MATTERS</small><h2>The evidence cannot be silently rewritten after judging starts.</h2></div>
-        <p>The public commitment binds this submission to a preserved proof object while keeping sensitive transaction identifiers out of the public judge surface. That makes the proof inspectable without turning disclosure into a security liability.</p>
+        <p>The public commitment binds this submission to a preserved proof object while keeping sensitive transaction identifiers out of the public judge surface. The underlying JSON remains a machine-readable evidence artifact, but the judge-facing product surface stays visual and consistent with the rest of Last Known Book.</p>
       </div>
-
-      <details class="raw-commitment">
-        <summary>Technical appendix · inspect raw commitment JSON</summary>
-        <pre id="proof-commitment-json">Loading…</pre>
-      </details>
     </section>
   </main>
 
