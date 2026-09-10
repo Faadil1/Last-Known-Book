@@ -5,122 +5,248 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Last Known Book — Execution Incident Response</title>
   <meta name="description" content="Reconstruct the market your agent actually traded." />
+  <meta name="theme-color" content="#f4f0e7" />
+  <link rel="icon" href="/brand-mark.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/winning-intelligence.css" />
 </head>
 <body>
-  <header class="masthead">
-    <div class="wordmark">LAST KNOWN BOOK</div>
-    <div class="strap">Reconstruct the market your agent actually traded.</div>
-    <div class="network"><span></span> SOMNIA SHANNON · DREAMDEX EVENT CONTRACTS</div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Last Known Book home">
+      <img src="/brand-mark.svg" alt="" class="brand-mark" />
+      <span class="brand-copy">
+        <strong>Last Known Book</strong>
+        <small>Evidence lives on.</small>
+      </span>
+    </a>
+
+    <nav class="topnav" aria-label="Primary navigation">
+      <button class="nav-link is-active" data-scroll-target="investigations">Investigations</button>
+      <button class="nav-link" data-scroll-target="methodology">Methodology</button>
+      <button class="nav-link" data-scroll-target="proof">Proof</button>
+      <a class="nav-link" href="/docs/SUBMISSION-PACKAGE.md" target="_blank" rel="noreferrer">Docs</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <div class="network-pill" title="Somnia Shannon testnet">
+        <span class="network-dot" aria-hidden="true"></span>
+        <span>Somnia Shannon</span>
+      </div>
+      <button class="primary-btn" id="top-open-case" type="button">Open a case <span>→</span></button>
+    </div>
   </header>
 
-  <main>
-    <aside class="docket">
-      <div class="eyebrow">CASE REGISTER</div>
-      <div id="case-nav" class="case-nav"></div>
-
-      <section class="real-proof" aria-label="Last Known Book originated real Shannon testnet proof">
-        <div class="real-proof-kicker"><span></span> REAL SHANNON PROOF</div>
-        <strong>POSTONLY → REST → EXACT CANCEL</strong>
-        <div class="real-proof-flow">OrderPlaced → OrderRested → OrderCancelled</div>
-        <div class="real-proof-facts">
-          <span>50312</span>
-          <span>0 FILLS</span>
-          <span>tUSDC 1 → 1 RAW</span>
+  <main id="top">
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-copy-block">
+        <div class="hero-eyebrow">POST-EXECUTION INVESTIGATION FOR DREAMDEX</div>
+        <h1 id="hero-title">Same chain.<br/><em>Clearer answers.</em></h1>
+        <p class="hero-subhead">Reconstruct on-chain reality. Contain what matters.</p>
+        <p class="hero-body">Last Known Book turns unexpected DreamDEX Event Contract executions into a clear evidence trail: what the agent intended, what the venue actually did, what we know, and whether a corrective write is justified.</p>
+        <div class="hero-actions">
+          <button class="primary-btn" id="hero-explore" type="button">Explore investigations <span>→</span></button>
+          <button class="secondary-btn" id="hero-live" type="button"><span class="pulse-dot"></span> Live Shannon readback</button>
         </div>
-        <p>Last Known Book-originated · redacted · testnet</p>
-        <a class="proof-commitment-link" href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer">OPEN PROOF COMMITMENT ↗</a>
-        <small>Technical + behavior + operational-containment proof. Production evidence remains absent.</small>
-      </section>
-
-      <section class="live-proof" aria-label="Live Shannon read-only network verification">
-        <div class="live-proof-head">
-          <div class="real-proof-kicker"><span></span> LIVE SHANNON READBACK</div>
-          <button id="live-refresh" type="button">REFRESH</button>
+        <div class="hero-trust-row" aria-label="Product principles">
+          <span>REAL EVENTS</span>
+          <span>DETERMINISTIC AUTHORITY</span>
+          <span>BOUNDED RESPONSE</span>
         </div>
-        <div class="live-grid">
-          <div><span>CHAIN</span><strong id="live-chain">—</strong></div>
-          <div><span>HEAD</span><strong id="live-head">—</strong></div>
-          <div><span>PUBLIC TX</span><strong id="live-tx-status">CONNECTING</strong></div>
-          <div><span>CONFIRMS</span><strong id="live-confirms">—</strong></div>
-        </div>
-        <div id="live-read-state" class="live-read-state">READ ONLY · NO WALLET · NO SIGNING · NO WRITES</div>
-        <a id="live-tx-link" href="https://shannon-explorer.somnia.network/tx/0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be" target="_blank" rel="noreferrer">OPEN PUBLIC LKB-003 TX ↗</a>
-        <small>Live network verification of captured public Shannon evidence. This is separate from the redacted Last Known Book-originated Packet 003 proof above.</small>
-      </section>
-
-      <div class="authority-principle">
-        <span>AUTHORITY PRINCIPLE</span>
-        <strong>The trading agent may be AI. The layer that decides whether money moves is not.</strong>
       </div>
 
-      <div class="docket-note">Captured real Shannon cases are replay evidence. The proof above is separate Last Known Book-originated testnet behavior evidence. Replay ≠ production proof.</div>
-    </aside>
-
-    <section class="casefile">
-      <div class="casehead">
-        <div>
-          <div class="eyebrow">OPEN CASE <span id="case-id"></span></div>
-          <h1 id="case-title"></h1>
-          <p id="case-source"></p>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="book-stack">
+          <div class="book-sheet sheet-back"><span>OBSERVE</span></div>
+          <div class="book-sheet sheet-mid"><span>RECONSTRUCT</span></div>
+          <div class="book-sheet sheet-front">
+            <small>SAME EVENTS.</small>
+            <strong>A CLEARER<br/>STORY.</strong>
+            <div class="sheet-rule"></div>
+            <span>FACTS OVER ASSUMPTIONS</span>
+          </div>
         </div>
-        <div class="stamp">CASE<br/>RECONSTRUCTED</div>
+        <div class="hero-annotation annotation-a">ON-CHAIN EVENTS<br/><span>↓</span><br/>VERIFIABLE NARRATIVE</div>
+        <div class="hero-annotation annotation-b">The chain remembers.<br/><em>We help you read it.</em></div>
       </div>
+    </section>
 
-      <section class="split">
-        <article class="intent-panel">
-          <div class="panel-label">01 / AGENT INTENT</div>
-          <p id="intent"></p>
-        </article>
-        <div class="divergence">≠</div>
-        <article class="reality-panel">
-          <div class="panel-label">02 / VENUE REALITY</div>
-          <p id="reality"></p>
-        </article>
-      </section>
-
-      <section class="reveal">
-        <div>
-          <div class="eyebrow">03 / CAUSAL REVEAL</div>
-          <div id="semantic" class="semantic"></div>
+    <section class="investigation-shell" id="investigations" aria-label="Investigation workspace">
+      <aside class="case-sidebar">
+        <div class="sidebar-brand-row">
+          <img src="/brand-mark.svg" alt="" />
+          <div>
+            <strong>Case register</strong>
+            <small>4 captured Shannon incident classes</small>
+          </div>
         </div>
-        <div>
-          <div class="eyebrow">ROOT CAUSE</div>
-          <div id="root-cause" class="cause"></div>
+
+        <label class="search-box" for="case-search">
+          <span aria-hidden="true">⌕</span>
+          <input id="case-search" type="search" placeholder="Search cases…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+
+        <div id="case-nav" class="case-nav" aria-label="Cases"></div>
+
+        <div class="sidebar-principle">
+          <small>AUTHORITY PRINCIPLE</small>
+          <strong>The trading agent may be AI. The layer that decides whether money moves is not.</strong>
         </div>
-        <div class="hero-response">
-          <div class="eyebrow">SAFE RESPONSE</div>
-          <div id="hero-action" class="hero-action"></div>
-          <div id="hero-write" class="hero-write"></div>
+        <div class="sidebar-note">Replay evidence ≠ production proof.</div>
+      </aside>
+
+      <section class="case-workspace">
+        <div class="case-toolbar">
+          <div>
+            <div class="breadcrumb">Investigations <span>›</span> <strong id="case-id">—</strong></div>
+            <div class="case-title-row">
+              <h2 id="case-title">Loading case…</h2>
+              <span class="case-status">RECONSTRUCTED</span>
+            </div>
+            <p id="case-source" class="case-source">Loading evidence source…</p>
+          </div>
+          <div class="case-toolbar-actions">
+            <button class="icon-btn" id="share-case" type="button" title="Copy a deep link to this case">Share</button>
+            <button class="icon-btn" id="export-case" type="button" title="Export the current public case JSON">Export</button>
+          </div>
+        </div>
+
+        <div class="case-tabs" role="tablist" aria-label="Case views">
+          <button role="tab" class="case-tab is-active" data-tab="overview" aria-selected="true">Overview</button>
+          <button role="tab" class="case-tab" data-tab="evidence" aria-selected="false">Evidence</button>
+          <button role="tab" class="case-tab" data-tab="timeline" aria-selected="false">Timeline</button>
+          <button role="tab" class="case-tab" data-tab="method" aria-selected="false">Method</button>
+        </div>
+
+        <div class="tab-panel is-active" data-panel="overview">
+          <div class="truth-metrics">
+            <article><span class="metric-icon observed-icon">●</span><small>Observed</small><strong id="observed-count">0</strong><p>Grounded facts</p></article>
+            <article><span class="metric-icon inferred-icon">◆</span><small>Inferred</small><strong id="inferred-count">0</strong><p>Bounded interpretations</p></article>
+            <article><span class="metric-icon unknown-icon">?</span><small>Unknown</small><strong id="unknown-count">0</strong><p>Unresolved gaps</p></article>
+            <article><span class="metric-icon action-icon">↳</span><small>Safe response</small><strong id="metric-action">—</strong><p id="metric-write">Write gate pending</p></article>
+          </div>
+
+          <section class="intent-reality-card">
+            <div class="section-heading">
+              <div><span>01</span><strong>Intent vs. Venue Reality</strong></div>
+              <button class="text-link" id="jump-method" type="button">View causal analysis →</button>
+            </div>
+            <div class="intent-reality-grid">
+              <article class="intent-card">
+                <small>STATED INTENT</small>
+                <p id="intent">—</p>
+              </article>
+              <div class="not-equal" aria-label="does not equal">≠</div>
+              <article class="reality-card">
+                <small>WHAT ACTUALLY HAPPENED</small>
+                <p id="reality">—</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="containment-card">
+            <div class="containment-icon">✓</div>
+            <div>
+              <small>CONTAINMENT RESULT</small>
+              <strong id="hero-action">—</strong>
+              <p id="reconcile">—</p>
+            </div>
+            <span id="hero-write" class="write-chip" data-state="no">WRITE REFUSED</span>
+          </section>
+        </div>
+
+        <div class="tab-panel" data-panel="evidence">
+          <div class="section-heading"><div><span>02</span><strong>What we can actually say</strong></div><span class="section-note">Observed constrains · inferred requests evidence · unknown can stop</span></div>
+          <div id="claims" class="claims"></div>
+          <div class="evidence-footer">
+            <strong>Public evidence links</strong>
+            <div id="evidence-links" class="evidence-links"></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="timeline">
+          <div class="section-heading"><div><span>03</span><strong>Incident timeline</strong></div><span class="section-note">Select any event for detail</span></div>
+          <div id="timeline" class="timeline"></div>
+        </div>
+
+        <div class="tab-panel" data-panel="method" id="methodology">
+          <div class="section-heading"><div><span>04</span><strong>DreamDEX-native causal analysis</strong></div></div>
+          <div class="method-grid">
+            <article><small>CAUSAL REVEAL</small><strong id="semantic">—</strong></article>
+            <article><small>ROOT CAUSE</small><strong id="root-cause">—</strong></article>
+            <article><small>AUTHORITY GATE</small><strong id="write-state" data-state="no">WRITE REFUSED</strong></article>
+          </div>
+          <div class="policy-box">
+            <small>SAFE RESPONSE POLICY</small>
+            <strong id="action">—</strong>
+            <p id="policy-reason">—</p>
+          </div>
         </div>
       </section>
 
-      <section class="truth-section">
-        <div class="section-title"><span>04</span> WHAT WE CAN ACTUALLY SAY</div>
-        <div id="claims" class="claims"></div>
-      </section>
+      <aside class="proof-rail" id="proof">
+        <section class="rail-card proof-card" aria-label="Last Known Book originated real Shannon testnet proof">
+          <div class="rail-heading">
+            <div>
+              <small>REAL SHANNON PROOF</small>
+              <strong>POSTONLY → REST → EXACT CANCEL</strong>
+            </div>
+            <span class="verified-badge">✓ VERIFIED</span>
+          </div>
+          <div class="proof-event-chain">OrderPlaced → OrderRested → OrderCancelled</div>
+          <div class="proof-facts">
+            <div><small>CHAIN</small><strong>50312</strong></div>
+            <div><small>FILLS</small><strong>0 FILLS</strong></div>
+            <div><small>COLLATERAL</small><strong>tUSDC 1 → 1 RAW</strong></div>
+          </div>
+          <p>Last Known Book-originated · redacted · Shannon testnet.</p>
+          <a href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer">Open proof commitment ↗</a>
+          <small class="proof-boundary">Technical + behavior + operational-containment proof. Production evidence remains absent.</small>
+        </section>
 
-      <section class="closure-grid">
-        <article class="authority-card">
-          <div class="section-title"><span>05</span> AUTHORITY GATE</div>
-          <div id="write-state" class="write-state" data-state="no"></div>
-          <div id="action" class="action"></div>
-          <p id="policy-reason"></p>
-        </article>
-        <article class="reconcile-card">
-          <div class="section-title"><span>06</span> RECONCILED STATE</div>
-          <p id="reconcile"></p>
-          <div id="evidence-links" class="evidence-links"></div>
-        </article>
-      </section>
+        <section class="rail-card">
+          <div class="rail-heading compact"><div><small>EVENT CHAIN</small><strong id="event-chain-label">Current case</strong></div><button class="text-link" id="open-event-detail" type="button">Inspect →</button></div>
+          <div id="event-chain" class="event-chain"></div>
+        </section>
+
+        <section class="rail-card live-card" id="live-readback" aria-label="Live Shannon read-only network verification">
+          <div class="rail-heading compact">
+            <div><small>LIVE SHANNON READBACK</small><strong>Network verification</strong></div>
+            <span class="live-badge"><span></span> READ-ONLY</span>
+          </div>
+          <div class="live-grid">
+            <div><small>CHAIN</small><strong id="live-chain">—</strong></div>
+            <div><small>HEAD</small><strong id="live-head">—</strong></div>
+            <div><small>PUBLIC TX</small><strong id="live-tx-status">CONNECTING</strong></div>
+            <div><small>CONFIRMS</small><strong id="live-confirms">—</strong></div>
+          </div>
+          <div id="live-read-state" class="live-read-state">READ ONLY · NO WALLET · NO SIGNING · NO WRITES</div>
+          <div class="live-actions">
+            <button class="secondary-btn mini" id="live-refresh" type="button">Refresh now</button>
+            <a id="live-tx-link" href="https://shannon-explorer.somnia.network/tx/0xbe1b148423553b21f7c4177248dc6be19406e1416b1f065cc556279de4da03be" target="_blank" rel="noreferrer">Explorer ↗</a>
+          </div>
+          <small class="proof-boundary">Live network verification of captured public Shannon evidence. Separate from Packet 003 above.</small>
+        </section>
+      </aside>
     </section>
   </main>
 
+  <dialog id="event-dialog" class="event-dialog">
+    <form method="dialog" class="dialog-shell">
+      <button class="dialog-close" value="close" aria-label="Close">×</button>
+      <small id="dialog-kicker">EVENT DETAIL</small>
+      <h3 id="dialog-title">—</h3>
+      <p id="dialog-body">—</p>
+      <code id="dialog-evidence">—</code>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
   <footer>
-    <span>Observed can constrain automation. Inferred can request evidence. Unknown can stop the system.</span>
+    <span>Evidence outlives market noise.</span>
     <strong>Only grounded predicates may authorize a write.</strong>
   </footer>
+
   <script type="module" src="/app.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.6
-updated_utc: "2026-09-09T23:24:00Z"
+schema: LKB-CURRENT-v2.7
+updated_utc: "2026-09-10T00:18:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,73 +7,73 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_DEPLOYMENT
-  status: EXACT_FILE_VERCEL_PRODUCTION_DEPLOYMENT_CREATED__RUNTIME_VERIFICATION_BLOCKED_BY_TEAM_SCOPE_403
-
+  stage: TERMINAL_ASSURANCE_UI_REWORK
+  status: DIRECTION_6_INTERACTIVE_UI_IMPLEMENTED_ON_BRANCH__CI_PENDING
 authority:
-  stable_external_deployment: HUMAN_AUTHORIZED_AND_DEPLOYMENT_CREATED
-  live_browser_readback: READ_ONLY
+  stable_external_deployment: HUMAN_AUTHORIZED_FOR_JUDGE_DEPLOYMENT
+  live_readback: READ_ONLY
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  hidden_spots_merge: a997425a2532bfb56de5fc40107851619aad210a
-  hidden_spots_ci_run: 34367779820
-  predeploy_lkb004_fix_merge: 581028c662f47015d3234501227689b492b83ac8
-  predeploy_lkb004_fix_ci_run: 34416124754
-  predeploy_lkb004_fix_ci_status: PASS
-vercel:
-  canonical_deployment_id: dpl_64smusAJEA65zGdUNDU3mCpuMdqX
-  canonical_deployment_url: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app
-  expected_production_alias: https://last-known-book-faadil-s-projects.vercel.app
-  target: production
-  creation_status: CREATED_INITIALIZING
-  deployment_payload: EXACT_PUBLIC_RUNTIME_FILES_FROM_CURRENT_GITHUB_MAIN_AFTER_LKB004_FIX
-  superseded_first_upload: dpl_2Am7o84kUeV5HirZAnfeb5Frxmnm
-  runtime_verification: BLOCKED_BY_CONNECTED_VERCEL_SCOPE_403
-  required_reauth_scope: faadil-s-projects
-  team_id: team_b8hypzENtczjR7lfxn2y8L6Q
-live_shannon_readback:
-  mode: READ_ONLY
-  source_transaction: LKB_003_PUBLIC_CAPTURED_EVIDENCE
-  reads:
-    - eth_chainId
-    - eth_blockNumber
-    - eth_getTransactionReceipt
-  expected_chain_id: 50312
-  poll_ms: 15000
-  wallet_connection: false
-  signing: false
-  write_broadcast: false
+  working_branch: rework/direction-6-interactive-ui
+  prior_main: 581028c662f47015d3234501227689b492b83ac8
+  prior_vercel_deployment: dpl_64smusAJEA65zGdUNDU3mCpuMdqX
+  prior_vercel_url: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app
+ui_direction_6:
+  status: IMPLEMENTED_CI_PENDING
+  identity:
+    logo: brand-mark.svg
+    visual_language: editorial_investigation_ledger
+    palette: ivory_deep_green_sand_sage
+    hero: Same_chain_Clearer_answers
+  interactions:
+    - case switching across LKB-001 through LKB-004
+    - case search with slash keyboard focus
+    - j/k keyboard case navigation
+    - Overview/Evidence/Timeline/Method tabs
+    - clickable incident timeline and event-detail dialog
+    - shareable case deep links
+    - public case JSON export
+    - hero/nav scroll actions
+    - manual and 15-second live refresh
+  live_shannon:
+    browser_path: server_first_with_direct_rpc_and_explorer_fallback
+    server_endpoint: api/shannon-readback.js
+    reads:
+      - eth_chainId
+      - eth_blockNumber
+      - eth_getTransactionReceipt
+    expected_chain_id: 50312
+    public_captured_tx_scope: LKB_003_ONLY
+    signing: false
+    wallet_connection: false
+    write_broadcast: false
+  privacy:
+    packet_003_wallet_exposed: false
+    packet_003_full_tx_hashes_exposed: false
+    private_key_allowed_in_vercel: false
 proof_status:
-  technical_proof: PASS_REAL_SHANNON_PLACEMENT_CANCEL_AND_EVENT_RECONCILIATION
+  technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
   production_evidence: ABSENT
 remaining_P0:
-  - REAUTH_VERCEL_CONNECTOR_TO_FAADIL_S_PROJECTS_SCOPE
-  - VERIFY_CANONICAL_DEPLOYMENT_READY_AND_ANONYMOUS_HTTP_200
-  - VERIFY_RUNTIME_LIVE_SHANNON_READBACK
-  - FINAL_ENCODED_2_TO_3_MINUTE_DEMO_VIDEO
-  - TRACE_FINAL_ENCODED_VIDEO_REVIEW
-remaining_P1:
-  - OPTIONAL_SERVER_SIDE_PACKET_003_LIVE_REDACTED_ENDPOINT_AFTER_ENV_SETUP
-  - FINAL_COVER_IMAGE_EXPORT
-  - OPTIONAL_UPSTREAM_FEEDBACK_PUBLICATION
-  - LICENSE_CHOICE
-  - INSERT_FINAL_LIVE_AND_VIDEO_URLS
-  - WINNING_INTELLIGENCE_FINAL_RECHECK
-  - PROJECT_FINISHER_TERMINAL_REAUDIT
+  - DIRECTION_6_PRODUCT_CI
+  - MERGE_IF_GREEN
+  - REDEPLOY_MERGED_DIRECTION_6_TO_VERCEL
+  - VERIFY_ANONYMOUS_HTTP_200_AND_LIVE_SHANNON_READBACK
+  - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
+  - TRACE_FINAL_VIDEO_REVIEW
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
 truth_boundaries:
-  deployment_created_does_not_mean_runtime_verified: true
+  ui_rework_does_not_change_engine_or_proof_semantics: true
   live_readback_is_not_a_new_transaction: true
-  live_public_transaction_is_captured_replay_evidence_not_LKB_originated: true
-  private_packet_003_proof_remains_redacted: true
-  no_private_key_needed_or_allowed_for_live_verification: true
+  captured_replays_are_not_product_originated_writes: true
+  packet_003_remains_redacted: true
   production_readiness_claim: FORBIDDEN
-next_gate: VERCEL_SCOPE_REAUTH_THEN_RUNTIME_VERIFICATION
-next_owner: HUMAN_THEN_PROJECT_FINISHER
+next_gate: DIRECTION_6_PRODUCT_CI_AND_MERGE_IF_GREEN
+next_owner: PROJECT_FINISHER

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Last Known Book mark</title>
+  <desc id="desc">Four layered evidence pages forming an open book and ledger.</desc>
+  <rect width="64" height="64" rx="14" fill="#F4F0E7"/>
+  <path d="M11 17 32 7l21 10-21 10-21-10Z" fill="#123F31"/>
+  <path d="m17 17 15-7.2L47 17l-15 7.2L17 17Z" fill="#FBF8F0"/>
+  <path d="M11 26.5 32 36l21-9.5v8L32 44 11 34.5v-8Z" fill="#1B5B45"/>
+  <path d="M11 42 32 52l21-10v8L32 60 11 50v-8Z" fill="#123F31"/>
+  <path d="M32 27v25" stroke="#D7C19A" stroke-width="2" stroke-linecap="round" opacity=".95"/>
+  <path d="M18 30.5 32 37l14-6.5" fill="none" stroke="#F4F0E7" stroke-width="1.6" stroke-linecap="round" opacity=".9"/>
+</svg>
