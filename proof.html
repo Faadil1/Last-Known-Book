@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proof — Last Known Book</title>
+  <meta name="description" content="Judge-safe proof room for Last Known Book Shannon behavior evidence and proof commitment." />
+  <link rel="icon" href="/brand-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/atlas-room.css" />
+</head>
+<body class="atlas-page">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Last Known Book home"><img src="/brand-mark.svg" alt="" class="brand-mark" /><span class="brand-copy"><strong>Last Known Book</strong><small>Evidence lives on.</small></span></a>
+    <nav class="topnav" aria-label="Primary navigation"><a class="nav-link" href="/#investigations">Investigations</a><a class="nav-link" href="/methodology.html">Methodology</a><a class="nav-link is-active" href="/proof.html">Proof</a><a class="nav-link" href="/agent.html">Agent</a><a class="nav-link" href="/docs.html">Docs</a></nav>
+    <div class="topbar-actions"><div class="network-pill"><span class="network-dot"></span><span>Somnia Shannon</span></div><a class="primary-btn" href="/#investigations">Start an Investigation <span>→</span></a></div>
+  </header>
+  <main class="page-shell">
+    <a class="page-back" href="/">← RETURN TO THE ATLAS ROOM</a>
+    <div class="page-kicker">OUR PROOF COMMITMENT · JUDGE-SAFE</div>
+    <h1 class="page-title">Verifiable behavior. Explicit boundaries.</h1>
+    <p class="page-lede">The proof room separates captured replay evidence from the Last Known Book-originated Shannon behavior proof. It shows exactly what the product demonstrated, what was cryptographically committed before judging, and what is deliberately not claimed.</p>
+
+    <section class="proof-grid">
+      <article class="proof-panel">
+        <div class="page-kicker">REAL SHANNON BEHAVIOR PROOF</div>
+        <h2>PostOnly → Rest → Exact Cancel</h2>
+        <p>On Somnia Shannon chain 50312, Last Known Book revalidated the exact market context, placed a bounded PostOnly order, observed zero fills and a resting state, cancelled exactly the returned order, and reconciled collateral back to the original raw balance.</p>
+        <div class="proof-facts-grid">
+          <div class="proof-fact"><small>NETWORK</small><strong>Somnia Shannon · 50312</strong></div>
+          <div class="proof-fact"><small>FILLS</small><strong>0 fills</strong></div>
+          <div class="proof-fact"><small>EVENT CHAIN</small><strong>Placed → Rested → Cancelled</strong></div>
+          <div class="proof-fact"><small>COLLATERAL</small><strong>1 raw tUSDC → 1 raw tUSDC</strong></div>
+        </div>
+      </article>
+      <article class="proof-panel">
+        <div class="page-kicker">TRUTH BOUNDARY</div>
+        <h2>What this proof does not claim.</h2>
+        <p>It is technical + behavior + operational-containment evidence from testnet. It does not establish production reliability, profitability, ROI, incident prevalence, fraud detection, or MTTR improvement.</p>
+        <div class="proof-facts-grid">
+          <div class="proof-fact"><small>PRODUCTION EVIDENCE</small><strong>ABSENT</strong></div>
+          <div class="proof-fact"><small>AUTOMATIC SPEND</small><strong>NOT AUTHORIZED</strong></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="proof-panel" style="margin-top:18px">
+      <div class="page-kicker">TAMPER-EVIDENT COMMITMENT</div>
+      <h2>Public commitment to the preserved private proof object.</h2>
+      <p>The public commitment exposes no disposable wallet, transaction hash or order ID. Instead, it commits to the already-canonical private proof object through the Git blob identity and canonical merge commit, so the underlying receipt bundle cannot be silently rewritten after judging.</p>
+      <div id="proof-commitment-facts" class="proof-facts-grid" aria-live="polite"><div class="proof-fact"><small>STATUS</small><strong>Loading commitment…</strong></div></div>
+      <details style="margin-top:18px"><summary>Inspect the public commitment JSON</summary><pre id="proof-commitment-json">Loading…</pre></details>
+    </section>
+  </main>
+  <script type="module" src="/proof-page.js"></script>
+</body>
+</html>
