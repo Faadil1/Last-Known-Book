@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v2.9
-updated_utc: "2026-09-10T00:42:00Z"
+schema: LKB-CURRENT-v3.0
+updated_utc: "2026-09-10T00:46:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,11 +7,11 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_RUNTIME_VERIFICATION
-  status: DIRECTION_6_PRODUCTION_DEPLOYMENT_READY_CURRENT_BY_VERCEL_UI__ANONYMOUS_RUNTIME_READBACK_PENDING
+  stage: TERMINAL_ASSURANCE_VIDEO
+  status: PUBLIC_DIRECTION_6_RUNTIME_AND_LIVE_SHANNON_READBACK_PASS__FINAL_VIDEO_AND_TRACE_REMAIN
 authority:
-  stable_external_deployment: HUMAN_AUTHORIZED_FOR_JUDGE_DEPLOYMENT
-  live_readback: READ_ONLY
+  stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
+  live_readback: READ_ONLY_VERIFIED
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
@@ -21,25 +21,29 @@ candidate:
   direction_6_pr: 13
   direction_6_ci_run: 34421162093
   direction_6_ci_status: PASS
-  post_merge_handover_commit_seen_by_vercel_ui: 738cdde
+  runtime_evidence_commit: f7d4239289e5c6a00108063f5baefb4b84ad794b
 ui_direction_6:
-  status: MERGED_CI_PASS_AND_DEPLOYED_READY_CURRENT
+  status: MERGED_CI_PASS_AND_RUNTIME_VERIFIED
   identity:
     logo: brand-mark.svg
     visual_language: editorial_investigation_ledger
     palette: ivory_deep_green_sand_sage
     hero: Same_chain_Clearer_answers
-  interactions:
+  interactions_verified_in_browser:
+    - public case deep links
     - case switching across LKB-001 through LKB-004
+    - Overview/Evidence/Timeline/Method surface
+    - clickable event timeline and detail dialog
+    - LKB-004 exact-market residual settlement rendering
+  interactions_implemented_and_ci_guarded:
     - case search with slash keyboard focus
     - j/k keyboard case navigation
-    - Overview/Evidence/Timeline/Method tabs
-    - clickable incident timeline and event-detail dialog
     - shareable case deep links
     - public case JSON export
     - hero/nav scroll actions
     - manual and 15-second live refresh
   live_shannon:
+    status: PASS_RUNTIME
     browser_path: server_first_with_direct_rpc_and_explorer_fallback
     server_endpoint: api/shannon-readback.js
     reads:
@@ -47,7 +51,18 @@ ui_direction_6:
       - eth_blockNumber
       - eth_getTransactionReceipt
     expected_chain_id: 50312
+    observed_chain_id: 50312
     public_captured_tx_scope: LKB_003_ONLY
+    observed_tx_status: CONFIRMED
+    observed_sample_A:
+      head: 484279850
+      confirmations: 8422358
+    observed_sample_B:
+      head: 484280000
+      confirmations: 8422508
+    observed_delta:
+      head: 150
+      confirmations: 150
     signing: false
     wallet_connection: false
     write_broadcast: false
@@ -66,27 +81,35 @@ vercel:
   deployment_ui_status: READY_LATEST
   environment: PRODUCTION_CURRENT
   source_branch: main
-  user_screenshot_verified: true
   deployment_protection_user_disabled: true
-  anonymous_http_readback: PENDING_INDEPENDENT_VERIFICATION
-  api_shannon_readback_runtime: PENDING_INDEPENDENT_VERIFICATION
-  connector_account_scope: STILL_BLOCKED_BY_403_FAADIL_S_PROJECTS_DESPITE_PUBLIC_PROTECTION_OFF
+  anonymous_public_runtime: PASS_HUMAN_BROWSER_VIDEO
+  direction_6_runtime: PASS_HUMAN_BROWSER_VIDEO
+  api_or_fallback_live_shannon_surface: PASS_HUMAN_BROWSER_VIDEO
+  connector_account_scope: STILL_BLOCKED_BY_403_FAADIL_S_PROJECTS_BUT_NO_LONGER_BLOCKS_RUNTIME_VERDICT
+runtime_evidence:
+  path: evidence/runtime/VERCEL-DIRECTION6-LIVE-READBACK-2026-09-09.md
+  source: human browser video capture
+  video_committed_publicly: false
 remaining_P0:
-  - VERIFY_ANONYMOUS_HTTP_200_ON_LAST_KNOWN_BOOK_6FC1
-  - VERIFY_API_SHANNON_READBACK
-  - VERIFY_BROWSER_LIVE_PANEL
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
+remaining_P1:
+  - FINAL_COVER_IMAGE_EXPORT
+  - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
+  - OPTIONAL_SERVER_SIDE_PACKET_003_REDACTED_LIVE_PROOF
+  - OPTIONAL_UPSTREAM_DREAMDEX_FEEDBACK_PUBLICATION
+  - LICENSE_CHOICE
+  - WINNING_INTELLIGENCE_FINAL_RECHECK
+  - PROJECT_FINISHER_TERMINAL_REAUDIT
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
 truth_boundaries:
-  vercel_ready_current_ui_is_deployment_status_not_runtime_content_readback: true
-  connector_403_is_account_scope_not_deployment_protection: true
-  ui_rework_does_not_change_engine_or_proof_semantics: true
+  public_runtime_pass_does_not_imply_production_readiness: true
   live_readback_is_not_a_new_transaction: true
-  captured_replays_are_not_product_originated_writes: true
+  captured_public_lkb003_tx_is_replay_evidence_not_packet003: true
   packet_003_remains_redacted: true
+  uploaded_browser_video_not_redistributed: true
   production_readiness_claim: FORBIDDEN
-next_gate: ANONYMOUS_PUBLIC_RUNTIME_AND_LIVE_SHANNON_VERIFICATION_THEN_VIDEO
-next_owner: PROJECT_FINISHER
+next_gate: FINAL_ENCODED_DEMO_VIDEO_THEN_TRACE_AND_FINAL_WINNING_INTELLIGENCE
+next_owner: PBPD_VIDEO_THEN_TRACE_THEN_PROJECT_FINISHER
