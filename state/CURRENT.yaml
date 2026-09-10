@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v6.3
-updated_utc: "2026-09-10T20:18:00Z"
+schema: LKB-CURRENT-v7.0
+updated_utc: "2026-09-10T20:36:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,66 +8,32 @@ product:
 
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
-  status: ATLAS_ROOM_V5_FINAL_POLISH__ZERO_FLASH_AND_PROOF_RECEIPT_PASS__BENITA_DEMO_HANDOFF_READY
+  stage: FINAL_DEMO_AND_SUBMISSION_ASSURANCE
+  status: MAIN_PROMOTED__ATLAS_V5_AGENT_NATIVE_AND_VISUAL_PROOF_CANONICAL__BENITA_DEMO_READY
+
+canonical_runtime:
+  branch: main
+  atlas_hs002_merge_commit: 8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34
+  judge_packet_visual_commitment_fix: 9e74ff855b7a57565179eb253adca6152ee2b6f7
+  public_url: https://last-known-book.pages.dev
+  cloudflare_pages: PASS
+  main_merge_ci_run: 34526856417
+  main_merge_ci_status: PASS
+  post_merge_fix_ci_run: 34527128539
+  post_merge_fix_ci_status: PASS
+  branch_preview_is_no_longer_canonical: true
+  separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
 
 authority:
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
+  inference_can_authorize_spend: false
+  public_agent_surface_has_private_key_signing_or_broadcast: false
 
-candidate:
-  canonical_main: c4542923d545329c6d7ab30d85e070fb22575626
-  branch: rework/atlas-room-v4
-  pr: 21
-  base: rework/hidden-spots-002-agent-native
-  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
-  ci_run: 34525245441
-  ci_status: PASS
-  cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
-  cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
-  primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
-  separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
-
-latest_human_feedback:
-  source: USER_UPLOADED_RUNTIME_RECORDING_2026_09_10_C
-  verdict: PASS_WITH_TWO_TARGETED_POLISH_ITEMS
-  passed:
-    - jury-first home is clear
-    - information architecture no longer feels overloaded
-    - Featured Case Files can remain
-    - desktop and mobile direction accepted
-  requested_fixes:
-    - home-to-investigation transition briefly exposed the old UI direction
-    - proof commitment looked like raw markdown or JSON instead of a first-class product page
-
-final_polish:
-  zero_flash_case_room:
-    status: IMPLEMENTED_AND_TESTED
-    mechanism: in_place_history_pushState_transition_with_existing_live_case_workspace
-    file: atlas-route-transition.js
-    behavior:
-      - Featured Case File click enters Case Room without reloading index.html
-      - hero and topbar case CTAs enter Case Room without reloading index.html
-      - browser back restores the jury-first home state
-      - canonical ?case=LKB-001..004 URLs remain shareable
-  proof_room_v2:
-    status: IMPLEMENTED_AND_TESTED
-    files:
-      - proof.html
-      - proof-page.js
-      - proof-room-v2.css
-    presentation:
-      - real Shannon behavior proof presented as a visual ledger
-      - truth boundary presented alongside proof
-      - tamper-evident commitment explained as capture -> fingerprint -> anchor -> public receipt
-      - commitment hashes rendered as readable facts
-      - raw JSON demoted to collapsed technical appendix
-      - responsive proof commitment layout and mobile navigation protected
-
-atlas_room_v5_jury_first:
-  root_sequence:
+final_product_surface:
+  visual_direction: THE_ATLAS_ROOM_V5_JURY_FIRST
+  home:
     - HERO__WHAT_IT_IS
     - THREE_QUESTION_EXPLAINER__HOW_IT_WORKS
     - FEATURED_CASE_FILES__CONCRETE_EXAMPLES
@@ -75,55 +41,74 @@ atlas_room_v5_jury_first:
     - DREAMDEX_LOAD_BEARING__WHY_THIS_IS_NOT_GENERIC
     - PREMIUM_CLOSE_AND_FOOTER
   case_room:
+    zero_flash_transition: PASS
+    mechanism: LIVE_DOM_PLUS_HISTORY_PUSHSTATE_NO_INDEX_RELOAD
     semantic_route: /investigations.html
     canonical_deep_links: /?case=LKB-001 through /?case=LKB-004
-    root_workspace_default_visibility: HIDDEN
   supporting_pages:
-    - /methodology.html
-    - /proof.html
-    - /agent.html
-    - /docs.html
-  protected_differentiator:
-    - venue reality reconstruction
-    - OBSERVED / INFERRED / UNKNOWN
-    - bounded next action
-    - deterministic Authority Receipt
-    - inference alone cannot move funds
+    methodology: /methodology.html
+    proof: /proof.html
+    agent: /agent.html
+    docs: /docs.html
+  mobile_contract:
+    status: PROTECTED
+    compact_navigation: true
+    home_sections_reflow: true
+    case_room_single_column_narrow: true
+    intent_reality_stack_phone: true
+    methodology_proof_reflow: true
+    focus_visible: true
+    prefers_reduced_motion: true
 
-mobile_contract:
-  desktop_nav_to_native_details_menu_at: 980px
-  one_column_explainer_at: 980px
-  one_column_featured_cases_at: 680px
-  workspace_single_column_at: 980px
-  case_register_single_column_at: 680px
-  intent_reality_stack_at: 680px
-  proof_method_grids_single_column_at: 680px
-  proof_commitment_single_column_at: 620px
-  proof_mobile_navigation: REQUIRED
-  prefers_reduced_motion: REQUIRED
-
-proof_status:
-  technical_proof: PASS_REAL_SHANNON
-  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
-  operational_containment: PASS
+proof_room:
+  real_shannon_behavior_proof: PASS
+  path: /proof.html
+  visual_commitment_anchor: /proof.html#commitment
+  product_originated_behavior: POSTONLY_TO_REST_TO_EXACT_CANCEL
+  chain_id: 50312
+  fills: 0
+  collateral_reconciled_exactly: true
   production_evidence: ABSENT
+  judge_facing_raw_json_rendering: REMOVED
+  legacy_product_commitment_links: ROUTED_TO_VISUAL_RECEIPT
+  raw_commitment_artifact:
+    path: /evidence/SHANNON-PROOF-003-COMMITMENT.json
+    role: MACHINE_READABLE_EVIDENCE_ONLY
+    public: true
+    primary_demo_surface: false
+
+agent_native_hs002:
+  status: CANONICAL_ON_MAIN
+  flow: DREAMDEX_EVENT_OR_TX_TO_LKB_TO_TRUTH_CLASSES_TO_SAFE_ACTION_TO_AUTHORITY_RECEIPT
+  surfaces:
+    - POST /api/investigate
+    - POST /api/incidents
+    - POST /api/mcp
+    - npm run mcp
+    - npm run lkb
+    - /agent.html
+  guards:
+    - no_browser_wallet
+    - no_private_key_path
+    - no_signing_or_broadcast
+    - authority_receipt_does_not_execute_action
+    - no_mainnet_write
 
 truth_boundary:
+  dreamdex_native_semantics_are_load_bearing: true
   real_photos_are_context_not_incident_evidence: true
   unsupported_cross_chain_claims: false
-  inference_can_authorize_spend: false
-  public_agent_surface_has_private_key_signing_or_broadcast: false
-  production_evidence: ABSENT
+  production_reliability_claim: NOT_MADE
+  roi_mttr_prevalence_fraud_claims: NOT_MADE
 
 benita_demo_handoff:
-  status: READY
+  status: READY_ON_MAIN
   document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
-  runtime_to_record: https://rework-atlas-room-v4.last-known-book.pages.dev
-  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+  runtime_to_record: https://last-known-book.pages.dev
   target_duration: 2_to_3_minutes
   narrative: unexpected_execution_to_venue_reality_to_truth_classes_to_safe_action_to_authority_boundary_to_verifiable_proof
-  raw_commitment_json_in_primary_demo: DO_NOT_OPEN_UNLESS_ASKED
+  raw_commitment_json_in_primary_demo: DO_NOT_OPEN
 
 next_gate: BENITA_ENCODED_DEMO_PLUS_TRACE_VIDEO_REVIEW
 next_owner: BENITA_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Benita records the 2-3 minute demo against the stable Cloudflare branch preview using the handoff sequence. Then TRACE reviews the encoded video for judge comprehension, pacing, truth boundaries, zero-flash Case Room continuity and Proof Room clarity before promotion to PR19/18/17/main.
+next_exact_action: Benita records the 2-3 minute judge demo against https://last-known-book.pages.dev using the canonical handoff. TRACE then reviews the encoded video for first-time jury comprehension, pacing, truth boundaries, mobile-safe framing, zero-flash Case Room continuity and Proof Room clarity before the protected human-only hackathon submission.

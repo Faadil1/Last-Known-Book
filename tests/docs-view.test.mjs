@@ -37,6 +37,8 @@ test('judge packet interactions and refined styling are loaded', async () => {
   assert.match(docs, /qa-expand-all/);
   assert.match(js, /IntersectionObserver/);
   assert.match(js, /scrollIntoView/);
+  assert.match(js, /\/proof\.html#commitment/);
+  assert.match(js, /Open visual receipt/);
   assert.match(css, /\.qa-item/);
   assert.match(css, /\.docs-nav/);
 });

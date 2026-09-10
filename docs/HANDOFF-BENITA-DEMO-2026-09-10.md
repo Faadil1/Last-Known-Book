@@ -1,18 +1,17 @@
 # Last Known Book — Benita Demo Handoff
 
 Date: 2026-09-10
-Owner for recording: Benita
+Recording owner: Benita
 Product owner / final authority: Faadil
-Runtime branch: `rework/atlas-room-v4`
-Validated runtime head: `c33265670b44954a8783ef0b4745d0d5c9a001df`
-Stable preview: https://rework-atlas-room-v4.last-known-book.pages.dev
-Validated atomic preview: https://3ab1c9a9.last-known-book.pages.dev
+Canonical branch: `main`
+Canonical product merge: `8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34`
+Production runtime: https://last-known-book.pages.dev
 
 ## What the demo must make obvious
 
-Last Known Book is post-execution incident response for autonomous DreamDEX agents.
+Last Known Book is **post-execution incident response for autonomous DreamDEX agents**.
 
-When an execution looks wrong, it reconstructs what actually happened at the venue, separates OBSERVED / INFERRED / UNKNOWN, identifies the likely venue-native cause, and returns a bounded next action. An AI inference alone cannot authorize money to move.
+When an execution looks wrong, it reconstructs what actually happened at the venue, separates **OBSERVED / INFERRED / UNKNOWN**, identifies the venue-native cause that can be supported, and returns a bounded next action. An AI inference alone cannot authorize money to move.
 
 The demo is not a feature tour. It should prove one complete argument:
 
@@ -21,100 +20,132 @@ The demo is not a feature tour. It should prove one complete argument:
 ## Recommended 2–3 minute sequence
 
 ### 0:00–0:20 — Hero / thesis
-Open the stable preview at the root.
+Open:
 
-Use the hero sentence as the setup:
+https://last-known-book.pages.dev
+
+Land the product in one sentence:
 
 > Know what happened before your agent acts again.
 
-Then frame the problem in one sentence: autonomous agents can execute correctly at the chain level while the operator still has the wrong mental model of what happened.
+Then explain the pain simply: an autonomous agent can produce a valid on-chain transaction while the operator still has the wrong explanation of what happened at the venue.
 
-Do not explain every card. The three questions under the hero are enough:
+Use the three questions under the hero rather than explaining every section:
 
 - What happened?
 - What do we actually know?
 - What is safe to do next?
 
-### 0:20–0:55 — Open one real case
+### 0:20–0:55 — One case, not four
 Open **LKB-001 — Mint + Indexer Lag** from Featured Case Files.
 
-The home-to-Case-Room transition now happens inside the live Atlas DOM, so the old visual direction should not flash during the transition.
+The home-to-Case-Room transition is designed to happen inside the live Atlas DOM, with no reload into the old visual direction.
 
-In the Case Room, point to:
+Show only what advances the argument:
 
-- stated intent versus venue reality;
-- OBSERVED / INFERRED / UNKNOWN;
+- **Stated Intent vs Venue Reality**;
+- **OBSERVED / INFERRED / UNKNOWN**;
+- the venue-native causal reveal;
 - the bounded safe response;
 - the fact that uncertainty can stop another write.
 
-Do not visit all four cases. Mention that four captured Shannon incident classes exist, but demonstrate one deeply enough to prove the mechanism.
+Mention that four captured Shannon incident classes exist, but do not tour all four.
 
-### 0:55–1:25 — Why DreamDEX matters
-Use the Method or evidence view to make one venue-native point concrete. Good examples are `MINT_A_PAIR`, lifecycle state, resting escrow, or native order events.
+### 0:55–1:25 — Why DreamDEX is load-bearing
+Use the Method/Evidence view to make one DreamDEX-native semantic point concrete. Strong options are:
 
-The line to land is:
+- `MINT_A_PAIR`;
+- lifecycle state;
+- resting SELL escrow;
+- native order events.
+
+Land this line:
 
 > This is not generic transaction analytics. DreamDEX semantics change the explanation and whether another action is justified.
 
 ### 1:25–2:05 — Proof Room
-Open `/proof.html`.
+Open:
 
-The Proof Room is now designed as a visual receipt rather than a raw JSON/Markdown-looking surface and includes its own responsive mobile navigation.
+https://last-known-book.pages.dev/proof.html
 
-Show these three things in order:
+Show the Proof Room as a **visual receipt**, not a source file.
+
+Use this order:
 
 1. **Real Shannon behavior proof** — PostOnly → Rest → Exact Cancel.
 2. **Truth boundary** — production evidence remains ABSENT; automatic spend is NOT AUTHORIZED.
-3. **Tamper-evident commitment** — preserved proof object → Git blob fingerprint → canonical merge anchor → public judge-safe receipt.
+3. **Tamper-evident commitment** — Capture → Fingerprint → Anchor → Public Receipt.
+4. Point briefly to the readable commitment facts, including the Git blob fingerprint and canonical merge anchor.
 
-The raw commitment JSON is now only a collapsed technical appendix. Do not open it in the main demo unless a judge explicitly asks for the underlying object.
+The underlying commitment JSON still exists as a machine-readable public evidence artifact, but the judge-facing product no longer renders it. **Do not open the raw JSON in the primary demo.**
 
-### 2:05–2:30 — Agent / authority close
-Open `/agent.html` only long enough to show that the product can be used through the agent-facing surface without exposing private-key, signing, or broadcast authority.
+### 2:05–2:30 — Agent surface / authority close
+Open:
 
-Close on this idea:
+https://last-known-book.pages.dev/agent.html
+
+Show just enough to establish that another agent or workflow can consume Last Known Book through the agent-native surface and receive a deterministic Authority Receipt.
+
+Do not turn this into an API tour.
+
+Close with:
 
 > The trading agent may be AI. The layer that decides whether money moves is not.
 
-Then return to the product thesis: explain first, preserve uncertainty, and refuse unsafe follow-up action.
+Then restate the operating principle: explain first, preserve uncertainty, and refuse unsafe follow-up action.
 
-## Recording rules
+## Optional 10–15 second responsive insert
 
-- 16:9 capture, ideally 1920×1080 or 1440×900.
-- Browser zoom at 100%.
-- Hide bookmarks bar, personal extensions, notifications and unrelated tabs.
-- Keep pointer movement deliberate; avoid circling or repeated hovering.
-- Do not open DevTools in the primary judge demo.
-- Do not show private Packet 003 identifiers, wallet addresses, private transaction identifiers, secrets or environment variables.
-- Avoid feature dumping. One case + one proof chain is stronger than showing every control.
-- Do not claim production reliability, profitability, ROI, fraud detection, incident prevalence or MTTR improvement.
-- Real photography is contextual product imagery, not incident evidence.
+The primary demo should remain desktop-first. If useful, show the home briefly around **390–430 px** after the core argument is already clear.
 
-## Mobile / responsive evidence
-
-The main demo can remain desktop-first. If a short responsive insert is useful, show the root at roughly 390–430 px only after the core argument is already clear. Do not spend primary demo time scrolling through every mobile section.
-
-Protected responsive expectations:
+Protected mobile expectations:
 
 - compact mobile navigation;
-- hero remains legible;
+- hero stays legible;
 - three-question explainer stacks;
 - Featured Case Files stack;
 - Case Room becomes a one-column flow;
 - Intent vs Venue Reality stacks;
-- Proof / Methodology grids stack;
-- Proof Room commitment and ledger stack cleanly;
+- Proof and Methodology grids reflow;
 - focus and reduced-motion remain supported.
 
-## Current validation
+Do not spend the main demo scrolling through every mobile section.
 
-Runtime head `c33265670b44954a8783ef0b4745d0d5c9a001df`:
+## Recording rules
 
-- GitHub Actions `validate` run `34525245441`: PASS
-- Cloudflare Pages: PASS
-- stable branch preview: https://rework-atlas-room-v4.last-known-book.pages.dev
-- atomic preview: https://3ab1c9a9.last-known-book.pages.dev
+- 16:9 capture, ideally 1920×1080 or 1440×900.
+- Browser zoom: 100%.
+- Hide bookmarks bar, personal extensions, notifications and unrelated tabs.
+- Use deliberate pointer movement; avoid circling and repeated hovering.
+- Do not open DevTools in the primary judge demo.
+- Do not show private Packet 003 identifiers, wallet addresses, private transaction identifiers, secrets or environment variables.
+- Do not show the raw proof commitment JSON in the primary demo.
+- Do not claim production reliability, profitability, ROI, fraud detection, incident prevalence or MTTR improvement.
+- Real photography is contextual product imagery, not incident evidence.
+- One case + one proof chain is stronger than a feature dump.
 
-The separate Cloudflare Workers build is not the judge-facing Pages deployment; Pages is the validated runtime used for this demo.
+## Current verified product state
 
-The remaining human task before final encoded-video freeze is to record the demo against the stable preview and have TRACE review the encoded video for judge comprehension, pacing, truth boundaries and visual continuity.
+Canonical product is on `main`.
+
+- Main product merge: `8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34`
+- GitHub Actions validate for the main merge: PASS (`34526856417`)
+- Cloudflare Pages for the main merge: PASS
+- Post-merge Judge Packet commitment routing: PASS (`9e74ff855b7a57565179eb253adca6152ee2b6f7`, validate `34527128539`)
+- Production runtime: https://last-known-book.pages.dev
+
+## What happens after recording
+
+Do not submit immediately from the video export.
+
+Send the encoded video back for **TRACE encoded-video review**. The review should check:
+
+- first-time jury comprehension;
+- pacing and visual continuity;
+- whether the causal reveal lands early enough;
+- whether Proof Room is legible in the capture;
+- whether the authority boundary is unmistakable;
+- whether any claim exceeds the evidence;
+- whether the final close is memorable.
+
+The hackathon submission remains **human-only**.

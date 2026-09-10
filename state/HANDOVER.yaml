@@ -1,138 +1,120 @@
-schema: LKB-HANDOVER-v6.5
-updated_utc: "2026-09-10T20:19:00Z"
+schema: LKB-HANDOVER-v7.0
+updated_utc: "2026-09-10T20:36:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: ATLAS_ROOM_V5_FINAL_POLISH__BENITA_DEMO_HANDOFF_READY
-canonical_branch: main
-canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
+lifecycle: MAIN_CANONICAL__BENITA_DEMO_AND_TRACE_VIDEO_REVIEW_NEXT
 
-active_candidate:
-  branch: rework/atlas-room-v4
-  pr: 21
-  base: rework/hidden-spots-002-agent-native
-  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
-  product_ci_run: 34525245441
-  product_ci_status: PASS
-  cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
-  cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
-  separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
+canonical:
+  branch: main
+  product_release_merge: 8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34
+  judge_packet_commitment_route_fix: 9e74ff855b7a57565179eb253adca6152ee2b6f7
+  public_runtime: https://last-known-book.pages.dev
+  source_of_truth: GITHUB_MAIN
+  old_rework_cloudflare_url_is_not_demo_canonical: true
 
-promotion_chain:
-  - PR21 Atlas Room -> rework/hidden-spots-002-agent-native
-  - PR19 HS-002 -> rework/benita-component-polish-v3
-  - PR18 component polish -> rework/approved-editorial-realism-hero-v2
-  - PR17 hero -> main
+promotion_history:
+  decision: USER_EXPLICITLY_AUTHORIZED_DIRECT_PROMOTION_TO_MAIN
+  merged_pr: 21
+  merged_pr_title: Promote Atlas Room V5 + agent-native incident response to main
+  prior_nested_chain:
+    - PR17 hero
+    - PR18 component polish
+    - PR19 HS-002 agent-native
+    - PR21 Atlas V5
+  disposition: PR21_CONTAINED_COMPLETE_STACK_AND_WAS_MERGED_DIRECTLY_TO_MAIN
 
-latest_human_verdict:
-  status: PRODUCT_DIRECTION_PASS_TWO_POLISH_ITEMS_REQUESTED
-  accepted:
-    - jury-first root architecture
-    - Featured Case Files
-    - multi-page depth model
-    - mobile-reactive requirement and direction
-  polish_requested:
-    - remove brief legacy-UI flash when moving from home to Case Room
-    - replace raw-looking proof commitment presentation with a first-class page consistent with Methodology / Agent / Atlas visual language
+final_material_decisions:
+  - Atlas Room V5 is the selected final visual direction.
+  - The home is jury-first; the complete operational workspace is behind the Case Room.
+  - Featured Case Files stay as concrete examples, not another generic investigation section.
+  - Methodology, Proof, Agent and Docs are separate depth pages.
+  - Home-to-Case-Room navigation must never flash the pre-Atlas hero; it now transitions inside the existing live DOM with history.pushState.
+  - Proof Commitment must read like a first-class product surface, not Markdown or raw JSON.
+  - `/proof.html#commitment` is the canonical judge-facing commitment receipt.
+  - The raw JSON commitment remains publicly available only as a machine-readable evidence artifact and is not rendered by the Proof Room.
+  - Legacy raw commitment links in the main product and Judge Packet are routed to the visual receipt.
+  - Mobile reactivity, keyboard focus and prefers-reduced-motion are load-bearing acceptance requirements.
+  - Real photography is contextual illustration and must never be presented as incident evidence.
+  - No LLM inference may authorize funds; no public surface exposes wallet/private key/signing/broadcast authority.
+  - Production evidence remains ABSENT; no ROI, MTTR, profitability, prevalence or fraud-detection claim is allowed.
 
-final_polish_result:
-  zero_flash_case_room:
-    implemented: true
-    files:
-      - atlas-route-transition.js
-      - hero-interactions.js
-    contract:
-      - home-to-case transition stays inside the already-rendered Atlas DOM
-      - history.pushState preserves canonical `?case=LKB-*` URLs
-      - Featured Case Files and primary case CTAs do not reload index.html
-      - browser back returns to jury-first home
-      - old pre-Atlas hero is not re-rendered during the normal home-to-case path
-  proof_room_v2:
-    implemented: true
-    files:
-      - proof.html
-      - proof-page.js
-      - proof-room-v2.css
-    contract:
-      - proof is presented as visual ledger and receipt
-      - Shannon behavior proof remains explicit
-      - truth boundary remains explicit
-      - tamper-evident commitment is explained in four steps
-      - proof ID, network, proof classes and Git anchors are rendered as readable facts
-      - raw JSON is retained only as a collapsed technical appendix
-      - responsive commitment layout and mobile navigation are protected
-  tests:
-    file: tests/atlas-room-v4.test.mjs
-    status: PASS
-    ci_run: 34525245441
-  cloudflare_pages:
-    status: PASS
-    atomic_preview: https://3ab1c9a9.last-known-book.pages.dev
+validation:
+  pre_merge_candidate_head: 4668df5ebd226dee0682c056f8e1d5b5ae3f98f4
+  pre_merge_validate: PASS
+  pre_merge_cloudflare_pages: PASS
+  main_merge_commit: 8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34
+  main_validate_run: 34526856417
+  main_validate: PASS
+  main_cloudflare_pages: PASS
+  judge_packet_route_fix_commit: 9e74ff855b7a57565179eb253adca6152ee2b6f7
+  judge_packet_route_fix_validate_run: 34527128539
+  judge_packet_route_fix_validate: PASS
+  judge_packet_route_fix_cloudflare_pages: PASS
+  cloudflare_workers_check: NON_JUDGE_FACING_AND_NOT_A_RUNTIME_GATE
 
-jury_first_root_sequence:
-  - HERO__WHAT_IT_IS
-  - THREE_QUESTION_EXPLAINER__HOW_IT_WORKS
-  - FEATURED_CASE_FILES__CONCRETE_EXAMPLES
-  - JUDGE_FAST_LANE__VERIFIABLE_PROOF
-  - DREAMDEX_LOAD_BEARING__WHY_THIS_IS_NOT_GENERIC
-  - PREMIUM_CLOSE_AND_FOOTER
-
-case_room_contract:
-  semantic_route: /investigations.html
-  default_case: LKB-001
-  canonical_deep_links:
+product_map:
+  home: /
+  case_room_entry: /investigations.html
+  canonical_cases:
     - /?case=LKB-001
     - /?case=LKB-002
     - /?case=LKB-003
     - /?case=LKB-004
-  capabilities_preserved:
-    - Overview
-    - Evidence
-    - Timeline
-    - Method
-    - Intent_vs_Venue_Reality
-    - OBSERVED_INFERRED_UNKNOWN
-    - safe_action
-    - live_read_only_Shannon
+  methodology: /methodology.html
+  proof_room: /proof.html
+  visual_proof_commitment: /proof.html#commitment
+  agent_interface: /agent.html
+  judge_packet: /docs.html
 
-truth_and_authority:
-  dreamdex_native_semantics_are_load_bearing: true
-  photo_assets_are_context_not_evidence: true
-  unsupported_cross_chain_claims: false
-  inference_can_authorize_spend: false
-  public_agent_surface_has_private_key: false
-  public_agent_surface_has_signing: false
-  public_agent_surface_has_broadcast: false
-  production_evidence: ABSENT
+proof_and_evidence:
+  originated_real_shannon_proof: POSTONLY_TO_REST_TO_EXACT_CANCEL
+  chain_id: 50312
+  zero_fills: true
+  collateral_restored_exactly: true
+  four_canonical_incident_classes: true
+  live_shannon_readback: READ_ONLY
+  raw_commitment_artifact: /evidence/SHANNON-PROOF-003-COMMITMENT.json
+  private_packet_003_identifiers: KEEP_REDACTED
 
-benita_demo_handoff:
-  status: READY
-  document: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
-  stable_runtime: https://rework-atlas-room-v4.last-known-book.pages.dev
-  validated_runtime_head: c33265670b44954a8783ef0b4745d0d5c9a001df
+agent_native:
+  status: CANONICAL_ON_MAIN
+  capabilities:
+    - Bring Your Own Incident
+    - provider-neutral incident webhook
+    - HTTP investigate
+    - MCP remote
+    - MCP stdio
+    - JSON-first CLI
+    - read-only watcher
+    - dynamic network/collateral normalization
+    - deterministic Authority Receipt
+
+benita:
+  handoff: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
+  demo_runtime: https://last-known-book.pages.dev
   target_duration: 2_to_3_minutes
-  required_argument:
-    - unexpected execution
-    - venue reality
-    - OBSERVED / INFERRED / UNKNOWN
-    - bounded next action
-    - authority boundary
-    - verifiable Shannon proof
-    - tamper-evident public commitment
-  demo_do_not:
-    - feature dump
-    - open all four cases
-    - open raw commitment JSON unless asked
-    - claim production reliability or business outcomes
-    - expose private Packet 003 identifiers
-    - show private keys, signing or broadcast paths
+  recommended_path:
+    - Hero thesis
+    - LKB-001 one-case walkthrough
+    - Intent vs Venue Reality plus truth classes
+    - one DreamDEX-native causal reveal
+    - Proof Room visual receipt
+    - Agent Interface and authority close
+  final_line: The trading agent may be AI. The layer that decides whether money moves is not.
+  do_not_show:
+    - private Packet 003 identifiers
+    - secrets or environment variables
+    - raw commitment JSON in the primary demo
+    - unsupported business or production claims
 
 remaining_P0:
-  - Benita records final 2-3 minute demo using handoff
-  - TRACE reviews encoded demo for judge comprehension, pacing, truth boundaries and visual continuity
-  - human user reviews encoded demo
-  - only after PASS, promote PR21 -> PR19 -> PR18 -> PR17 -> main
+  - verify clean production alias serves the latest main runtime after canonical state commit
+  - close redundant PR17 PR18 PR19 if still open because PR21 already promoted the complete stack
+  - TRACE state update to record main promotion and final demo gate
+  - Benita records final 2-3 minute video
+  - TRACE reviews encoded video
+  - protected hackathon submission remains HUMAN_ONLY
 
 continuity:
   canonical_state_over_chat_memory: true
@@ -140,4 +122,4 @@ continuity:
   next_conversation_should_start_here: true
 
 next_exact_gate: BENITA_ENCODED_DEMO_PLUS_TRACE_VIDEO_REVIEW
-next_exact_action: Give Benita `docs/HANDOFF-BENITA-DEMO-2026-09-10.md` and the stable Cloudflare branch preview. Record the demo, then run TRACE encoded-video review before any promotion.
+next_exact_action: Start from main and https://last-known-book.pages.dev. Do not reopen product design unless a runtime regression appears. Benita records the final 2-3 minute demo using the handoff; then TRACE reviews the encoded video before protected human-only submission.
