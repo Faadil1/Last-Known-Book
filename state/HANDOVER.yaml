@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v5.3
-updated_utc: "2026-09-10T19:20:00Z"
+schema: LKB-HANDOVER-v5.4
+updated_utc: "2026-09-10T19:22:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: ATLAS_ROOM_V4__VIDEO_REVIEW_COMPLETE__POLISH_COMMIT_CREATED_PENDING_BRANCH_ADVANCE
+lifecycle: ATLAS_ROOM_V4__FINAL_POLISH_COMMIT_CREATED__BRANCH_ADVANCE_PENDING
 canonical_branch: main
 canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
 
@@ -11,35 +11,35 @@ active_candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  branch_head_before_polish_advance: 13bf1d7ea64b67490cb5321030b845685633e7a9
-  runtime_polish_commit_created: d7902710ce74f3996b85b3e50a0cbb180268acc6
+  current_branch_head_before_final_polish_advance: 0f99b3ba0add6833f2041c408f29feb67f811150
+  final_runtime_polish_commit: 11b3c134e78ae6e68182af25fc11fd32d2e1a2d3
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
-  primary_vercel_status: FAILED_EXPECTED_RATE_LIMIT
 
 runtime_video_review:
   verdict_before_patch: PARTIAL_PASS_TARGETED_POLISH_REQUIRED
-  confirmed:
-    - correct Atlas preview route is active
-    - Methodology works
-    - Proof is HTML and judge-facing
-    - Agent Interface renders
-    - canonical cases remain connected
-  defects_remediated_in_runtime_polish_commit:
-    - legacy hero flash caused by late dynamic Atlas import
-    - hero visual too dark relative to selected Atlas Room direction
-    - unsupported cross-chain hero positioning
-    - venue-native evidence language not precise enough
-    - Agent navigation continuity mismatch
+  defects_fixed_in_final_runtime_polish_commit:
+    - visible legacy hero flash due to late dynamic Atlas import
+    - hero treatment too dark relative to approved direction
+    - unsupported 'across chains' scope claim
+    - imprecise context wording versus venue-native evidence contract
+    - Agent page navigation mismatch
+  already_passed:
+    - Methodology route
+    - Proof HTML route
+    - Agent Interface route
+    - Featured Investigations to canonical case continuity
+    - component-polish footer continuity
 
-runtime_polish_commit:
-  sha: d7902710ce74f3996b85b3e50a0cbb180268acc6
-  changes:
-    - static Atlas dependency in hero-interactions.js
-    - venue-native hero copy in atlas-room.js
-    - brighter warmer hero treatment and refined micro-interactions in atlas-room.css
-    - unified Agent navigation in agent.html
-    - expanded Atlas runtime tests
-  truth_boundary:
+final_runtime_polish_commit:
+  sha: 11b3c134e78ae6e68182af25fc11fd32d2e1a2d3
+  includes:
+    - static Atlas module import
+    - venue-native Atlas hero copy
+    - brighter warmer real-photo hero treatment
+    - refined hotspot and Featured Investigation micro-interactions
+    - unified Agent product navigation
+    - expanded Atlas regression tests
+  authority_and_truth:
     photo_assets_are_context_not_evidence: true
     unsupported_cross_chain_claims: false
     inference_can_authorize_spend: false
@@ -50,6 +50,6 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_gate: ADVANCE_D790271_TO_ATLAS_BRANCH_VERIFY_CI_AND_CLOUDFLARE
+next_exact_gate: ADVANCE_FINAL_POLISH_COMMIT_AND_VERIFY_RUNTIME
 next_exact_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Move `rework/atlas-room-v4` to `d7902710ce74f3996b85b3e50a0cbb180268acc6`, verify GitHub Actions and Cloudflare Pages, then inspect root hero, query-param case hero, Methodology, Proof, Agent and mobile before any promotion.
+next_exact_action: Advance `rework/atlas-room-v4` to `11b3c134e78ae6e68182af25fc11fd32d2e1a2d3`, verify GitHub Actions and the Cloudflare branch preview, then inspect the home root, `?case=LKB-001`, Methodology, Proof, Agent and mobile before any promotion.
