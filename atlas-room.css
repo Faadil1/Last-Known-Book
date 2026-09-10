@@ -21,17 +21,17 @@ body.atlas-room-v4 .nav-link:hover,body.atlas-room-v4 .nav-link.is-active{color:
 body.atlas-room-v4 .nav-link.is-active:after{background:var(--atlas-green)}
 
 body.atlas-room-v4 .hero-section.hero-refined{min-height:610px;background:#111711}
-body.atlas-room-v4 .hero-refined .hero-copy-block{width:min(590px,46vw);padding-top:54px}
-body.atlas-room-v4 .hero-refined .hero-eyebrow{color:rgba(255,255,255,.78);letter-spacing:.34em}
+body.atlas-room-v4 .hero-refined .hero-copy-block{width:min(610px,47vw);padding-top:54px}
+body.atlas-room-v4 .hero-refined .hero-eyebrow{color:rgba(255,255,255,.82);letter-spacing:.30em}
 body.atlas-room-v4 .hero-refined h1{font-size:clamp(72px,6.15vw,104px);max-width:700px;letter-spacing:-.062em}
-body.atlas-room-v4 .hero-refined .hero-subhead{font-size:clamp(22px,1.8vw,28px);max-width:600px}
-body.atlas-room-v4 .hero-refined .hero-body{max-width:560px}
-body.atlas-room-v4 .hero-reference-photo{object-position:center center;filter:saturate(.86) contrast(1.04) brightness(.77)}
-body.atlas-room-v4 .hero-reference-scene:before{background:linear-gradient(90deg,rgba(7,11,8,.96) 0%,rgba(7,11,8,.93) 28%,rgba(7,11,8,.72) 44%,rgba(7,11,8,.31) 60%,rgba(7,11,8,.05) 78%),linear-gradient(0deg,rgba(7,11,8,.43),transparent 42%)}
-body.atlas-room-v4 .hero-feature-row{max-width:600px;margin-top:27px}
+body.atlas-room-v4 .hero-refined .hero-subhead{font-size:clamp(22px,1.8vw,28px);max-width:620px}
+body.atlas-room-v4 .hero-refined .hero-body{max-width:590px}
+body.atlas-room-v4 .hero-reference-photo{object-position:54% 56%;filter:saturate(.94) contrast(1.02) brightness(.91) sepia(.06)}
+body.atlas-room-v4 .hero-reference-scene:before{background:linear-gradient(90deg,rgba(7,11,8,.95) 0%,rgba(7,11,8,.88) 28%,rgba(7,11,8,.57) 44%,rgba(7,11,8,.22) 60%,rgba(7,11,8,.03) 80%),linear-gradient(0deg,rgba(7,11,8,.28),transparent 44%)}
+body.atlas-room-v4 .hero-feature-row{max-width:620px;margin-top:27px}
 body.atlas-room-v4 .hero-feature p{font-size:13px}
-body.atlas-room-v4 .hotspot-main{left:auto;right:7%;top:22%;width:250px;border-color:rgba(249,246,236,.52);background:rgba(10,47,36,.82)}
-body.atlas-room-v4 .hotspot-main:hover,body.atlas-room-v4 .hotspot-main:focus-visible{background:rgba(10,61,45,.94)}
+body.atlas-room-v4 .hotspot-main{left:auto;right:7%;top:22%;width:250px;border-color:rgba(249,246,236,.58);background:rgba(10,47,36,.78);box-shadow:0 12px 34px rgba(0,0,0,.16);backdrop-filter:blur(10px)}
+body.atlas-room-v4 .hotspot-main:hover,body.atlas-room-v4 .hotspot-main:focus-visible{background:rgba(10,61,45,.94);transform:translateY(-2px)}
 body.atlas-room-v4 .hero-hotspot:not(.hotspot-main){display:none}
 
 /* Atlas index cards */
@@ -44,7 +44,7 @@ body.atlas-room-v4 .hero-hotspot:not(.hotspot-main){display:none}
 .atlas-index-card p{margin:0 0 12px;font:500 13px/1.35 Georgia,"Times New Roman",serif;color:#5a5f59}
 .atlas-index-card .atlas-link{font:700 11px/1 ui-monospace,monospace;letter-spacing:.08em;color:var(--atlas-green)}
 .atlas-index-card img{width:118px;height:108px;object-fit:cover;border-radius:7px;border:1px solid rgba(20,30,24,.09);filter:saturate(.82) contrast(1.02)}
-.atlas-index-card.agent-preview img{filter:saturate(.72) brightness(.62) contrast(1.1)}
+.atlas-index-card.agent-preview img{filter:saturate(.72) brightness(.68) contrast(1.08)}
 
 /* Replace unsupported vanity counts with a truthful, judge-safe band. */
 body.atlas-room-v4 .hero-metrics-strip{display:none}
@@ -61,7 +61,8 @@ body.atlas-room-v4 .featured-header{align-items:flex-end}
 body.atlas-room-v4 .featured-header h2{font-size:28px;letter-spacing:-.03em}
 body.atlas-room-v4 .featured-grid{gap:13px}
 body.atlas-room-v4 .featured-card{grid-template-columns:1fr 24px;grid-template-rows:110px auto;min-height:240px;padding:0;overflow:hidden;background:#fffdf8}
-body.atlas-room-v4 .featured-card .case-photo{grid-column:1/-1;width:100%;height:110px;object-fit:cover;filter:saturate(.78) contrast(1.04);border-bottom:1px solid var(--atlas-line)}
+body.atlas-room-v4 .featured-card .case-photo{grid-column:1/-1;width:100%;height:110px;object-fit:cover;filter:saturate(.78) contrast(1.04);border-bottom:1px solid var(--atlas-line);transition:transform .28s ease,filter .28s ease}
+body.atlas-room-v4 .featured-card:hover .case-photo,body.atlas-room-v4 .featured-card:focus-visible .case-photo{transform:scale(1.025);filter:saturate(.92) contrast(1.03)}
 body.atlas-room-v4 .featured-card .featured-copy{padding:14px 0 16px 15px}
 body.atlas-room-v4 .featured-card .featured-arrow{padding:18px 14px 0 0}
 body.atlas-room-v4 .featured-icon{display:none}
@@ -118,8 +119,8 @@ body.atlas-room-v4 .rail-card,body.atlas-room-v4 .intent-reality-card,body.atlas
   body.atlas-room-v4 .hero-section.hero-refined{min-height:760px}
   body.atlas-room-v4 .hero-refined .hero-copy-block{width:100%;padding:46px 24px 36px}
   body.atlas-room-v4 .hero-refined h1{font-size:56px}
-  body.atlas-room-v4 .hero-reference-photo{object-position:64% center;filter:saturate(.82) contrast(1.04) brightness(.62)}
-  body.atlas-room-v4 .hero-reference-scene:before{background:linear-gradient(90deg,rgba(7,11,8,.93),rgba(7,11,8,.62)),linear-gradient(0deg,rgba(7,11,8,.55),transparent 55%)}
+  body.atlas-room-v4 .hero-reference-photo{object-position:64% center;filter:saturate(.88) contrast(1.03) brightness(.72) sepia(.04)}
+  body.atlas-room-v4 .hero-reference-scene:before{background:linear-gradient(90deg,rgba(7,11,8,.92),rgba(7,11,8,.54)),linear-gradient(0deg,rgba(7,11,8,.42),transparent 55%)}
   body.atlas-room-v4 .hotspot-main{display:none}
   .atlas-index{padding:14px 14px}.atlas-index-grid{grid-template-columns:1fr}.atlas-index-card{grid-template-columns:1fr 96px;min-height:128px}.atlas-index-card img{width:96px;height:94px}
   body.atlas-room-v4 .featured-grid{grid-template-columns:1fr}
@@ -129,5 +130,5 @@ body.atlas-room-v4 .rail-card,body.atlas-room-v4 .intent-reality-card,body.atlas
 }
 
 @media(prefers-reduced-motion:reduce){
-  .atlas-index-card,body.atlas-room-v4 .featured-card{transition:none!important;transform:none!important}
+  .atlas-index-card,body.atlas-room-v4 .featured-card,body.atlas-room-v4 .hotspot-main{transition:none!important;transform:none!important}
 }
