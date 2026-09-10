@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v4.1
-updated_utc: "2026-09-10T16:26:00Z"
+schema: LKB-CURRENT-v4.2
+updated_utc: "2026-09-10T17:28:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_VISUAL_REWORK
-  status: COMPONENT_POLISH_V3__CI_PASS__PREVIEW_READY__VISUAL_RECHECK_PENDING
+  stage: TERMINAL_ASSURANCE_PRODUCT_REINFORCEMENT
+  status: HS_002_AGENT_NATIVE_REINFORCEMENT_IMPLEMENTED__CI_PREVIEW_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -19,54 +19,95 @@ candidate:
   canonical_branch: main
   hero_implementation_branch: rework/approved-editorial-realism-hero-v2
   hero_implementation_pr: 17
-  hero_implementation_ci_status: PASS
-  hero_vercel_preview_status: READY
   polish_branch: rework/benita-component-polish-v3
   polish_pr: 18
-  polish_base_head: 2679c241a6901d77d1950383a648f33a601531dc
-  polish_validated_head: 02ed66795b3849dfbfba7361e01b87ab045eaf60
-  polish_ci_run: 34501878645
   polish_ci_status: PASS
   polish_vercel_preview_status: READY
-  polish_vercel_preview_url: https://last-known-book-6fc1-git-rework-benita-549168-faadil-s-projects.vercel.app
-  polish_reference_contract: docs/TRACE-COMPONENT-POLISH-V3-2026-09-10.md
-  rejected_production_runtime_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
-visual_rework:
-  user_selected_direction: WARM_EDITORIAL_EVIDENCE_WORKSPACE_WITH_PHYSICAL_BINDERS
-  hero_selection_status: APPROVED_FOR_IMPLEMENTATION
-  hero_implementation_status: BRANCH_IMPLEMENTED_CI_PASS_PREVIEW_READY
-  component_polish_status: SOURCE_AND_CI_PASS_PREVIEW_READY_VISUAL_REVIEW_PENDING
-  component_reference_roles:
-    navbar_gallery: NAVIGATION_HIERARCHY_AND_STICKY_STATE
-    supahero_screensdesign: HERO_COMPOSITION_QUALITY_BAR
-    cta_gallery: CTA_HIERARCHY_AND_CONVERSION_CLARITY
-    footer_design: UTILITY_FIRST_FOOTER_PLUS_BRAND_ENDING
-    404s_design: BRANDED_SAFE_RECOVERY_STATE
-  component_delta:
-    - sticky navbar with restrained compression on scroll and active-section indication
-    - refined hero eyebrow and live Open Case Files affordance without reopening the hero scene direction
-    - stronger but restrained Featured Investigations interaction feedback
-    - dedicated pre-footer CTA tied to real investigation and Judge Packet actions
-    - structured evidence-native footer with verification and project paths
-    - branded 404 recovery page with known safe routes only
-  target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_PRODUCT_SYSTEM
-  runtime_recheck_must_confirm:
-    - sticky navbar feels quieter and clearer rather than heavier
-    - approved physical-binder hero remains the visual anchor
-    - final CTA feels product-native rather than generic marketing
-    - footer improves useful verification/navigation and preserves truth boundaries
-    - 404 state feels intentionally Last Known Book and routes only to known evidence paths
-    - desktop and narrow/mobile behavior remains coherent
-    - no duplicate baked/live hotspot or poster-like regression
-  must_not_have:
-    - screenshot-as-entire-hero treatment
-    - duplicate baked/live hotspot visible at runtime
-    - generic dark trading terminal aesthetic
-    - glassmorphism-heavy SaaS chrome
-    - copied component-gallery layouts
-    - decorative motion unrelated to comprehension
-    - interaction that fabricates stronger product proof
+  hidden_spots_branch: rework/hidden-spots-002-agent-native
+  hidden_spots_base_branch: rework/benita-component-polish-v3
+  hidden_spots_implementation_head_before_state_update: bde6e40544f1a4f8d9b8862dbdfb65d1d26cfd3c
+  hidden_spots_contract: docs/AGENT-INTEGRATION.md
+hidden_spots_002:
+  objective: MAKE_LAST_KNOWN_BOOK_AGENT_NATIVE_WITHOUT_WEAKENING_AUTHORITY_BOUNDARIES
+  implemented:
+    bring_your_own_incident:
+      status: IMPLEMENTED
+      surfaces:
+        - POST /api/investigate
+        - POST /api/incidents
+      behavior:
+        - canonical captured case can use deterministic DreamDEX engine
+        - txHash intake performs read-only chain/receipt reads
+        - bare receipt does not fabricate DreamDEX semantics
+        - insufficient evidence returns RETRY_READ or ESCALATE with writeAuthorized false
+    authority_receipt:
+      status: IMPLEMENTED
+      schema: LKB-AUTHORITY-RECEIPT-v0.1
+      guarantees:
+        - deterministic receipt hash
+        - observed/inferred/unknown counts
+        - explicit recommendedAction and writeAuthorized
+        - inferenceCanAuthorizeSpend false
+        - executionPerformed false
+    agent_interface:
+      status: IMPLEMENTED
+      surfaces:
+        - /agent.html
+        - /api/mcp
+        - npm run mcp
+        - npm run lkb
+        - SKILL.md
+      tools:
+        - lkb_investigate
+        - lkb_authority_receipt
+        - lkb_network_normalization
+        - lkb_convert_units
+        - lkb_reproduce_case
+    live_ingestion_seam:
+      status: IMPLEMENTED_READ_ONLY
+      surface: scripts/watch-shannon-readonly.mjs
+      reads:
+        - eth_chainId
+        - eth_blockNumber
+        - eth_getLogs
+      rule: RAW_LOGS_ARE_INTAKE_CANDIDATES_NOT_AUTO_SEMANTIC_CLAIMS
+    cross_network_normalization:
+      status: IMPLEMENTED
+      surface: /api/network-check
+      shannon:
+        chain_id: 50312
+        collateral: tUSDC
+        expected_decimals: 6
+      mainnet:
+        chain_id: 5031
+        collateral: USDso
+        expected_decimals: 18
+      rule: VERIFY_ERC20_DECIMALS_WITH_ETH_CALL_BEFORE_SCALING
+    reproducibility:
+      status: IMPLEMENTED_AS_AGENT_TOOL
+      surface: lkb_reproduce_case
+      canonical_command: npm run replay
+    generic_operational_webhook:
+      status: IMPLEMENTED_PROVIDER_NEUTRAL
+      endpoint: /api/incidents
+  deliberately_deferred:
+    slack_discord_specific_adapters:
+      reason: generic incident webhook is the stronger core seam; provider credentials and notification-specific code add surface area without strengthening the winning mechanism
+    repository_license:
+      reason: legal reuse rights require an explicit human policy choice
+    protected_write_automation:
+      reason: would weaken the central authority boundary and is explicitly out of scope
+  upstream_feedback:
+    draft_status: READY
+    path: docs/UPSTREAM-FEEDBACK-DRAFT.md
+    publication_status: PENDING_RETRY_OR_MANUAL_AUTHORIZED_PATH
+product_differentiator:
+  canonical_line: "The trading agent may be AI. The layer that decides whether money moves is not."
+  reinforced_story: DREAMDEX_EVENT_TO_INVESTIGATION_TO_MACHINE_READABLE_AUTHORITY_RECEIPT
+  key_change: product is no longer only a judge-facing investigation UI; it now exposes bounded interfaces that another agent or incident router can consume
 protected_product_layers:
+  - approved warm editorial physical-binder hero direction
+  - component polish v3
   - investigation workspace
   - four canonical incident cases
   - real Shannon proof rail
@@ -79,22 +120,27 @@ proof_status:
   public_runtime_readback: PASS
   production_evidence: ABSENT
 truth_boundaries:
-  visual_rework_changes_no_engine_semantics: true
-  visual_rework_changes_no_blockchain_authority: true
-  component_polish_does_not_expand_proof_claims: true
-  live_readback_is_not_a_new_transaction: true
+  hs_002_does_not_authorize_new_writes: true
+  hs_002_does_not_expose_private_keys: true
+  hs_002_does_not_expand_proof_claims: true
+  tx_only_intake_does_not_claim_dreamdex_semantics_without_decoder: true
   packet_003_remains_redacted: true
 remaining_P0:
-  - DESKTOP_VISUAL_RECHECK_NAV_HERO_CTA_FOOTER
-  - NARROW_MOBILE_VISUAL_RECHECK
-  - ERROR_404_ROUTE_RECHECK
-  - TRACE_TARGETED_RUNTIME_RECHECK
-  - HUMAN_VISUAL_APPROVAL
-  - MERGE_POLISH_INTO_HERO_BRANCH
-  - MERGE_PR_17_AND_POST_MERGE_PRODUCTION_RECHECK
+  - HS_002_CI
+  - HS_002_VERCEL_PREVIEW
+  - VERIFY_AGENT_PAGE_RUNTIME
+  - VERIFY_API_INVESTIGATE_FAIL_CLOSED
+  - VERIFY_API_MCP_TOOL_LIST_AND_READ_ONLY_CALL
+  - VERIFY_NETWORK_CHECK_SHANNON
+  - ATTEMPT_MAINNET_DECIMALS_READ_ONLY_CHECK
+  - TRACE_PRODUCT_REINFORCEMENT_RECHECK
+  - HUMAN_APPROVAL_OF_REINFORCED_CANDIDATE
+  - MERGE_HS_002_INTO_POLISH_BRANCH
+  - RECHECK_PR_18_THEN_PR_17_PROMOTION_CHAIN
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
 remaining_P1:
+  - RETRY_UPSTREAM_FEEDBACK_PUBLICATION
   - FINAL_COVER_EXPORT_FROM_FROZEN_VISUAL
   - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
   - WINNING_INTELLIGENCE_FINAL_RECHECK
@@ -102,6 +148,6 @@ remaining_P1:
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: COMPONENT_POLISH_V3_RUNTIME_VISUAL_RECHECK
-next_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_VISUAL_APPROVAL
-next_exact_action: Open PR 18 Vercel preview at desktop and narrow/mobile widths and inspect navbar, hero, Featured Investigations, final CTA, footer and /404.html. CI and preview are green but do not authorize promotion. PASS plus explicit human approval permits merging PR 18 into the hero branch; FAIL permits only targeted visual patching on the isolated polish branch.
+next_gate: HS_002_CI_AND_RUNTIME_INTEGRATION_RECHECK
+next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE
+next_exact_action: Open an isolated PR from rework/hidden-spots-002-agent-native into rework/benita-component-polish-v3, run CI/Vercel, verify /agent.html plus read-only APIs and network normalization. Do not promote solely on source changes; preserve the PR18 and PR17 visual/human approval gates.
