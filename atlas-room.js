@@ -49,10 +49,10 @@ function materializeAtlasHero() {
   const photo = document.querySelector('.hero-reference-photo');
   const sample = document.getElementById('hero-sample');
   const featureCards = [...document.querySelectorAll('.hero-feature')];
-  if (eyebrow) eyebrow.textContent = 'MARKETS HAPPEN EVERYWHERE · WE FOLLOW THEM FURTHER.';
+  if (eyebrow) eyebrow.textContent = 'POST-EXECUTION EVIDENCE · VENUE-NATIVE CLARITY.';
   if (title) title.innerHTML = 'The Atlas Room.';
-  if (subhead) subhead.textContent = 'Investigate across chains. Connect the real story.';
-  if (body) body.textContent = 'Last Known Book reconstructs autonomous market events into clear, verifiable narratives — giving you the context, evidence and safe next action without turning inference into authority.';
+  if (subhead) subhead.textContent = 'Investigate the execution. Reconstruct the real story.';
+  if (body) body.textContent = 'Last Known Book reconstructs autonomous DreamDEX Event Contract incidents into clear, verifiable narratives — connecting agent intent, venue reality, evidence and a bounded safe next action without turning inference into authority.';
   if (sample) sample.textContent = 'Explore the Atlas';
   if (photo) {
     photo.src = REAL_IMAGES.hero;
@@ -62,8 +62,8 @@ function materializeAtlasHero() {
   }
   const copy = [
     ['REAL EVENTS','From fragmented data to complete timelines.'],
-    ['VERIFIED EVIDENCE','Grounded in on-chain data and real-world context.'],
-    ['AGENT READY','API · MCP · CLI for analysts, researchers and trading teams.']
+    ['VERIFIED EVIDENCE','Grounded in on-chain data and venue-native context.'],
+    ['AGENT READY','API · MCP · CLI for operators, analysts and agent teams.']
   ];
   featureCards.forEach((card,index) => {
     card.querySelector('small') && (card.querySelector('small').textContent = copy[index][0]);
@@ -86,7 +86,7 @@ function insertAtlasIndex() {
   section.innerHTML = `
     <div class="atlas-index-grid">
       <a class="atlas-index-card" href="#investigations">
-        <div><small>ENTER THE CASE FILES</small><h3>Investigations</h3><p>Reconstruct complex market events across chains, contracts and time.</p><span class="atlas-link">EXPLORE INVESTIGATIONS →</span></div>
+        <div><small>ENTER THE CASE FILES</small><h3>Investigations</h3><p>Reconstruct DreamDEX market incidents across events, contracts and time.</p><span class="atlas-link">EXPLORE INVESTIGATIONS →</span></div>
         <img src="${REAL_IMAGES.map}" alt="Real world map used as an investigation context reference" loading="lazy" referrerpolicy="no-referrer" />
       </a>
       <a class="atlas-index-card" href="/methodology.html">
@@ -119,7 +119,7 @@ function replaceFeaturedCasesWithVisualDossiers() {
     card.innerHTML = `<img class="case-photo" src="${REAL_IMAGES[imageKey]}" alt="Editorial context image for ${caseId} ${title}" loading="lazy" referrerpolicy="no-referrer" /><span class="featured-copy"><small>${caseId}</small><strong>${title}</strong><span>${summary}</span></span><span class="featured-arrow" aria-hidden="true">→</span>`;
   });
   const footer = document.querySelector('.featured-foot');
-  if (footer) footer.textContent = 'REAL DATA · REAL CONTEXT · REAL DECISIONS.';
+  if (footer) footer.textContent = 'REAL DATA · REAL CONTEXT · BOUNDED DECISIONS.';
 }
 
 function insertTruthBand() {

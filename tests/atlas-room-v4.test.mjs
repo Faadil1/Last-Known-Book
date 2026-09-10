@@ -2,13 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-const [atlasJs, atlasCss, methodHtml, proofHtml, proofJs, heroJs] = await Promise.all([
+const [atlasJs, atlasCss, methodHtml, proofHtml, proofJs, heroJs, agentHtml] = await Promise.all([
   readFile(new URL('../atlas-room.js', import.meta.url), 'utf8'),
   readFile(new URL('../atlas-room.css', import.meta.url), 'utf8'),
   readFile(new URL('../methodology.html', import.meta.url), 'utf8'),
   readFile(new URL('../proof.html', import.meta.url), 'utf8'),
   readFile(new URL('../proof-page.js', import.meta.url), 'utf8'),
-  readFile(new URL('../hero-interactions.js', import.meta.url), 'utf8')
+  readFile(new URL('../hero-interactions.js', import.meta.url), 'utf8'),
+  readFile(new URL('../agent.html', import.meta.url), 'utf8')
 ]);
 
 test('Atlas Room is a live DOM direction with real photo URLs, not a flat screenshot', () => {
@@ -16,6 +17,13 @@ test('Atlas Room is a live DOM direction with real photo URLs, not a flat screen
   assert.match(atlasJs, /images\.unsplash\.com/);
   assert.match(atlasJs, /atlas-index-card/);
   assert.doesNotMatch(atlasJs, /data:image\/webp;base64/);
+});
+
+test('Atlas hero is venue-native and does not overclaim cross-chain scope', () => {
+  assert.match(atlasJs, /VENUE-NATIVE CLARITY/);
+  assert.match(atlasJs, /Investigate the execution\. Reconstruct the real story\./);
+  assert.doesNotMatch(atlasJs, /Investigate across chains/);
+  assert.doesNotMatch(atlasJs, /across chains, contracts and time/);
 });
 
 test('unsupported vanity counters are not part of the Atlas runtime', () => {
@@ -40,8 +48,16 @@ test('Proof commitment is rendered as HTML and retains the claim boundary', () =
   assert.match(proofJs, /fail closed/);
 });
 
-test('prior interaction layer transitions into Atlas Room and keeps reduced-motion behavior', () => {
+test('Atlas loads synchronously with the proven interaction layer and keeps reduced-motion behavior', () => {
+  assert.match(heroJs, /import '\/atlas-room\.js';/);
+  assert.doesNotMatch(heroJs, /import\('\/atlas-room\.js'\)/);
   assert.match(heroJs, /prefers-reduced-motion/);
-  assert.match(heroJs, /import\('\/atlas-room\.js'\)/);
   assert.match(heroJs, /openFeaturedCase/);
+});
+
+test('Agent page follows the same product navigation story', () => {
+  assert.match(agentHtml, /\/methodology\.html/);
+  assert.match(agentHtml, /\/proof\.html/);
+  assert.match(agentHtml, /aria-current="page">Agent/);
+  assert.match(agentHtml, /\/docs\.html/);
 });
