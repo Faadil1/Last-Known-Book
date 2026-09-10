@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v3.2
-updated_utc: "2026-09-10T05:34:00Z"
+schema: LKB-CURRENT-v3.3
+updated_utc: "2026-09-10T05:45:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_VISUAL_POLISH
-  status: REFINED_INTERACTIVE_HERO_AND_JUDGE_PACKET_V2_IMPLEMENTED__CI_PENDING
+  stage: TERMINAL_ASSURANCE_VISUAL_RUNTIME_RECHECK
+  status: REFINED_INTERACTIVE_HERO_AND_JUDGE_PACKET_V2_MERGED_CI_PASS__VERCEL_RUNTIME_RECHECK_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -19,14 +19,13 @@ candidate:
   canonical_branch: main
   direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
   judge_docs_fix_merge: 6d496d43ab466411be50dd5e72c3fe2c2673525e
-  working_branch: rework/refined-interactive-hero-docs-v2
+  refined_interactive_hero_docs_merge: 10573cb5db68adf5580d29dc5f1a74b55243af2a
+  refined_interactive_hero_docs_pr: 15
+  refined_interactive_hero_docs_ci_run: 34442103442
+  refined_interactive_hero_docs_ci_status: PASS
 visual_rework:
-  trigger:
-    - user preferred the earlier refined binder/environment composition over the flatter placeholder book stack
-    - user wanted the environment itself to be interactive
-    - user rejected raw Markdown as the normal Docs experience
   refined_hero:
-    status: IMPLEMENTED_CI_PENDING
+    status: MERGED_AND_CI_PASS
     environment_asset: hero-environment.svg
     visual_language: quiet_alpine_evidence_archive
     atmosphere: ivory_mist_mountains_pine_river_stone_bridge
@@ -49,9 +48,10 @@ visual_rework:
       - hero-environment.svg
     blockchain_or_proof_semantics_changed: false
   judge_docs:
-    status: INTERACTIVE_HTML_V2_IMPLEMENTED_CI_PENDING
+    status: INTERACTIVE_HTML_V2_MERGED_AND_CI_PASS
     primary_nav_target: /docs.html
     raw_markdown_primary_path_removed: true
+    backward_compat_rewrite: /docs/SUBMISSION-PACKAGE.md -> /docs.html
     sections:
       - Overview
       - Judge in 60 Seconds
@@ -69,17 +69,17 @@ proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
-  public_runtime_readback: PASS
+  public_runtime_readback: PASS_PRE_REFINED_HERO
   production_evidence: ABSENT
 vercel:
   project: last-known-book-6fc1
   production_domain: https://last-known-book-6fc1.vercel.app
-  currently_verified_runtime: DIRECTION_6_PRE_REFINED_HERO
-  refined_hero_autodeploy_runtime_check: PENDING_AFTER_MERGE
+  last_verified_runtime: DIRECTION_6_PRE_REFINED_HERO
+  git_main_expected_to_autodeploy: true
+  refined_hero_and_docs_v2_runtime: PENDING_AFTER_MERGE
 remaining_P0:
-  - RUN_CI_FOR_REFINED_INTERACTIVE_HERO_AND_DOCS_V2
-  - MERGE_IF_GREEN
   - VERIFY_REFINED_HERO_AND_DOCS_V2_ON_PUBLIC_VERCEL
+  - REVERIFY_LIVE_SHANNON_AFTER_VISUAL_AUTODEPLOY
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
 remaining_P1:
@@ -100,5 +100,5 @@ truth_boundaries:
   packet_003_remains_redacted: true
   raw_docs_remain_audit_sources_not_primary_judge_experience: true
   production_readiness_claim: FORBIDDEN
-next_gate: PRODUCT_CI_THEN_VERCEL_RUNTIME_RECHECK
+next_gate: PUBLIC_VERCEL_RUNTIME_RECHECK_THEN_FINAL_VIDEO
 next_owner: PROJECT_FINISHER
