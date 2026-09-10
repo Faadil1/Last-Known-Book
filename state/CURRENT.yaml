@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v3.5
-updated_utc: "2026-09-10T12:26:00Z"
+schema: LKB-CURRENT-v3.6
+updated_utc: "2026-09-10T12:28:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_VISUAL_FREEZE
-  status: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_IMPLEMENTED_WITH_REAL_ASSET__CI_PENDING
+  status: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_CODE_AND_TESTS_READY__PR_CI_NEXT
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -23,35 +23,21 @@ candidate:
 visual_freeze:
   hero:
     target: EXACT_USER_APPROVED_REFERENCE_COMPOSITION
-    status: REAL_ASSET_ATTACHED_TO_BRANCH__CI_PENDING
+    status: READY_FOR_PR_CI
     image_asset: hero-validated-scene.webp
     image_asset_kind: optimized_webp_derivative_of_user_approved_reference
     synthetic_placeholder_stack_active: false
-    composition_preserved:
-      - Last Known Book branded topbar
-      - Same chain. Clearer answers.
-      - Reconstruct on-chain reality. Contain what matters.
-      - Start an Investigation
-      - Explore a Sample Case
-      - REAL EVENTS
-      - VERIFIED EVIDENCE
-      - OPERATOR READY
-      - photographic alpine binder archive
-      - bottom listening/events/contracts/narratives strip
-    interactions:
-      - subtle image parallax
-      - transparent hotspots over main book and archive spines
-      - overview/evidence/timeline/method navigation
-      - prefers-reduced-motion respected
-    implementation:
-      - index.html
-      - hero-refined.css
-      - hero-interactions.js
-      - hero-validated-scene.webp
+    markup: index.html
+    styling: hero-refined.css
+    interactions: hero-interactions.js
+    regression_test: tests/refined-hero.test.mjs
+    interaction_scope:
+      - restrained photographic parallax
+      - transparent product-navigation hotspots
+      - reduced-motion support
   docs:
     status: PREMIUM_HTML_JUDGE_PACKET_PRESERVED
     primary_route: /docs.html
-    raw_markdown_primary_path: false
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -64,18 +50,13 @@ truth_boundaries:
   live_readback_is_not_a_new_transaction: true
   packet_003_remains_redacted: true
 remaining_P0:
-  - PRODUCT_CI_FOR_EXACT_VISUAL_REFERENCE
-  - MERGE_IF_GREEN
+  - OPEN_PR_AND_RUN_PRODUCT_CI
+  - MERGE_ONLY_IF_GREEN
   - VERCEL_AUTODEPLOY_AND_VISUAL_RECHECK
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
-remaining_P1:
-  - FINAL_COVER_EXPORT_FROM_FROZEN_VISUAL
-  - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
-  - WINNING_INTELLIGENCE_FINAL_RECHECK
-  - PROJECT_FINISHER_TERMINAL_REAUDIT
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: PRODUCT_CI_THEN_VERCEL_VISUAL_FREEZE
+next_gate: PR_CI_FOR_EXACT_USER_VALIDATED_HERO
 next_owner: PROJECT_FINISHER
