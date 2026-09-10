@@ -1,21 +1,20 @@
-schema: LKB-HANDOVER-v3.8
-updated_utc: "2026-09-10T12:24:00Z"
+schema: LKB-HANDOVER-v3.9
+updated_utc: "2026-09-10T12:29:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_IMPLEMENTED__CI_PENDING
+lifecycle: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_READY_FOR_PR_CI
 canonical_branch: main
 working_branch: rework/exact-validated-hero
 material_decisions:
-  - The user's latest approved screenshot is the canonical hero reference and must not be creatively reinterpreted.
-  - The prior synthetic SVG/CSS archive approximation is no longer the intended active hero surface for this branch.
-  - The active hero now uses hero-validated-scene.webp, an optimized derivative of the exact user-approved photographic alpine binder scene.
-  - The reference composition is preserved: Last Known Book branding, Same chain. Clearer answers., Reconstruct on-chain reality. Contain what matters., Start an Investigation, Explore a Sample Case, REAL EVENTS, VERIFIED EVIDENCE, OPERATOR READY, alpine binder archive, and the lower listening/events/contracts/narratives strip.
-  - Transparent hotspots sit over the real binder scene for useful overview/evidence/timeline/method navigation without visually changing the approved image.
-  - Pointer motion applies only a restrained photo parallax; prefers-reduced-motion removes the effect.
-  - Docs remains the premium /docs.html Judge Packet and raw Markdown is not the primary judge experience.
-  - Existing investigation workspace, four case classes, proof rail and live Shannon readback are preserved below the hero.
-  - No engine semantics, proof claims, Packet 003 privacy, wallet/signing path, blockchain authority or submission authority changed.
+  - The user's approved screenshot is now the canonical hero reference with no further creative reinterpretation allowed before terminal freeze.
+  - The hero implementation uses hero-validated-scene.webp as the photographic alpine binder scene rather than a synthetic CSS/SVG placeholder reconstruction.
+  - The exact reference structure is preserved in the page: branded topbar, headline, subhead, two CTAs, three proof/value blocks and lower listening/events/contracts/narratives strip.
+  - Interactivity is overlaid transparently on the photographic scene: restrained parallax plus overview/evidence/timeline/method hotspots. The approved image itself is not visually altered by the interaction layer.
+  - prefers-reduced-motion is preserved.
+  - Docs remains the premium /docs.html Judge Packet; the prior raw Markdown path is not the normal judge experience.
+  - Investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain intact beneath the hero.
+  - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path or protected submission authority changed.
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -30,23 +29,21 @@ implementation:
   docs_page: docs.html
   regression_test: tests/refined-hero.test.mjs
 remaining_P0:
-  - run product CI and replay cleanliness on exact-reference branch
-  - merge only if green
-  - let Vercel autodeploy main
-  - verify exact reference hero renders publicly with hotspots and /docs.html intact
-  - encode final 2-3 minute demo from the visually frozen production site
-  - TRACE review of actual encoded demo
+  - PR CI and replay cleanliness
+  - merge if green
+  - Vercel autodeploy and exact visual comparison
+  - final encoded 2-3 minute demo
+  - TRACE review of encoded demo
 remaining_P1:
-  - final cover/thumbnail export from frozen visual
-  - insert final video URL into submission package
+  - cover/thumbnail export from frozen visual
+  - final video URL insertion
   - Winning Intelligence final recheck
   - Project Finisher terminal reaudit
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: PRODUCT_CI_FOR_EXACT_USER_VALIDATED_HERO
+next_exact_gate: OPEN_PR_AND_REQUIRE_PRODUCT_CI_PASS
 next_exact_owner: PROJECT_FINISHER
-next_exact_action: Run CI for the exact-reference hero branch, merge if all product/replay/privacy checks stay green, then verify the resulting Vercel production render against the user-approved screenshot before freezing the visual surface for the final 2-3 minute video.
 blocked_actions:
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
