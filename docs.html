@@ -46,24 +46,24 @@
 
       <section class="docs-section" id="fast-lane">
         <div class="docs-section-head"><div><div class="docs-section-kicker">JUDGE IN 60 SECONDS</div><h2>See the whole argument fast.</h2></div></div>
-        <p class="docs-section-intro">The quickest path is intentionally behavior-first: open the case, see the venue-native reveal, verify the real Shannon proof, then inspect the source and SDK feedback only if you want the deeper audit trail.</p>
+        <p class="docs-section-intro">The quickest path is behavior-first: open one case, see the DreamDEX-native reveal, verify the product-originated Shannon proof, then use the independent live witnesses and visual commitment to audit the claim boundary.</p>
         <div class="fast-lane">
           <article><span>1</span><strong>Open LKB-001</strong><p>Start with Agent Intent ≠ Venue Reality.</p></article>
           <article><span>2</span><strong>See MINT_A_PAIR</strong><p>Land the reveal: “This wasn't a whale. It was a mint.”</p></article>
           <article><span>3</span><strong>Inspect real proof</strong><p>PostOnly rested, zero fills, exact cancel, collateral restored.</p></article>
-          <article><span>4</span><strong>Check the boundary</strong><p>Testnet technical + behavior proof, not production evidence.</p></article>
+          <article><span>4</span><strong>Verify live + boundary</strong><p>Read-only Shannon witnesses + tamper-evident commitment. Production evidence remains absent.</p></article>
         </div>
       </section>
 
       <section class="docs-section" id="proof">
         <div class="docs-section-head"><div><div class="docs-section-kicker">PROOF</div><h2>Receipts over claims.</h2></div></div>
         <div class="doc-grid">
-          <a class="doc-card" href="/?case=LKB-001#proof"><small>01 · PRODUCT</small><strong>Real Shannon proof surface</strong><p>Judge-facing redacted proof plus the live read-only network verification rail.</p><span class="arrow">Open proof in product →</span></a>
-          <a class="doc-card" href="/evidence/SHANNON-PROOF-003-COMMITMENT.json" target="_blank" rel="noreferrer"><small>02 · COMMITMENT</small><strong>Tamper-evident proof commitment</strong><p>Public commitment to the private Packet 003 bundle without wallet or transaction identifiers.</p><span class="arrow">Open commitment ↗</span></a>
+          <a class="doc-card" href="/proof.html"><small>01 · PRODUCT</small><strong>Proof Room</strong><p>Product-originated Packet 003, four independent live read-only Shannon witnesses and explicit truth boundaries.</p><span class="arrow">Open Proof Room →</span></a>
+          <a class="doc-card" href="/proof.html#commitment"><small>02 · COMMITMENT</small><strong>Tamper-evident proof commitment</strong><p>A visual receipt binds the preserved private Packet 003 object to Git identities without exposing wallet, transaction or order identifiers.</p><span class="arrow">Open visual commitment →</span></a>
           <a class="doc-card" href="https://github.com/Faadil1/Last-Known-Book" target="_blank" rel="noreferrer"><small>03 · SOURCE</small><strong>GitHub + deterministic CI</strong><p>Implementation, fixtures, tests, replay generation and public/private evidence boundaries.</p><span class="arrow">Open repository ↗</span></a>
           <a class="doc-card" href="/docs/SDK-FEEDBACK.md" target="_blank" rel="noreferrer"><small>04 · ECOSYSTEM</small><strong>SDK / docs feedback</strong><p>Concrete findings on market identity, bounded approvals, units and PostOnly reconciliation.</p><span class="arrow">Open feedback source ↗</span></a>
         </div>
-        <div class="truth-note"><strong>What the proof demonstrates.</strong><p>Technical behavior and operational containment on Somnia Shannon: exact pre-write gating, a bounded PostOnly order, zero fills, `OrderPlaced → OrderRested`, exact returned-order cancellation, `OrderCancelled`, and collateral restored exactly. It does not demonstrate production reliability, ROI, MTTR improvement, incident prevalence or profitability.</p></div>
+        <div class="truth-note"><strong>Four proof categories, four different jobs.</strong><p>Captured case replays demonstrate semantic coverage. Packet 003 demonstrates Last Known Book-originated bounded behavior. Live read-only witnesses verify current Shannon/network/contract/unit facts without another transaction. The Git commitment proves pre-judging preservation. None of these is represented as production reliability evidence.</p></div>
       </section>
 
       <section class="docs-section" id="mechanism">
@@ -85,7 +85,8 @@
           <details class="qa-item"><summary><strong>Isn't this just analytics?</strong><small>DIFFERENTIATOR</small></summary><p>No. Analytics describes a market. Last Known Book reconstructs one unexpected execution, identifies the DreamDEX-native cause, decides whether a corrective action is justified, and reconciles closure.</p></details>
           <details class="qa-item"><summary><strong>Why not just inspect a block explorer?</strong><small>PRODUCT NEED</small></summary><p>An explorer shows transactions. It does not reconstruct Agent Intent vs Venue Reality, classify venue-specific cause, separate truth classes, apply an authority policy and close the incident as one evidence contract.</p></details>
           <details class="qa-item"><summary><strong>Why does this require DreamDEX?</strong><small>SPONSOR FIT</small></summary><p>The mechanism depends on DreamDEX Event Contract semantics: durable marketId identity, rolling pool binding, MINT_A_PAIR, escrow behavior, lifecycle state and native order events. Removing those semantics collapses the current causal model.</p></details>
-          <details class="qa-item"><summary><strong>What is real versus replayed?</strong><small>TRUTH BOUNDARY</small></summary><p>Four casefiles are deterministic replays built from captured real Shannon incident evidence. Separately, Packet 003 is a Last Known Book-originated real Shannon testnet placement/rest/exact-cancel/reconciliation proof.</p></details>
+          <details class="qa-item"><summary><strong>What is real versus replayed?</strong><small>TRUTH BOUNDARY</small></summary><p>Four casefiles are deterministic replays from captured Shannon incident evidence. Packet 003 is a separate Last Known Book-originated real Shannon placement/rest/exact-cancel/reconciliation proof. Live witnesses are a third category: current read-only verification, not additional product-originated trades.</p></details>
+          <details class="qa-item"><summary><strong>Why add live witnesses instead of more transactions?</strong><small>EVIDENCE QUALITY</small></summary><p>They answer different objections. Packet 003 proves bounded product behavior; the live witnesses independently verify current Shannon chain/head, a public captured receipt, DreamDEX module bytecode and tUSDC units. Repeating the same transaction path would add less evidence than covering a different critical claim.</p></details>
           <details class="qa-item"><summary><strong>Did the real Packet 003 order trade?</strong><small>PROOF SCOPE</small></summary><p>No. It was deliberately PostOnly, rested with zero fills, then the exact returned order was cancelled. That proves bounded authority and reconciliation, not profitable execution.</p></details>
           <details class="qa-item"><summary><strong>Is WRITE REFUSED a failure?</strong><small>SAFETY</small></summary><p>No. Refusal is the correct behavior when evidence does not justify a write. A blind compensating transaction can turn one confusing incident into two.</p></details>
           <details class="qa-item"><summary><strong>What business outcome is proven?</strong><small>CLAIM DISCIPLINE</small></summary><p>Operational containment is demonstrated on Shannon testnet. MTTR improvement, ROI, incident prevalence and production reliability are not yet proven and are not claimed.</p></details>
@@ -98,7 +99,7 @@
           <a class="doc-card" href="https://github.com/Faadil1/Last-Known-Book/blob/main/docs/SUBMISSION-PACKAGE.md" target="_blank" rel="noreferrer"><small>RAW SOURCE</small><strong>Submission package</strong><p>The human-final-gate submission copy and truth boundaries.</p><span class="arrow">Open on GitHub ↗</span></a>
           <a class="doc-card" href="https://github.com/Faadil1/Last-Known-Book/blob/main/docs/REQUIREMENTS-EVIDENCE-MATRIX.md" target="_blank" rel="noreferrer"><small>RAW SOURCE</small><strong>Requirements → evidence</strong><p>The explicit MUST / MUST_NOT coverage ledger.</p><span class="arrow">Open on GitHub ↗</span></a>
           <a class="doc-card" href="/docs/DEMO-SCRIPT.md" target="_blank" rel="noreferrer"><small>FILM CONTRACT</small><strong>2:35 demo script</strong><p>The canonical judge story for the final encoded film.</p><span class="arrow">Open source ↗</span></a>
-          <a class="doc-card" href="/?case=LKB-001#live-readback"><small>LIVE</small><strong>Shannon readback</strong><p>Read-only chain/head/receipt verification from the live product.</p><span class="arrow">Open live panel →</span></a>
+          <a class="doc-card" href="/proof.html#live-witnesses"><small>LIVE</small><strong>Independent Shannon witnesses</strong><p>Read-only chain, receipt, contract-code and collateral-unit verification from the Proof Room.</p><span class="arrow">Open live witnesses →</span></a>
         </div>
       </section>
 
