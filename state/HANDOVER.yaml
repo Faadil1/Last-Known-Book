@@ -1,47 +1,50 @@
-schema: LKB-HANDOVER-v4.2
-updated_utc: "2026-09-10T13:43:00Z"
+schema: LKB-HANDOVER-v4.3
+updated_utc: "2026-09-10T16:21:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: APPROVED_EDITORIAL_REALISM_HERO_IMPLEMENTED__CI_PASS__PREVIEW_READY__VISUAL_RECHECK_PENDING
+lifecycle: COMPONENT_POLISH_V3_IMPLEMENTED__VALIDATION_PENDING
 canonical_branch: main
-implementation_branch: rework/approved-editorial-realism-hero-v2
-implementation_pr: 17
-implementation_head_before_state_update: 9efe3c21b9735a784b9b939ca09e29eeaf077fcd
-implementation_ci: PASS_RUN_34483720943
-vercel_preview_status: READY
-vercel_preview_url: https://last-known-book-6fc1-git-rework-approv-28a635-faadil-s-projects.vercel.app
+hero_implementation_branch: rework/approved-editorial-realism-hero-v2
+hero_implementation_pr: 17
+hero_implementation_ci: PASS
+hero_vercel_preview_status: READY
+polish_branch: rework/benita-component-polish-v3
+polish_base_head: 2679c241a6901d77d1950383a648f33a601531dc
+polish_contract: docs/TRACE-COMPONENT-POLISH-V3-2026-09-10.md
 previous_rejected_runtime: https://last-known-book-6fc1.vercel.app/?case=LKB-001
-prior_exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
 material_decisions:
-  - The previous production hero remains rejected; do not restore the screenshot/poster-like implementation.
-  - The user selected and explicitly approved the new warm editorial evidence-workspace direction for implementation.
-  - The selected direction uses materially credible physical binders, desk/archive objects, a believable alpine/window environment and restrained product interaction.
-  - PR #17 is the reversible implementation branch for this approved direction.
-  - The hero headline, supporting copy and CTAs remain live DOM. The approved image is used as environmental material rather than shipping the entire approved mockup as a flat page screenshot.
-  - `hero-interactions.js` assembles the approved WebP scene from seven repository-hosted base64 chunks, with the prior hero asset retained as a fail-safe fallback if assembly fails.
-  - The visible `Open Case Files` affordance is live DOM and navigates into the real investigation workspace.
-  - Featured Investigations is also live DOM and maps to the four real canonical case IDs LKB-001 through LKB-004.
-  - Pointer movement is deliberately restrained and `prefers-reduced-motion` remains supported.
-  - CI run 34483720943 passed on implementation head 9efe3c21b9735a784b9b939ca09e29eeaf077fcd.
-  - Vercel reports the PR preview READY. This is not yet a visual PASS: the runtime must still be inspected in desktop and narrow/mobile contexts.
-  - The targeted visual recheck must specifically verify that no duplicate baked/live hotspot leaks through, that the scene reads as a believable environment rather than a poster, and that the live copy/CTA layer remains coherent.
+  - The warm editorial physical-binder hero direction remains approved and is not reopened by this step.
+  - A second bounded visual-system pass was authorized using specialist component galleries supplied by the user as reference categories: Navbar Gallery, Supahero/ScreensDesign, CTA.gallery, Footer.design and 404s.design.
+  - These sources inform principles only. No external layout is copied.
+  - The polish is isolated on `rework/benita-component-polish-v3`, branched from PR #17 head `2679c241a6901d77d1950383a648f33a601531dc`, so the approved hero implementation remains recoverable and directly comparable.
+  - `component-polish.css` adds sticky navbar compression, active navigation state, refined hero micro-hierarchy, restrained featured-case interaction, a dedicated pre-footer CTA and a structured evidence-native footer.
+  - `component-polish.js` installs the stylesheet, scroll-aware navigation state, the live final CTA and the upgraded footer. It does not change engine semantics or evidence truth.
+  - `hero-interactions.js` imports the component polish layer while preserving the approved hero asset loader, real case navigation, live hotspot behavior and reduced-motion behavior.
+  - `404.html` introduces a branded safe-recovery error state: it routes only to known case and Judge Packet paths and explicitly avoids fabricating missing evidence.
+  - `tests/component-polish-v3.test.mjs` guards the live navigation/CTA/footer/404/reduced-motion contract.
+  - This polish is not approved for promotion solely because source changes exist. It requires CI, Vercel preview, desktop/narrow visual review and explicit human approval.
   - `/docs.html`, the investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain protected.
   - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path, proof claims, live-readback authority or protected submission authority changed.
+reference_principles:
+  navbar_gallery: navigation hierarchy, sticky/static clarity, active-state legibility, mobile restraint
+  supahero_screensdesign: hero hierarchy and composition quality bar
+  cta_gallery: conversion hierarchy, contrast and action clarity
+  footer_design: utility-first footer architecture plus memorable brand close
+  404s_design: useful branded recovery rather than dead-end errors
 trace_position:
-  original_reopen_gate: "2.25"
-  supporting_asset_gate: "4.75"
-  user_direction_selection: PASS_APPROVED_FOR_IMPLEMENTATION
-  implementation_source_review: PASS_STATIC_CONTRACT_AND_CI
-  runtime_visual_review: PENDING
+  hero_direction_selection: PASS_APPROVED_FOR_IMPLEMENTATION
+  hero_source_and_ci: PASS
+  component_polish_v3: IMPLEMENTED_VALIDATION_PENDING
   terminal_freeze: NOT_AUTHORIZED_YET
 visual_acceptance_checklist:
-  - materially believable binders and real spatial depth
-  - no screenshot/poster read at first glance
-  - live headline/CTA layer integrates with the environmental scene
-  - live Open Case Files affordance cleanly owns the hotspot area with no duplicate artifact
-  - Featured Investigations remains calm, product-native and non-generic
-  - desktop and narrow/mobile crops retain useful scene geometry
+  - sticky navbar feels quieter and clearer, not heavier
+  - active navigation state remains obvious but restrained
+  - approved physical-binder hero remains the visual anchor
+  - final CTA feels product-native rather than generic marketing
+  - footer improves verification/navigation utility and ends with a clear brand moment
+  - 404 state feels intentionally Last Known Book and returns to known evidence paths
+  - desktop and narrow/mobile crops remain usable
   - reduced-motion remains truthful and usable
 proof_status:
   technical_proof: PASS_REAL_SHANNON
@@ -50,11 +53,15 @@ proof_status:
   public_runtime_readback: PASS
   production_evidence: ABSENT
 remaining_P0:
-  - visually inspect PR 17 Vercel preview at desktop
-  - visually inspect PR 17 Vercel preview at narrow/mobile width
-  - run TRACE targeted runtime recheck against the approved direction
-  - obtain explicit human visual approval of the preview
-  - merge PR 17 only after the above passes
+  - run CI on the component polish branch
+  - obtain isolated Vercel preview for the component polish branch
+  - visually inspect navbar, hero, Featured Investigations, final CTA and footer on desktop
+  - visually inspect narrow/mobile behavior
+  - verify /404.html recovery state
+  - run TRACE targeted runtime recheck
+  - obtain explicit human visual approval
+  - merge the polish branch into rework/approved-editorial-realism-hero-v2
+  - re-run PR 17 preview gate and merge PR 17 only after PASS
   - post-merge production visual recheck
   - create final encoded 2-3 minute demo from the frozen production surface
   - TRACE review of the actual encoded demo
@@ -66,12 +73,13 @@ remaining_P1:
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: VERCEL_PREVIEW_VISUAL_RECHECK
-next_exact_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_VISUAL_APPROVAL
-next_exact_action: Open the PR 17 Vercel preview, capture the hero at desktop and narrow/mobile widths, compare against the user-approved warm editorial realism direction, and verify there is no duplicate baked/live hotspot or poster-like failure. PASS permits merge preparation; FAIL permits only targeted visual patching on PR 17.
+next_exact_gate: COMPONENT_POLISH_V3_CI_AND_PREVIEW
+next_exact_owner: TRACE_DESIGN_ASSURANCE_PLUS_PROJECT_FINISHER
+next_exact_action: Validate `rework/benita-component-polish-v3` with CI and an isolated Vercel preview. Inspect sticky navbar, hero coherence, final CTA, footer, 404 recovery and narrow/mobile behavior. PASS plus explicit human approval permits merging this branch into `rework/approved-editorial-realism-hero-v2`; otherwise patch only observed defects on the isolated branch.
 blocked_actions:
   - no terminal visual freeze before preview visual PASS and explicit human approval
-  - no merge of PR 17 solely because CI/Vercel status is green
+  - no merge of component polish into the hero branch solely because CI/Vercel status is green
+  - no merge of PR 17 to main before the terminal visual gate passes
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
   - no protected hackathon submission without explicit human approval
