@@ -1,40 +1,47 @@
-schema: LKB-HANDOVER-v4.8
-updated_utc: "2026-09-10T17:46:00Z"
+schema: LKB-HANDOVER-v4.9
+updated_utc: "2026-09-10T18:41:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: ATLAS_ROOM_V4__SOURCE_IMPLEMENTED__CI_AND_RUNTIME_RECHECK_PENDING
+lifecycle: ATLAS_ROOM_V4__SOURCE_AND_CI_PASS__ALTERNATE_RUNTIME_RECHECK_PENDING
 canonical_branch: main
 
+active_candidate:
+  branch: rework/atlas-room-v4
+  pr: 21
+  base: rework/hidden-spots-002-agent-native
+  validated_head: 301c4e9831c1093bfb9e698c2aa22e182211d37b
+  ci_run: 34515736267
+  ci_status: PASS_36_TESTS_AND_CLEAN_REPLAY
+  primary_vercel_status: FAILED_EXPECTED_RATE_LIMIT
+
 promotion_chain:
-  - atlas_room_branch: rework/atlas-room-v4
-  - hidden_spots_branch: rework/hidden-spots-002-agent-native
-  - hidden_spots_pr: 19
-  - component_polish_branch: rework/benita-component-polish-v3
-  - component_polish_pr: 18
-  - hero_branch: rework/approved-editorial-realism-hero-v2
-  - hero_pr: 17
-  - final_target: main
+  - PR21 Atlas Room -> rework/hidden-spots-002-agent-native
+  - PR19 HS-002 -> rework/benita-component-polish-v3
+  - PR18 component polish -> rework/approved-editorial-realism-hero-v2
+  - PR17 hero branch -> main
 
 material_decisions:
-  - The user rejected the previous UI/UX as not selling the final product strongly enough and selected `The Atlas Room` as the new visual direction.
-  - The approved reference is a directional prototype only. It must not be shipped as a flattened screenshot.
-  - Atlas Room V4 is implemented on a new reversible branch `rework/atlas-room-v4` based on the already agent-native HS-002 branch, so the strongest product functionality is preserved.
-  - `atlas-room.css` and `atlas-room.js` transition the existing hero/interactions rather than replacing the investigation engine.
-  - The hero now uses an external real photographic Unsplash asset at runtime instead of rebuilding the previous screenshot-like hero from repository base64 chunks.
-  - Real photographic assets are also used for Atlas index panels and visual case dossiers. These images are context illustration only and are explicitly not incident evidence.
-  - `hero-interactions.js` still preserves the real LKB-001 through LKB-004 case navigation, subtle parallax, keyboard interaction and prefers-reduced-motion behavior, then loads the Atlas transition layer.
-  - `Methodology` no longer scrolls to a hidden tab that appears empty. It routes to `/methodology.html`, a real judge-facing methodology room exposing Capture -> Reconstruct -> Classify -> Explain -> Decide and OBSERVED / INFERRED / UNKNOWN.
-  - `Proof` no longer sends the judge directly to raw commitment data. It routes to `/proof.html`, which explains the real Shannon behavior proof, truth boundary and renders `/evidence/SHANNON-PROOF-003-COMMITMENT.json` as live HTML plus inspectable JSON.
-  - Agent Interface is promoted into the primary navigation and Atlas index so the agent-native differentiator is not buried.
-  - A DreamDEX load-bearing note now explains marketId, lifecycle, MINT_A_PAIR, resting escrow and native order events before the detailed workspace.
-  - The previous visible `12.4M+`, `320+` and `AND COUNTING` vanity metrics were not grounded in the preserved evidence package. Atlas V4 hides that strip and replaces it with truthful judge-safe facts: Shannon 50312, four captured incident classes, inference cannot spend, API/MCP/CLI.
-  - Existing HS-002 functionality remains intact: Bring Your Own Incident, generic webhook intake, deterministic Authority Receipt, MCP, CLI, read-only Shannon watcher, decimal normalization and reproduce-case tool.
-  - No browser wallet, private-key path, signing, broadcast, automatic compensating trade or mainnet write is introduced.
-  - No production reliability, ROI, MTTR improvement, incident prevalence or fraud-detection claim is added.
-  - The primary Vercel Hobby account previously hit its rolling 100-deployments/24h limit. The user can manually import the GitHub branch into a second Vercel account.
-  - Cloudflare is also available to the user through a connected Codex environment and may be used as an alternate test runtime. This chat has not deployed to Cloudflare and must not claim it has.
-  - GitHub remains the canonical source of truth regardless of which preview host is used.
+  - The user selected `The Atlas Room` as the new canonical visual target because the previous UI/UX did not sell the final product strongly enough.
+  - Atlas Room V4 is implemented on its own reversible branch on top of the agent-native HS-002 candidate.
+  - The selected concept is not used as one flat screenshot. Atlas Room remains live DOM and preserves the real investigation workspace.
+  - Runtime imagery uses direct Unsplash photographic sources. These photographs are contextual editorial illustration only and must never be treated or described as DreamDEX incident evidence.
+  - The old seven-part approved hero asset is still preserved in the repository as rollback/provenance, but it is no longer required to remain the active visual surface.
+  - `hero-interactions.js` preserves case deep-links, subtle parallax, focus and reduced-motion, then loads the Atlas transition layer.
+  - `/methodology.html` fixes the previously weak/empty Methodology destination and exposes Capture -> Reconstruct -> Classify -> Explain -> Decide plus OBSERVED / INFERRED / UNKNOWN.
+  - `/proof.html` fixes the raw proof-commitment experience by rendering the real Shannon behavior proof, explicit truth boundary and the public commitment JSON as judge-facing HTML.
+  - Agent Interface is now promoted into primary navigation and the Atlas index.
+  - The Atlas runtime hides the old unsupported `12.4M+`, `320+`, `AND COUNTING` social-proof strip and replaces it with grounded facts: Shannon 50312, four captured incident classes, inference cannot spend, API/MCP/CLI.
+  - The Atlas runtime adds a DreamDEX load-bearing explainer covering marketId, lifecycle, MINT_A_PAIR, resting escrow and native order events.
+  - Existing HS-002 remains intact: Bring Your Own Incident, webhook intake, deterministic Authority Receipt, API/MCP/CLI, read-only watcher, normalization guard and reproduce-case tool.
+  - The first Atlas PR CI run failed only because an obsolete legacy test asserted that the old seven-part base64 hero loader must remain active. The product code and new Atlas tests otherwise passed.
+  - The legacy test was repaired to preserve the prior asset for rollback while allowing the user-approved Atlas Room to own the active runtime.
+  - Final GitHub Actions run `34515736267` passed all 36 tests and deterministic replay remained clean.
+  - The primary Vercel Hobby account is currently rate-limited after hitting the observed 100-deployments rolling-24h limit. A failed primary Vercel check on PR21 is therefore expected and is not a product failure.
+  - The user can import `rework/atlas-room-v4` into a second Vercel account for runtime review.
+  - Cloudflare is also available through the user's Codex connection and may be used as an alternate test runtime. This chat has not deployed Atlas Room to Cloudflare and must not claim otherwise.
+  - GitHub remains the source of truth regardless of preview host.
+  - No browser wallet, private key, signing, broadcast, automatic compensating trade, mainnet write, Packet 003 de-redaction, production reliability claim, ROI claim, MTTR claim, prevalence claim or fraud claim is introduced.
 
 key_files:
   - atlas-room.css
@@ -44,6 +51,7 @@ key_files:
   - proof.html
   - proof-page.js
   - tests/atlas-room-v4.test.mjs
+  - tests/approved-realism-hero-v2.test.mjs
   - docs/ATLAS-ROOM-V4.md
   - state/CURRENT.yaml
   - state/HANDOVER.yaml
@@ -52,66 +60,40 @@ key_files:
   - api/mcp.js
   - src/authority-receipt.mjs
 
-visual_contract:
-  name: THE_ATLAS_ROOM
-  status: USER_APPROVED_SOURCE_IMPLEMENTED
-  preserve:
-    - warm premium editorial tone
-    - live product DOM
-    - canonical four-case workspace
-    - sticky/compressing navbar
-    - case deep-links
-    - restrained parallax
-    - focus-visible states
-    - reduced-motion
-    - evidence-native footer and 404
-  add:
-    - Atlas hero narrative
-    - four-path Atlas index
-    - real Methodology page
-    - real HTML Proof room
-    - visual dossier thumbnails
-    - truthful evidence band
-    - DreamDEX load-bearing explainer
-    - Agent Interface primary-nav discovery
-  anti_targets:
-    - full-page screenshot as UI
-    - generic black/blue crypto dashboard
-    - fake cross-chain evidence claims
-    - unsupported vanity metrics
-    - provider-logo integration theater
-    - chat copilot as primary surface
-    - decorative motion unrelated to comprehension
+trace_record:
+  repository: Faadil1/trace-design-workflow
+  current_version: 1.8
+  source_gate: state/projects/dreamdex-execution-incident-response/GATE_6_5_ATLAS_ROOM_V4_SOURCE_2026-09-10.md
+  source_verdict: PASS_SOURCE_AND_CI__ALTERNATE_RUNTIME_AND_HUMAN_RECHECK_REQUIRED
+  runtime_verdict: PENDING
+
+visual_acceptance_checklist:
+  - hero reads as a premium investigation environment and not an ordinary marketing template
+  - real photos load reliably and remain clearly contextual illustration
+  - Atlas index creates an understandable Investigations -> Methodology -> Proof -> Agent story
+  - Featured Investigations still enter the correct canonical cases
+  - Methodology page is useful and no longer appears empty
+  - Proof page makes real proof, commitment and claim limits understandable without GitHub hunting
+  - Agent Interface feels native rather than bolted on
+  - DreamDEX load-bearing semantics are visible without turning into a feature dump
+  - unsupported vanity metrics are absent
+  - desktop and narrow/mobile layout PASS
+  - reduced-motion and focus behavior PASS
 
 hosting_and_test_strategy:
   primary_vercel:
     plan: HOBBY
     observed_limit: 100 deployments per rolling 24h
-    state: SATURATED_OR_RECENTLY_RATE_LIMITED
+    state: RATE_LIMITED
     role_now: DO_NOT_DEPEND_ON_FOR_ATLAS_ITERATION
   secondary_vercel:
     state: USER_AVAILABLE
-    action: USER_CAN_IMPORT_REWORK_ATLAS_ROOM_V4_FROM_GITHUB
+    exact_import_branch: rework/atlas-room-v4
   cloudflare:
-    state: USER_HAS_CONNECTION_IN_CODEX
+    state: USER_AVAILABLE_THROUGH_CODEX_CONNECTION
     role: OPTIONAL_ALTERNATE_PREVIEW_AND_RUNTIME_TEST
     deployed_from_this_chat: false
   canonical_source: GITHUB
-
-validation_required:
-  - GitHub Actions test PASS for Atlas branch
-  - hero photo loads and layout still reads as Atlas Room
-  - no unsupported old vanity metrics visible
-  - Methodology route renders and navigation works
-  - Proof route renders commitment facts and fails closed if commitment fetch fails
-  - Agent Interface is discoverable from primary navigation
-  - Featured Investigations still open the correct LKB cases
-  - DreamDEX load-bearing note is clear but does not become a feature dump
-  - desktop layout PASS
-  - narrow/mobile layout PASS
-  - reduced-motion PASS
-  - human visual approval
-  - TRACE runtime verdict
 
 proof_status:
   technical_proof: PASS_REAL_SHANNON
@@ -120,20 +102,22 @@ proof_status:
   production_evidence: ABSENT
 
 remaining_P0:
-  - open Atlas Room PR into hidden-spots branch to trigger CI
-  - fix any source/test failure in one bounded pass
-  - deploy/import Atlas branch on secondary Vercel or Cloudflare test runtime
-  - human desktop/mobile/Methodology/Proof/Agent review
-  - TRACE Atlas Room runtime verdict
-  - update Demo + Q&A to include HS-002/Authority Receipt without becoming a feature dump
-  - promote Atlas into PR19 path then PR18 then PR17 then main after PASS
-  - final encoded 2-3 minute demo and TRACE encoded-video review
+  - deploy/import PR21 head on secondary Vercel or Cloudflare
+  - inspect Atlas home desktop and narrow/mobile
+  - inspect Methodology, Proof and Agent routes
+  - verify canonical case deep-links still work
+  - TRACE Atlas runtime verdict
+  - explicit human visual approval
+  - update Demo/Q&A to surface HS-002 Authority Receipt without creating feature-dump narrative
+  - promote PR21 -> PR19 -> PR18 -> PR17 -> main only after PASS
+  - final 2-3 minute encoded demo
+  - TRACE encoded-video review
 
 blocked_actions:
-  - no main merge before Atlas runtime PASS and explicit human approval
+  - no merge to main before Atlas runtime PASS and explicit human approval
   - no blockchain write without fresh exact human approval
-  - no protected agent write surface
-  - no private Packet 003 identifiers without explicit human approval
+  - no protected write path through agent/MCP/API surfaces
+  - no private Packet 003 identifier publication without explicit human approval
   - no unsupported production/MTTR/ROI/prevalence/fraud claims
   - no claim that Cloudflare Atlas deployment already exists
 
@@ -142,6 +126,6 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_gate: ATLAS_ROOM_SOURCE_CI_THEN_ALTERNATE_RUNTIME_RECHECK
+next_exact_gate: ATLAS_ROOM_ALTERNATE_RUNTIME_RECHECK
 next_exact_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Open a PR from `rework/atlas-room-v4` into `rework/hidden-spots-002-agent-native` to trigger GitHub Actions. If CI passes, use the user's second Vercel account or Codex-connected Cloudflare as the preview runtime, then inspect hero, Atlas index, Featured Investigations, Methodology, Proof and Agent Interface on desktop and narrow/mobile. Record PASS/FAIL in CURRENT and HANDOVER before any promotion.
+next_exact_action: Deploy/import `rework/atlas-room-v4` at head `301c4e9831c1093bfb9e698c2aa22e182211d37b` using the second Vercel account or the Codex-connected Cloudflare environment. Inspect the home page, `/methodology.html`, `/proof.html`, `/agent.html`, case deep-links and mobile/reduced-motion behavior. Record PASS/FAIL before promotion.

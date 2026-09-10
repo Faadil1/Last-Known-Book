@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v4.5
-updated_utc: "2026-09-10T17:46:00Z"
+schema: LKB-CURRENT-v4.6
+updated_utc: "2026-09-10T18:41:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,64 +9,61 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
-  status: ATLAS_ROOM_V4__SOURCE_IMPLEMENTED__CI_AND_RUNTIME_RECHECK_PENDING
+  status: ATLAS_ROOM_V4__SOURCE_AND_CI_PASS__ALTERNATE_RUNTIME_RECHECK_PENDING
 
 authority:
-  stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED_PREVIOUS_RUNTIME
-  live_readback: READ_ONLY_VERIFIED_PREVIOUS_RUNTIME
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
 
 candidate:
   canonical_branch: main
-  hero_implementation_pr: 17
-  component_polish_pr: 18
-  hidden_spots_pr: 19
-  hidden_spots_branch: rework/hidden-spots-002-agent-native
   atlas_room_branch: rework/atlas-room-v4
-  atlas_room_design_contract: docs/ATLAS-ROOM-V4.md
-  atlas_room_source_status: IMPLEMENTED_NOT_YET_RUNTIME_VERIFIED
-  current_preview: NOT_DEPLOYED_YET
+  atlas_room_pr: 21
+  atlas_room_base: rework/hidden-spots-002-agent-native
+  atlas_room_validated_head: 301c4e9831c1093bfb9e698c2aa22e182211d37b
+  atlas_room_ci_run: 34515736267
+  atlas_room_ci_status: PASS_36_TESTS_AND_CLEAN_REPLAY
+  atlas_room_primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
+  atlas_room_secondary_runtime_status: NOT_DEPLOYED_YET
+  design_contract: docs/ATLAS-ROOM-V4.md
+  upstream_hidden_spots_pr: 19
+  downstream_component_polish_pr: 18
+  downstream_hero_pr: 17
 
 visual_direction:
   selected: THE_ATLAS_ROOM
   selected_by: HUMAN_USER
-  status: APPROVED_AND_MATERIALIZED_IN_SOURCE
-  reference_rule: USE_SELECTED_REFERENCE_AS_DIRECTION_NOT_AS_FLAT_SCREENSHOT
-  implementation_rules:
-    - runtime remains live DOM and real interaction
-    - photographic image sources are separate external assets, not a screenshot of the design reference
-    - prior sticky navigation, case deep-links, reduced-motion, final CTA/footer and 404 behaviors are preserved or improved
-    - Methodology, Proof and Agent Interface are first-class destinations
-    - visual design must not imply stronger evidence than exists
-  added_surfaces:
-    - atlas-room.css
-    - atlas-room.js
-    - methodology.html
-    - proof.html
-    - proof-page.js
-    - docs/ATLAS-ROOM-V4.md
-  interaction_transition:
-    - preserve case hotspot and subtle parallax
-    - preserve featured-case navigation to LKB-001 through LKB-004
-    - promote Agent Interface into primary navigation
-    - route Methodology to a real methodology room
-    - route Proof to a real HTML proof room
-    - replace decorative metrics with judge-safe facts
-    - add Atlas index and DreamDEX load-bearing explainer
+  status: APPROVED_SOURCE_IMPLEMENTED_CI_PASS
+  runtime_rule: SELECTED_REFERENCE_IS_DIRECTION_NOT_FLAT_SCREENSHOT
+  implementation:
+    - live DOM hero and navigation
+    - external real photographic image sources as context illustration
+    - four-path Atlas index
+    - visual Featured Investigation dossiers linked to canonical cases
+    - first-class Methodology room
+    - first-class Proof room with live public commitment renderer
+    - Agent Interface promoted into primary navigation
+    - truthful evidence band replacing unsupported vanity metrics
+    - DreamDEX load-bearing explainer
+    - prior case interactions parallax focus and reduced-motion preserved
+  truth_cleanup:
+    photo_assets_are_context_not_evidence: true
+    unsupported_12_4M_320_and_counting_visible_in_atlas: false
+    production_evidence: ABSENT
 
-truth_and_claim_cleanup:
-  unsupported_visible_vanity_metrics:
-    prior: "12.4M+ / 320+ / AND COUNTING"
-    atlas_runtime_behavior: HIDDEN_AND_REPLACED
-    replacement:
-      - Shannon 50312
-      - 4 captured incident classes
-      - inference cannot spend
-      - API MCP CLI
-  photo_assets_are_context_not_evidence: true
-  proof_page_production_evidence: ABSENT
+ci_history:
+  first_atlas_pr_run:
+    verdict: FAIL
+    reason: STALE_LEGACY_TEST_REQUIRED_OLD_7_PART_BASE64_HERO_TO_REMAIN_ACTIVE
+    product_defect: false
+  remediation:
+    action: UPDATE_LEGACY_TEST_TO_PRESERVE_OLD_ASSET_AS_ROLLBACK_PROVENANCE_WITHOUT_FORCING_ACTIVE_RUNTIME
+  final_atlas_pr_run:
+    run: 34515736267
+    verdict: PASS
+    tests: 36
+    replay_clean: true
 
 hidden_spots_002:
   inherited_from_pr19: true
@@ -96,28 +93,25 @@ proof_status:
 
 hosting_strategy:
   primary_vercel_plan: HOBBY
-  primary_vercel_daily_deployment_limit_observed: 100_PER_ROLLING_24H
-  primary_vercel_current_condition: RATE_LIMIT_PREVIOUSLY_REACHED
-  atlas_room_deployment_instruction: DO_NOT_REQUIRE_PRIMARY_VERCEL_FOR_ITERATION
-  alternative_test_options:
-    - SECOND_VERCEL_ACCOUNT_MANUAL_IMPORT_BY_USER
-    - CLOUDFLARE_VIA_USER_CODEX_CONNECTION
-  cloudflare_current_status: AVAILABLE_TO_USER_VIA_CODEX_BUT_NOT_DEPLOYED_FROM_THIS_CHAT
-  source_of_truth_remains: GITHUB
+  primary_vercel_limit: 100_DEPLOYMENTS_ROLLING_24H
+  primary_vercel_current_state: RATE_LIMITED
+  primary_vercel_required_for_atlas_iteration: false
+  secondary_vercel: USER_AVAILABLE_FOR_MANUAL_GITHUB_IMPORT
+  cloudflare: USER_AVAILABLE_VIA_CODEX_CONNECTION
+  cloudflare_deployed_from_this_chat: false
+  canonical_source: GITHUB
 
 remaining_P0:
-  - OPEN_ATLAS_ROOM_PR_TO_TRIGGER_GITHUB_ACTIONS_VALIDATION
-  - FIX_ANY_CI_FAILURE_WITHOUT_EXPANDING_SCOPE
-  - USER_IMPORT_ATLAS_BRANCH_TO_SECOND_VERCEL_OR_CLOUDFLARE_FOR_RUNTIME_TEST
-  - DESKTOP_RUNTIME_RECHECK
-  - NARROW_MOBILE_RUNTIME_RECHECK
+  - USER_IMPORT_REWORK_ATLAS_ROOM_V4_TO_SECOND_VERCEL_OR_DEPLOY_VIA_CODEX_CLOUDFLARE
+  - DESKTOP_ATLAS_RUNTIME_RECHECK
+  - NARROW_MOBILE_ATLAS_RUNTIME_RECHECK
   - METHODOLOGY_ROUTE_RECHECK
-  - PROOF_ROUTE_AND_COMMITMENT_RENDER_RECHECK
-  - AGENT_INTERFACE_NAVIGATION_RECHECK
-  - TRACE_ATLAS_ROOM_RUNTIME_VERDICT
+  - PROOF_COMMITMENT_HTML_RECHECK
+  - AGENT_INTERFACE_NAV_CONTINUITY_RECHECK
+  - TRACE_ATLAS_RUNTIME_VERDICT
   - HUMAN_VISUAL_APPROVAL
   - UPDATE_DEMO_AND_QA_TO_REFLECT_HS002_PLUS_ATLAS_ROOM
-  - PROMOTE_THROUGH_PR19_PR18_PR17_TO_MAIN_ONLY_AFTER_PASS
+  - PROMOTE_ATLAS_THROUGH_PR21_TO_PR19_THEN_PR18_THEN_PR17_TO_MAIN_AFTER_PASS
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
 
 remaining_P1:
@@ -130,6 +124,6 @@ deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
 
-next_gate: ATLAS_ROOM_SOURCE_CI_THEN_ALTERNATE_RUNTIME_RECHECK
+next_gate: ATLAS_ROOM_ALTERNATE_RUNTIME_RECHECK
 next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Open a reversible PR from rework/atlas-room-v4 into rework/hidden-spots-002-agent-native so GitHub Actions validates source without relying on the saturated primary Vercel account. After CI PASS, the user can import that branch into the second Vercel account or use the Cloudflare connection available in Codex for runtime inspection. Do not merge to main before desktop/mobile/Methodology/Proof/Agent runtime PASS and explicit human approval.
+next_exact_action: Import `rework/atlas-room-v4` (PR #21, validated head 301c4e9831c1093bfb9e698c2aa22e182211d37b) into the user's second Vercel account or deploy it through the user's Codex-connected Cloudflare setup. Inspect desktop/mobile home plus `/methodology.html`, `/proof.html`, and `/agent.html`. Record human + TRACE PASS/FAIL before any promotion.
