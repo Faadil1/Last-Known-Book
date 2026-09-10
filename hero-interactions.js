@@ -1,5 +1,7 @@
-const heroScene = document.querySelector('.hero-scene');
-const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+const heroScene = document.querySelector('.hero-reference-scene');
+const heroPhoto = document.querySelector('.hero-reference-photo');
+const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+const prefersReducedMotion = motionQuery?.matches ?? false;
 
 function scrollToInvestigations() {
   document.getElementById('investigations')?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
@@ -13,7 +15,7 @@ function activateProductView(tab) {
   }, prefersReducedMotion ? 0 : 320);
 }
 
-if (heroScene && !prefersReducedMotion) {
+if (heroScene && heroPhoto && !prefersReducedMotion) {
   let raf = 0;
   heroScene.addEventListener('pointermove', (event) => {
     cancelAnimationFrame(raf);
@@ -21,24 +23,20 @@ if (heroScene && !prefersReducedMotion) {
       const rect = heroScene.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
       const y = (event.clientY - rect.top) / rect.height - 0.5;
-      heroScene.style.setProperty('--scene-x', `${(-x * 13).toFixed(2)}px`);
-      heroScene.style.setProperty('--scene-y', `${(-y * 9).toFixed(2)}px`);
-      heroScene.style.setProperty('--archive-x', `${(x * 18).toFixed(2)}px`);
-      heroScene.style.setProperty('--archive-y', `${(y * 11).toFixed(2)}px`);
+      heroScene.style.setProperty('--photo-x', `${(-x * 8).toFixed(2)}px`);
+      heroScene.style.setProperty('--photo-y', `${(-y * 5).toFixed(2)}px`);
     });
   });
 
   heroScene.addEventListener('pointerleave', () => {
-    heroScene.style.setProperty('--scene-x', '0px');
-    heroScene.style.setProperty('--scene-y', '0px');
-    heroScene.style.setProperty('--archive-x', '0px');
-    heroScene.style.setProperty('--archive-y', '0px');
+    heroScene.style.setProperty('--photo-x', '0px');
+    heroScene.style.setProperty('--photo-y', '0px');
   });
 }
 
-document.querySelectorAll('[data-archive-target]').forEach((volume) => {
-  volume.addEventListener('click', () => {
-    const target = volume.dataset.archiveTarget;
+document.querySelectorAll('.hero-hotspot[data-archive-target]').forEach((hotspot) => {
+  hotspot.addEventListener('click', () => {
+    const target = hotspot.dataset.archiveTarget;
     if (target === 'overview') {
       scrollToInvestigations();
       return;
@@ -47,4 +45,12 @@ document.querySelectorAll('[data-archive-target]').forEach((volume) => {
       activateProductView(target);
     }
   });
+});
+
+document.getElementById('hero-sample')?.addEventListener('click', scrollToInvestigations);
+
+motionQuery?.addEventListener?.('change', () => {
+  if (!heroScene) return;
+  heroScene.style.setProperty('--photo-x', '0px');
+  heroScene.style.setProperty('--photo-y', '0px');
 });
