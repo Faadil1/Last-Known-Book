@@ -1,47 +1,46 @@
-schema: LKB-HANDOVER-v3.1
-updated_utc: "2026-09-10T00:18:00Z"
+schema: LKB-HANDOVER-v3.2
+updated_utc: "2026-09-10T00:30:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: DIRECTION_6_INTERACTIVE_UI_IMPLEMENTED__CI_PENDING
+lifecycle: DIRECTION_6_MERGED_AND_CI_PASS__VERCEL_RUNTIME_VERIFICATION_PENDING
 canonical_branch: main
-working_branch: rework/direction-6-interactive-ui
-prior_main: 581028c662f47015d3234501227689b492b83ac8
+direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
+direction_6_pr: 13
+direction_6_ci: PASS_RUN_34421162093
 material_decisions:
-  - User approved visual Direction 6 and requested implementation rather than more mockups.
-  - The new judge-facing UI keeps the engine/proof semantics frozen and replaces only presentation/runtime interaction layers.
-  - brand-mark.svg is the canonical product mark and favicon: layered evidence pages / book ledger in ivory and deep green.
-  - The hero uses the locked story: "Same chain. Clearer answers." plus "Reconstruct on-chain reality. Contain what matters."
-  - The investigation workspace is a three-part product UI: searchable case register, interactive case analysis, and proof/live rail.
-  - All four canonical cases LKB-001 through LKB-004 remain available.
-  - Interactions added: case switching, search, slash focus, j/k case navigation, Overview/Evidence/Timeline/Method tabs, clickable timeline/event detail dialog, shareable deep links, public case export, hero navigation and live refresh.
-  - api/shannon-readback.js adds a Vercel server-side read-only path for chainId, head block and the already-public captured LKB-003 receipt. No wallet or private key is required.
-  - Browser readback is server-first, then direct Shannon RPC, then explorer fallback; every failure state is explicit/fail-closed.
-  - Packet 003 remains separately redacted. No disposable wallet, Packet 003 full tx hashes or orderId were moved into public code.
-  - No blockchain write is required or authorized by this UI work.
-validation:
-  new_test: tests/direction6-ui.test.mjs
-  required_existing_tests:
-    - engine.test.mjs
-    - ui-case-coverage.test.mjs
-    - winning-intelligence.test.mjs
-  status: CI_PENDING
+  - User-approved Direction 6 is now implemented in the actual product, not only as a mockup.
+  - Canonical logo/favion is brand-mark.svg, a layered evidence-book mark in deep green/ivory.
+  - Judge-facing identity is editorial investigation software: "Same chain. Clearer answers." / "Reconstruct on-chain reality. Contain what matters."
+  - All four cases remain live in the UI.
+  - Interactions now include case search, slash focus, j/k navigation, tabs, clickable timeline/event dialog, shareable case links, public JSON export and live refresh.
+  - api/shannon-readback.js is the primary Vercel server-side read-only path, with browser RPC and explorer fallbacks.
+  - CI verifies the Direction 6 surface and forbids write methods in both browser and server readback paths.
+  - Packet 003 wallet/full tx/orderId remain private. No private key is needed or allowed for live verification.
+  - No blockchain write was added or authorized.
 vercel:
-  stable_public_deployment: HUMAN_AUTHORIZED
-  prior_deployment_id: dpl_64smusAJEA65zGdUNDU3mCpuMdqX
-  prior_url: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app
-  instruction: redeploy only after Direction 6 PR is CI-green and merged; then verify anonymous page plus /api/shannon-readback and live panel.
+  deployment_protection_user_disabled: true
+  stable_public_deployment_authorized: true
+  expected_alias: https://last-known-book-faadil-s-projects.vercel.app
+  git_main_expected_to_autodeploy: true
+  connector_inspection: BLOCKED_BY_403_TEAM_SCOPE
+  direct_deploy_tool_current_contract: BLOCKED_MISSING_EXPOSED_FILE_BUNDLE_ARGUMENTS
+proof_status:
+  technical_proof: PASS_REAL_SHANNON
+  behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
+  operational_containment: PASS
+  production_evidence: ABSENT
 remaining_P0:
-  - pass product CI
-  - merge Direction 6 PR
-  - redeploy merged main to Vercel
-  - verify anonymous HTTP 200, four cases and live Shannon readback
-  - final encoded 2-3 minute video
+  - verify public alias serves Direction 6 merged main
+  - verify anonymous HTTP 200
+  - verify /api/shannon-readback returns Shannon chain 50312 and current head/receipt state
+  - verify browser LIVE SHANNON READBACK updates and fails closed
+  - final encoded 2-3 minute demo video
   - TRACE encoded-video review
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: OPEN_DIRECTION_6_PR_AND_REQUIRE_CI_PASS
+next_exact_gate: PUBLIC_VERCEL_RUNTIME_VERIFICATION_THEN_VIDEO
 next_exact_owner: PROJECT_FINISHER
 blocked_actions:
   - no blockchain write without fresh exact human approval
