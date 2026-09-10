@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v5.8
-updated_utc: "2026-09-10T19:27:00Z"
+schema: LKB-CURRENT-v6.1
+updated_utc: "2026-09-10T19:53:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,7 +9,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
-  status: ATLAS_ROOM_POLISH__SOURCE_CI_AND_CLOUDFLARE_PASS__HUMAN_RUNTIME_RECHECK_PENDING
+  status: ATLAS_ROOM_V5_JURY_FIRST__SOURCE_CI_CLOUDFLARE_PASS__HUMAN_DESKTOP_MOBILE_RECHECK_PENDING
 
 authority:
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
@@ -21,44 +21,77 @@ candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  validated_head: c6b3287228eec08bf7092adbb1ef825ad903518a
-  ci_run: 34520313571
+  validated_product_head: 246cbab5b72871ae6df5a5503c9b8b93d3197aef
+  ci_run: 34522852978
   ci_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://08760cb6.last-known-book.pages.dev
+  cloudflare_atomic_preview: https://e963f7d4.last-known-book.pages.dev
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
   primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
 
-runtime_review_2026_09_10:
-  source: USER_UPLOADED_CLOUDFLARE_SCREEN_RECORDING
-  reviewed_version: PRE_POLISH_ATLAS_BRANCH_PREVIEW
-  verdict: PARTIAL_PASS_TARGETED_POLISH_REQUIRED
-  passed:
-    - correct Atlas Room branch preview reachable
-    - Methodology page is real and useful
-    - Proof commitment is presented as judge-facing HTML
-    - Agent Interface renders
-    - Featured Investigations remain connected to canonical case workspace
-    - prior footer/component polish survives
+latest_human_feedback:
+  source: USER_UPLOADED_RUNTIME_RECORDING_2026_09_10_B
+  verdict_on_v4: PARTIAL_PASS_INFORMATION_ARCHITECTURE_TOO_DENSE
   findings:
-    - root navigation could visibly expose the legacy hero before Atlas enhancement
-    - hero photography treatment was too dark relative to approved Atlas Room target
-    - cross-chain wording exceeded the proven DreamDEX/Somnia scope
-    - some context copy was less precise than venue-native evidence wording
-    - Agent page navigation did not fully match the main product narrative
+    - root repeated investigation language and concepts too often
+    - four-path investigation card plus Featured Investigations plus full workspace created duplication
+    - full case workspace on the default root slowed jury comprehension
+    - multiple pages are acceptable if the hero/root makes the essential product story obvious
+    - mobile reactivity is explicitly required
 
-polish_applied_at_validated_head:
-  - Atlas layer is a static module dependency instead of a late dynamic import
-  - hero copy is venue-native and DreamDEX-scoped
-  - unsupported cross-chain positioning removed
-  - hero photo treatment brightened and warmed while keeping a real photographic source
-  - hotspot and dossier micro-interactions refined
-  - Agent navigation aligned to Investigations / Methodology / Proof / Agent / Docs
-  - legacy regression test updated to preserve rollback provenance without forcing obsolete copy
-  - Atlas truth/scope/navigation regression coverage expanded
+atlas_room_v5_jury_first:
+  decision: APPROVED_FOR_RUNTIME_RECHECK
+  architecture:
+    root:
+      - Atlas hero: what the product is
+      - One incident / three questions: what happened / what is known / what is safe next
+      - Featured Case Files: four concrete examples
+      - Judge Fast Lane: verifiable proof and bounded claims
+      - DreamDEX load-bearing semantics
+      - premium footer
+    case_room:
+      semantic_route: /investigations.html
+      canonical_deep_links: /?case=LKB-001 through /?case=LKB-004
+      root_workspace_default_visibility: HIDDEN
+    supporting_pages:
+      - /methodology.html
+      - /proof.html
+      - /agent.html
+      - /docs.html
+  copy_changes:
+    eyebrow: POST-EXECUTION INCIDENT RESPONSE · DREAMDEX
+    subhead: Know what happened before your agent acts again.
+    featured_label: Featured Case Files
+  protected_differentiator:
+    - venue reality reconstruction
+    - OBSERVED / INFERRED / UNKNOWN
+    - bounded next action
+    - deterministic Authority Receipt
+    - inference alone cannot move funds
+  mobile_contract:
+    desktop_nav_to_native_details_menu_at: 980px
+    one_column_explainer_at: 980px
+    one_column_featured_cases_at: 680px
+    workspace_single_column_at: 980px
+    case_register_single_column_at: 680px
+    intent_reality_stack_at: 680px
+    proof_method_grids_single_column_at: 680px
+    prefers_reduced_motion: REQUIRED
+
+implementation:
+  changed_or_added:
+    - atlas-room.js
+    - atlas-room-v5.css
+    - investigations.html
+    - tests/atlas-room-v4.test.mjs
+    - tests/approved-realism-hero-v2.test.mjs
+    - docs/ATLAS-ROOM-V5-JURY-FIRST.md
+    - state/ATLAS_V5_RUNTIME_GATE.md
+  ci_note: First V5 run failed only because a legacy regression expected obsolete V4 copy; test was aligned to V5 and the final product head passed.
 
 truth_boundary:
   real_photos_are_context_not_incident_evidence: true
+  unsupported_cross_chain_claims: false
   inference_can_authorize_spend: false
   public_agent_surface_has_private_key_signing_or_broadcast: false
   production_evidence: ABSENT
@@ -68,6 +101,6 @@ proof_status:
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
 
-next_gate: ATLAS_POLISHED_RUNTIME_HUMAN_AND_TRACE_RECHECK
-next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Review the freshly deployed `c6b3287` Cloudflare branch preview at the root and `?case=LKB-001`, then Methodology, Proof, Agent and narrow/mobile. Confirm that the legacy hero flash, darkness and scope-copy issues are gone. Record TRACE + human PASS/FAIL before any promotion to PR19/18/17/main.
+next_gate: ATLAS_V5_JURY_FIRST_RUNTIME_DESKTOP_MOBILE_RECHECK
+next_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
+next_exact_action: Review the fresh Cloudflare branch preview on root desktop and approximately 390-430px mobile, then open the Case Room, Methodology, Proof and Agent. Confirm jury comprehension, no investigation repetition overload, case deep-link integrity and mobile usability before any promotion to PR19/18/17/main.
