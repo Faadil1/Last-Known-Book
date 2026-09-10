@@ -9,6 +9,7 @@
     "live:read": "node scripts/live-read.mjs",
     "investigate": "node scripts/investigate.mjs",
     "mcp": "node scripts/lkb-mcp.mjs",
+    "watch:dreamdex": "node scripts/watch-dreamdex.mjs",
     "token:decimals": "node scripts/read-token-decimals.mjs",
     "serve": "node scripts/serve.mjs"
   },
