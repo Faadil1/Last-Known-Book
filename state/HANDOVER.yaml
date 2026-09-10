@@ -1,83 +1,76 @@
-schema: LKB-HANDOVER-v7.0
-updated_utc: "2026-09-10T20:36:00Z"
+schema: LKB-HANDOVER-v7.1
+updated_utc: "2026-09-10T20:39:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: MAIN_CANONICAL__BENITA_DEMO_AND_TRACE_VIDEO_REVIEW_NEXT
+lifecycle: MAIN_CANONICAL__BENITA_FINAL_DEMO_NEXT
 
 canonical:
   branch: main
   product_release_merge: 8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34
   judge_packet_commitment_route_fix: 9e74ff855b7a57565179eb253adca6152ee2b6f7
+  validated_state_snapshot: 19de834aaff3f0dd85dcc98d57b0d12030f4e287
+  validated_state_ci_run: 34527417622
   public_runtime: https://last-known-book.pages.dev
+  cloudflare_pages: PASS
   source_of_truth: GITHUB_MAIN
-  old_rework_cloudflare_url_is_not_demo_canonical: true
+  branch_preview_is_obsolete_for_demo: true
 
 promotion_history:
-  decision: USER_EXPLICITLY_AUTHORIZED_DIRECT_PROMOTION_TO_MAIN
-  merged_pr: 21
-  merged_pr_title: Promote Atlas Room V5 + agent-native incident response to main
-  prior_nested_chain:
-    - PR17 hero
-    - PR18 component polish
-    - PR19 HS-002 agent-native
-    - PR21 Atlas V5
-  disposition: PR21_CONTAINED_COMPLETE_STACK_AND_WAS_MERGED_DIRECTLY_TO_MAIN
+  user_authorized_direct_main_promotion: true
+  pr21: MERGED_TO_MAIN
+  pr17: CLOSED_MERGED
+  pr18: CLOSED_SUPERSEDED
+  pr19: CLOSED_SUPERSEDED
+  remaining_nested_pr_promotion_work: NONE
 
-final_material_decisions:
-  - Atlas Room V5 is the selected final visual direction.
-  - The home is jury-first; the complete operational workspace is behind the Case Room.
-  - Featured Case Files stay as concrete examples, not another generic investigation section.
-  - Methodology, Proof, Agent and Docs are separate depth pages.
-  - Home-to-Case-Room navigation must never flash the pre-Atlas hero; it now transitions inside the existing live DOM with history.pushState.
-  - Proof Commitment must read like a first-class product surface, not Markdown or raw JSON.
-  - `/proof.html#commitment` is the canonical judge-facing commitment receipt.
-  - The raw JSON commitment remains publicly available only as a machine-readable evidence artifact and is not rendered by the Proof Room.
-  - Legacy raw commitment links in the main product and Judge Packet are routed to the visual receipt.
-  - Mobile reactivity, keyboard focus and prefers-reduced-motion are load-bearing acceptance requirements.
-  - Real photography is contextual illustration and must never be presented as incident evidence.
-  - No LLM inference may authorize funds; no public surface exposes wallet/private key/signing/broadcast authority.
-  - Production evidence remains ABSENT; no ROI, MTTR, profitability, prevalence or fraud-detection claim is allowed.
+material_decisions:
+  - Atlas Room V5 is the final selected visual direction.
+  - The root is jury-first and does not dump the entire investigation workspace.
+  - Featured Case Files remain as concrete examples.
+  - Methodology, Proof, Agent and Docs are separate depth surfaces.
+  - Home-to-Case-Room transition is in-place with history.pushState and must not flash the legacy hero.
+  - Proof Commitment is judge-facing at `/proof.html#commitment` as a visual receipt.
+  - Raw commitment JSON is not rendered in the Proof Room and is not linked directly from judge-facing product surfaces.
+  - The JSON file remains public only as a machine-readable evidence artifact.
+  - Judge Packet legacy commitment navigation is also rewritten to the visual receipt.
+  - Mobile responsiveness, visible focus and prefers-reduced-motion remain load-bearing.
+  - Real photography is contextual illustration, never incident evidence.
+  - Inference alone cannot authorize funds; no public wallet/private-key/signing/broadcast path exists.
+  - Production evidence remains ABSENT and no ROI/MTTR/profitability/prevalence/fraud claim is allowed.
 
 validation:
-  pre_merge_candidate_head: 4668df5ebd226dee0682c056f8e1d5b5ae3f98f4
-  pre_merge_validate: PASS
-  pre_merge_cloudflare_pages: PASS
-  main_merge_commit: 8c9377afe8821d7eca4fbf0b0c64bf6a68ae2f34
-  main_validate_run: 34526856417
-  main_validate: PASS
-  main_cloudflare_pages: PASS
-  judge_packet_route_fix_commit: 9e74ff855b7a57565179eb253adca6152ee2b6f7
-  judge_packet_route_fix_validate_run: 34527128539
-  judge_packet_route_fix_validate: PASS
-  judge_packet_route_fix_cloudflare_pages: PASS
-  cloudflare_workers_check: NON_JUDGE_FACING_AND_NOT_A_RUNTIME_GATE
+  main_product_merge_ci: PASS
+  main_product_merge_ci_run: 34526856417
+  post_merge_commitment_route_ci: PASS
+  post_merge_commitment_route_ci_run: 34527128539
+  canonical_state_snapshot_ci: PASS
+  canonical_state_snapshot_ci_run: 34527417622
+  cloudflare_pages_main: PASS
+  cloudflare_atomic_for_state_snapshot: https://752adb63.last-known-book.pages.dev
+  cloudflare_workers_check: NON_JUDGE_FACING_NOT_RUNTIME_GATE
 
 product_map:
   home: /
+  case_room: /?case=LKB-001
   case_room_entry: /investigations.html
-  canonical_cases:
-    - /?case=LKB-001
-    - /?case=LKB-002
-    - /?case=LKB-003
-    - /?case=LKB-004
   methodology: /methodology.html
   proof_room: /proof.html
   visual_proof_commitment: /proof.html#commitment
   agent_interface: /agent.html
   judge_packet: /docs.html
 
-proof_and_evidence:
-  originated_real_shannon_proof: POSTONLY_TO_REST_TO_EXACT_CANCEL
+proof:
+  real_shannon_behavior: POSTONLY_TO_REST_TO_EXACT_CANCEL
   chain_id: 50312
   zero_fills: true
   collateral_restored_exactly: true
-  four_canonical_incident_classes: true
-  live_shannon_readback: READ_ONLY
+  production_evidence: ABSENT
   raw_commitment_artifact: /evidence/SHANNON-PROOF-003-COMMITMENT.json
+  raw_commitment_demo_rule: DO_NOT_OPEN
   private_packet_003_identifiers: KEEP_REDACTED
 
-agent_native:
+agent_native_hs002:
   status: CANONICAL_ON_MAIN
   capabilities:
     - Bring Your Own Incident
@@ -87,33 +80,37 @@ agent_native:
     - MCP stdio
     - JSON-first CLI
     - read-only watcher
-    - dynamic network/collateral normalization
+    - dynamic collateral normalization
     - deterministic Authority Receipt
 
 benita:
   handoff: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
-  demo_runtime: https://last-known-book.pages.dev
+  runtime: https://last-known-book.pages.dev
   target_duration: 2_to_3_minutes
-  recommended_path:
+  sequence:
     - Hero thesis
     - LKB-001 one-case walkthrough
-    - Intent vs Venue Reality plus truth classes
+    - Intent vs Venue Reality plus OBSERVED INFERRED UNKNOWN
     - one DreamDEX-native causal reveal
     - Proof Room visual receipt
     - Agent Interface and authority close
-  final_line: The trading agent may be AI. The layer that decides whether money moves is not.
+  close: The trading agent may be AI. The layer that decides whether money moves is not.
   do_not_show:
+    - raw commitment JSON
     - private Packet 003 identifiers
     - secrets or environment variables
-    - raw commitment JSON in the primary demo
     - unsupported business or production claims
 
+trace:
+  repository: Faadil1/trace-design-workflow
+  project_state: state/projects/dreamdex-execution-incident-response/CURRENT.yaml
+  current_gate: 6.8-BENITA-FINAL-DEMO
+  next_output: BENITA_ENCODED_DEMO_FOR_TRACE_REVIEW
+
 remaining_P0:
-  - verify clean production alias serves the latest main runtime after canonical state commit
-  - close redundant PR17 PR18 PR19 if still open because PR21 already promoted the complete stack
-  - TRACE state update to record main promotion and final demo gate
-  - Benita records final 2-3 minute video
-  - TRACE reviews encoded video
+  - Benita records final 2-3 minute video against clean production URL
+  - TRACE reviews encoded video for judge comprehension, pacing, visual continuity and truth boundary
+  - human final video approval
   - protected hackathon submission remains HUMAN_ONLY
 
 continuity:
@@ -121,5 +118,4 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_gate: BENITA_ENCODED_DEMO_PLUS_TRACE_VIDEO_REVIEW
-next_exact_action: Start from main and https://last-known-book.pages.dev. Do not reopen product design unless a runtime regression appears. Benita records the final 2-3 minute demo using the handoff; then TRACE reviews the encoded video before protected human-only submission.
+next_exact_action: Do not reopen UI design unless a production regression is found. Benita records against https://last-known-book.pages.dev using the handoff, then provide the encoded video to TRACE for final judge-performance review before human-only submission.
