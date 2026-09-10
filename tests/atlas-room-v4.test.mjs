@@ -77,18 +77,22 @@ test('Methodology is a real judge-facing destination', () => {
   assert.match(methodHtml, /MINT_A_PAIR/);
 });
 
-test('Proof commitment is a judge-facing visual receipt with raw JSON demoted to appendix', () => {
+test('Proof commitment is a judge-facing visual receipt and no raw JSON is rendered in the page', () => {
   assert.match(proofHtml, /Verifiable behavior\. Explicit boundaries\./);
   assert.match(proofHtml, /A readable receipt, not a wall of JSON\./);
+  assert.match(proofHtml, /id="commitment"/);
   assert.match(proofHtml, /WHY IT MATTERS/);
-  assert.match(proofHtml, /Technical appendix · inspect raw commitment JSON/);
+  assert.doesNotMatch(proofHtml, /inspect raw commitment JSON/);
+  assert.doesNotMatch(proofHtml, /proof-commitment-json/);
   assert.match(proofHtml, /PRODUCTION EVIDENCE/);
   assert.match(proofHtml, /class="atlas-mobile-nav"/);
   assert.match(proofJs, /SHANNON-PROOF-003-COMMITMENT\.json/);
+  assert.doesNotMatch(proofJs, /JSON\.stringify/);
   assert.match(proofJs, /fail closed/);
   assert.match(proofCss, /proof-ledger/);
   assert.match(proofCss, /commitment-explainer/);
   assert.match(proofCss, /@media\(max-width:620px\)/);
+  assert.match(heroJs, /\/proof\.html#commitment/);
 });
 
 test('Atlas loads synchronously with the proven interaction layer and keeps reduced-motion behavior', () => {
