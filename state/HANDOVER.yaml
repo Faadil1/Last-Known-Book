@@ -1,31 +1,28 @@
-schema: LKB-HANDOVER-v3.4
-updated_utc: "2026-09-10T00:46:00Z"
+schema: LKB-HANDOVER-v3.5
+updated_utc: "2026-09-10T00:57:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: PUBLIC_DIRECTION_6_RUNTIME_AND_LIVE_SHANNON_READBACK_PASS__FINAL_VIDEO_REMAINS
+lifecycle: PUBLIC_DIRECTION_6_RUNTIME_AND_LIVE_SHANNON_PASS__JUDGE_DOCS_POLISHED__FINAL_VIDEO_REMAINS
 canonical_branch: main
 direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
-direction_6_pr: 13
 direction_6_ci: PASS_RUN_34421162093
 runtime_evidence_commit: f7d4239289e5c6a00108063f5baefb4b84ad794b
+judge_docs_fix_merge: 6d496d43ab466411be50dd5e72c3fe2c2673525e
+judge_docs_fix_ci: PASS_RUN_34423333741
 material_decisions:
-  - User-approved Direction 6 is implemented, merged, CI-green and now verified in the actual public production runtime.
-  - Public production URL is https://last-known-book-6fc1.vercel.app .
-  - Vercel UI previously confirmed Ready Latest / Production Current from main; human browser video now independently proves the judge-facing runtime actually loads.
-  - Runtime video showed the canonical Last Known Book logo, Direction 6 hero "Same chain. Clearer answers.", case register, interactive case surface and right-rail proof/live panels.
-  - All four canonical cases LKB-001 through LKB-004 were present; LKB-004 exact-market residual settlement rendered successfully.
-  - Browser interaction evidence included case switching and a clickable evidence/timeline detail modal. Other interactions remain CI-covered: search, slash focus, j/k navigation, deep links, share/export and live refresh.
-  - LIVE SHANNON READBACK is now runtime-verified rather than merely code-present.
-  - Observed live sample A: chain 50312, head 484,279,850, public tx CONFIRMED, confirmations 8,422,358.
-  - Observed live sample B later in the same recording: head 484,280,000, confirmations 8,422,508.
-  - The +150 head and +150 confirmation deltas prove the network values changed during the session rather than being fixed presentation data.
-  - Runtime visibly labels the path READ-ONLY / NO WRITES. CI additionally forbids wallet/signing/write methods in browser and server readback paths.
-  - The live transaction remains the already-public captured LKB-003 replay transaction, not private Packet 003.
-  - Packet 003 wallet, full tx hashes and orderId remain redacted. No private key is required or allowed for live verification.
-  - A textual runtime evidence artifact was committed at evidence/runtime/VERCEL-DIRECTION6-LIVE-READBACK-2026-09-09.md. The user's browser video itself was not copied into the public repository.
-  - The ChatGPT Vercel connector still has a team-scope 403, but this no longer blocks runtime truth because direct human browser evidence has verified the public deployment.
-  - No blockchain write or protected DoraHacks submission was authorized by this runtime verification.
+  - User-approved Direction 6 is implemented, merged, CI-green and verified in the real public production runtime.
+  - Production URL: https://last-known-book-6fc1.vercel.app .
+  - Human browser video proved the Direction 6 identity, all four cases, working case switching, event-detail interaction and a live changing Shannon readback.
+  - LIVE SHANNON READBACK observed chain 50312 and a CONFIRMED public captured transaction. Head changed 484,279,850 -> 484,280,000 while confirmations changed 8,422,358 -> 8,422,508 in the same recording.
+  - This closes the public runtime, Direction 6 runtime and live-readback verification gates. The live path remains read-only and uses captured public LKB-003 evidence, not private Packet 003.
+  - Runtime review also exposed one presentation-only defect: the top-nav Docs action opened raw Markdown and broke the premium visual continuity.
+  - PR #14 repaired that path without changing the existing URL: Vercel rewrites /docs/SUBMISSION-PACKAGE.md to a styled Direction 6 judge packet at /docs.html, while explicit raw source remains available through GitHub links.
+  - PR #14 passed CI run 34423333741 and merged at 6d496d43ab466411be50dd5e72c3fe2c2673525e.
+  - The styled Judge Packet reinforces the same product story, REAL SHANNON PROOF, deterministic authority principle and proof-vs-production boundary.
+  - No engine logic, blockchain behavior, private proof, wallet identifier, transaction authority or protected submission authority changed in the Docs repair.
+  - Packet 003 wallet/full tx/orderId remain private/redacted. No private key is required or allowed for runtime verification.
+  - The user's uploaded browser video was analyzed for runtime evidence but was not copied into the public repository.
 vercel:
   project: last-known-book-6fc1
   production_domain: https://last-known-book-6fc1.vercel.app
@@ -38,7 +35,11 @@ vercel:
   public_tx_status: CONFIRMED
   live_head_changed_during_capture: true
   live_confirmations_changed_consistently: true
-  connector_scope_readback: BLOCKED_403_BUT_NON_BLOCKING_AFTER_HUMAN_RUNTIME_EVIDENCE
+  docs_styled_route:
+    implementation: MERGED
+    source_url: /docs/SUBMISSION-PACKAGE.md
+    destination: /docs.html
+    next_autodeploy_runtime_check: PENDING
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
@@ -49,6 +50,7 @@ remaining_P0:
   - create final encoded 2-3 minute demo video from docs/DEMO-SCRIPT.md
   - TRACE review of the actual encoded video
 remaining_P1:
+  - verify styled Docs route after Vercel autodeploy of PR #14 merge
   - export final cover/thumbnail image consistent with Direction 6
   - insert final video URL into docs/SUBMISSION-PACKAGE.md
   - optional server-side redacted Packet 003 live proof using Vercel Sensitive Environment Variables; never private key
@@ -61,7 +63,7 @@ deadline:
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
 next_exact_gate: FINAL_ENCODED_DEMO_VIDEO_THEN_TRACE_VIDEO_ASSURANCE
 next_exact_owner: PBPD_VIDEO_THEN_TRACE_THEN_PROJECT_FINISHER
-next_exact_action: Produce the final 2-3 minute encoded film from docs/DEMO-SCRIPT.md using the verified production site as the visual source. Route the actual encoded artifact through TRACE for readability, first-30-second comprehension, first-minute aha, replay-vs-real-proof separation and claim fidelity. Then run Winning Intelligence final recheck and Project Finisher terminal readiness before the protected submission gate.
+next_exact_action: Let Vercel autodeploy the latest main including the styled Judge Packet route, then use the verified production site as the visual source for the final 2-3 minute encoded film from docs/DEMO-SCRIPT.md. Route the actual encoded artifact through TRACE for readability, first-30-second comprehension, first-minute aha, replay-vs-real-proof separation and claim fidelity. Then run Winning Intelligence final recheck and Project Finisher terminal readiness before the protected submission gate.
 blocked_actions:
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
