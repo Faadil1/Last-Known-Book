@@ -7,6 +7,9 @@
     "test": "node --test tests/*.test.mjs",
     "replay": "node scripts/replay.mjs",
     "live:read": "node scripts/live-read.mjs",
+    "investigate": "node scripts/investigate.mjs",
+    "mcp": "node scripts/lkb-mcp.mjs",
+    "token:decimals": "node scripts/read-token-decimals.mjs",
     "serve": "node scripts/serve.mjs"
   },
   "engines": {
