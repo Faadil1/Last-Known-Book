@@ -2,13 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-const [atlasJs, atlasCss, methodHtml, proofHtml, proofJs, heroJs, agentHtml, investigationsHtml] = await Promise.all([
+const [atlasJs, atlasCss, methodHtml, proofHtml, proofJs, proofCss, heroJs, routeJs, agentHtml, investigationsHtml] = await Promise.all([
   readFile(new URL('../atlas-room.js', import.meta.url), 'utf8'),
   readFile(new URL('../atlas-room-v5.css', import.meta.url), 'utf8'),
   readFile(new URL('../methodology.html', import.meta.url), 'utf8'),
   readFile(new URL('../proof.html', import.meta.url), 'utf8'),
   readFile(new URL('../proof-page.js', import.meta.url), 'utf8'),
+  readFile(new URL('../proof-room-v2.css', import.meta.url), 'utf8'),
   readFile(new URL('../hero-interactions.js', import.meta.url), 'utf8'),
+  readFile(new URL('../atlas-route-transition.js', import.meta.url), 'utf8'),
   readFile(new URL('../agent.html', import.meta.url), 'utf8'),
   readFile(new URL('../investigations.html', import.meta.url), 'utf8')
 ]);
@@ -43,6 +45,15 @@ test('case workspace remains directly reachable through a dedicated route and de
   assert.match(atlasCss, /atlas-workspace-mode \.investigation-shell/);
 });
 
+test('home-to-case transition stays in the live Atlas DOM instead of reloading the legacy hero', () => {
+  assert.match(heroJs, /import '\/atlas-route-transition\.js';/);
+  assert.match(routeJs, /history\.pushState/);
+  assert.match(routeJs, /atlas-workspace-mode/);
+  assert.match(routeJs, /data-feature-case/);
+  assert.match(routeJs, /stopImmediatePropagation/);
+  assert.doesNotMatch(routeJs, /window\.location\.href/);
+});
+
 test('mobile navigation and responsive jury flow are explicit', () => {
   assert.match(atlasJs, /atlas-mobile-nav/);
   assert.match(atlasCss, /@media\(max-width:680px\)/);
@@ -66,11 +77,17 @@ test('Methodology is a real judge-facing destination', () => {
   assert.match(methodHtml, /MINT_A_PAIR/);
 });
 
-test('Proof commitment is rendered as HTML and retains the claim boundary', () => {
+test('Proof commitment is a judge-facing visual receipt with raw JSON demoted to appendix', () => {
   assert.match(proofHtml, /Verifiable behavior\. Explicit boundaries\./);
+  assert.match(proofHtml, /A readable receipt, not a wall of JSON\./);
+  assert.match(proofHtml, /WHY IT MATTERS/);
+  assert.match(proofHtml, /Technical appendix · inspect raw commitment JSON/);
   assert.match(proofHtml, /PRODUCTION EVIDENCE/);
   assert.match(proofJs, /SHANNON-PROOF-003-COMMITMENT\.json/);
   assert.match(proofJs, /fail closed/);
+  assert.match(proofCss, /proof-ledger/);
+  assert.match(proofCss, /commitment-explainer/);
+  assert.match(proofCss, /@media\(max-width:620px\)/);
 });
 
 test('Atlas loads synchronously with the proven interaction layer and keeps reduced-motion behavior', () => {
