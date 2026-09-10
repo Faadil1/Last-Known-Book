@@ -1,65 +1,49 @@
-schema: LKB-HANDOVER-v3.7
-updated_utc: "2026-09-10T05:45:00Z"
+schema: LKB-HANDOVER-v3.9
+updated_utc: "2026-09-10T12:29:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: REFINED_INTERACTIVE_HERO_AND_JUDGE_PACKET_V2_MERGED_CI_PASS__PUBLIC_RUNTIME_RECHECK_PENDING
+lifecycle: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_READY_FOR_PR_CI
 canonical_branch: main
-direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
-judge_docs_fix_merge: 6d496d43ab466411be50dd5e72c3fe2c2673525e
-refined_interactive_hero_docs_merge: 10573cb5db68adf5580d29dc5f1a74b55243af2a
-refined_interactive_hero_docs_pr: 15
-refined_interactive_hero_docs_ci: PASS_RUN_34442103442
+working_branch: rework/exact-validated-hero
 material_decisions:
-  - Public Direction 6 runtime and live Shannon readback remain previously verified PASS; this rework did not touch engine, proof semantics or blockchain behavior.
-  - User-approved visual correction is now merged: the flat placeholder book stack was replaced with a refined alpine evidence archive environment.
-  - The environment is an original SVG scene with ivory mist, mountains, pine forest, river and stone bridge, so the hero no longer depends on an empty placeholder composition.
-  - Four foreground archive volumes are interactive and product-native: EVENTS/OBSERVE, EVIDENCE/VERIFY, TIMELINE/RECONSTRUCT and METHOD/A CLEARER STORY.
-  - Pointer movement creates restrained parallax between environment and archive; each volume lifts independently and reveals a contextual label on hover/focus.
-  - Archive clicks are useful product navigation: overview scrolls to investigations; evidence, timeline and method open their actual corresponding tabs.
-  - prefers-reduced-motion disables parallax/transforms, preserving accessibility and prior TRACE reduced-motion intent.
-  - The primary Docs navigation now goes directly to /docs.html. Raw Markdown is no longer the default judge experience; the legacy Markdown URL still rewrites to /docs.html for compatibility.
-  - Docs V2 is an interactive premium Judge Packet with Overview, Judge in 60 Seconds, Proof, Mechanism, Judge Q&A and Sources.
-  - Docs V2 adds sticky/scroll-aware navigation and collapsible Q&A with Expand all; raw source documents remain secondary audit links rather than presentation surfaces.
-  - PR #15 passed product CI run 34442103442, including refined hero tests, Docs tests, engine tests and deterministic replay cleanliness, then merged at 10573cb5db68adf5580d29dc5f1a74b55243af2a.
-  - No private Packet 003 identifiers, wallet connection, signing method, new blockchain transaction or submission authority was introduced.
+  - The user's approved screenshot is now the canonical hero reference with no further creative reinterpretation allowed before terminal freeze.
+  - The hero implementation uses hero-validated-scene.webp as the photographic alpine binder scene rather than a synthetic CSS/SVG placeholder reconstruction.
+  - The exact reference structure is preserved in the page: branded topbar, headline, subhead, two CTAs, three proof/value blocks and lower listening/events/contracts/narratives strip.
+  - Interactivity is overlaid transparently on the photographic scene: restrained parallax plus overview/evidence/timeline/method hotspots. The approved image itself is not visually altered by the interaction layer.
+  - prefers-reduced-motion is preserved.
+  - Docs remains the premium /docs.html Judge Packet; the prior raw Markdown path is not the normal judge experience.
+  - Investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain intact beneath the hero.
+  - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path or protected submission authority changed.
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
-  public_runtime_readback: PASS_PRE_REFINED_HERO
+  public_runtime_readback: PASS
   production_evidence: ABSENT
 implementation:
-  hero_environment: hero-environment.svg
+  exact_visual_asset: hero-validated-scene.webp
+  hero_markup: index.html
   hero_style: hero-refined.css
   hero_interactions: hero-interactions.js
   docs_page: docs.html
-  docs_style: docs-refined.css
-  docs_interactions: docs-interactions.js
-  tests:
-    - tests/refined-hero.test.mjs
-    - tests/docs-view.test.mjs
+  regression_test: tests/refined-hero.test.mjs
 remaining_P0:
-  - verify Vercel autodeploy serves the refined alpine hero from main
-  - visually verify parallax/hover/click archive interactions in browser
-  - verify primary Docs navigation lands on /docs.html and no longer exposes raw Markdown by default
-  - reverify Live Shannon readback remains healthy after visual autodeploy
-  - create final encoded 2-3 minute demo video from this visually frozen runtime
-  - TRACE review of actual encoded video
+  - PR CI and replay cleanliness
+  - merge if green
+  - Vercel autodeploy and exact visual comparison
+  - final encoded 2-3 minute demo
+  - TRACE review of encoded demo
 remaining_P1:
-  - final cover/thumbnail export consistent with refined hero
-  - insert final video URL in submission package
-  - optional server-side redacted Packet 003 live proof
-  - optional upstream DreamDEX feedback publication
-  - license choice
+  - cover/thumbnail export from frozen visual
+  - final video URL insertion
   - Winning Intelligence final recheck
   - Project Finisher terminal reaudit
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: PUBLIC_VERCEL_RUNTIME_RECHECK_THEN_FINAL_VIDEO
+next_exact_gate: OPEN_PR_AND_REQUIRE_PRODUCT_CI_PASS
 next_exact_owner: PROJECT_FINISHER
-next_exact_action: Let Vercel autodeploy main at 10573cb5db68adf5580d29dc5f1a74b55243af2a, then visually verify the refined alpine archive hero, binder interactions, direct /docs.html Judge Packet and unchanged Live Shannon readback. Once this runtime is frozen, encode the 2-3 minute final film and route it through TRACE before Winning Intelligence final and Project Finisher SUBMISSION_READY assessment.
 blocked_actions:
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
