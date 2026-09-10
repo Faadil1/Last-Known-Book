@@ -21,17 +21,19 @@ test('approved hero v2 remains recoverable while Atlas Room owns the active live
   assert.equal(asset.subarray(0, 4).toString('ascii'), 'RIFF');
   assert.equal(asset.subarray(8, 12).toString('ascii'), 'WEBP');
 
-  // Proven interaction contract remains in place.
+  // Proven interaction contract remains in place while Atlas owns the label.
   assert.match(interactions, /featured-investigations/);
   assert.match(interactions, /data-feature-case/);
-  assert.match(interactions, /Open Case Files/);
+  assert.match(interactions, /Open the Atlas/);
   assert.match(interactions, /prefers-reduced-motion/);
 
-  // Atlas Room now owns the active narrative and real-photo runtime layer.
-  assert.match(interactions, /import\('\/atlas-room\.js'\)/);
+  // Atlas Room is now a static module dependency, avoiding a visible legacy-hero flash.
+  assert.match(interactions, /import '\/atlas-room\.js';/);
+  assert.doesNotMatch(interactions, /import\('\/atlas-room\.js'\)/);
   assert.match(atlas, /The Atlas Room/);
   assert.match(atlas, /images\.unsplash\.com/);
-  assert.match(atlas, /MARKETS HAPPEN EVERYWHERE/);
+  assert.match(atlas, /VENUE-NATIVE CLARITY/);
+  assert.doesNotMatch(atlas, /Investigate across chains/);
 
   assert.match(css, /\.featured-investigations/);
   assert.match(css, /\.hotspot-main/);
