@@ -1,5 +1,4 @@
 const facts = document.getElementById('proof-commitment-facts');
-const raw = document.getElementById('proof-commitment-json');
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char]));
@@ -35,9 +34,6 @@ try {
     <div class="commitment-fact" data-tone="boundary"><small>PRODUCTION EVIDENCE</small><strong>${escapeHtml(data.productionEvidence)}</strong></div>
     <div class="commitment-fact" data-tone="pass"><small>PRIVATE IDENTIFIERS</small><strong>${redaction.walletAddressPublishedHere || redaction.transactionHashesPublishedHere || redaction.orderIdPublishedHere ? 'DISCLOSED' : 'NOT DISCLOSED'}</strong></div>
     <div class="commitment-fact" data-tone="pass"><small>PUBLIC FACT</small><strong>Exact returned order cancelled · collateral restored exactly</strong></div>`;
-
-  raw.textContent = JSON.stringify(data, null, 2);
 } catch (error) {
   facts.innerHTML = '<div class="commitment-fact" data-tone="boundary"><small>STATUS</small><strong>Commitment unavailable — fail closed</strong></div>';
-  raw.textContent = String(error);
 }
