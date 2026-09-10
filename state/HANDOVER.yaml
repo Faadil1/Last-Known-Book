@@ -1,23 +1,33 @@
-schema: LKB-HANDOVER-v4.0
-updated_utc: "2026-09-10T12:35:00Z"
+schema: LKB-HANDOVER-v4.1
+updated_utc: "2026-09-10T12:57:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_MERGED__VERCEL_VISUAL_RECHECK_PENDING
+lifecycle: HERO_RUNTIME_REJECTED__TRACE_TARGETED_REWORK_OPEN
 canonical_branch: main
-exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
-exact_hero_pr: 16
-exact_hero_ci: PASS_RUN_34476646788
+canonical_state_commit: 511248fd4c67adf454bd717ad1f665d7140ad3de
+trace_rework_contract_commit: 54330810adb7aeb3e192ad3f6b063f094bc83acd
+prior_exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
+prior_exact_hero_pr: 16
+prior_exact_hero_ci: PASS_RUN_34476646788
+runtime_review_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
 material_decisions:
-  - The user's approved screenshot is frozen as the canonical hero reference; no further creative reinterpretation is allowed before terminal visual freeze.
-  - PR #16 replaced the active synthetic hero reconstruction with `hero-validated-scene.webp`, an optimized derivative of the approved photographic alpine binder scene.
-  - The approved reference structure is preserved: branded topbar, Same chain. Clearer answers., Reconstruct on-chain reality. Contain what matters., Start an Investigation, Explore a Sample Case, REAL EVENTS, VERIFIED EVIDENCE, OPERATOR READY, the photographic alpine binder archive, and the lower listening/events/contracts/narratives strip.
-  - Transparent hotspots preserve useful interaction over the real scene: overview, evidence, timeline and method navigation; pointer motion adds only restrained photo parallax.
-  - prefers-reduced-motion remains supported.
-  - `/docs.html` remains the premium Judge Packet; raw Markdown is not the normal judge path.
-  - Existing investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain intact below the hero.
-  - CI run 34476646788 passed before merge.
+  - The previous terminal visual-freeze candidate is explicitly rejected after user review of the deployed runtime.
+  - The problem is not a small crop or CSS mismatch. The current hero reads as a screenshot-like/concept-poster image with hotspots layered on top rather than a believable real-world interactive archive environment.
+  - The previous instruction to reproduce the approved concept image literally is superseded by the user's clarified intent: real physical binders in a credible real environment with restrained premium interaction.
+  - TRACE is reopened narrowly at Gate 2.25 Visual Prototype, with Gate 4.75 Visual Asset Production as the supporting production job after direction selection.
+  - Gate 0/product truth is not reopened. The core product, proof contract and authority boundaries remain frozen.
+  - Three coherent prototype directions are required before another major hero implementation: Evidence Cabinet, Field Archive, Spatial Case Table.
+  - References are routed by the unresolved realism/materiality job, not for style copying. Current high-signal TRACE sources include met_collection, annual_report_archive/editorial references, cue_design, and bounded interaction references such as rare_ui/react_bits only after the physical scene geometry is owned by Last Known Book.
+  - Avoid another monolithic image that bakes the entire environment and fake UI into one poster. Prefer layered scene architecture or a genuinely believable photographic plate with semantic interaction aligned to real geometry.
+  - `/docs.html`, the investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain protected and unchanged.
   - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path, live-readback authority or protected submission authority changed.
+rework_contract:
+  path: docs/TRACE-HERO-REALISM-REWORK-2026-09-10.md
+  verdict: TARGETED_REWORK_REQUIRED
+  reopened_gate: "2.25"
+  supporting_gate: "4.75"
+  target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_LAYER
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -25,25 +35,31 @@ proof_status:
   public_runtime_readback: PASS
   production_evidence: ABSENT
 remaining_P0:
-  - let Vercel autodeploy the new main and visually compare production against the frozen reference
-  - create the final encoded 2-3 minute demo from the visually frozen production surface
+  - invoke TRACE project assurance from canonical state and record Gate 2.25 reopen
+  - produce/compare three coherent hero prototypes
+  - select one direction with the user
+  - produce the real hero asset/layer system under Gate 4.75
+  - implement selected direction on a reversible branch
+  - verify the deployed runtime at desktop and narrow/mobile contexts
+  - create the final encoded 2-3 minute demo only after visual approval
   - TRACE review of the actual encoded demo
 remaining_P1:
-  - final cover/thumbnail export from the frozen hero
+  - final cover/thumbnail export from the approved frozen hero
   - insert final video URL into submission package
   - Winning Intelligence final recheck
   - Project Finisher terminal reaudit
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: VERCEL_EXACT_VISUAL_RECHECK_THEN_FINAL_VIDEO
-next_exact_owner: PROJECT_FINISHER
-next_exact_action: Wait for Git-to-Vercel autodeploy from main commit 6d32e1333c252c37273543ae258cf1b97a51b9ab plus post-merge state commits, verify the public hero visually against the approved screenshot and verify /docs.html remains styled. If PASS, freeze the visual surface and encode the final 2-3 minute video before TRACE and final Winning Intelligence/Project Finisher review.
+next_exact_gate: TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
+next_exact_owner: TRACE_DESIGN_ASSURANCE
+next_exact_action: Read Faadil1/trace-design-workflow project state plus adapter, record the concrete runtime mismatch as a valid reopen trigger, then produce three coherent full-surface hero prototypes before any major implementation. Do not freeze or capture the final demo until the selected direction is approved in the deployed runtime.
 blocked_actions:
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
   - no protected hackathon submission without explicit human approval
   - no unsupported production/MTTR/ROI/prevalence/fraud claims
+  - no terminal visual freeze before user-approved runtime recheck
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
