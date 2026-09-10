@@ -1,3 +1,5 @@
+import '/agent-native-ui.js';
+
 const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
 function installPolishStylesheet() {
