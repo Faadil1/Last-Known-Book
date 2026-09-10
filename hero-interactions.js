@@ -1,4 +1,5 @@
 import '/component-polish.js';
+import '/atlas-room.js';
 
 const heroScene = document.querySelector('.hero-reference-scene');
 const heroPhoto = document.querySelector('.hero-reference-photo');
@@ -38,8 +39,8 @@ function upgradeHeroSurface() {
     mainHotspot.innerHTML = `
       <span class="hotspot-plus" aria-hidden="true">+</span>
       <span class="hotspot-copy">
-        <strong>Open Case Files</strong>
-        <small>Explore investigation evidence</small>
+        <strong>Open the Atlas</strong>
+        <small>Enter a real investigation</small>
       </span>`;
   }
 }
@@ -123,7 +124,3 @@ motionQuery?.addEventListener?.('change', () => {
 
 upgradeHeroSurface();
 installFeaturedInvestigations();
-
-// Atlas Room is deliberately loaded after the proven interaction layer so it can
-// transition the visual system without deleting the investigation runtime.
-import('/atlas-room.js');
