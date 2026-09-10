@@ -7,6 +7,16 @@ const heroPhoto = document.querySelector('.hero-reference-photo');
 const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
 const prefersReducedMotion = motionQuery?.matches ?? false;
 
+// The raw commitment JSON remains a machine-readable evidence artifact, but no
+// judge-facing product link should open it directly. Route every legacy entry
+// into the styled Proof Room receipt instead.
+document.querySelectorAll('a[href="/evidence/SHANNON-PROOF-003-COMMITMENT.json"]').forEach((link) => {
+  link.href = '/proof.html#commitment';
+  link.removeAttribute('target');
+  link.removeAttribute('rel');
+  link.textContent = 'Open visual proof receipt →';
+});
+
 function scrollToInvestigations() {
   document.getElementById('investigations')?.scrollIntoView({
     behavior: prefersReducedMotion ? 'auto' : 'smooth',
