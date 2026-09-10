@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v4.0
-updated_utc: "2026-09-10T16:20:00Z"
+schema: LKB-CURRENT-v4.1
+updated_utc: "2026-09-10T16:26:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_VISUAL_REWORK
-  status: COMPONENT_POLISH_V3_IMPLEMENTED__VALIDATION_PENDING
+  status: COMPONENT_POLISH_V3__CI_PASS__PREVIEW_READY__VISUAL_RECHECK_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -22,14 +22,20 @@ candidate:
   hero_implementation_ci_status: PASS
   hero_vercel_preview_status: READY
   polish_branch: rework/benita-component-polish-v3
+  polish_pr: 18
   polish_base_head: 2679c241a6901d77d1950383a648f33a601531dc
+  polish_validated_head: 02ed66795b3849dfbfba7361e01b87ab045eaf60
+  polish_ci_run: 34501878645
+  polish_ci_status: PASS
+  polish_vercel_preview_status: READY
+  polish_vercel_preview_url: https://last-known-book-6fc1-git-rework-benita-549168-faadil-s-projects.vercel.app
   polish_reference_contract: docs/TRACE-COMPONENT-POLISH-V3-2026-09-10.md
   rejected_production_runtime_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
 visual_rework:
   user_selected_direction: WARM_EDITORIAL_EVIDENCE_WORKSPACE_WITH_PHYSICAL_BINDERS
   hero_selection_status: APPROVED_FOR_IMPLEMENTATION
   hero_implementation_status: BRANCH_IMPLEMENTED_CI_PASS_PREVIEW_READY
-  component_polish_status: IMPLEMENTED_ON_ISOLATED_REVERSIBLE_BRANCH
+  component_polish_status: SOURCE_AND_CI_PASS_PREVIEW_READY_VISUAL_REVIEW_PENDING
   component_reference_roles:
     navbar_gallery: NAVIGATION_HIERARCHY_AND_STICKY_STATE
     supahero_screensdesign: HERO_COMPOSITION_QUALITY_BAR
@@ -44,6 +50,14 @@ visual_rework:
     - structured evidence-native footer with verification and project paths
     - branded 404 recovery page with known safe routes only
   target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_PRODUCT_SYSTEM
+  runtime_recheck_must_confirm:
+    - sticky navbar feels quieter and clearer rather than heavier
+    - approved physical-binder hero remains the visual anchor
+    - final CTA feels product-native rather than generic marketing
+    - footer improves useful verification/navigation and preserves truth boundaries
+    - 404 state feels intentionally Last Known Book and routes only to known evidence paths
+    - desktop and narrow/mobile behavior remains coherent
+    - no duplicate baked/live hotspot or poster-like regression
   must_not_have:
     - screenshot-as-entire-hero treatment
     - duplicate baked/live hotspot visible at runtime
@@ -71,8 +85,6 @@ truth_boundaries:
   live_readback_is_not_a_new_transaction: true
   packet_003_remains_redacted: true
 remaining_P0:
-  - COMPONENT_POLISH_V3_CI
-  - COMPONENT_POLISH_V3_VERCEL_PREVIEW
   - DESKTOP_VISUAL_RECHECK_NAV_HERO_CTA_FOOTER
   - NARROW_MOBILE_VISUAL_RECHECK
   - ERROR_404_ROUTE_RECHECK
@@ -90,6 +102,6 @@ remaining_P1:
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: COMPONENT_POLISH_V3_CI_AND_PREVIEW
-next_owner: TRACE_DESIGN_ASSURANCE_PLUS_PROJECT_FINISHER
-next_exact_action: Validate rework/benita-component-polish-v3 with CI and an isolated Vercel preview. Inspect sticky navbar behavior, hero coherence, final CTA, footer, 404 recovery and narrow/mobile behavior. If PASS and human-approved, merge the isolated polish branch into rework/approved-editorial-realism-hero-v2 before the existing PR 17 terminal visual gate.
+next_gate: COMPONENT_POLISH_V3_RUNTIME_VISUAL_RECHECK
+next_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_VISUAL_APPROVAL
+next_exact_action: Open PR 18 Vercel preview at desktop and narrow/mobile widths and inspect navbar, hero, Featured Investigations, final CTA, footer and /404.html. CI and preview are green but do not authorize promotion. PASS plus explicit human approval permits merging PR 18 into the hero branch; FAIL permits only targeted visual patching on the isolated polish branch.
