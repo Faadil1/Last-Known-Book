@@ -1,33 +1,48 @@
-schema: LKB-HANDOVER-v4.1
-updated_utc: "2026-09-10T12:57:00Z"
+schema: LKB-HANDOVER-v4.2
+updated_utc: "2026-09-10T13:43:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: HERO_RUNTIME_REJECTED__TRACE_TARGETED_REWORK_OPEN
+lifecycle: APPROVED_EDITORIAL_REALISM_HERO_IMPLEMENTED__CI_PASS__PREVIEW_READY__VISUAL_RECHECK_PENDING
 canonical_branch: main
-canonical_state_commit: 511248fd4c67adf454bd717ad1f665d7140ad3de
-trace_rework_contract_commit: 54330810adb7aeb3e192ad3f6b063f094bc83acd
+implementation_branch: rework/approved-editorial-realism-hero-v2
+implementation_pr: 17
+implementation_head_before_state_update: 9efe3c21b9735a784b9b939ca09e29eeaf077fcd
+implementation_ci: PASS_RUN_34483720943
+vercel_preview_status: READY
+vercel_preview_url: https://last-known-book-6fc1-git-rework-approv-28a635-faadil-s-projects.vercel.app
+previous_rejected_runtime: https://last-known-book-6fc1.vercel.app/?case=LKB-001
 prior_exact_hero_merge: 6d32e1333c252c37273543ae258cf1b97a51b9ab
-prior_exact_hero_pr: 16
-prior_exact_hero_ci: PASS_RUN_34476646788
-runtime_review_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
 material_decisions:
-  - The previous terminal visual-freeze candidate is explicitly rejected after user review of the deployed runtime.
-  - The problem is not a small crop or CSS mismatch. The current hero reads as a screenshot-like/concept-poster image with hotspots layered on top rather than a believable real-world interactive archive environment.
-  - The previous instruction to reproduce the approved concept image literally is superseded by the user's clarified intent: real physical binders in a credible real environment with restrained premium interaction.
-  - TRACE is reopened narrowly at Gate 2.25 Visual Prototype, with Gate 4.75 Visual Asset Production as the supporting production job after direction selection.
-  - Gate 0/product truth is not reopened. The core product, proof contract and authority boundaries remain frozen.
-  - Three coherent prototype directions are required before another major hero implementation: Evidence Cabinet, Field Archive, Spatial Case Table.
-  - References are routed by the unresolved realism/materiality job, not for style copying. Current high-signal TRACE sources include met_collection, annual_report_archive/editorial references, cue_design, and bounded interaction references such as rare_ui/react_bits only after the physical scene geometry is owned by Last Known Book.
-  - Avoid another monolithic image that bakes the entire environment and fake UI into one poster. Prefer layered scene architecture or a genuinely believable photographic plate with semantic interaction aligned to real geometry.
-  - `/docs.html`, the investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain protected and unchanged.
-  - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path, live-readback authority or protected submission authority changed.
-rework_contract:
-  path: docs/TRACE-HERO-REALISM-REWORK-2026-09-10.md
-  verdict: TARGETED_REWORK_REQUIRED
-  reopened_gate: "2.25"
-  supporting_gate: "4.75"
-  target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_LAYER
+  - The previous production hero remains rejected; do not restore the screenshot/poster-like implementation.
+  - The user selected and explicitly approved the new warm editorial evidence-workspace direction for implementation.
+  - The selected direction uses materially credible physical binders, desk/archive objects, a believable alpine/window environment and restrained product interaction.
+  - PR #17 is the reversible implementation branch for this approved direction.
+  - The hero headline, supporting copy and CTAs remain live DOM. The approved image is used as environmental material rather than shipping the entire approved mockup as a flat page screenshot.
+  - `hero-interactions.js` assembles the approved WebP scene from seven repository-hosted base64 chunks, with the prior hero asset retained as a fail-safe fallback if assembly fails.
+  - The visible `Open Case Files` affordance is live DOM and navigates into the real investigation workspace.
+  - Featured Investigations is also live DOM and maps to the four real canonical case IDs LKB-001 through LKB-004.
+  - Pointer movement is deliberately restrained and `prefers-reduced-motion` remains supported.
+  - CI run 34483720943 passed on implementation head 9efe3c21b9735a784b9b939ca09e29eeaf077fcd.
+  - Vercel reports the PR preview READY. This is not yet a visual PASS: the runtime must still be inspected in desktop and narrow/mobile contexts.
+  - The targeted visual recheck must specifically verify that no duplicate baked/live hotspot leaks through, that the scene reads as a believable environment rather than a poster, and that the live copy/CTA layer remains coherent.
+  - `/docs.html`, the investigation workspace, four canonical cases, real Shannon proof rail and live read-only Shannon readback remain protected.
+  - No engine logic, blockchain behavior, Packet 003 privacy, wallet/signing path, proof claims, live-readback authority or protected submission authority changed.
+trace_position:
+  original_reopen_gate: "2.25"
+  supporting_asset_gate: "4.75"
+  user_direction_selection: PASS_APPROVED_FOR_IMPLEMENTATION
+  implementation_source_review: PASS_STATIC_CONTRACT_AND_CI
+  runtime_visual_review: PENDING
+  terminal_freeze: NOT_AUTHORIZED_YET
+visual_acceptance_checklist:
+  - materially believable binders and real spatial depth
+  - no screenshot/poster read at first glance
+  - live headline/CTA layer integrates with the environmental scene
+  - live Open Case Files affordance cleanly owns the hotspot area with no duplicate artifact
+  - Featured Investigations remains calm, product-native and non-generic
+  - desktop and narrow/mobile crops retain useful scene geometry
+  - reduced-motion remains truthful and usable
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
@@ -35,31 +50,32 @@ proof_status:
   public_runtime_readback: PASS
   production_evidence: ABSENT
 remaining_P0:
-  - invoke TRACE project assurance from canonical state and record Gate 2.25 reopen
-  - produce/compare three coherent hero prototypes
-  - select one direction with the user
-  - produce the real hero asset/layer system under Gate 4.75
-  - implement selected direction on a reversible branch
-  - verify the deployed runtime at desktop and narrow/mobile contexts
-  - create the final encoded 2-3 minute demo only after visual approval
+  - visually inspect PR 17 Vercel preview at desktop
+  - visually inspect PR 17 Vercel preview at narrow/mobile width
+  - run TRACE targeted runtime recheck against the approved direction
+  - obtain explicit human visual approval of the preview
+  - merge PR 17 only after the above passes
+  - post-merge production visual recheck
+  - create final encoded 2-3 minute demo from the frozen production surface
   - TRACE review of the actual encoded demo
 remaining_P1:
-  - final cover/thumbnail export from the approved frozen hero
+  - final cover/thumbnail export from the frozen hero
   - insert final video URL into submission package
   - Winning Intelligence final recheck
   - Project Finisher terminal reaudit
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: TRACE_GATE_2_25_REALISM_PROTOTYPE_COMPARE
-next_exact_owner: TRACE_DESIGN_ASSURANCE
-next_exact_action: Read Faadil1/trace-design-workflow project state plus adapter, record the concrete runtime mismatch as a valid reopen trigger, then produce three coherent full-surface hero prototypes before any major implementation. Do not freeze or capture the final demo until the selected direction is approved in the deployed runtime.
+next_exact_gate: VERCEL_PREVIEW_VISUAL_RECHECK
+next_exact_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_VISUAL_APPROVAL
+next_exact_action: Open the PR 17 Vercel preview, capture the hero at desktop and narrow/mobile widths, compare against the user-approved warm editorial realism direction, and verify there is no duplicate baked/live hotspot or poster-like failure. PASS permits merge preparation; FAIL permits only targeted visual patching on PR 17.
 blocked_actions:
+  - no terminal visual freeze before preview visual PASS and explicit human approval
+  - no merge of PR 17 solely because CI/Vercel status is green
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
   - no protected hackathon submission without explicit human approval
   - no unsupported production/MTTR/ROI/prevalence/fraud claims
-  - no terminal visual freeze before user-approved runtime recheck
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
