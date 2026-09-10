@@ -83,6 +83,7 @@ test('Proof commitment is a judge-facing visual receipt with raw JSON demoted to
   assert.match(proofHtml, /WHY IT MATTERS/);
   assert.match(proofHtml, /Technical appendix · inspect raw commitment JSON/);
   assert.match(proofHtml, /PRODUCTION EVIDENCE/);
+  assert.match(proofHtml, /class="atlas-mobile-nav"/);
   assert.match(proofJs, /SHANNON-PROOF-003-COMMITMENT\.json/);
   assert.match(proofJs, /fail closed/);
   assert.match(proofCss, /proof-ledger/);
