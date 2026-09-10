@@ -3,6 +3,16 @@ const sections = navLinks
   .map((link) => document.getElementById(link.dataset.docTarget))
   .filter(Boolean);
 
+// Keep the raw commitment JSON as a machine-readable evidence artifact, but the
+// judge-facing packet should always open the visual receipt in the Proof Room.
+document.querySelectorAll('a[href="/evidence/SHANNON-PROOF-003-COMMITMENT.json"]').forEach((link) => {
+  link.href = '/proof.html#commitment';
+  link.removeAttribute('target');
+  link.removeAttribute('rel');
+  const arrow = link.querySelector('.arrow');
+  if (arrow) arrow.textContent = 'Open visual receipt →';
+});
+
 navLinks.forEach((link) => {
   link.addEventListener('click', (event) => {
     const target = document.getElementById(link.dataset.docTarget);
