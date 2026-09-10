@@ -1,69 +1,53 @@
-schema: LKB-HANDOVER-v3.0
-updated_utc: "2026-09-09T23:24:00Z"
+schema: LKB-HANDOVER-v3.1
+updated_utc: "2026-09-10T00:18:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
-internal_project_slug: dreamdex-execution-incident-response
 owner: PROJECT_FINISHER
-lifecycle: EXACT_FILE_VERCEL_PRODUCTION_DEPLOYMENT_CREATED__RUNTIME_VERIFICATION_BLOCKED_BY_SCOPE_403
+lifecycle: DIRECTION_6_INTERACTIVE_UI_IMPLEMENTED__CI_PENDING
 canonical_branch: main
-hidden_spots_merge: a997425a2532bfb56de5fc40107851619aad210a
-hidden_spots_ci: PASS_RUN_34367779820
-predeploy_lkb004_fix_merge: 581028c662f47015d3234501227689b492b83ac8
-predeploy_lkb004_fix_ci: PASS_RUN_34416124754
+working_branch: rework/direction-6-interactive-ui
+prior_main: 581028c662f47015d3234501227689b492b83ac8
 material_decisions:
-  - Human explicitly authorized stable public Vercel deployment of Last Known Book.
-  - Before deployment, PR #12 fixed the fourth canonical case (LKB-004 exact-market residual settlement) missing from the judge UI; CI passed before merge.
-  - The first Vercel upload was treated as non-canonical because it used an equivalent compact static bundle rather than byte-faithful public runtime files.
-  - A replacement production deployment was created from the exact public runtime content of current GitHub main after the LKB-004 fix. This is the canonical Vercel candidate.
-  - Canonical deployment id: dpl_64smusAJEA65zGdUNDU3mCpuMdqX.
-  - Canonical deployment URL: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app . Expected production alias: https://last-known-book-faadil-s-projects.vercel.app .
-  - Vercel reported the replacement deployment as INITIALIZING at creation. It is not yet truthfully marked READY or anonymously HTTP-200 verified.
-  - Connected Vercel credential cannot inspect team scope faadil-s-projects / team_b8hypzENtczjR7lfxn2y8L6Q and returns HTTP 403 asking for re-authentication to that scope.
-  - LIVE SHANNON READBACK is read-only and checks chain id, current head and receipt status for the already-public LKB-003 captured Shannon transaction. No wallet connect, signing or broadcast is present.
-  - Packet 003 remains private/redacted. A later server-side live proof may use its public identifiers as Vercel Sensitive Environment Variables and return redacted booleans/status only. Never place a private key in Vercel for proof verification.
-  - No blockchain write, private-proof publication or protected DoraHacks submission was authorized by this deployment step.
-proof_status:
-  technical_proof: PASS_REAL_SHANNON
-  behavior_proof: PASS_REAL_POSTONLY_REST_AND_EXACT_CANCEL
-  operational_containment: PASS
-  production_evidence: ABSENT
+  - User approved visual Direction 6 and requested implementation rather than more mockups.
+  - The new judge-facing UI keeps the engine/proof semantics frozen and replaces only presentation/runtime interaction layers.
+  - brand-mark.svg is the canonical product mark and favicon: layered evidence pages / book ledger in ivory and deep green.
+  - The hero uses the locked story: "Same chain. Clearer answers." plus "Reconstruct on-chain reality. Contain what matters."
+  - The investigation workspace is a three-part product UI: searchable case register, interactive case analysis, and proof/live rail.
+  - All four canonical cases LKB-001 through LKB-004 remain available.
+  - Interactions added: case switching, search, slash focus, j/k case navigation, Overview/Evidence/Timeline/Method tabs, clickable timeline/event detail dialog, shareable deep links, public case export, hero navigation and live refresh.
+  - api/shannon-readback.js adds a Vercel server-side read-only path for chainId, head block and the already-public captured LKB-003 receipt. No wallet or private key is required.
+  - Browser readback is server-first, then direct Shannon RPC, then explorer fallback; every failure state is explicit/fail-closed.
+  - Packet 003 remains separately redacted. No disposable wallet, Packet 003 full tx hashes or orderId were moved into public code.
+  - No blockchain write is required or authorized by this UI work.
+validation:
+  new_test: tests/direction6-ui.test.mjs
+  required_existing_tests:
+    - engine.test.mjs
+    - ui-case-coverage.test.mjs
+    - winning-intelligence.test.mjs
+  status: CI_PENDING
 vercel:
-  canonical_deployment_id: dpl_64smusAJEA65zGdUNDU3mCpuMdqX
-  canonical_deployment_url: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app
-  expected_alias: https://last-known-book-faadil-s-projects.vercel.app
-  target: production
-  creation: CREATED_INITIALIZING
-  exact_public_runtime_files_from_main: true
-  runtime_readback: BLOCKED_BY_VERCEL_TEAM_SCOPE_403
-  required_reauth_scope: faadil-s-projects
-  team_id: team_b8hypzENtczjR7lfxn2y8L6Q
+  stable_public_deployment: HUMAN_AUTHORIZED
+  prior_deployment_id: dpl_64smusAJEA65zGdUNDU3mCpuMdqX
+  prior_url: https://last-known-book-ndw2tsgem-faadil-s-projects.vercel.app
+  instruction: redeploy only after Direction 6 PR is CI-green and merged; then verify anonymous page plus /api/shannon-readback and live panel.
 remaining_P0:
-  - reconnect/re-authenticate Vercel plugin to faadil-s-projects
-  - verify canonical deployment READY and anonymous public HTTP 200
-  - verify LIVE SHANNON READBACK returns chain 50312, changing current head and confirmed LKB-003 receipt or truthful explorer fallback
-  - final encoded 2-3 minute demo video
-  - TRACE final encoded-video review
-remaining_P1:
-  - optional server-side redacted Packet 003 live proof using Sensitive Environment Variables
-  - export final cover image
-  - optional upstream feedback publication
-  - license choice
-  - insert final live/video URLs
-  - Winning Intelligence final recheck
-  - Project Finisher terminal reaudit
+  - pass product CI
+  - merge Direction 6 PR
+  - redeploy merged main to Vercel
+  - verify anonymous HTTP 200, four cases and live Shannon readback
+  - final encoded 2-3 minute video
+  - TRACE encoded-video review
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_exact_gate: VERCEL_SCOPE_REAUTH_AND_RUNTIME_VERIFICATION
-next_exact_owner: HUMAN_THEN_PROJECT_FINISHER
-next_exact_action: Reconnect/re-authenticate the ChatGPT Vercel plugin to the faadil-s-projects team scope. Then verify dpl_64smusAJEA65zGdUNDU3mCpuMdqX reaches READY, the anonymous production URL responds successfully, all four cases render, and the LIVE SHANNON READBACK updates correctly. Only after that record the alias as judge-safe stable URL.
+next_exact_gate: OPEN_DIRECTION_6_PR_AND_REQUIRE_CI_PASS
+next_exact_owner: PROJECT_FINISHER
 blocked_actions:
   - no blockchain write without fresh exact human approval
   - no private Packet 003 identifier publication without explicit human approval
   - no protected hackathon submission without explicit human approval
-  - no unsupported production/MTTR/ROI/prevalence/fraud claims
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
-  handover_after_significant_milestone: true
   next_conversation_should_start_here: true
