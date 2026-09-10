@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v5.0
-updated_utc: "2026-09-10T18:53:00Z"
+schema: LKB-HANDOVER-v5.1
+updated_utc: "2026-09-10T19:01:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: ATLAS_ROOM_V4__SOURCE_AND_CI_PASS__CLOUDFLARE_WRONG_BRANCH_DIAGNOSED__CORRECT_RUNTIME_PREVIEW_PENDING
+lifecycle: ATLAS_ROOM_V4__CLOUDFLARE_BRANCH_PREVIEW_READY__RUNTIME_RECHECK_PENDING
 canonical_branch: main
 canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
 
@@ -11,10 +11,12 @@ active_candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  validated_head_before_routing_canon: e1a1196a9eccdbaeacbf8f3d180f9f4cb076c68c
-  routing_canon_commit: ce68634ce19c7b838a70efa5e806521a86e50c7f
-  ci_run: 34516058571
-  ci_status: PASS
+  validated_product_source_head: e1a1196a9eccdbaeacbf8f3d180f9f4cb076c68c
+  routing_canon_commits:
+    - ce68634ce19c7b838a70efa5e806521a86e50c7f
+    - 8ee7ebc41440730b87a18dd077d96e0d6b922de5
+  latest_confirmed_ci_run: 34517758411
+  latest_confirmed_ci_status: PASS
   primary_vercel_status: FAILED_EXPECTED_RATE_LIMIT
 
 promotion_chain:
@@ -26,36 +28,34 @@ promotion_chain:
 material_decisions:
   - The user selected The Atlas Room as the canonical visual target because the prior UI did not sell the product strongly enough.
   - Atlas Room is implemented as a live DOM product surface with real photographic context imagery; the selected concept is not shipped as one flat screenshot.
-  - `/methodology.html` is now a real judge-facing methodology destination.
+  - `/methodology.html` is a real judge-facing methodology destination.
   - `/proof.html` renders the real public Shannon commitment as judge-facing HTML while retaining inspectable JSON and claim boundaries.
   - Agent Interface is first-class in navigation and the Atlas index.
-  - Old unsupported vanity counters were removed from the Atlas runtime and replaced with grounded facts.
+  - Unsupported vanity counters were removed from the Atlas runtime and replaced with grounded facts.
   - DreamDEX-native semantics remain visibly load-bearing.
-  - HS-002 agent-native capabilities remain intact and read-only/bounded.
-  - Final Atlas source passed GitHub Actions run `34516058571` before the routing diagnosis.
-  - The user's Cloudflare recording shows `last-known-book.pages.dev` Production bound to `main` at `c4542923d545329c6d7ab30d85e070fb22575626`.
-  - GitHub independently confirms `main` is still exactly `c4542923d545329c6d7ab30d85e070fb22575626`.
-  - Therefore Cloudflare showing the much older UI is expected and is NOT a browser cache defect and NOT evidence that Atlas Room failed to deploy correctly.
-  - The Atlas candidate is on `rework/atlas-room-v4`; Cloudflare must build that branch as a preview, temporarily use it as the production branch on the test project, or receive the exact branch through Wrangler/Codex.
-  - Do not merge Atlas to `main` merely to make Cloudflare update. Runtime review must happen before promotion.
-  - Second Vercel remains a valid alternate test host. GitHub remains canonical regardless of preview host.
-  - No blockchain write, mainnet write, wallet/signing path, Packet 003 private identifier disclosure or unsupported production/ROI/MTTR/prevalence/fraud claim is authorized.
+  - HS-002 agent-native capabilities remain intact and bounded/read-only.
+  - The user's Cloudflare recording showed the production Pages URL serving `main@c454292`, which GitHub independently confirmed as the current main head. The apparently stale UI was therefore branch routing, not cache.
+  - A subsequent state-only push on PR21 caused Cloudflare Pages to create the correct non-production preview automatically for the Atlas branch.
+  - Cloudflare Pages reported SUCCESS for exact branch preview commit `8ee7ebc41440730b87a18dd077d96e0d6b922de5`.
+  - Correct Atlas branch preview URL is `https://rework-atlas-room-v4.last-known-book.pages.dev`; atomic preview is `https://0fa78696.last-known-book.pages.dev`.
+  - `https://last-known-book.pages.dev` intentionally remains the old `main` production build until the promotion chain eventually reaches main.
+  - Do not merge Atlas to main merely to change that production URL.
+  - For state/handover-only commits, prefer Cloudflare skip prefixes when practical to avoid wasting preview builds; GitHub remains canonical.
+  - Second Vercel remains an optional alternate runtime, but Cloudflare branch preview is now sufficient for the next visual gate.
+  - No blockchain write, mainnet write, wallet/signing path, private Packet 003 disclosure, or unsupported production/ROI/MTTR/prevalence/fraud claim is authorized.
 
-cloudflare_runtime_diagnosis:
+cloudflare_runtime:
   project: last-known-book
-  current_production_url: https://last-known-book.pages.dev
-  automatic_deployments: ENABLED
-  current_production_branch: main
-  current_production_commit: c4542923d545329c6d7ab30d85e070fb22575626
-  expected_result: OLD_PRE_ATLAS_UI
-  atlas_review_branch: rework/atlas-room-v4
-  atlas_review_source_head: e1a1196a9eccdbaeacbf8f3d180f9f4cb076c68c
-  canonical_receipt: PR21 comment 5623912507
-  acceptable_remediation:
-    - Cloudflare Settings -> Builds -> Branch control -> enable preview for rework/atlas-room-v4
-    - OR temporarily select rework/atlas-room-v4 as production branch on a test-only Pages project
-    - OR use Codex/Wrangler to deploy that exact branch to Pages as a preview
-    - OR use second Vercel import of the exact branch
+  production_url: https://last-known-book.pages.dev
+  production_branch: main
+  production_commit: c4542923d545329c6d7ab30d85e070fb22575626
+  production_expected_ui: OLD_PRE_ATLAS
+  atlas_branch: rework/atlas-room-v4
+  atlas_preview_commit: 8ee7ebc41440730b87a18dd077d96e0d6b922de5
+  atlas_branch_preview_url: https://rework-atlas-room-v4.last-known-book.pages.dev
+  atlas_atomic_preview_url: https://0fa78696.last-known-book.pages.dev
+  pages_check: SUCCESS
+  diagnosis: WRONG_PRODUCTION_BRANCH_WAS_THE_ONLY_STALENESS_CAUSE
 
 key_files:
   - atlas-room.css
@@ -84,8 +84,7 @@ visual_acceptance_checklist:
   - keyboard focus and reduced-motion pass
 
 remaining_P0:
-  - obtain a correct-branch Atlas runtime preview
-  - inspect home desktop and mobile
+  - inspect Cloudflare Atlas branch preview home desktop and mobile
   - inspect `/methodology.html`, `/proof.html`, `/agent.html`
   - verify canonical case deep-links and CTA behavior
   - TRACE Atlas runtime verdict
@@ -96,8 +95,8 @@ remaining_P0:
   - TRACE encoded-video review
 
 blocked_actions:
-  - no merge to main merely to refresh Cloudflare
-  - no Atlas runtime PASS based on the current old `main` Cloudflare deployment
+  - no merge to main merely to refresh Cloudflare production
+  - no Atlas runtime PASS based on old `last-known-book.pages.dev`
   - no blockchain write without fresh exact human approval
   - no protected write path through agent/MCP/API surfaces
   - no private Packet 003 identifier publication
@@ -108,6 +107,6 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_gate: ATLAS_ROOM_CORRECT_BRANCH_RUNTIME_RECHECK
+next_exact_gate: ATLAS_ROOM_CLOUDFLARE_BRANCH_PREVIEW_RUNTIME_RECHECK
 next_exact_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Deploy `rework/atlas-room-v4` rather than `main` to an alternate runtime. Preferred: enable a Cloudflare Pages preview for that branch or deploy it through the Codex-connected Cloudflare environment; second Vercel is equally valid. Review desktop/mobile home, Methodology, Proof, Agent and case deep-links, then record TRACE + human PASS/FAIL before any promotion.
+next_exact_action: Open `https://rework-atlas-room-v4.last-known-book.pages.dev` (or atomic `https://0fa78696.last-known-book.pages.dev`) instead of the production pages.dev URL. Review desktop/mobile home, Methodology, Proof, Agent, case deep-links, focus and reduced-motion. Record TRACE + human PASS/FAIL before promotion.
