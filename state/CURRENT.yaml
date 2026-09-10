@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v4.1
-updated_utc: "2026-09-10T16:26:00Z"
+schema: LKB-CURRENT-v4.2
+updated_utc: "2026-09-10T17:47:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_VISUAL_REWORK
-  status: COMPONENT_POLISH_V3__CI_PASS__PREVIEW_READY__VISUAL_RECHECK_PENDING
+  stage: TERMINAL_ASSURANCE_PRODUCT_REINFORCEMENT
+  status: HIDDEN_SPOTS_002_AGENT_NATIVE_IMPLEMENTED__CI_PREVIEW_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -19,53 +19,38 @@ candidate:
   canonical_branch: main
   hero_implementation_branch: rework/approved-editorial-realism-hero-v2
   hero_implementation_pr: 17
-  hero_implementation_ci_status: PASS
-  hero_vercel_preview_status: READY
   polish_branch: rework/benita-component-polish-v3
   polish_pr: 18
-  polish_base_head: 2679c241a6901d77d1950383a648f33a601531dc
-  polish_validated_head: 02ed66795b3849dfbfba7361e01b87ab045eaf60
-  polish_ci_run: 34501878645
-  polish_ci_status: PASS
-  polish_vercel_preview_status: READY
-  polish_vercel_preview_url: https://last-known-book-6fc1-git-rework-benita-549168-faadil-s-projects.vercel.app
-  polish_reference_contract: docs/TRACE-COMPONENT-POLISH-V3-2026-09-10.md
-  rejected_production_runtime_url: https://last-known-book-6fc1.vercel.app/?case=LKB-001
+  reinforcement_branch: feature/hidden-spots-002-agent-native
+  reinforcement_base_head: df9294471062eb0a1ccbb05e1e70d5459f164deb
+  reinforcement_contract: docs/HIDDEN-SPOTS-002.md
+  agent_integration_doc: docs/AGENT-INTEGRATION.md
+hidden_spots_002:
+  verdict: IMPLEMENTED_VALIDATION_PENDING
+  goal: AGENT_NATIVE_INCIDENT_RESPONSE_WITHOUT_MODEL_AUTHORITY_OVER_FUNDS
+  implemented:
+    - BYOI read-only incident intake via web UI and POST /api/investigate
+    - deterministic machine-readable LKB-AUTHORITY-RECEIPT-v0.1
+    - read-only MCP tools investigate_incident, evaluate_authority, get_safe_action
+    - machine-readable CLI npm run investigate
+    - generic POST /api/incident-webhook operational intake
+    - bounded Slack and Discord notification payload adapters with no automatic outbound send
+    - read-only DreamDEX log watcher via eth_blockNumber and eth_getLogs
+    - dynamic ERC20 decimals() read guard and decimal-normalization utility
+    - evaluator-visible Reproduce action for deterministic case replay
+  deliberately_not_auto_applied:
+    - repository license because legal reuse policy requires explicit human choice
+    - sponsor upstream issue publication because third-party write authority is not currently available
+    - automatic wallet connection, signing, compensating trade, mainnet write or model-authorized spend
+  safety_contract:
+    - minimal BYOI input returns EVIDENCE_REQUIRED and RETRY_READ rather than inventing root cause
+    - agent-native surfaces contain no browser signing or broadcast path
+    - Authority Receipt preserves explicit writeAuthorized boolean and authority-boundary marker
+    - raw live event logs do not directly become causal claims without reconstruction
 visual_rework:
-  user_selected_direction: WARM_EDITORIAL_EVIDENCE_WORKSPACE_WITH_PHYSICAL_BINDERS
-  hero_selection_status: APPROVED_FOR_IMPLEMENTATION
-  hero_implementation_status: BRANCH_IMPLEMENTED_CI_PASS_PREVIEW_READY
-  component_polish_status: SOURCE_AND_CI_PASS_PREVIEW_READY_VISUAL_REVIEW_PENDING
-  component_reference_roles:
-    navbar_gallery: NAVIGATION_HIERARCHY_AND_STICKY_STATE
-    supahero_screensdesign: HERO_COMPOSITION_QUALITY_BAR
-    cta_gallery: CTA_HIERARCHY_AND_CONVERSION_CLARITY
-    footer_design: UTILITY_FIRST_FOOTER_PLUS_BRAND_ENDING
-    404s_design: BRANDED_SAFE_RECOVERY_STATE
-  component_delta:
-    - sticky navbar with restrained compression on scroll and active-section indication
-    - refined hero eyebrow and live Open Case Files affordance without reopening the hero scene direction
-    - stronger but restrained Featured Investigations interaction feedback
-    - dedicated pre-footer CTA tied to real investigation and Judge Packet actions
-    - structured evidence-native footer with verification and project paths
-    - branded 404 recovery page with known safe routes only
-  target: PHOTOREAL_PHYSICAL_ARCHIVE_ENVIRONMENT_WITH_RESTRAINED_INTERACTIVE_PRODUCT_SYSTEM
-  runtime_recheck_must_confirm:
-    - sticky navbar feels quieter and clearer rather than heavier
-    - approved physical-binder hero remains the visual anchor
-    - final CTA feels product-native rather than generic marketing
-    - footer improves useful verification/navigation and preserves truth boundaries
-    - 404 state feels intentionally Last Known Book and routes only to known evidence paths
-    - desktop and narrow/mobile behavior remains coherent
-    - no duplicate baked/live hotspot or poster-like regression
-  must_not_have:
-    - screenshot-as-entire-hero treatment
-    - duplicate baked/live hotspot visible at runtime
-    - generic dark trading terminal aesthetic
-    - glassmorphism-heavy SaaS chrome
-    - copied component-gallery layouts
-    - decorative motion unrelated to comprehension
-    - interaction that fabricates stronger product proof
+  selected_direction: WARM_EDITORIAL_EVIDENCE_WORKSPACE_WITH_PHYSICAL_BINDERS
+  component_polish_v3: CI_PASS_PREVIEW_READY_VISUAL_REVIEW_PENDING
+  hidden_spots_ui_addition: BRING_YOUR_OWN_INCIDENT_SECTION_PLUS_REPRODUCE_ACTION
 protected_product_layers:
   - investigation workspace
   - four canonical incident cases
@@ -79,18 +64,20 @@ proof_status:
   public_runtime_readback: PASS
   production_evidence: ABSENT
 truth_boundaries:
-  visual_rework_changes_no_engine_semantics: true
-  visual_rework_changes_no_blockchain_authority: true
-  component_polish_does_not_expand_proof_claims: true
-  live_readback_is_not_a_new_transaction: true
+  hidden_spots_do_not_expand_proof_claims: true
+  hidden_spots_do_not_grant_model_write_authority: true
+  live_watcher_is_read_only: true
+  notification_adapters_do_not_send_automatically: true
   packet_003_remains_redacted: true
 remaining_P0:
-  - DESKTOP_VISUAL_RECHECK_NAV_HERO_CTA_FOOTER
-  - NARROW_MOBILE_VISUAL_RECHECK
-  - ERROR_404_ROUTE_RECHECK
-  - TRACE_TARGETED_RUNTIME_RECHECK
+  - HIDDEN_SPOTS_002_CI
+  - HIDDEN_SPOTS_002_VERCEL_PREVIEW
+  - BYOI_RUNTIME_RECHECK
+  - MCP_AND_CLI_CONTRACT_RECHECK
+  - COMPONENT_POLISH_DESKTOP_AND_MOBILE_VISUAL_RECHECK
   - HUMAN_VISUAL_APPROVAL
-  - MERGE_POLISH_INTO_HERO_BRANCH
+  - PROMOTE_REINFORCEMENT_TO_POLISH_BRANCH_IF_PASS
+  - PROMOTE_POLISH_TO_HERO_BRANCH_IF_PASS
   - MERGE_PR_17_AND_POST_MERGE_PRODUCTION_RECHECK
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
@@ -99,9 +86,12 @@ remaining_P1:
   - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
   - WINNING_INTELLIGENCE_FINAL_RECHECK
   - PROJECT_FINISHER_TERMINAL_REAUDIT
+human_policy_choices:
+  repository_license: UNDECIDED
+  upstream_issue_publication: READY_DRAFT_BUT_EXTERNAL_WRITE_BLOCKED
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: COMPONENT_POLISH_V3_RUNTIME_VISUAL_RECHECK
-next_owner: TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_VISUAL_APPROVAL
-next_exact_action: Open PR 18 Vercel preview at desktop and narrow/mobile widths and inspect navbar, hero, Featured Investigations, final CTA, footer and /404.html. CI and preview are green but do not authorize promotion. PASS plus explicit human approval permits merging PR 18 into the hero branch; FAIL permits only targeted visual patching on the isolated polish branch.
+next_gate: HIDDEN_SPOTS_002_CI_AND_PREVIEW
+next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE
+next_exact_action: Validate feature/hidden-spots-002-agent-native with CI and Vercel preview. Verify BYOI fail-closed behavior, Authority Receipt, MCP/CLI tests, read-only watcher/decimals guard, desktop/mobile integration and no visual regression. PASS permits promotion into rework/benita-component-polish-v3; FAIL permits only targeted fixes on the reinforcement branch.
