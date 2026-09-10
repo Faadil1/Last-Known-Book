@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v7.2
-updated_utc: "2026-09-10T21:05:00Z"
+schema: LKB-CURRENT-v7.3
+updated_utc: "2026-09-10T21:12:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,12 +9,18 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: FINAL_DEMO_AND_SUBMISSION_ASSURANCE
-  status: MAIN_CANONICAL__EVIDENCE_DENSITY_UPGRADE_COMMITTED__CI_RUNTIME_RECHECK_PENDING
+  status: MAIN_CANONICAL__EVIDENCE_DENSITY_SOURCE_CI_AND_CLOUDFLARE_PASS__LIVE_WITNESS_BROWSER_RECHECK_PENDING
 
 canonical_runtime:
   branch: main
   public_production_url: https://last-known-book.pages.dev
   source_of_truth: GITHUB_MAIN
+  evidence_density_product_commit: 5fdfb530361115ee955ec2d0f32071df549e13ba
+  assurance_test_fix_commit: ece387cbf4bf7bac166a84da0500ffaf9b3b98db
+  github_actions_run: 34529607842
+  github_actions_status: PASS
+  cloudflare_pages_status: PASS
+  cloudflare_atomic_preview: https://85ca1829.last-known-book.pages.dev
   separate_workers_build: NON_JUDGE_FACING_AND_NOT_RUNTIME_GATE
 
 authority:
@@ -37,12 +43,15 @@ final_product_surface:
 
 proof_room:
   product_originated_real_shannon_behavior:
+    status: PASS
     path: POSTONLY_TO_REST_TO_EXACT_CANCEL
     chain_id: 50312
     fills: 0
     collateral_reconciled_exactly: true
   live_read_only_witnesses:
-    status: IMPLEMENTED_PENDING_PRODUCTION_RECHECK
+    source_ci_contract: PASS
+    cloudflare_deployment: PASS
+    production_browser_values: HUMAN_OR_BROWSER_RECHECK_PENDING
     purpose: INDEPENDENT_EVIDENCE_DENSITY_NOT_TRANSACTION_COUNT
     calls:
       - eth_chainId
@@ -71,9 +80,9 @@ proof_room:
 competitive_evidence_strategy:
   decision: QUALITY_AND_INDEPENDENCE_OVER_RAW_TRANSACTION_COUNT
   rationale:
-    - a repeated PostOnly transaction would add low marginal evidence value
-    - independent live witnesses answer separate judge objections without requiring a new write
-    - any second product-originated write should only prove a genuinely new missing semantic path
+    - repeated identical PostOnly writes add low marginal evidence value
+    - independent live witnesses answer distinct judge objections without increasing write risk
+    - a second product-originated write is valuable only if it proves a materially different missing DreamDEX semantic path
   new_blockchain_write_now: NOT_AUTHORIZED_AND_NOT_RECOMMENDED_WITHOUT_HIGH_VALUE_GAP
 
 rubric_chain:
@@ -83,18 +92,18 @@ rubric_chain:
   problem: PASS
   differentiator: STRONG_PASS
   execution: PASS
-  evidence: STRONG_PASS_PENDING_LIVE_WITNESS_RUNTIME_RECHECK
+  evidence: STRONG_PASS_SOURCE_AND_DEPLOY__LIVE_BROWSER_WITNESS_RECHECK_PENDING
   story: PASS
   demo: PENDING_BENITA_ENCODED_ARTIFACT
-  qa: PASS_REFRESHED_FOR_AGENT_NATIVE_AND_EVIDENCE_DENSITY
+  qa: PASS_REFRESHED
 
 submission_package:
   status: REFRESHED
   production_url_stale_placeholder: REMOVED
   next_build_question_stale_ingestion_claim: REMOVED
   proof_taxonomy: EXPLICIT
-  current_organizer_cutoff_recorded: 2026-09-11T23:59:00Z
-  final_cutoff_recheck_before_submit: REQUIRED
+  organizer_extension_best_current_source: 2026-09-11T23:59:00Z
+  final_cutoff_recheck_before_submit: REQUIRED_DUE_TO_CONFLICTING_ECOSYSTEM_MIRROR
 
 benita_demo_handoff:
   status: REFRESHED_FOR_PROOF_ROOM_LIVE_WITNESSES
@@ -108,6 +117,6 @@ benita_demo_handoff:
     - LIVE_READ_ONLY_WITNESSES
     - TAMPER_EVIDENT_COMMITMENT
 
-next_gate: CI_PLUS_CLOUDFLARE_PRODUCTION_RECHECK_FOR_EVIDENCE_DENSITY_UPGRADE
-next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE
-next_exact_action: Validate the evidence-density commit on GitHub Actions and Cloudflare Pages, then recheck /proof.html live witnesses on production. If PASS, record canonical validation and proceed to Benita encoded demo plus TRACE video review. Do not add another blockchain write unless a separate exact human gate approves a materially different proof path.
+next_gate: PRODUCTION_BROWSER_RECHECK_OF_LIVE_WITNESSES_THEN_BENITA_ENCODED_DEMO
+next_owner: HUMAN_USER_PLUS_BENITA_PLUS_TRACE_DESIGN_ASSURANCE
+next_exact_action: Open production /proof.html once in a normal browser and confirm the four LIVE READ-ONLY WITNESSES either resolve truthfully or fail closed without layout regressions. If PASS, proceed immediately to Benita recording and TRACE encoded-video review. Do not add another blockchain write unless a separate exact human gate approves a materially different proof path.
