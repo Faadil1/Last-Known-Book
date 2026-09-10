@@ -1,122 +1,135 @@
-schema: LKB-CURRENT-v4.4
-updated_utc: "2026-09-10T17:42:00Z"
+schema: LKB-CURRENT-v4.5
+updated_utc: "2026-09-10T17:46:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
   internal_project_slug: dreamdex-execution-incident-response
   tagline: Reconstruct the market your agent actually traded.
+
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_PRODUCT_REINFORCEMENT
-  status: HS_002_AGENT_NATIVE__FINAL_SOURCE_CI_PASS__VERCEL_READY__RUNTIME_RECHECK_PENDING
+  stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
+  status: ATLAS_ROOM_V4__SOURCE_IMPLEMENTED__CI_AND_RUNTIME_RECHECK_PENDING
+
 authority:
-  stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
-  live_readback: READ_ONLY_VERIFIED
+  stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED_PREVIOUS_RUNTIME
+  live_readback: READ_ONLY_VERIFIED_PREVIOUS_RUNTIME
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
   publish_private_packet_003_identifiers: NOT_AUTHORIZED
   protected_submission: HUMAN_ONLY
+
 candidate:
   canonical_branch: main
-  hero_implementation_branch: rework/approved-editorial-realism-hero-v2
   hero_implementation_pr: 17
-  polish_branch: rework/benita-component-polish-v3
-  polish_pr: 18
-  hidden_spots_branch: rework/hidden-spots-002-agent-native
+  component_polish_pr: 18
   hidden_spots_pr: 19
-  hidden_spots_base_branch: rework/benita-component-polish-v3
-  validated_implementation_head: 25f083b4e0f2c8efad79f99b5bcb9b586b8700db
-  ci_run: 34509507704
-  ci_status: PASS
-  vercel_status: READY
-  vercel_preview_url: https://last-known-book-6fc1-git-rework-hidden-b7ce04-faadil-s-projects.vercel.app
-  vercel_deployment: 5j13ZPzmt2pqTjmNfbrru2RJH75B
-  runtime_content_fetch_from_assistant: UNAVAILABLE_VIA_CONNECTED_VERIFICATION_TOOL
+  hidden_spots_branch: rework/hidden-spots-002-agent-native
+  atlas_room_branch: rework/atlas-room-v4
+  atlas_room_design_contract: docs/ATLAS-ROOM-V4.md
+  atlas_room_source_status: IMPLEMENTED_NOT_YET_RUNTIME_VERIFIED
+  current_preview: NOT_DEPLOYED_YET
+
+visual_direction:
+  selected: THE_ATLAS_ROOM
+  selected_by: HUMAN_USER
+  status: APPROVED_AND_MATERIALIZED_IN_SOURCE
+  reference_rule: USE_SELECTED_REFERENCE_AS_DIRECTION_NOT_AS_FLAT_SCREENSHOT
+  implementation_rules:
+    - runtime remains live DOM and real interaction
+    - photographic image sources are separate external assets, not a screenshot of the design reference
+    - prior sticky navigation, case deep-links, reduced-motion, final CTA/footer and 404 behaviors are preserved or improved
+    - Methodology, Proof and Agent Interface are first-class destinations
+    - visual design must not imply stronger evidence than exists
+  added_surfaces:
+    - atlas-room.css
+    - atlas-room.js
+    - methodology.html
+    - proof.html
+    - proof-page.js
+    - docs/ATLAS-ROOM-V4.md
+  interaction_transition:
+    - preserve case hotspot and subtle parallax
+    - preserve featured-case navigation to LKB-001 through LKB-004
+    - promote Agent Interface into primary navigation
+    - route Methodology to a real methodology room
+    - route Proof to a real HTML proof room
+    - replace decorative metrics with judge-safe facts
+    - add Atlas index and DreamDEX load-bearing explainer
+
+truth_and_claim_cleanup:
+  unsupported_visible_vanity_metrics:
+    prior: "12.4M+ / 320+ / AND COUNTING"
+    atlas_runtime_behavior: HIDDEN_AND_REPLACED
+    replacement:
+      - Shannon 50312
+      - 4 captured incident classes
+      - inference cannot spend
+      - API MCP CLI
+  photo_assets_are_context_not_evidence: true
+  proof_page_production_evidence: ABSENT
+
 hidden_spots_002:
-  verdict: PASS_SOURCE_AND_CI__RUNTIME_RECHECK_REQUIRED
+  inherited_from_pr19: true
   implemented:
-    - bring_your_own_incident via POST /api/investigate
-    - provider_neutral inbound incident webhook via POST /api/incidents
-    - deterministic LKB-AUTHORITY-RECEIPT-v0.1
-    - public GET /api/agent-status capability self-test
-    - remote POST /api/mcp agent tool surface
-    - local stdio MCP adapter via npm run mcp
-    - JSON-first CLI via npm run lkb
-    - repository SKILL.md
-    - read-only Shannon eth_getLogs watcher
-    - Shannon/mainnet ERC20 decimals normalization guard
-    - deterministic reproduce-case agent tool
-    - judge-facing /agent.html
-    - Judge Packet fast-lane and evidence-source discovery links to /agent.html
-  agent_tools:
-    - lkb_investigate
-    - lkb_authority_receipt
-    - lkb_network_normalization
-    - lkb_convert_units
-    - lkb_reproduce_case
+    - bring_your_own_incident
+    - provider_neutral_incident_webhook
+    - deterministic_authority_receipt
+    - remote_and_local_agent_tool_surfaces
+    - json_first_cli
+    - read_only_shannon_watcher
+    - shannon_mainnet_decimal_normalization_guard
+    - reproduce_case_tool
+    - judge_facing_agent_interface
   safety_contract:
-    tx_only_intake_fails_closed_without_semantic_decoder: true
     inference_can_authorize_spend: false
     public_agent_surface_has_signing: false
     public_agent_surface_has_broadcast: false
     public_agent_surface_accepts_private_key: false
     authority_receipt_executes_action: false
     mainnet_write_added: false
-  test_result:
-    final_run: 34509507704
-    verdict: PASS
-    notes:
-      - canonical case intake uses existing deterministic engine
-      - mocked bare transaction intake returns UNKNOWN + ESCALATE + writeAuthorized false
-      - authority receipt deterministic
-      - Shannon 6-decimal and mainnet 18-decimal conversion exact
-      - public agent surfaces guarded against execution APIs
-      - Judge Packet exposes the agent-native layer instead of leaving it hidden
-  upstream_feedback:
-    path: docs/UPSTREAM-FEEDBACK-DRAFT.md
-    publication_attempt_2026_09_10: BLOCKED_GITHUB_INTEGRATION_403_RESOURCE_NOT_ACCESSIBLE
-    publication_claim: NOT_PUBLISHED
-  deliberately_deferred:
-    slack_discord_provider_adapters: generic webhook is the stronger stable seam and avoids provider-secret surface area
-    repository_license: requires explicit human legal-policy selection
-    protected_write_automation: conflicts with the core authority boundary
-product_differentiator:
-  canonical_line: "The trading agent may be AI. The layer that decides whether money moves is not."
-  reinforced_flow: DREAMDEX_EVENT_OR_TX -> LKB_INTAKE -> OBSERVED_INFERRED_UNKNOWN -> ROOT_CAUSE_OR_FAIL_CLOSED_UNKNOWN -> SAFE_ACTION -> AUTHORITY_RECEIPT -> OPERATOR_OR_UPSTREAM_AGENT
-  judge_value: product is now both an investigation experience and a bounded agent-consumable incident-response layer, with direct discovery from the Judge Packet
-protected_product_layers:
-  - approved warm editorial physical-binder hero direction
-  - component polish v3
-  - investigation workspace
-  - four canonical incident cases
-  - real Shannon proof rail
-  - live read-only Shannon readback
-  - premium /docs.html Judge Packet
+
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
-  public_runtime_readback: PASS
   production_evidence: ABSENT
+
+hosting_strategy:
+  primary_vercel_plan: HOBBY
+  primary_vercel_daily_deployment_limit_observed: 100_PER_ROLLING_24H
+  primary_vercel_current_condition: RATE_LIMIT_PREVIOUSLY_REACHED
+  atlas_room_deployment_instruction: DO_NOT_REQUIRE_PRIMARY_VERCEL_FOR_ITERATION
+  alternative_test_options:
+    - SECOND_VERCEL_ACCOUNT_MANUAL_IMPORT_BY_USER
+    - CLOUDFLARE_VIA_USER_CODEX_CONNECTION
+  cloudflare_current_status: AVAILABLE_TO_USER_VIA_CODEX_BUT_NOT_DEPLOYED_FROM_THIS_CHAT
+  source_of_truth_remains: GITHUB
+
 remaining_P0:
-  - HUMAN_RUNTIME_REVIEW_OF_HS002_PREVIEW_AND_AGENT_PAGE
-  - VERIFY_PUBLIC_AGENT_STATUS_GET_IN_RUNTIME
-  - VERIFY_SHANNON_NETWORK_NORMALIZATION_GET_IN_RUNTIME
-  - ATTEMPT_MAINNET_NETWORK_NORMALIZATION_GET_IN_RUNTIME
-  - TRACE_HS002_RUNTIME_RECHECK
-  - HUMAN_APPROVAL_OF_HS002
-  - MERGE_PR19_INTO_POLISH_BRANCH_AFTER_PASS
-  - RECHECK_AND_PROMOTE_PR18_THEN_PR17_THROUGH_EXISTING_VISUAL_GATES
+  - OPEN_ATLAS_ROOM_PR_TO_TRIGGER_GITHUB_ACTIONS_VALIDATION
+  - FIX_ANY_CI_FAILURE_WITHOUT_EXPANDING_SCOPE
+  - USER_IMPORT_ATLAS_BRANCH_TO_SECOND_VERCEL_OR_CLOUDFLARE_FOR_RUNTIME_TEST
+  - DESKTOP_RUNTIME_RECHECK
+  - NARROW_MOBILE_RUNTIME_RECHECK
+  - METHODOLOGY_ROUTE_RECHECK
+  - PROOF_ROUTE_AND_COMMITMENT_RENDER_RECHECK
+  - AGENT_INTERFACE_NAVIGATION_RECHECK
+  - TRACE_ATLAS_ROOM_RUNTIME_VERDICT
+  - HUMAN_VISUAL_APPROVAL
+  - UPDATE_DEMO_AND_QA_TO_REFLECT_HS002_PLUS_ATLAS_ROOM
+  - PROMOTE_THROUGH_PR19_PR18_PR17_TO_MAIN_ONLY_AFTER_PASS
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
-  - TRACE_FINAL_VIDEO_REVIEW
+
 remaining_P1:
-  - MANUAL_OR_DIFFERENT_AUTH_UPSTREAM_FEEDBACK_PUBLICATION
-  - FINAL_COVER_EXPORT_FROM_FROZEN_VISUAL
+  - FINAL_COVER_EXPORT_FROM_FROZEN_RUNTIME
   - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
   - WINNING_INTELLIGENCE_FINAL_RECHECK
   - PROJECT_FINISHER_TERMINAL_REAUDIT
+
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-next_gate: HS_002_RUNTIME_AND_TRACE_RECHECK
+
+next_gate: ATLAS_ROOM_SOURCE_CI_THEN_ALTERNATE_RUNTIME_RECHECK
 next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Inspect PR19 Vercel preview, especially /agent.html and GET /api/agent-status. Validate public read-only capability and cross-network checks where reachable. If runtime and human review pass, record TRACE HS-002 PASS, merge PR19 into the polish branch, then continue the existing PR18 and PR17 visual promotion chain.
+next_exact_action: Open a reversible PR from rework/atlas-room-v4 into rework/hidden-spots-002-agent-native so GitHub Actions validates source without relying on the saturated primary Vercel account. After CI PASS, the user can import that branch into the second Vercel account or use the Cloudflare connection available in Codex for runtime inspection. Do not merge to main before desktop/mobile/Methodology/Proof/Agent runtime PASS and explicit human approval.
