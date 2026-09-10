@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/docs/SUBMISSION-PACKAGE.md",
+      "destination": "/docs.html"
+    }
+  ]
+}
