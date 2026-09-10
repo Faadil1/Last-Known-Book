@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v3.4
-updated_utc: "2026-09-10T12:22:00Z"
+schema: LKB-CURRENT-v3.5
+updated_utc: "2026-09-10T12:26:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -8,7 +8,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_VISUAL_FREEZE
-  status: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_IMPLEMENTED__CI_PENDING
+  status: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_IMPLEMENTED_WITH_REAL_ASSET__CI_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -23,9 +23,9 @@ candidate:
 visual_freeze:
   hero:
     target: EXACT_USER_APPROVED_REFERENCE_COMPOSITION
-    status: IMPLEMENTED_CI_PENDING
+    status: REAL_ASSET_ATTACHED_TO_BRANCH__CI_PENDING
     image_asset: hero-validated-scene.webp
-    image_policy: optimized_derivative_of_user_approved_reference
+    image_asset_kind: optimized_webp_derivative_of_user_approved_reference
     synthetic_placeholder_stack_active: false
     composition_preserved:
       - Last Known Book branded topbar
