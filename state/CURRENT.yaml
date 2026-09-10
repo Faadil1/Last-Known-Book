@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v3.3
-updated_utc: "2026-09-10T05:45:00Z"
+schema: LKB-CURRENT-v3.4
+updated_utc: "2026-09-10T12:22:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -7,8 +7,8 @@ product:
   tagline: Reconstruct the market your agent actually traded.
 lifecycle:
   owner: PROJECT_FINISHER
-  stage: TERMINAL_ASSURANCE_VISUAL_RUNTIME_RECHECK
-  status: REFINED_INTERACTIVE_HERO_AND_JUDGE_PACKET_V2_MERGED_CI_PASS__VERCEL_RUNTIME_RECHECK_PENDING
+  stage: TERMINAL_ASSURANCE_VISUAL_FREEZE
+  status: EXACT_USER_VALIDATED_PHOTOGRAPHIC_HERO_IMPLEMENTED__CI_PENDING
 authority:
   stable_external_deployment: HUMAN_AUTHORIZED_AND_VERIFIED
   live_readback: READ_ONLY_VERIFIED
@@ -17,88 +17,65 @@ authority:
   protected_submission: HUMAN_ONLY
 candidate:
   canonical_branch: main
-  direction_6_merge: 14b3f457d9bbcb321708a0a8dc6e05a5451734e7
-  judge_docs_fix_merge: 6d496d43ab466411be50dd5e72c3fe2c2673525e
-  refined_interactive_hero_docs_merge: 10573cb5db68adf5580d29dc5f1a74b55243af2a
-  refined_interactive_hero_docs_pr: 15
-  refined_interactive_hero_docs_ci_run: 34442103442
-  refined_interactive_hero_docs_ci_status: PASS
-visual_rework:
-  refined_hero:
-    status: MERGED_AND_CI_PASS
-    environment_asset: hero-environment.svg
-    visual_language: quiet_alpine_evidence_archive
-    atmosphere: ivory_mist_mountains_pine_river_stone_bridge
-    archive_volumes:
-      - EVENTS__OBSERVE
-      - EVIDENCE__VERIFY
-      - TIMELINE__RECONSTRUCT
-      - METHOD__A_CLEARER_STORY
+  working_branch: rework/exact-validated-hero
+  prior_refined_hero_merge: 10573cb5db68adf5580d29dc5f1a74b55243af2a
+  exact_visual_reference: USER_APPROVED_SCREENSHOT_2026_09_10
+visual_freeze:
+  hero:
+    target: EXACT_USER_APPROVED_REFERENCE_COMPOSITION
+    status: IMPLEMENTED_CI_PENDING
+    image_asset: hero-validated-scene.webp
+    image_policy: optimized_derivative_of_user_approved_reference
+    synthetic_placeholder_stack_active: false
+    composition_preserved:
+      - Last Known Book branded topbar
+      - Same chain. Clearer answers.
+      - Reconstruct on-chain reality. Contain what matters.
+      - Start an Investigation
+      - Explore a Sample Case
+      - REAL EVENTS
+      - VERIFIED EVIDENCE
+      - OPERATOR READY
+      - photographic alpine binder archive
+      - bottom listening/events/contracts/narratives strip
     interactions:
-      - subtle pointer parallax between environment and archive stack
-      - independent volume lift/hover labels
-      - overview volume scrolls to investigations
-      - evidence volume opens Evidence tab
-      - timeline volume opens Timeline tab
-      - method volume opens Method tab
-      - prefers-reduced-motion disables parallax/transforms
+      - subtle image parallax
+      - transparent hotspots over main book and archive spines
+      - overview/evidence/timeline/method navigation
+      - prefers-reduced-motion respected
     implementation:
+      - index.html
       - hero-refined.css
       - hero-interactions.js
-      - hero-environment.svg
-    blockchain_or_proof_semantics_changed: false
-  judge_docs:
-    status: INTERACTIVE_HTML_V2_MERGED_AND_CI_PASS
-    primary_nav_target: /docs.html
-    raw_markdown_primary_path_removed: true
-    backward_compat_rewrite: /docs/SUBMISSION-PACKAGE.md -> /docs.html
-    sections:
-      - Overview
-      - Judge in 60 Seconds
-      - Proof
-      - Mechanism
-      - Judge Q&A
-      - Sources
-    interactions:
-      - sticky section navigator
-      - scroll-aware active nav
-      - collapsible judge Q&A
-      - expand_all_q_and_a
-    raw_sources_available_secondarily: true
+      - hero-validated-scene.webp
+  docs:
+    status: PREMIUM_HTML_JUDGE_PACKET_PRESERVED
+    primary_route: /docs.html
+    raw_markdown_primary_path: false
 proof_status:
   technical_proof: PASS_REAL_SHANNON
   behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
   operational_containment: PASS
-  public_runtime_readback: PASS_PRE_REFINED_HERO
+  public_runtime_readback: PASS
   production_evidence: ABSENT
-vercel:
-  project: last-known-book-6fc1
-  production_domain: https://last-known-book-6fc1.vercel.app
-  last_verified_runtime: DIRECTION_6_PRE_REFINED_HERO
-  git_main_expected_to_autodeploy: true
-  refined_hero_and_docs_v2_runtime: PENDING_AFTER_MERGE
+truth_boundaries:
+  visual_freeze_changes_no_engine_semantics: true
+  visual_reference_does_not_change_proof_claims: true
+  live_readback_is_not_a_new_transaction: true
+  packet_003_remains_redacted: true
 remaining_P0:
-  - VERIFY_REFINED_HERO_AND_DOCS_V2_ON_PUBLIC_VERCEL
-  - REVERIFY_LIVE_SHANNON_AFTER_VISUAL_AUTODEPLOY
+  - PRODUCT_CI_FOR_EXACT_VISUAL_REFERENCE
+  - MERGE_IF_GREEN
+  - VERCEL_AUTODEPLOY_AND_VISUAL_RECHECK
   - FINAL_ENCODED_2_TO_3_MINUTE_VIDEO
   - TRACE_FINAL_VIDEO_REVIEW
 remaining_P1:
-  - FINAL_COVER_IMAGE_EXPORT
+  - FINAL_COVER_EXPORT_FROM_FROZEN_VISUAL
   - INSERT_FINAL_VIDEO_URL_IN_SUBMISSION_PACKAGE
-  - OPTIONAL_SERVER_SIDE_PACKET_003_REDACTED_LIVE_PROOF
-  - OPTIONAL_UPSTREAM_DREAMDEX_FEEDBACK_PUBLICATION
-  - LICENSE_CHOICE
   - WINNING_INTELLIGENCE_FINAL_RECHECK
   - PROJECT_FINISHER_TERMINAL_REAUDIT
 deadline:
   extended_through_date: "2026-09-11"
   exact_cutoff_time: NOT_REVERIFIED_IN_CANON
-truth_boundaries:
-  visual_rework_does_not_change_engine_or_proof_semantics: true
-  interactive_environment_is_navigation_not_blockchain_action: true
-  live_readback_is_not_a_new_transaction: true
-  packet_003_remains_redacted: true
-  raw_docs_remain_audit_sources_not_primary_judge_experience: true
-  production_readiness_claim: FORBIDDEN
-next_gate: PUBLIC_VERCEL_RUNTIME_RECHECK_THEN_FINAL_VIDEO
+next_gate: PRODUCT_CI_THEN_VERCEL_VISUAL_FREEZE
 next_owner: PROJECT_FINISHER
