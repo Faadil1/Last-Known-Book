@@ -4,9 +4,9 @@ Date: 2026-09-10
 Owner for recording: Benita
 Product owner / final authority: Faadil
 Runtime branch: `rework/atlas-room-v4`
-Validated runtime head: `6d676d70dd7fa3a7cfe1ec957c9b9e32b0501c20`
+Validated runtime head: `c33265670b44954a8783ef0b4745d0d5c9a001df`
 Stable preview: https://rework-atlas-room-v4.last-known-book.pages.dev
-Validated atomic preview: https://d7068e59.last-known-book.pages.dev
+Validated atomic preview: https://3ab1c9a9.last-known-book.pages.dev
 
 ## What the demo must make obvious
 
@@ -59,7 +59,7 @@ The line to land is:
 ### 1:25–2:05 — Proof Room
 Open `/proof.html`.
 
-The Proof Room is now designed as a visual receipt rather than a raw JSON/Markdown-looking surface.
+The Proof Room is now designed as a visual receipt rather than a raw JSON/Markdown-looking surface and includes its own responsive mobile navigation.
 
 Show these three things in order:
 
@@ -103,15 +103,18 @@ Protected responsive expectations:
 - Case Room becomes a one-column flow;
 - Intent vs Venue Reality stacks;
 - Proof / Methodology grids stack;
+- Proof Room commitment and ledger stack cleanly;
 - focus and reduced-motion remain supported.
 
 ## Current validation
 
-Runtime head `6d676d70dd7fa3a7cfe1ec957c9b9e32b0501c20`:
+Runtime head `c33265670b44954a8783ef0b4745d0d5c9a001df`:
 
-- GitHub Actions `validate`: PASS
+- GitHub Actions `validate` run `34525245441`: PASS
 - Cloudflare Pages: PASS
 - stable branch preview: https://rework-atlas-room-v4.last-known-book.pages.dev
-- atomic preview: https://d7068e59.last-known-book.pages.dev
+- atomic preview: https://3ab1c9a9.last-known-book.pages.dev
+
+The separate Cloudflare Workers build is not the judge-facing Pages deployment; Pages is the validated runtime used for this demo.
 
 The remaining human task before final encoded-video freeze is to record the demo against the stable preview and have TRACE review the encoded video for judge comprehension, pacing, truth boundaries and visual continuity.
