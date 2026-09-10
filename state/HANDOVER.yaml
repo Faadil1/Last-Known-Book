@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v5.2
-updated_utc: "2026-09-10T19:18:00Z"
+schema: LKB-HANDOVER-v5.3
+updated_utc: "2026-09-10T19:20:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: ATLAS_ROOM_V4__VIDEO_REVIEW_COMPLETE__POLISH_PATCH_PENDING_BRANCH_ADVANCE
+lifecycle: ATLAS_ROOM_V4__VIDEO_REVIEW_COMPLETE__POLISH_COMMIT_CREATED_PENDING_BRANCH_ADVANCE
 canonical_branch: main
 canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
 
@@ -11,66 +11,45 @@ active_candidate:
   branch: rework/atlas-room-v4
   pr: 21
   base: rework/hidden-spots-002-agent-native
-  pre_polish_branch_head: b96e6df956895a40308ca9d34432983d4d679ea3
-  runtime_polish_commit_prepared: 62c234ffff8be51b147a6e1e214a564e0fcdc93d
-  current_state_commit: 38eea386d0b0f3f75513b49a3015df4079193f5a
-  primary_vercel_status: FAILED_EXPECTED_RATE_LIMIT
+  branch_head_before_polish_advance: 13bf1d7ea64b67490cb5321030b845685633e7a9
+  runtime_polish_commit_created: d7902710ce74f3996b85b3e50a0cbb180268acc6
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
+  primary_vercel_status: FAILED_EXPECTED_RATE_LIMIT
 
 runtime_video_review:
-  source: user uploaded Cloudflare branch preview recording
-  passed:
-    - correct Atlas branch preview is visible
-    - Methodology is a real rendered page
-    - Proof is a real HTML judge-facing page
-    - Agent Interface is rendered and functional as a product surface
-    - Featured Investigations route into the canonical workspace
-    - component-polish footer survives the Atlas transition
-  targeted_failures:
-    - root navigation can briefly show the old Same chain / Clearer answers hero before Atlas loads
-    - approved Atlas hero is materially too dark and under-sells the warm editorial target
-    - 'Investigate across chains' exceeds the currently proven DreamDEX/Somnia product scope
-    - 'real-world context' language is looser than the actual venue-native evidence contract
-    - Agent page header does not match the main product navigation story
-  verdict: PARTIAL_PASS_TARGETED_POLISH_REQUIRED
+  verdict_before_patch: PARTIAL_PASS_TARGETED_POLISH_REQUIRED
+  confirmed:
+    - correct Atlas preview route is active
+    - Methodology works
+    - Proof is HTML and judge-facing
+    - Agent Interface renders
+    - canonical cases remain connected
+  defects_remediated_in_runtime_polish_commit:
+    - legacy hero flash caused by late dynamic Atlas import
+    - hero visual too dark relative to selected Atlas Room direction
+    - unsupported cross-chain hero positioning
+    - venue-native evidence language not precise enough
+    - Agent navigation continuity mismatch
 
-polish_patch:
-  prepared_commit: 62c234ffff8be51b147a6e1e214a564e0fcdc93d
-  intended_branch: rework/atlas-room-v4
+runtime_polish_commit:
+  sha: d7902710ce74f3996b85b3e50a0cbb180268acc6
   changes:
-    - static Atlas module dependency replaces late dynamic import to eliminate visible legacy-hero flash
-    - hero copy becomes venue-native and removes unsupported cross-chain framing
-    - hero photo treatment is brighter, warmer and more legible while retaining the real Unsplash photo source
-    - hotspot gains quieter depth feedback and Featured Investigation imagery gets restrained hover treatment
-    - Agent page navigation aligns with Investigations / Methodology / Proof / Agent / Docs
-    - tests guard truth-safe scope, static Atlas loading and Agent navigation continuity
-
-truth_and_authority:
-  photo_assets_are_context_not_evidence: true
-  dreamdex_native_semantics_are_load_bearing: true
-  inference_can_authorize_spend: false
-  public_agent_surface_has_signing: false
-  public_agent_surface_has_broadcast: false
-  public_agent_surface_accepts_private_key: false
-  production_evidence: ABSENT
-
-promotion_chain:
-  - PR21 Atlas Room -> PR19 HS-002 branch
-  - PR19 -> PR18 component polish
-  - PR18 -> PR17 hero branch
-  - PR17 -> main
-
-blocked_actions:
-  - no merge to main before Atlas runtime PASS and explicit human approval
-  - no blockchain write without fresh exact human approval
-  - no private Packet 003 identifier publication
-  - no unsupported cross-chain or production claims
+    - static Atlas dependency in hero-interactions.js
+    - venue-native hero copy in atlas-room.js
+    - brighter warmer hero treatment and refined micro-interactions in atlas-room.css
+    - unified Agent navigation in agent.html
+    - expanded Atlas runtime tests
+  truth_boundary:
+    photo_assets_are_context_not_evidence: true
+    unsupported_cross_chain_claims: false
+    inference_can_authorize_spend: false
+    production_evidence: ABSENT
 
 continuity:
   canonical_state_over_chat_memory: true
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_gate: ADVANCE_POLISH_COMMIT_THEN_CLOUDFLARE_RECHECK
+next_exact_gate: ADVANCE_D790271_TO_ATLAS_BRANCH_VERIFY_CI_AND_CLOUDFLARE
 next_exact_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Move `rework/atlas-room-v4` to prepared polish commit `62c234ffff8be51b147a6e1e214a564e0fcdc93d`, verify GitHub Actions and Cloudflare Pages branch preview, then re-record/review root hero, `/methodology.html`, `/proof.html`, `/agent.html`, canonical case deep-links and mobile. Record final TRACE PASS/FAIL before promotion.
+next_exact_action: Move `rework/atlas-room-v4` to `d7902710ce74f3996b85b3e50a0cbb180268acc6`, verify GitHub Actions and Cloudflare Pages, then inspect root hero, query-param case hero, Methodology, Proof, Agent and mobile before any promotion.
