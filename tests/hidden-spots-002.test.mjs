@@ -82,8 +82,9 @@ test('agent surfaces stay read-only and expose the winning mechanism', async () 
   assert.match(mcp, /tools\/list/);
   assert.match(mcp, /tools\/call/);
   assert.match(watcher, /eth_getLogs/);
-  assert.doesNotMatch(watcher, /eth_sendRawTransaction|walletClient|privateKey/i);
+  assert.doesNotMatch(watcher, /eth_sendRawTransaction|createWalletClient|privateKeyToAccount|writeContract/i);
   assert.match(status, /READ_ONLY_AGENT_INTERFACE/);
+  assert.match(status, /privateKeyAccepted: false/);
   assert.match(status, /broadcastAvailable: false/);
   assert.match(skill, /lkb_authority_receipt/);
   assert.match(agent, /Bring your own incident/);
@@ -105,8 +106,11 @@ test('protected write path is not exposed through public agent tools', async () 
   const tools = await read('src/agent-tools.mjs');
   const cli = await read('scripts/lkb-cli.mjs');
   const status = await read('api/agent-status.js');
+  const forbiddenExecutionApis = /privateKeyToAccount|createWalletClient|sendRawTransaction|sendTransaction|writeContract|signTransaction|signMessage/i;
   assert.doesNotMatch(tools, /CANCEL_EXACT_ORDER.*deterministicPredicatesSatisfied/s);
-  assert.doesNotMatch(cli, /privateKey|walletClient|sendTransaction|writeContract/i);
-  assert.doesNotMatch(status, /privateKey|walletClient|sendTransaction|writeContract/i);
+  assert.doesNotMatch(tools, forbiddenExecutionApis);
+  assert.doesNotMatch(cli, forbiddenExecutionApis);
+  assert.doesNotMatch(status, forbiddenExecutionApis);
+  assert.match(status, /privateKeyAccepted: false/);
   assert.match(cli, /READ_ONLY_BY_DEFAULT/);
 });
