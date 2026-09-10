@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v5.1
-updated_utc: "2026-09-10T19:21:00Z"
+schema: LKB-CURRENT-v5.8
+updated_utc: "2026-09-10T19:27:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,7 +9,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: TERMINAL_ASSURANCE_UI_PRODUCT_REWORK
-  status: ATLAS_ROOM_V4__POLISH_MERGE_COMMIT_CREATED__BRANCH_ADVANCE_AND_RUNTIME_RECHECK_PENDING
+  status: ATLAS_ROOM_POLISH__SOURCE_CI_AND_CLOUDFLARE_PASS__HUMAN_RUNTIME_RECHECK_PENDING
 
 authority:
   further_blockchain_writes: REQUIRE_FRESH_EXACT_HUMAN_GATE
@@ -17,47 +17,57 @@ authority:
   protected_submission: HUMAN_ONLY
 
 candidate:
-  canonical_branch: main
-  canonical_main_head: c4542923d545329c6d7ab30d85e070fb22575626
-  atlas_room_branch: rework/atlas-room-v4
-  atlas_room_pr: 21
-  atlas_room_base: rework/hidden-spots-002-agent-native
-  canonical_review_state_head_before_polish_merge: aa7b4c990c594da3675f6c37642db4e705b518eb
-  runtime_polish_source_commit: d7902710ce74f3996b85b3e50a0cbb180268acc6
-  runtime_polish_merge_commit: da1b7bcfadcdc0183baa5206c6a4a685f63dc9c2
-  primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
+  canonical_main: c4542923d545329c6d7ab30d85e070fb22575626
+  branch: rework/atlas-room-v4
+  pr: 21
+  base: rework/hidden-spots-002-agent-native
+  validated_head: c6b3287228eec08bf7092adbb1ef825ad903518a
+  ci_run: 34520313571
+  ci_status: PASS
+  cloudflare_pages_status: PASS
+  cloudflare_atomic_preview: https://08760cb6.last-known-book.pages.dev
   cloudflare_branch_preview: https://rework-atlas-room-v4.last-known-book.pages.dev
+  primary_vercel_status: FAILED_EXPECTED_HOBBY_RATE_LIMIT
 
-runtime_video_review:
-  source: USER_UPLOADED_CLOUDFLARE_SCREEN_RECORDING_2026_09_10
-  verdict_before_patch: PARTIAL_PASS_TARGETED_POLISH_REQUIRED
+runtime_review_2026_09_10:
+  source: USER_UPLOADED_CLOUDFLARE_SCREEN_RECORDING
+  reviewed_version: PRE_POLISH_ATLAS_BRANCH_PREVIEW
+  verdict: PARTIAL_PASS_TARGETED_POLISH_REQUIRED
   passed:
-    - Methodology real page
-    - Proof judge-facing HTML page
-    - Agent Interface page
-    - Featured Investigations and canonical case workspace continuity
-    - component-polish footer continuity
-  patched_failures:
-    - legacy hero flash
-    - hero too dark
-    - unsupported cross-chain copy
-    - imprecise real-world-context copy
-    - Agent navigation mismatch
+    - correct Atlas Room branch preview reachable
+    - Methodology page is real and useful
+    - Proof commitment is presented as judge-facing HTML
+    - Agent Interface renders
+    - Featured Investigations remain connected to canonical case workspace
+    - prior footer/component polish survives
+  findings:
+    - root navigation could visibly expose the legacy hero before Atlas enhancement
+    - hero photography treatment was too dark relative to approved Atlas Room target
+    - cross-chain wording exceeded the proven DreamDEX/Somnia scope
+    - some context copy was less precise than venue-native evidence wording
+    - Agent page navigation did not fully match the main product narrative
 
-polish_changes:
-  - static import of Atlas layer in hero-interactions.js
-  - venue-native hero copy and scope
-  - brighter warmer real-photo treatment
-  - refined hotspot and case-photo interaction feedback
-  - unified Agent navigation
-  - regression tests for scope truth and navigation continuity
+polish_applied_at_validated_head:
+  - Atlas layer is a static module dependency instead of a late dynamic import
+  - hero copy is venue-native and DreamDEX-scoped
+  - unsupported cross-chain positioning removed
+  - hero photo treatment brightened and warmed while keeping a real photographic source
+  - hotspot and dossier micro-interactions refined
+  - Agent navigation aligned to Investigations / Methodology / Proof / Agent / Docs
+  - legacy regression test updated to preserve rollback provenance without forcing obsolete copy
+  - Atlas truth/scope/navigation regression coverage expanded
 
 truth_boundary:
-  photo_assets_are_context_not_evidence: true
-  unsupported_cross_chain_claims: false
+  real_photos_are_context_not_incident_evidence: true
   inference_can_authorize_spend: false
+  public_agent_surface_has_private_key_signing_or_broadcast: false
   production_evidence: ABSENT
 
-next_gate: ADVANCE_DA1B7BC_TO_ATLAS_BRANCH_THEN_CLOUDFLARE_RECHECK
+proof_status:
+  technical_proof: PASS_REAL_SHANNON
+  behavior_proof: PASS_REAL_POSTONLY_REST_THEN_EXACT_CANCEL
+  operational_containment: PASS
+
+next_gate: ATLAS_POLISHED_RUNTIME_HUMAN_AND_TRACE_RECHECK
 next_owner: PROJECT_FINISHER_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Advance `rework/atlas-room-v4` to merge commit `da1b7bcfadcdc0183baa5206c6a4a685f63dc9c2`, verify GitHub Actions and Cloudflare Pages branch preview, then inspect root hero, case-param hero, Methodology, Proof, Agent and mobile. Record TRACE + human PASS/FAIL before promotion.
+next_exact_action: Review the freshly deployed `c6b3287` Cloudflare branch preview at the root and `?case=LKB-001`, then Methodology, Proof, Agent and narrow/mobile. Confirm that the legacy hero flash, darkness and scope-copy issues are gone. Record TRACE + human PASS/FAIL before any promotion to PR19/18/17/main.
