@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v7.5
-updated_utc: "2026-09-11T14:35:00Z"
+schema: LKB-HANDOVER-v7.6
+updated_utc: "2026-09-11T15:40:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: BENITA_DEMO_V1_REVIEWED__REVISION_REQUIRED
+lifecycle: BENITA_DEMO_V2_NEAR_PASS__FINAL_CLOSE_FIX_NEXT
 
 canonical:
   branch: main
@@ -13,50 +13,41 @@ canonical:
   github_actions_run: 34530215938
   github_actions_status: PASS
   cloudflare_pages_status: PASS
-  cloudflare_atomic_preview: https://78495708.last-known-book.pages.dev
 
 material_decisions:
   - Atlas Room V5 remains frozen as final jury-first product direction.
   - No additional product scope or blockchain write should be added before submission.
-  - Proof quality and independence remain more valuable than raw transaction count.
-  - Captured replays, product-originated Packet 003, live read-only witnesses and tamper-evident commitment are distinct evidence categories.
-  - Benita demo V1 is a strong story cut but not the final submission video because it is 1:39 and omits the strongest proof sequence.
-  - Preserve the V1 opening, LKB-001 case study, MINT_A_PAIR explanation and Authority Receipt close.
-  - Add roughly 35–55 seconds for Packet 003, live witnesses and visual commitment.
-  - Final target duration is 2:15–2:35.
+  - Benita V2 is materially stronger than V1 and now sits inside the 2–3 minute target at 2:02.
+  - Core story, DreamDEX MINT_A_PAIR differentiator, Shannon proof material, agent integration and authority boundary all pass.
+  - The only material blocker is the silent tail from roughly 1:38 to 2:02 after narration ends.
+  - Do not rebuild the video. Keep the exact visual sequence and add a concise closing narration over the existing final footage.
 
-benita_demo_v1:
-  url: https://youtu.be/tKmv5IVVX5k
-  title_observed: "Last Book for Somnia Dreamdex Hackathon"
-  duration: "1:39"
-  review_receipt: docs/DEMO-REVIEW-BENITA-V1-2026-09-11.md
-  status: REVISION_REQUIRED
-  pass_components:
-    - pain
+benita_demo_v2:
+  url: https://youtu.be/S5TJPENjEYM
+  title_observed: "Last Known Book for Somnia Dreamdex Hackathon"
+  duration: "2:02"
+  review_receipt: docs/DEMO-REVIEW-BENITA-V2-2026-09-11.md
+  status: NEAR_PASS_ONE_QUICK_FIX
+  pass:
+    - pain_and_problem
     - post_execution_product_definition
-    - dreamdex_mint_a_pair_causal_reveal
-    - agent_native_integration
-    - authority_receipt_boundary
-  missing_p0:
-    - REAL_SHANNON_PACKET003_PROOF
-    - LIVE_READ_ONLY_WITNESSES
-    - VISUAL_TAMPER_EVIDENT_COMMITMENT
-    - STRONGER_FINAL_SIGNATURE_CLOSE
-    - CANONICAL_2_TO_3_MINUTE_DURATION
+    - LKB001_case_story
+    - dreamdex_MINT_A_PAIR_causal_reveal
+    - evidence_truth_classes_visible
+    - Shannon_proof_and_verification_visible
+    - agent_native_HTTP_webhook_MCP_CLI
+    - Authority_Receipt_boundary
+    - no_signing_or_broadcast_claim
+    - canonical_duration_window
+  blocker:
+    - final_25_seconds_are_silent_UI_recap_without_close
+  preferred_fix:
+    - keep_runtime_near_2_02
+    - add_short_closing_voiceover_over_existing_final_visuals
+    - optionally_add_light_background_music_under_outro
+    - end_on_product_identity_or_Atlas_hero
 
-proof_sequence_for_v2:
-  - one_case_causal_reveal
-  - product_originated_Packet003
-  - independent_live_read_only_witnesses
-  - visual_commitment
-  - agent_authority_close
-
-packaging:
-  preferred_youtube_title: "Last Known Book — Somnia × DreamDEX Hackathon Demo"
-  youtube_description_should_include:
-    - https://last-known-book.pages.dev
-    - https://github.com/Faadil1/Last-Known-Book
-    - post_execution_incident_response_for_autonomous_DreamDEX_agents
+suggested_final_close: "Last Known Book turns an unexpected DreamDEX execution into a bounded, verifiable decision: what happened, what we know, and what is safe to do next. The trading agent may be AI. The layer that decides whether money moves is not."
 
 rubric_chain:
   sequence: RUBRIC -> PAIN -> PROBLEM -> DIFFERENTIATOR -> EXECUTION -> EVIDENCE -> STORY -> DEMO -> Q&A
@@ -66,9 +57,9 @@ rubric_chain:
     PROBLEM: PASS
     DIFFERENTIATOR: STRONG_PASS
     EXECUTION: PASS
-    EVIDENCE: STRONG_PASS_PRODUCT__VIDEO_PROOF_LAYER_INCOMPLETE
+    EVIDENCE: STRONG_PASS
     STORY: PASS
-    DEMO: V1_REVISION_REQUIRED
+    DEMO: NEAR_PASS_ONE_AUDIO_CLOSE_FIX
     Q&A: PASS_REFRESHED
 
 team_submission:
@@ -76,10 +67,10 @@ team_submission:
   positioning: Faadil_Boussari_and_Benita_built_Last_Known_Book_together
 
 remaining_P0:
-  - Benita produces V2 with proof sequence and 2:15–2:35 target duration
-  - TRACE reviews encoded V2
+  - Benita fills the silent 1:38–2:02 tail with a concise final close
+  - TRACE reviews encoded final cut
   - human final video approval
-  - update final YouTube title and description
+  - update final YouTube title and description if desired
   - place final video URL in DoraHacks submission
   - final deadline recheck immediately before protected submission
   - protected hackathon submission remains HUMAN_ONLY
@@ -89,4 +80,4 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_action: Send Benita the concise V1 feedback: keep the current story, add Packet 003 Proof Room, live read-only witnesses and visual commitment, finish around 2:15–2:35, then send V2 back for TRACE review. Do not reopen product design.
+next_exact_action: Ask Benita for one final micro-edit only: keep the full V2 visual sequence, add a concise closing narration over the existing last 25 seconds, keep runtime within 2–3 minutes, and return the final encoded cut for TRACE PASS. Do not request new scenes or reopen product design.
