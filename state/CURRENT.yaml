@@ -1,5 +1,5 @@
-schema: LKB-CURRENT-v7.5
-updated_utc: "2026-09-11T14:35:00Z"
+schema: LKB-CURRENT-v7.6
+updated_utc: "2026-09-11T15:40:00Z"
 product:
   name: Last Known Book
   repository: Faadil1/Last-Known-Book
@@ -9,7 +9,7 @@ product:
 lifecycle:
   owner: PROJECT_FINISHER
   stage: FINAL_DEMO_AND_SUBMISSION_ASSURANCE
-  status: BENITA_DEMO_V1_REVIEWED__REVISION_REQUIRED_FOR_PROOF_AND_DURATION
+  status: BENITA_DEMO_V2_REVIEWED__NEAR_PASS__FINAL_AUDIO_CLOSE_FIX_REQUIRED
 
 canonical_runtime:
   branch: main
@@ -39,8 +39,6 @@ final_product_surface:
   proof_live_witnesses: /proof.html#live-witnesses
   agent: /agent.html
   docs: /docs.html
-  judge_packet_visual_proof_routes: PASS
-  judge_packet_direct_raw_commitment_link: REMOVED
 
 proof_taxonomy:
   captured_replay:
@@ -59,31 +57,11 @@ proof_taxonomy:
     github_actions: PASS
     cloudflare_pages: PASS
     production_browser_values: RECHECK_PENDING
-    checks:
-      - eth_chainId_plus_eth_blockNumber
-      - eth_getTransactionReceipt_public_LKB003_capture
-      - eth_getCode_DreamDEX_BinaryMarketsModule
-      - eth_call_tUSDC_decimals
-    safety:
-      - READ_ONLY
-      - NO_WALLET
-      - NO_SIGNING
-      - NO_BROADCAST
-      - FAIL_CLOSED_IF_RPC_UNAVAILABLE
-      - PUBLIC_LKB003_RECEIPT_IS_NOT_PACKET003
   tamper_evident_commitment:
     status: PASS
     judge_facing: VISUAL_RECEIPT
     raw_json_rendering: REMOVED
-    raw_machine_artifact: /evidence/SHANNON-PROOF-003-COMMITMENT.json
   production_evidence: ABSENT
-
-competitive_evidence_strategy:
-  decision: QUALITY_AND_INDEPENDENCE_OVER_RAW_TRANSACTION_COUNT
-  second_product_originated_write:
-    default: DO_NOT_ADD
-    exception: ONLY_IF_MATERIAL_MISSING_DREAMDEX_SEMANTIC_PATH
-    authority: FRESH_EXACT_HUMAN_GATE_REQUIRED
 
 rubric_chain:
   sequence: RUBRIC_TO_PAIN_TO_PROBLEM_TO_DIFFERENTIATOR_TO_EXECUTION_TO_EVIDENCE_TO_STORY_TO_DEMO_TO_QA
@@ -92,41 +70,37 @@ rubric_chain:
   PROBLEM: PASS
   DIFFERENTIATOR: STRONG_PASS
   EXECUTION: PASS
-  EVIDENCE: STRONG_PASS_SOURCE_CI_DEPLOY__LIVE_BROWSER_WITNESS_RECHECK_PENDING
+  EVIDENCE: STRONG_PASS
   STORY: PASS
-  DEMO: V1_REVISION_REQUIRED
+  DEMO: NEAR_PASS_ONE_AUDIO_CLOSE_FIX
   QA: PASS_REFRESHED
 
-benita_demo_v1:
-  url: https://youtu.be/tKmv5IVVX5k
-  observed_title: "Last Book for Somnia Dreamdex Hackathon"
-  duration: "1:39"
-  review_receipt: docs/DEMO-REVIEW-BENITA-V1-2026-09-11.md
-  strengths:
-    - pain_and_wrong_followup_action_are_clear
-    - post_execution_product_definition_is_clear
-    - mint_a_pair_dreamdex_native_reveal_is_clear
-    - agent_integration_and_authority_receipt_close_are_clear
-    - authority_receipt_cannot_sign_or_execute_is_clear
-  blockers:
-    - duration_below_canonical_2_to_3_minute_target
-    - product_originated_packet003_not_shown
-    - live_read_only_witnesses_not_shown
-    - visual_tamper_evident_commitment_not_shown
-    - final_signature_close_can_be_stronger
-  revision_plan:
-    preserve_current_story: true
-    add_seconds_target: 35_to_55
-    final_duration_target: 2_15_to_2_35
-    add_sequence:
-      - REAL_SHANNON_PACKET003_PROOF
-      - LIVE_READ_ONLY_WITNESSES
-      - VISUAL_PROOF_COMMITMENT
-      - AUTHORITY_RECEIPT_CLOSE
-    preferred_youtube_title: "Last Known Book — Somnia × DreamDEX Hackathon Demo"
+benita_demo_v2:
+  url: https://youtu.be/S5TJPENjEYM
+  observed_title: "Last Known Book for Somnia Dreamdex Hackathon"
+  duration: "2:02"
+  review_receipt: docs/DEMO-REVIEW-BENITA-V2-2026-09-11.md
+  status: NEAR_PASS
+  pass_components:
+    - pain_and_problem
+    - post_execution_product_definition
+    - agent_intent_vs_venue_reality
+    - MINT_A_PAIR_dreamdex_native_reveal
+    - observed_inferred_unknown_evidence_handling
+    - Shannon_proof_and_verification_visible
+    - REST_webhook_MCP_CLI_agent_integration
+    - bounded_Authority_Receipt
+    - explicit_no_sign_or_broadcast_boundary
+    - duration_within_2_to_3_minutes
+  blocker:
+    - narration_ends_around_1_37_while_visuals_continue_silently_to_2_02
+  fix_policy:
+    add_no_new_scope: true
+    preferred_fix: SHORT_CLOSING_NARRATION_OVER_EXISTING_FINAL_FOOTAGE
+    suggested_close: "Last Known Book turns an unexpected DreamDEX execution into a bounded, verifiable decision: what happened, what we know, and what is safe to do next. The trading agent may be AI. The layer that decides whether money moves is not."
 
 submission_package:
-  status: FINAL_CANDIDATE_VIDEO_AND_HUMAN_SUBMISSION_GATE_PENDING
+  status: FINAL_VIDEO_CLOSE_FIX_AND_HUMAN_SUBMISSION_GATE_PENDING
   production_runtime: https://last-known-book.pages.dev
   final_cutoff_recheck_before_submit: REQUIRED
   protected_submit: HUMAN_ONLY
@@ -135,6 +109,6 @@ team_submission:
   benita_dorahacks_handle: Benita
   team_positioning: COLLABORATIVE_BUILD
 
-next_gate: BENITA_DEMO_V2_WITH_PROOF_SEQUENCE_THEN_TRACE_ENCODED_VIDEO_REVIEW
+next_gate: BENITA_DEMO_FINAL_CLOSE_FIX_THEN_TRACE_PASS_AND_HUMAN_APPROVAL
 next_owner: BENITA_PLUS_TRACE_DESIGN_ASSURANCE_PLUS_HUMAN_USER
-next_exact_action: Benita should keep the strong 1:39 story core, add the real Packet 003 Proof Room, independent live read-only witnesses and visual proof commitment, target roughly 2:15–2:35, then return the encoded V2 for TRACE and human final approval. Do not add new product scope or another blockchain write.
+next_exact_action: Keep the V2 visuals and technical story unchanged. Replace the final silent 25 seconds with a concise closing narration over the existing footage, keep runtime within 2–3 minutes, then return the encoded final cut for TRACE PASS and human approval. Do not add product scope or another blockchain write.
