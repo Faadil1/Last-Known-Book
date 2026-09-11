@@ -1,9 +1,9 @@
-schema: LKB-HANDOVER-v7.4
-updated_utc: "2026-09-10T21:18:00Z"
+schema: LKB-HANDOVER-v7.5
+updated_utc: "2026-09-11T14:35:00Z"
 product: Last Known Book
 repository: Faadil1/Last-Known-Book
 owner: PROJECT_FINISHER
-lifecycle: MAIN_CANONICAL__FINAL_EVIDENCE_DENSITY_VALIDATED__BROWSER_WITNESS_RECHECK_NEXT
+lifecycle: BENITA_DEMO_V1_REVIEWED__REVISION_REQUIRED
 
 canonical:
   branch: main
@@ -16,59 +16,47 @@ canonical:
   cloudflare_atomic_preview: https://78495708.last-known-book.pages.dev
 
 material_decisions:
-  - Atlas Room V5 remains frozen as the final jury-first visual direction.
-  - The homepage remains concise; the evidence-density expansion lives in Proof Room and Judge Packet.
-  - Proof quality and independence are more valuable than raw transaction count.
-  - Four live read-only Shannon witnesses are implemented and deployed: chain/head, public LKB-003 captured receipt, DreamDEX BinaryMarketsModule bytecode and tUSDC decimals().
-  - The live witnesses are current read-only verification, not additional Last Known Book-originated trades.
-  - Product-originated Packet 003 remains the bounded real Shannon behavior proof.
-  - Captured replay cases, Packet 003, live witnesses and the tamper-evident commitment are four distinct evidence categories and must never be blurred in copy or demo narration.
-  - Public live witness source excludes wallet, signing and transaction-broadcast methods and fails closed if RPC cannot be verified.
-  - No additional blockchain write is authorized.
-  - A future product-originated write is only worth considering if it proves a materially different missing DreamDEX semantic path and receives a fresh exact human approval packet.
-  - Proof Commitment remains a visual receipt; raw JSON is machine-readable audit evidence only.
-  - Judge Packet now routes Proof -> /proof.html, Commitment -> /proof.html#commitment and Live -> /proof.html#live-witnesses; no direct raw commitment JSON link remains in the Judge Packet source.
-  - README, submission package, demo script and Benita handoff are aligned to the production main URL and current evidence taxonomy.
-  - Final product head 15caef18 passed GitHub Actions and Cloudflare Pages.
+  - Atlas Room V5 remains frozen as final jury-first product direction.
+  - No additional product scope or blockchain write should be added before submission.
+  - Proof quality and independence remain more valuable than raw transaction count.
+  - Captured replays, product-originated Packet 003, live read-only witnesses and tamper-evident commitment are distinct evidence categories.
+  - Benita demo V1 is a strong story cut but not the final submission video because it is 1:39 and omits the strongest proof sequence.
+  - Preserve the V1 opening, LKB-001 case study, MINT_A_PAIR explanation and Authority Receipt close.
+  - Add roughly 35–55 seconds for Packet 003, live witnesses and visual commitment.
+  - Final target duration is 2:15–2:35.
 
-proof_taxonomy:
-  captured_replay:
-    count: 4
-    ids: [LKB-001, LKB-002, LKB-003, LKB-004]
-    role: DISTINCT_SHANNON_INCIDENT_CLASSES_REPLAYED_DETERMINISTICALLY
-    lkb_originated_writes: false
-  product_originated:
-    id: SHANNON_PACKET_003
-    role: REAL_BOUNDED_POSTONLY_REST_EXACT_CANCEL_BEHAVIOR_PROOF
-    chain_id: 50312
-    fills: 0
-    collateral_restored_exactly: true
-  live_read_only:
-    role: CURRENT_INDEPENDENT_CHAIN_WITNESSES
-    source_ci_contract: PASS
-    cloudflare_deployment: PASS
-    browser_runtime_values: RECHECK_PENDING
-    checks:
-      - eth_chainId_plus_eth_blockNumber
-      - eth_getTransactionReceipt_public_LKB003_capture
-      - eth_getCode_DreamDEX_BinaryMarketsModule
-      - eth_call_tUSDC_decimals
-    write_methods: NONE
-  commitment:
-    role: PRE_JUDGING_TAMPER_EVIDENT_GIT_BINDING
-    judge_surface: /proof.html#commitment
-    private_identifiers_published: false
+benita_demo_v1:
+  url: https://youtu.be/tKmv5IVVX5k
+  title_observed: "Last Book for Somnia Dreamdex Hackathon"
+  duration: "1:39"
+  review_receipt: docs/DEMO-REVIEW-BENITA-V1-2026-09-11.md
+  status: REVISION_REQUIRED
+  pass_components:
+    - pain
+    - post_execution_product_definition
+    - dreamdex_mint_a_pair_causal_reveal
+    - agent_native_integration
+    - authority_receipt_boundary
+  missing_p0:
+    - REAL_SHANNON_PACKET003_PROOF
+    - LIVE_READ_ONLY_WITNESSES
+    - VISUAL_TAMPER_EVIDENT_COMMITMENT
+    - STRONGER_FINAL_SIGNATURE_CLOSE
+    - CANONICAL_2_TO_3_MINUTE_DURATION
 
-competitive_position:
-  response_to_high_onchain_proof_counts:
-    - do_not_chase_raw_counts
-    - make_each_proof_source_answer_a_distinct_judge_objection
-    - preserve_post_execution_forensics_plus_authority_differentiator
-    - use_live_read_only_witnesses_for_current_verifiability_without_new_write_risk
-  potential_second_originated_write:
-    recommendation: DO_NOT_DO_BY_DEFAULT
-    only_if: MATERIAL_MISSING_SEMANTIC_PROOF_WITH_CLEAR_RUBRIC_UPSIDE
-    authority: FRESH_EXACT_HUMAN_GATE_REQUIRED
+proof_sequence_for_v2:
+  - one_case_causal_reveal
+  - product_originated_Packet003
+  - independent_live_read_only_witnesses
+  - visual_commitment
+  - agent_authority_close
+
+packaging:
+  preferred_youtube_title: "Last Known Book — Somnia × DreamDEX Hackathon Demo"
+  youtube_description_should_include:
+    - https://last-known-book.pages.dev
+    - https://github.com/Faadil1/Last-Known-Book
+    - post_execution_incident_response_for_autonomous_DreamDEX_agents
 
 rubric_chain:
   sequence: RUBRIC -> PAIN -> PROBLEM -> DIFFERENTIATOR -> EXECUTION -> EVIDENCE -> STORY -> DEMO -> Q&A
@@ -78,36 +66,21 @@ rubric_chain:
     PROBLEM: PASS
     DIFFERENTIATOR: STRONG_PASS
     EXECUTION: PASS
-    EVIDENCE: STRONG_PASS_SOURCE_CI_DEPLOY__LIVE_BROWSER_WITNESS_RECHECK_PENDING
+    EVIDENCE: STRONG_PASS_PRODUCT__VIDEO_PROOF_LAYER_INCOMPLETE
     STORY: PASS
-    DEMO: PENDING_ENCODED_ARTIFACT
+    DEMO: V1_REVISION_REQUIRED
     Q&A: PASS_REFRESHED
 
-submission_package:
-  production_runtime: https://last-known-book.pages.dev
-  video: PENDING_BENITA_PLUS_TRACE
-  final_cutoff_recheck: REQUIRED
-  protected_submit: HUMAN_ONLY
-
-benita:
-  runtime: https://last-known-book.pages.dev
-  canonical_script: docs/DEMO-SCRIPT.md
-  handoff: docs/HANDOFF-BENITA-DEMO-2026-09-10.md
-  proof_sequence:
-    - one_case_causal_reveal
-    - product_originated_Packet003
-    - independent_live_read_only_witnesses
-    - visual_commitment
-    - agent_authority_close
-  live_witness_failure_rule: DO_NOT_RETRY_REPEATEDLY_ON_CAMERA__CONTINUE_WITH_COMMITTED_PROOF
+team_submission:
+  benita_dorahacks_handle: Benita
+  positioning: Faadil_Boussari_and_Benita_built_Last_Known_Book_together
 
 remaining_P0:
-  - production browser recheck of /proof.html live witness values and mobile reflow
-  - record browser outcome in canon if materially different from expected behavior
-  - Benita records final 2-3 minute production demo
-  - TRACE reviews encoded demo
+  - Benita produces V2 with proof sequence and 2:15–2:35 target duration
+  - TRACE reviews encoded V2
   - human final video approval
-  - final cover/thumbnail freeze if still needed
+  - update final YouTube title and description
+  - place final video URL in DoraHacks submission
   - final deadline recheck immediately before protected submission
   - protected hackathon submission remains HUMAN_ONLY
 
@@ -116,4 +89,4 @@ continuity:
   update_after_every_material_step: true
   next_conversation_should_start_here: true
 
-next_exact_action: Open https://last-known-book.pages.dev/proof.html in a normal browser and verify the four live witness cards. A successful resolution is ideal; an honest fail-closed state is acceptable technically but should not be featured in the demo. Then proceed to Benita encoded demo and TRACE video review. Do not reopen broad product design or add a blockchain write without a fresh exact human gate.
+next_exact_action: Send Benita the concise V1 feedback: keep the current story, add Packet 003 Proof Room, live read-only witnesses and visual commitment, finish around 2:15–2:35, then send V2 back for TRACE review. Do not reopen product design.
